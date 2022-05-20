@@ -1,7 +1,7 @@
 {
   "name": "@flash-global/b2b-ui-avatar",
   "author": "Global66",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "ISC",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
