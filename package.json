@@ -1,0 +1,37 @@
+{
+  "name": "b2b-ui-framework",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "git@github.com:Flash-Global66/b2b-ui-framework.git",
+  "author": "Global66 <andres.carmona@global66.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@babel/core": "^7.18.0",
+    "@storybook/addon-actions": "^6.5.3",
+    "@storybook/addon-essentials": "^6.5.3",
+    "@storybook/addon-interactions": "^6.5.3",
+    "@storybook/addon-jest": "^6.5.3",
+    "@storybook/addon-links": "^6.5.3",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/builder-vite": "^0.1.35",
+    "@storybook/testing-library": "^0.0.11",
+    "@storybook/vue3": "^6.5.3",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "babel-loader": "^8.2.5",
+    "jest-mock": "^28.1.0",
+    "lerna": "^4.0.0",
+    "tailwindcss": "^3.0.24",
+    "vite": "^2.9.9",
+    "vite-dts": "^1.0.4",
+    "vue": "^3.2.35",
+    "vue-loader": "^16.8.3"
+  },
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "resolutions": {
+    "jest-mock": "^28.1.0"
+  }
+}
