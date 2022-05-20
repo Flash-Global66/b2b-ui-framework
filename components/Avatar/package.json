@@ -1,0 +1,11 @@
+{
+  "name": "@flash-global/b2b-ui-avatar",
+  "author": "Global66",
+  "version": "0.0.1",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
+  }
+}
