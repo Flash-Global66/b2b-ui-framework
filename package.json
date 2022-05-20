@@ -1,11 +1,12 @@
 {
-  "name": "@flash-global/b2b-ui-framework",
+  "name": "@flash-global66/b2b-ui-framework",
   "version": "0.0.1",
   "main": "index.js",
-  "repository": "git@github.com:Flash-Global66/b2b-ui-framework.git",
+  "repository": {
+    "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
+  },
   "author": "Global66",
   "license": "MIT",
-  "private": true,
   "devDependencies": {
     "@babel/core": "^7.18.0",
     "@storybook/addon-actions": "^6.5.3",
@@ -33,5 +34,8 @@
   },
   "resolutions": {
     "jest-mock": "^28.1.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@flash-global"
   }
 }
