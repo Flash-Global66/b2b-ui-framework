@@ -1,5 +1,5 @@
 import { StoryFn, Meta } from "@storybook/vue3";
-import Avatar from '../components/Avatar/Avatar.vue';
+import Avatar from '../components/Avatar';
 
 export default {
   component: Avatar,
