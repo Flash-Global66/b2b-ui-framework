@@ -34,8 +34,6 @@
     "components/**/*./*.ts",
     "components/**/*.tsx",
     "components/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
   ],
   "exclude": [
     "node_modules",
