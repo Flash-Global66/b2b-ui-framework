@@ -1,5 +1,5 @@
 import { StoryFn, Meta } from "@storybook/vue3";
-import Loader from '../components/Loader';
+import { Loader } from '../components/Loader';
 
 export default {
   component: Loader,
