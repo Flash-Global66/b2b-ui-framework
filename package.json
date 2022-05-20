@@ -1,9 +1,9 @@
 {
-  "name": "b2b-ui-framework",
+  "name": "@flash-global/b2b-ui-framework",
   "version": "0.0.1",
   "main": "index.js",
   "repository": "git@github.com:Flash-Global66/b2b-ui-framework.git",
-  "author": "Global66 <andres.carmona@global66.com>",
+  "author": "Global66",
   "license": "MIT",
   "private": true,
   "devDependencies": {
