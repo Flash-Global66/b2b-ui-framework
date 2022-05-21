@@ -1,15 +1,16 @@
 import { inject } from "vue";
-import { initialValuesLoaderProvider, LoaderProvider } from "./loader.provider";
+import { initialValues, LoaderProvider, showLoader } from "./loader.provider";
 
 const useLoader = () => {
   const { showGLoader, isLoading } = inject(
     LoaderProvider,
-    initialValuesLoaderProvider
+    initialValues
   );
 
   return {
     showGLoader,
     isLoading,
+    showLoader
   };
 }
 
