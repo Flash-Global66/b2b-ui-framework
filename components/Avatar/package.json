@@ -3,6 +3,9 @@
   "author": "Global66",
   "version": "0.0.7",
   "license": "MIT",
+  "exports": {
+    "default": "./index.ts"
+  },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
