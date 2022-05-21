@@ -1,15 +1,17 @@
 import { InjectionKey, Ref, ref } from 'vue';
 
 export type LoaderProviderType = {
-  showGLoader(show: boolean): void;
   isLoading: Ref<boolean>;
+  showGLoader(show: boolean): void;
 };
 
-const initialValuesLoaderProvider: LoaderProviderType = {
-  showGLoader: (show: boolean) => console.log(show),
+const showLoader: Ref<boolean> = ref(false);
+
+const initialValues: LoaderProviderType = {
   isLoading: ref(false),
+  showGLoader: (show: boolean) => showLoader.value = show,
 };
 
 const LoaderProvider: InjectionKey<LoaderProviderType> = Symbol('loader');
 
-export {LoaderProvider, initialValuesLoaderProvider};
+export {LoaderProvider, initialValues, showLoader};
