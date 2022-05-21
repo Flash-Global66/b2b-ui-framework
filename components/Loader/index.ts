@@ -1,4 +1,4 @@
 import Loader from "./Loader.vue";
-import LoaderProvider from "./config/loader.provider";
+import useLoader from "./loader.composable";
 
-export {Loader, LoaderProvider};
+export {Loader, useLoader};
