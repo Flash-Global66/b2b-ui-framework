@@ -4,7 +4,8 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
-    "@storybook/addon-jest"
+    "@storybook/addon-jest",
+    "@storybook/addon-controls"
   ],
   framework: "@storybook/vue3",
   core: {

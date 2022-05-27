@@ -9,7 +9,15 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.18.0",
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/pro-duotone-svg-icons": "^6.1.1",
+    "@fortawesome/pro-light-svg-icons": "^6.1.1",
+    "@fortawesome/pro-regular-svg-icons": "^6.1.1",
+    "@fortawesome/pro-solid-svg-icons": "^6.1.1",
+    "@fortawesome/vue-fontawesome": "3.0.0-4",
     "@storybook/addon-actions": "^6.5.4",
+    "@storybook/addon-controls": "^6.5.4",
     "@storybook/addon-essentials": "^6.5.4",
     "@storybook/addon-interactions": "^6.5.4",
     "@storybook/addon-jest": "^6.5.4",
@@ -22,6 +30,7 @@
     "babel-loader": "^8.2.5",
     "jest-mock": "^28.1.0",
     "lerna": "^4.0.0",
+    "sass": "^1.52.1",
     "tailwindcss": "^3.0.24",
     "vite": "^2.9.9",
     "vite-dts": "^1.0.4",
@@ -37,5 +46,6 @@
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@flash-global"
-  }
+  },
+  "dependencies": {}
 }

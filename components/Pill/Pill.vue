@@ -18,6 +18,10 @@ export default defineComponent({
     text: {
       type: String,
       default: ''
+    },
+    custom: {
+      type: String,
+      default: ''
     }
   },
   setup(props) {
