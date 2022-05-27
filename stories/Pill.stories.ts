@@ -1,5 +1,5 @@
 import { StoryFn, Meta } from "@storybook/vue3";
-import Pill from '../components/Pill/Pill.vue';
+import { Pill } from '../components/Pill';
 import { PillType } from "../components/Pill/types/pill.types";
 
 export default {
