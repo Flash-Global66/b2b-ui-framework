@@ -47,5 +47,7 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@flash-global"
   },
-  "dependencies": {}
+  "dependencies": {
+    "element-plus": "^2.2.3"
+  }
 }
