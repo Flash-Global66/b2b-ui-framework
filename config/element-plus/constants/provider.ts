@@ -1,5 +1,5 @@
-const element_config = {
+const configElement = {
   NAME_SPACE: 'g',
 };
 
-export { element_config };
+export { configElement };
