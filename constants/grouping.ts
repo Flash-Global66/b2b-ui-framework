@@ -1,7 +1,10 @@
 const Grouping = {
   FORM: 'Form',
   RADIO: 'Radio',
-  BASIC: 'Basic',
+  Data: 'Data',
+  FEEDBACK: 'Feedback',
+  NAVIGATION: 'Navigation',
+
 }
 
 export { Grouping };
