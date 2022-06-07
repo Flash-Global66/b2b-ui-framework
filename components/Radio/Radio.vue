@@ -1,5 +1,5 @@
 <template>
-  <el-config-provider :namespace="provider_el.NAME_SPACE">
+  <el-config-provider :namespace="configElement.NAME_SPACE">
     <el-radio
       v-bind="{ ...$attrs, ...$props }"
       @change="(event) => $emit('change', event)"
@@ -20,7 +20,7 @@ import { ElConfigProvider, ElRadio } from "element-plus";
 import { TypeRadioSize, EnumRadioSize } from './types/type';
 
 // CONSTANTS
-import { provider_el } from '../../constants/provider';
+import { configElement } from '@flash-global66/b2b-ui-config-element';
 
 export default defineComponent({
   name: 'Radio',
@@ -73,7 +73,7 @@ export default defineComponent({
   },
   setup () {
     return {
-      provider_el,
+      configElement,
     }
   }
 });

@@ -13,6 +13,10 @@
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
   },
   "peerDependencies": {
-    "element-plus": "^2.2.3"
+    "element-plus": "^2.2.3",
+    "@flash-global66/b2b-ui-config-element": "^0.x"
+  },
+  "dependencies": {
+    "@flash-global66/b2b-ui-config-element": "^0.0.3"
   }
 }
