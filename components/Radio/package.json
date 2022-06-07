@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-radio",
   "author": "Global66",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "exports": {
     "default": "./index.ts"
@@ -13,10 +13,10 @@
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
   },
   "peerDependencies": {
-    "element-plus": "^2.2.3",
-    "@flash-global66/b2b-ui-config-element": "^0.x"
+    "@flash-global66/b2b-ui-config-element": "^0.x",
+    "element-plus": "^2.2.3"
   },
   "dependencies": {
-    "@flash-global66/b2b-ui-config-element": "^0.0.3"
+    "@flash-global66/b2b-ui-config-element": "^0.0.4"
   }
 }
