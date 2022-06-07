@@ -3,9 +3,9 @@
   "author": "Global66",
   "version": "0.0.3",
   "license": "MIT",
-  "style": "styles/index.scss",
   "exports": {
-    "default": "./index.ts"
+    ".": "./index.ts",
+    "./*": "./*"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
