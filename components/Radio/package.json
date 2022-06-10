@@ -4,7 +4,8 @@
   "version": "0.0.2",
   "license": "MIT",
   "exports": {
-    "default": "./index.ts"
+    ".": "./index.ts",
+    "./*": "./*"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
