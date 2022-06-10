@@ -1,15 +1,13 @@
 <template>
-  <el-config-provider :namespace="configElement.NAME_SPACE">
-    <el-radio
-      v-bind="{ ...$attrs, ...$props }"
-      @change="(event) => $emit('change', event)"
-    >
-      <!--
-        @slot customize default content
-      -->
-      <slot />
-    </el-radio>
-  </el-config-provider>
+  <el-radio
+    v-bind="{ ...$attrs, ...$props }"
+    @change="(event) => $emit('change', event)"
+  >
+    <!--
+      @slot customize default content
+    -->
+    <slot />
+  </el-radio>
 </template>
 
 <script lang="ts">

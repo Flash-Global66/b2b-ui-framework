@@ -14,7 +14,7 @@
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
   },
   "peerDependencies": {
-    "@flash-global66/b2b-ui-config-element": "^0.x",
+    "@flash-global66/b2b-ui-config-element": "^0.0.4",
     "element-plus": "^2.2.3"
   },
   "dependencies": {
