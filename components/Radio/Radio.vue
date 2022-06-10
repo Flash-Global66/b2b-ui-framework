@@ -46,7 +46,7 @@ export default defineComponent({
      * size of the Radio
     */
     size: {
-      type: String as PropType<EnumRadioSize>,
+      type: String as PropType<TypeRadioSize>,
       default: '',
     },
     /** 
