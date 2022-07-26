@@ -69,6 +69,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@use "./styles/index";
 .g-radio {
   &.g-radio--custom {
     --radio-input-size: v-bind(sizeCustom);
