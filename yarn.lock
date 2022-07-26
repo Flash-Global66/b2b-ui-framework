@@ -1213,6 +1213,11 @@
   resolved "https://registry.yarnpkg.com/@element-plus/icons-vue/-/icons-vue-2.0.5.tgz#8eb4143a7b5e4d8468d2e72af99eefee446f5ea0"
   integrity sha512-jvNWyKcdvPvMDLTWjghrPY+bYHKqh7hbAFIPe+HWR073zilzt33csREzmKx3VwhdlJUW5u0nCqN+0rwI8jlH+w==
 
+"@flash-global66/b2b-ui-config-element@^0.0.4":
+  version "0.0.4"
+  resolved "https://npm.pkg.github.com/download/@flash-global66/b2b-ui-config-element/0.0.4/bd91dff3e1f633fcc418f95b1faa21521f6253e10059d351c7b3408143b7cbc1#2a9ff14a3bdacd82042991a0e94a65b914b93518"
+  integrity sha512-ygMGH7MKybd09hxVX9x0aVC7CqiU/4i6nfDiSeOZMCSVwAgUkQwR4elCtmk/KEl33kNaYT64FK8G8wgAILeEMA==
+
 "@floating-ui/core@^0.7.2":
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-0.7.2.tgz#f7af9613d080dc29360e77c970965b79b524d45a"

@@ -18,6 +18,7 @@
     "element-plus": "^2.2.3"
   },
   "dependencies": {
-    "@flash-global66/b2b-ui-config-element": "^0.0.4"
+    "@flash-global66/b2b-ui-config-element": "^0.0.4",
+    "element-plus": "^2.2.9"
   }
 }
