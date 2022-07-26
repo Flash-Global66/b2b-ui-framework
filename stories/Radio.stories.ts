@@ -2,9 +2,6 @@ import { Meta, StoryFn } from '@storybook/vue3';
 import { ref } from 'vue';
 import { action } from '@storybook/addon-actions';
 
-// STYLES
-import '../components/Radio/styles/index.scss';
-
 // COMPONENTS
 import { ElConfigProvider } from 'element-plus';
 import { Radio } from '../components/Radio';
