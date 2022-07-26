@@ -2,7 +2,11 @@ import { Meta, StoryFn } from '@storybook/vue3';
 import { ref } from 'vue';
 import { action } from '@storybook/addon-actions';
 
+// STYLES
+import '../components/Radio/styles/index.scss';
+
 // COMPONENTS
+import { ElConfigProvider } from 'element-plus';
 import { Radio } from '../components/Radio';
 
 // TYPES
@@ -10,6 +14,9 @@ import { EnumRadioSize } from '../components/Radio/types/type';
 
 // CONSTANTS
 import { Grouping } from '../constants/grouping';
+
+// CONFIG
+import { configElement } from '@flash-global66/b2b-ui-config-element';
 
 export default {
   title: `${Grouping.FORM}/${Grouping.RADIO}/Single`,
@@ -78,31 +85,34 @@ export default {
 
 const Template: StoryFn<typeof Radio> = (args) => {
   return {
-    components: { Radio },
+    components: { Radio, ElConfigProvider },
     setup() {
       const selected = ref('')
 
       return {
         args,
+        configElement,
         selected,
         onChange: action('change'),
       };
     },
     template: `
-      <div class="flex items-center gap-x-8">
-        <Radio v-model="selected" @change="onChange" v-bind="args">
-          {{ args.default }}
-        </Radio>
-        <Radio v-model="selected" @change="onChange" label="Option B">
-          Option B
-        </Radio>
-        <Radio v-model="selected" @change="onChange" label="Option C">
-          Option C
-        </Radio>
-        <Radio v-model="selected" label="Option D" disabled>
-          Option D
-        </Radio>
-      </div>
+      <el-config-provider :namespace="configElement.NAME_SPACE">
+        <div class="flex items-center gap-x-8">
+          <Radio v-model="selected" @change="onChange" v-bind="args">
+            {{ args.default }}
+          </Radio>
+          <Radio v-model="selected" @change="onChange" label="Option B">
+            Option B
+          </Radio>
+          <Radio v-model="selected" @change="onChange" label="Option C">
+            Option C
+          </Radio>
+          <Radio v-model="selected" label="Option D" disabled>
+            Option D
+          </Radio>
+        </div>
+      </el-config-provider>
     `,
   }
 };

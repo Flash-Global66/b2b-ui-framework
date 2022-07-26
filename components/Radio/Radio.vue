@@ -12,18 +12,14 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { ElConfigProvider, ElRadio } from "element-plus";
+import { ElRadio } from "element-plus";
 
 // TYPES
 import { TypeRadioSize, EnumRadioSize } from './types/type';
 
-// CONSTANTS
-import { configElement } from '@flash-global66/b2b-ui-config-element';
-
 export default defineComponent({
   name: 'Radio',
   components: {
-    ElConfigProvider,
     ElRadio,
   },
   emits: [
@@ -69,11 +65,6 @@ export default defineComponent({
       default: '',
     },
   },
-  setup () {
-    return {
-      configElement,
-    }
-  }
 });
 </script>
 

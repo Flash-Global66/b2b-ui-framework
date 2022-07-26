@@ -48,6 +48,7 @@
     "registry": "https://npm.pkg.github.com/@flash-global"
   },
   "dependencies": {
+    "@flash-global66/b2b-ui-config-element": "^0.0.4",
     "element-plus": "^2.2.3"
   }
 }
