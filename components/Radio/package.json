@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-radio",
   "author": "Global66",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "license": "MIT",
   "exports": {
     ".": "./index.ts",
@@ -16,6 +16,5 @@
   "peerDependencies": {
     "@flash-global66/b2b-ui-config-element": "^0.0.4",
     "element-plus": "^2.2.3"
-  },
-  "dependencies": {}
+  }
 }
