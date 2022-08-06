@@ -1,20 +1,18 @@
 <template>
-  <el-config-provider :namespace="configElement.NAME_SPACE">
-    <el-radio-group
-      v-bind="{ ...$attrs, ...$props }"
-      @change="(event) => $emit('change', event)"
-    >
-      <!--
-        @slot customize default content
-      -->
-      <slot />
-    </el-radio-group>
-  </el-config-provider>
+  <el-radio-group
+    v-bind="{ ...$attrs, ...$props }"
+    @change="(event) => $emit('change', event)"
+  >
+    <!--
+      @slot customize default content
+    -->
+    <slot />
+  </el-radio-group>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { ElConfigProvider, ElRadioGroup } from "element-plus";
+import { ElRadioGroup } from "element-plus";
 
 // TYPES
 import { TypeRadioSize, EnumRadioSize } from '../Radio/types/type';
@@ -26,7 +24,6 @@ export default defineComponent({
   name: 'RadioGroup',
   components: {
     ElRadioGroup,
-    ElConfigProvider,
   },
   emits: [
     /**

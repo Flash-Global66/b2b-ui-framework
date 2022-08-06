@@ -56,8 +56,8 @@ export default {
     size: { 
       control: { 
         type: 'select',
-        options: [...Object.keys(EnumRadioSize), 'custom'],
       },
+      options: [...Object.values(EnumRadioSize), 'custom'],
       table: {
         type: { summary: 'String' } 
       }

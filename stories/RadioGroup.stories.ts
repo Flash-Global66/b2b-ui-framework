@@ -3,11 +3,18 @@ import { ref } from 'vue';
 import { action } from '@storybook/addon-actions';
 
 // COMPONENTS
+import { ElConfigProvider } from 'element-plus';
 import { Radio } from '../components/Radio';
 import { RadioGroup } from '../components/RadioGroup';
 
 // HELPERS
 import { Grouping } from '../constants/grouping';
+
+// CONFIG
+import { configElement } from '@flash-global66/b2b-ui-config-element';
+
+// TYPES
+import { EnumRadioSize } from '../components/Radio/types/type';
 
 export default {
   title: `${Grouping.FORM}/${Grouping.RADIO}/Group`,
@@ -43,8 +50,8 @@ export default {
     size: { 
       control: { 
         type: 'select',
-        options: ['small', 'default', 'large'],
       },
+      options: [...Object.values(EnumRadioSize), 'custom'],
       table: {
         type: { summary: 'String' } 
       }
@@ -65,32 +72,35 @@ export default {
 
 const Template: StoryFn<typeof Radio> = (args, selected) => {
   return {
-    components: { Radio, RadioGroup },
+    components: { Radio, RadioGroup, ElConfigProvider },
     setup() {
       const selected = ref('')
       return {
         args,
         selected,
+        configElement,
         onChange: action('change'),
       };
     },
     template: `
-      <RadioGroup
-        class="flex items-center gap-x-8"
-        v-model="selected"
-        v-bind="args"
-        @change="onChange"
-      >
-        <Radio label="female">
-          Femenino
-        </Radio>
-        <Radio label="male">
-          Masculino
-        </Radio>
-        <Radio label="non-binary">
-          No binario
-        </Radio>
-      </RadioGroup>
+      <el-config-provider :namespace="configElement.NAME_SPACE">
+        <RadioGroup
+          class="flex items-center gap-x-8"
+          v-model="selected"
+          v-bind="args"
+          @change="onChange"
+        >
+          <Radio label="female">
+            Femenino
+          </Radio>
+          <Radio label="male">
+            Masculino
+          </Radio>
+          <Radio label="non-binary">
+            No binario
+          </Radio>
+        </RadioGroup>
+      </el-config-provider>
     `,
   }
 };
