@@ -15,7 +15,7 @@ import { defineComponent, PropType } from 'vue';
 import { ElRadio } from "element-plus";
 
 // TYPES
-import { TypeRadioSize, EnumRadioSize } from './types/type';
+import { TypeRadioSize } from './types/type';
 
 export default defineComponent({
   name: 'Radio',
