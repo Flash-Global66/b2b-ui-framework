@@ -51,14 +51,14 @@ export default {
       control: { 
         type: 'select',
       },
-      options: [...Object.values(EnumRadioSize), 'custom'],
+      options: Object.values(EnumRadioSize),
       table: {
         type: { summary: 'String' } 
       }
     },
   },
   args: {
-    size: 'default',
+    size: '',
     disabled: false,
   },
   parameters: {

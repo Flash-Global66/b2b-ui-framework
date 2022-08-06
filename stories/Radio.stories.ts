@@ -57,7 +57,7 @@ export default {
       control: { 
         type: 'select',
       },
-      options: [...Object.values(EnumRadioSize), 'custom'],
+      options: Object.values(EnumRadioSize),
       table: {
         type: { summary: 'String' } 
       }
@@ -65,7 +65,7 @@ export default {
   },
   // values for the default
   args: {
-    size: 'default',
+    size: '',
     label: 'Option A',
     default: 'Option A',
     disabled: false,
@@ -96,7 +96,7 @@ const Template: StoryFn<typeof Radio> = (args) => {
     template: `
       <el-config-provider :namespace="configElement.NAME_SPACE">
         <div class="flex items-center gap-x-8">
-          <Radio v-model="selected" @change="onChange" v-bind="args">
+          <Radio v-model="selected" @change="onChange" class="custom" v-bind="args">
             {{ args.default }}
           </Radio>
           <Radio v-model="selected" @change="onChange" label="Option B">

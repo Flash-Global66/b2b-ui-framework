@@ -43,13 +43,6 @@ export default defineComponent({
       type: String as PropType<TypeRadioSize>,
       default: '',
     },
-    /** 
-     * Custom size must activate the custom size type
-     */
-    sizeCustom: {
-      type: String,
-      default: '30px',
-    },
     /**
      *  the value of Radio
     */
@@ -70,9 +63,4 @@ export default defineComponent({
 
 <style lang="scss">
 @use "./styles/index";
-.g-radio {
-  &.g-radio--custom {
-    --radio-input-size: v-bind(sizeCustom);
-  }
-}
 </style>
