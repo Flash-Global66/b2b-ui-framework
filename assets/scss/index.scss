@@ -1,4 +1,5 @@
 @use "@flash-global66/b2b-ui-config-element/styles/index.scss" as *;
 
-@use "element-plus/theme-chalk/src/radio-group.scss";
-@use "element-plus/theme-chalk/src/radio.scss";
+
+@use "../../components/RadioGroup/styles/index.scss" as *;
+@use "../../components/Radio/styles/index.scss" as *;

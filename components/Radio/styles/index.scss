@@ -1,3 +1,5 @@
+@use "element-plus/theme-chalk/src/radio.scss" as *;
+
 .g-radio {
   @apply mr-0 h-auto;
   --radio-input-size: 18px;
