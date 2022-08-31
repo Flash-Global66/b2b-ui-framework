@@ -60,7 +60,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss">
-@use "./styles/index";
-</style>
