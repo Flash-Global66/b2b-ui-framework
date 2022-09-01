@@ -1444,10 +1444,10 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@flash-global66/b2b-ui-config-element@^0.0.4":
-  version "0.0.4"
-  resolved "https://npm.pkg.github.com/download/@flash-global66/b2b-ui-config-element/0.0.4/bd91dff3e1f633fcc418f95b1faa21521f6253e10059d351c7b3408143b7cbc1#2a9ff14a3bdacd82042991a0e94a65b914b93518"
-  integrity sha512-ygMGH7MKybd09hxVX9x0aVC7CqiU/4i6nfDiSeOZMCSVwAgUkQwR4elCtmk/KEl33kNaYT64FK8G8wgAILeEMA==
+"@flash-global66/b2b-ui-config-element@^0.0.5":
+  version "0.0.5"
+  resolved "https://npm.pkg.github.com/download/@Flash-Global66/b2b-ui-config-element/0.0.5/532ee090dcd06dcc2108861c0e3e7952f5bfa1bd#532ee090dcd06dcc2108861c0e3e7952f5bfa1bd"
+  integrity sha512-yQk4Q6bRYPi3EZMTUljAkME0/kcnNNmbmLZVUxxGkgsLkR9d2mexNFIW1AVV9ryBA+vPyLS8KPy25V8IyYE7BQ==
 
 "@floating-ui/core@^0.7.2":
   version "0.7.2"

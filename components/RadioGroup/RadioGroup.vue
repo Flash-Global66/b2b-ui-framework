@@ -17,9 +17,6 @@ import { ElRadioGroup } from "element-plus";
 // TYPES
 import { TypeRadioSize, EnumRadioSize } from '../Radio/types/type';
 
-// CONSTANTS
-import { configElement } from '@flash-global66/b2b-ui-config-element';
-
 export default defineComponent({
   name: 'RadioGroup',
   components: {
@@ -47,10 +44,5 @@ export default defineComponent({
       default: '',
     },
   },
-  setup() {
-    return {
-      configElement,
-    }
-  }
 });
 </script>
