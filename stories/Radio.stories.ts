@@ -13,7 +13,7 @@ import { EnumRadioSize } from '../components/Radio/types/type';
 import { Grouping } from '../constants/grouping';
 
 // CONFIG
-import { configElement } from '@flash-global66/b2b-ui-config-element';
+import { ConfigProvider } from '@flash-global66/b2b-ui-config-element';
 
 export default {
   title: `${Grouping.FORM}/${Grouping.RADIO}/Single`,
@@ -82,19 +82,18 @@ export default {
 
 const Template: StoryFn<typeof Radio> = (args) => {
   return {
-    components: { Radio, ElConfigProvider },
+    components: { Radio, ConfigProvider },
     setup() {
       const selected = ref('')
 
       return {
         args,
-        configElement,
         selected,
         onChange: action('change'),
       };
     },
     template: `
-      <el-config-provider :namespace="configElement.NAME_SPACE">
+      <config-provider>
         <div class="flex items-center gap-x-8">
           <Radio v-model="selected" @change="onChange" class="custom" v-bind="args">
             {{ args.default }}
@@ -109,7 +108,7 @@ const Template: StoryFn<typeof Radio> = (args) => {
             Option D
           </Radio>
         </div>
-      </el-config-provider>
+      </config-provider>
     `,
   }
 };

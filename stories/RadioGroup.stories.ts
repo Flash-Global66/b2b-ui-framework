@@ -3,7 +3,6 @@ import { ref } from 'vue';
 import { action } from '@storybook/addon-actions';
 
 // COMPONENTS
-import { ElConfigProvider } from 'element-plus';
 import { Radio } from '../components/Radio';
 import { RadioGroup } from '../components/RadioGroup';
 
@@ -11,7 +10,7 @@ import { RadioGroup } from '../components/RadioGroup';
 import { Grouping } from '../constants/grouping';
 
 // CONFIG
-import { configElement } from '@flash-global66/b2b-ui-config-element';
+import { ConfigProvider } from '@flash-global66/b2b-ui-config-element';
 
 // TYPES
 import { EnumRadioSize } from '../components/Radio/types/type';
@@ -72,18 +71,17 @@ export default {
 
 const Template: StoryFn<typeof Radio> = (args, selected) => {
   return {
-    components: { Radio, RadioGroup, ElConfigProvider },
+    components: { Radio, RadioGroup, ConfigProvider },
     setup() {
       const selected = ref('')
       return {
         args,
         selected,
-        configElement,
         onChange: action('change'),
       };
     },
     template: `
-      <el-config-provider :namespace="configElement.NAME_SPACE">
+      <config-provider>
         <RadioGroup
           class="flex items-center gap-x-8"
           v-model="selected"
@@ -100,7 +98,7 @@ const Template: StoryFn<typeof Radio> = (args, selected) => {
             No binario
           </Radio>
         </RadioGroup>
-      </el-config-provider>
+      </config-provider>
     `,
   }
 };
