@@ -1,8 +1,8 @@
-export type TranslatePair = {
-  [key: string]: string | string[] | TranslatePair
+export type TypeTranslatePair = {
+  [key: string]: string | string[] | TypeTranslatePair
 }
 
-export type Language = {
+export type TypeLanguage = {
   name: string
-  el: TranslatePair
+  el: TypeTranslatePair
 }

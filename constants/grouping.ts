@@ -1,4 +1,5 @@
 const Grouping = {
+  CONFIG: 'Configuration',
   FORM: 'Form',
   RADIO: 'Radio',
   Data: 'Data',

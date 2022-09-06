@@ -1,0 +1,36 @@
+@use "element-plus/theme-chalk/src/select.scss" as *;
+
+.g-select {
+  .g-input__wrapper {
+    @apply rounded-md shadow-sm border-none px-3;
+  }
+
+  &:hover {
+    .g-input__wrapper {
+      @apply border-none;
+    }
+    &:not(.g-select-disabled) {
+      .g-input__wrapper {
+        @apply shadow-input;
+      }
+    }
+  }
+
+
+  .g-input {
+    @apply h-[52px];
+    .g-input__inner {
+      @apply h-auto relative duration-200 transition-all text-gray-2 leading-none;
+    }
+
+    &.g-input--large {
+      .g-input__inner {
+        --g-input-inner-height: 80px;
+      }
+    }
+  }
+
+  .el-select--small {
+    
+  }
+}
