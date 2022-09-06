@@ -1,6 +1,7 @@
 // prefijo far
 export {
   faChevronDown as farChevronDown,
+  faChevronUp,
   faExclamationCircle,
   faCheckCircle,
   faMars,
@@ -11,7 +12,8 @@ export {
   faSearch as farSearch,
   faEllipsisV as farEllipsisV,
   faCopy as farCopy,
-  faTimes as farTimes,
+  faTimes,
+  faTimesCircle,
   faMoneyBillAlt as farMoneyBillAlt,
   faArrowLeft as farArrowLeft,
   faArrowRight as farArrowRight,

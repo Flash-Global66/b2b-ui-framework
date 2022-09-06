@@ -13,10 +13,10 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { ElConfigProvider } from 'element-plus';
-import es from 'element-plus/dist/locale/es.mjs'
+import es from 'element-plus/dist/locale/es.mjs';
 
 // TYPES
-import { Language } from './types/locale';
+import { TypeLanguage } from './types/locale';
 
 export default defineComponent({
   name: 'ConfigProvider',
@@ -35,7 +35,7 @@ export default defineComponent({
      * Locale Object
      */
      locale: {
-      type: Object as PropType<Language>,
+      type: Object as PropType<TypeLanguage>,
       default: es,
     },
   },

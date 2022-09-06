@@ -1,0 +1,12 @@
+@use "element-plus/theme-chalk/src/scrollbar.scss" as *;
+
+
+.g-scrollbar__bar {
+  .is-vertical {
+
+  }
+}
+
+.g-scrollbar__thumb {
+  @apply bg-gray-5 opacity-75;
+}
