@@ -1,10 +1,11 @@
 {
   "name": "@flash-global66/b2b-ui-input",
   "author": "Global66",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "exports": {
-    "default": "./index.ts"
+    ".": "./index.ts",
+    "./*": "./*"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
@@ -13,6 +14,7 @@
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
   },
   "peerDependencies": {
+    "@flash-global66/b2b-ui-config-element": "^0.0.4",
     "element-plus": "^2.2.3"
   }
 }
