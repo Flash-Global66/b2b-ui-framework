@@ -13,10 +13,10 @@
   "repository": {
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
   },
-  "peerDependencies": {
+  "dependencies": {
+    "element-plus": "^2.2.3",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/pro-regular-svg-icons": "^6.2.0",
-    "@fortawesome/vue-fontawesome": "^3.0.1",
-    "element-plus": "^2.2.3"
+    "@fortawesome/vue-fontawesome": "^3.0.1"
   }
 }
