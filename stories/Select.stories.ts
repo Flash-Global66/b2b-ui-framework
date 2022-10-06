@@ -10,7 +10,7 @@ import { Option } from '../components/Option';
 import { Grouping } from '../constants/grouping';
 
 // CONFIG
-import { ConfigProvider } from '../components/ConfigProvider';
+import { GConfigProvider } from '../components/ConfigProvider';
 
 // TYPES
 import { EnumRadioSize } from '../components/Radio/types/type';
@@ -65,7 +65,7 @@ export default {
 
 const Template: StoryFn<typeof Select> = (args, selected) => {
   return {
-    components: { Select, Option, ConfigProvider },
+    components: { Select, Option, GConfigProvider },
     setup() {
       const selected = ref('');
 
@@ -124,7 +124,7 @@ const Template: StoryFn<typeof Select> = (args, selected) => {
       };
     },
     template: `
-      <config-provider>
+      <g-config-provider>
         <div class="p-7 h-80">
           <Select
             class="flex items-center gap-x-8"
@@ -142,7 +142,7 @@ const Template: StoryFn<typeof Select> = (args, selected) => {
             </Option>
           </Select>
         </div>
-      </config-provider>
+      </g-config-provider>
     `,
   }
 };

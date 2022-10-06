@@ -13,7 +13,7 @@ import { EnumRadioSize } from '../components/Radio/types/type';
 import { Grouping } from '../constants/grouping';
 
 // CONFIG
-import { ConfigProvider } from '../components/ConfigProvider';
+import { GConfigProvider } from '../components/ConfigProvider';
 
 export default {
   title: `${Grouping.FORM}/${Grouping.RADIO}/Single`,
@@ -82,7 +82,7 @@ export default {
 
 const Template: StoryFn<typeof Radio> = (args) => {
   return {
-    components: { Radio, ConfigProvider },
+    components: { Radio, GConfigProvider },
     setup() {
       const selected = ref('')
 
@@ -93,7 +93,7 @@ const Template: StoryFn<typeof Radio> = (args) => {
       };
     },
     template: `
-      <config-provider>
+      <g-config-provider>
         <div class="flex items-center gap-x-8">
           <Radio v-model="selected" @change="onChange" class="custom" v-bind="args">
             {{ args.default }}
@@ -108,7 +108,7 @@ const Template: StoryFn<typeof Radio> = (args) => {
             Option D
           </Radio>
         </div>
-      </config-provider>
+      </g-config-provider>
     `,
   }
 };
