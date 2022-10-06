@@ -29,7 +29,6 @@ export default defineComponent({
      */
      zIndex: {
       type: Number,
-      default: '-'
     },
     /**
      * Locale Object

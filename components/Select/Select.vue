@@ -1,7 +1,7 @@
 <template>
-  <div class="relative font-montserrat">
+  <div class="g-select-wrapper relative font-montserrat">
     <label
-      class="absolute z-10 duration-200 transition-all text-gray-4 px-3"
+      class="absolute z-10 duration-200 transition-all text-gray-4 px-3 text-ellipsis overflow-hidden whitespace-nowrap w-full select-none"
       :class="[
         isVisible || isValue ? 'top-2 text-xs translate-y-0' : 'top-1/2 -translate-y-1/2 text-base',
       ]"
@@ -14,7 +14,7 @@
       popper-class="!z-100"
       :suffix-icon="IconArrow"
       :clear-icon="IconTimes"
-      v-bind="{ ...$attrs, ...$props }"
+      v-bind="{ ...attrsCustom, ...$props }"
       :placeholder="label ? ' ' : placeholder"
       @change="onChange"
       @visible-change="onVisibleChange"
@@ -24,7 +24,7 @@
       @focus="onFocus"
     >
       <!--
-        @slot customize default content
+        @slot customize prefix
       -->
       <template v-if="$slots.prefix" #prefix>
         <slot name="prefix" />
@@ -50,21 +50,10 @@ import { TypeRadioSize } from './select.type';
 
 
 export default defineComponent({
-  name: 'Select',
+  name: 'GSelect',
   components: {
     ElSelect,
   },
-  emits: [
-    /**
-     * triggers when the bound value changes
-     */
-    'change',
-    'visible-change',
-    'remove-tag',
-    'clear',
-    'blur',
-    'focus',
-  ],
   props: {
     /**
      * whether Select is disabled
@@ -76,7 +65,7 @@ export default defineComponent({
     /**
      * unique identity key name for value, required when value is an object
      */
-     'value-key': {
+     valueKey: {
       type: String,
       default: ''
     },
@@ -106,7 +95,7 @@ export default defineComponent({
      */
      autocomplete: {
       type: String,
-      default: false,
+      default: 'off',
     },
     /**
      *  As a requirement you must not declare the label
@@ -132,14 +121,14 @@ export default defineComponent({
     /**
      *  whether creating new items is allowed. To use this, filterable must be true
     */
-    'allow-create': {
+    allowCreate: {
       type: Boolean,
       default: false,
     },
     /**
      *  custom filter method
     */
-    'filter-method': {
+    filterMethod: {
       type: Function
     },
     /**
@@ -152,28 +141,28 @@ export default defineComponent({
     /**
      * displayed text while loading data from server
     */
-     'loading-text': {
+     loadingText: {
       type: String,
       default: '',
      },
     /**
       * displayed text when no data matches the filtering query, you can also use slot empty
     */
-    'no-match-text': {
+    noMatchText: {
       type: String,
       default: 'Sin datos coincidentes',
     },
     /**
       * displayed text when there is no options, you can also use slot empty
     */
-    'no-data-text': {
+    noDataText: {
       type: String,
       default: 'Sin datos',
     },
     /**
       * select first matching option on enter key. Use with filterable or remote
     */
-    'default-first-option': {
+    defaultFirstOption: {
       type: Boolean,
       default: false,
     },
@@ -194,41 +183,85 @@ export default defineComponent({
     /**
       * for non-filterable Select, this prop decides if the option menu pops up when the input is focused
     */
-    'automatic-dropdown': {
+    automaticDropdown: {
       type: Boolean,
       default: false,
     },
     /**
       * whether the width of the dropdown is the same as the input
     */
-    'fit-input-width': {
+    fitInputWidth: {
       type: Boolean,
       default: false,
     },
     /**
       * whether to trigger form validation
     */
-    'validate-event': {
+    validateEvent: {
       type: Boolean,
       default: true,
     },
+    /**
+     * Remove rounded corners from the right side to join with another component.
+     */
+     joinRight: {
+      type: Boolean,
+      default: false,
+    },
+    /**
+     * Remove rounded edges from left side to join with another component.
+     */
+     joinLeft: {
+      type: Boolean,
+      default: false,
+    },
   },
-  setup(props, { emit, slots }) {
+  emits: [
+    /**
+     * triggers when the bound value changes
+     */
+    'change',
+    'visible-change',
+    'remove-tag',
+    'clear',
+    'blur',
+    'focus',
+  ],
+  setup(props, { emit, slots, attrs }) {
     const refSelect = ref();
 
     const isVisible = ref(false);
     const isValue = ref(false);
     const prefixWidth = ref(0);
 
-    watch(() => refSelect.value, (rf) => {
-      console.log('que', rf);
-      // prefixWidth.value = rf.prefixWidth;
-    })
+    const styleInputInner = computed(() => {
+      return props.label && (isVisible.value || isValue.value) ? '-8px' : '0px';
+    });
+
+    const inputRounded = computed(() => {
+      const rounded = 0.375;
+
+      if (props.joinLeft) {
+        return `0 ${rounded}rem ${rounded}rem 0`;
+      }
+
+      if (props.joinRight) {
+        return `${rounded}rem 0 0 ${rounded}rem`;
+      }
+      return `${rounded}rem ${rounded}rem ${rounded}rem ${rounded}rem`;
+    });
+
+    const attrsCustom = computed(() => {
+      const excludeKeys = ['class'];
+      return Object.fromEntries(Object.entries(attrs).filter(([key]) => !excludeKeys.includes(key)));
+    });
 
     onMounted(() => {
       nextTick(() => {
         const refEl = refSelect.value && refSelect.value.$el
         if (!refEl) return
+
+        isValue.value = !!attrs.modelValue;
         
         if (slots.prefix) {
           const prefix = refEl.querySelector('.g-input__prefix')
@@ -237,30 +270,20 @@ export default defineComponent({
       })
     });
 
-    const styleInputInner = computed(() => {
-      return props.label && (isVisible.value || isValue.value) ? '-8px' : '0px';
-    });
-
     function onClick() {
       refSelect.value.toggleMenu();
     };
 
-    function onFocus(event: EventTarget & HTMLInputElement) {
+    function onFocus(event: Event) {
       emit('focus', event);
     }
 
-    function onBlur(event: EventTarget & HTMLInputElement) {
-      /**
-       * Success event.
-       *
-       * @event success
-       * @property {string} content content of the first prop passed to the event
-       * @property {object} example the demo example
-       */
+    function onBlur(event: Event) {
       emit('blur', event);
     }
 
     function onChange(event) {
+      emit('change', event);
       const valuesFalse = ['', ``, null, undefined, NaN]
 
       if (valuesFalse.includes(event)) {
@@ -269,25 +292,27 @@ export default defineComponent({
         isValue.value = true;
       }
 
-      emit('change', event);
     }
 
     function onVisibleChange(event: boolean) {
+      emit('visible-change', event)
       isVisible.value = event;
     }
 
     return {
       refSelect,
+      inputRounded,
+      isVisible,
+      isValue,
+      styleInputInner,
+      attrsCustom,
+      prefixWidth,
+
+      onVisibleChange,
       onClick,
       onFocus,
       onBlur,
       onChange,
-      isVisible,
-      isValue,
-      onVisibleChange,
-
-      styleInputInner,
-      prefixWidth,
 
       IconArrow,
       IconTimes,
@@ -297,10 +322,18 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.g-select {
-  .g-input {
+.g-select-wrapper {
+  .g-select {
     .g-input__inner {
       bottom: v-bind(styleInputInner);
+    }
+    .g-input__wrapper {
+      border-radius: v-bind(inputRounded);
+    }
+    &.is-disabled {
+      .g-input__wrapper {
+        @apply bg-gray-11 cursor-not-allowed shadow-sm;
+      }
     }
   }
 }

@@ -10,7 +10,7 @@ import { RadioGroup } from '../components/RadioGroup';
 import { Grouping } from '../constants/grouping';
 
 // CONFIG
-import { ConfigProvider } from '@flash-global66/b2b-ui-config-element';
+import { ConfigProvider } from '../components/ConfigProvider';
 
 // TYPES
 import { EnumRadioSize } from '../components/Radio/types/type';

@@ -13,7 +13,7 @@ import { EnumRadioSize } from '../components/Radio/types/type';
 import { Grouping } from '../constants/grouping';
 
 // CONFIG
-import { ConfigProvider } from '@flash-global66/b2b-ui-config-element';
+import { ConfigProvider } from '../components/ConfigProvider';
 
 export default {
   title: `${Grouping.FORM}/${Grouping.RADIO}/Single`,
