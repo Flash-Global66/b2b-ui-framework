@@ -1,3 +1,3 @@
-import Radio from "./Radio.vue";
+import GRadio from "./Radio.vue";
 
-export { Radio };
+export { GRadio };
