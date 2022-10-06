@@ -14,7 +14,7 @@ import { Option } from '../components/Option';
 import { Grouping } from '../constants/grouping';
 
 // CONFIG
-import { ConfigProvider } from '../components/ConfigProvider';
+import { GConfigProvider } from '../components/ConfigProvider';
 
 // TYPES
 import { EnumRadioSize } from '../components/Radio/types/type';
@@ -60,7 +60,7 @@ export default {
 
 const Template: StoryFn<typeof GForm> = (args, selected) => {
   return {
-    components: { GForm, GFormItem, GInput, ConfigProvider, Select, Option },
+    components: { GForm, GFormItem, GInput, GConfigProvider, Select, Option },
     setup() {
 
       const ruleFormRef = ref<FormInstance>()
@@ -169,7 +169,7 @@ const Template: StoryFn<typeof GForm> = (args, selected) => {
       };
     },
     template: `
-      <config-provider>
+      <g-config-provider>
         <div class="p-7 h-80 bg-gray-10">
           <g-form
             ref="ruleFormRef"
@@ -209,7 +209,7 @@ const Template: StoryFn<typeof GForm> = (args, selected) => {
           -
           <button @click="onReset(ruleFormRef)">Reset</button>
         </div>
-      </config-provider>
+      </g-config-provider>
     `,
   }
 };

@@ -10,7 +10,7 @@ import { RadioGroup } from '../components/RadioGroup';
 import { Grouping } from '../constants/grouping';
 
 // CONFIG
-import { ConfigProvider } from '../components/ConfigProvider';
+import { GConfigProvider } from '../components/ConfigProvider';
 
 // TYPES
 import { EnumRadioSize } from '../components/Radio/types/type';
@@ -71,7 +71,7 @@ export default {
 
 const Template: StoryFn<typeof Radio> = (args, selected) => {
   return {
-    components: { Radio, RadioGroup, ConfigProvider },
+    components: { Radio, RadioGroup, GConfigProvider },
     setup() {
       const selected = ref('')
       return {
@@ -81,7 +81,7 @@ const Template: StoryFn<typeof Radio> = (args, selected) => {
       };
     },
     template: `
-      <config-provider>
+      <g-config-provider>
         <RadioGroup
           class="flex items-center gap-x-8"
           v-model="selected"
@@ -98,7 +98,7 @@ const Template: StoryFn<typeof Radio> = (args, selected) => {
             No binario
           </Radio>
         </RadioGroup>
-      </config-provider>
+      </g-config-provider>
     `,
   }
 };

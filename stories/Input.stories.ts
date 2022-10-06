@@ -9,7 +9,7 @@ import { GInput } from '../components/Input';
 import { Grouping } from '../constants/grouping';
 
 // CONFIG
-import { ConfigProvider } from '../components/ConfigProvider';
+import { GConfigProvider } from '../components/ConfigProvider';
 
 // TYPES
 import { EnumRadioSize } from '../components/Radio/types/type';
@@ -41,7 +41,7 @@ export default {
 
 const Template: StoryFn<typeof GInput> = (args, selected) => {
   return {
-    components: { GInput, ConfigProvider },
+    components: { GInput, GConfigProvider },
     setup() {
       const name = ref('');
 
@@ -51,13 +51,13 @@ const Template: StoryFn<typeof GInput> = (args, selected) => {
       };
     },
     template: `
-      <config-provider>
+      <g-config-provider>
         <g-input
           v-model="name"
           v-bind="args"
         >
         </g-input>
-      </config-provider>
+      </g-config-provider>
     `,
   }
 };
