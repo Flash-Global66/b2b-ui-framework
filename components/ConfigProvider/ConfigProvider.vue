@@ -1,13 +1,12 @@
 <template>
-  <el-config-provider
-    v-bind="{ ...$attrs, ...$props }"
-    namespace="g"
-  >
-    <!--
-      @slot customize default content
-    -->
-    <slot />
-  </el-config-provider>
+  <section>
+    <el-config-provider namespace="g">
+      <!--
+        @slot customize default content
+      -->
+      <slot />
+    </el-config-provider>
+  </section>
 </template>
 
 <script lang="ts">
@@ -33,7 +32,7 @@ export default defineComponent({
     /**
      * Locale Object
      */
-     locale: {
+    locale: {
       type: Object as PropType<TypeLanguage>,
       default: es,
     },
