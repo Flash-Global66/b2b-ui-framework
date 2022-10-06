@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-select",
   "author": "Global66",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "exports": {
     "default": "./index.ts"
@@ -14,9 +14,9 @@
   },
   "peerDependencies": {
     "@flash-global66/b2b-ui-config-element": "^0.0.4",
-    "element-plus": "^2.2.3",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/pro-regular-svg-icons": "^6.2.0",
-    "@fortawesome/vue-fontawesome": "^3.0.1"
+    "@fortawesome/vue-fontawesome": "^3.0.1",
+    "element-plus": "^2.2.3"
   }
 }
