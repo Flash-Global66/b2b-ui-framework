@@ -1,5 +1,5 @@
 import ConfigProvider from "./ConfigProvider.vue";
-import { TypeLanguage } from './types/locale';
+import type { TLanguage } from './types/loco';
 
 
-export { ConfigProvider, TypeLanguage };
+export { ConfigProvider, TLanguage };

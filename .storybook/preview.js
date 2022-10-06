@@ -20,5 +20,19 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/,
     },
+    expanded: true,
+  },
+  viewMode: "docs",
+  previewTabs: {
+    "storybook/docs/panel": {
+      index: -1
+    },
+  },
+  backgrounds: {
+    values: [
+      { name: 'Gray', value: '#F5F7FF' },
+      { name: 'White', value: '#FFF' },
+    ],
+    default: "Gray",
   },
 }

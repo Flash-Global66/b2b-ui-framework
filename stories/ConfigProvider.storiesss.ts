@@ -2,7 +2,7 @@ import { Meta, StoryFn } from '@storybook/vue3';
 import { PropType } from 'vue';
 
 import { ConfigProvider } from '../components/ConfigProvider';
-import { TypeLanguage } from '../components/ConfigProvider/types/locale';
+// import { TypeLanguage } from '../components/ConfigProvider/types/locale';
 import es from 'element-plus/dist/locale/es.mjs'
 import pt from 'element-plus/dist/locale/pt-br.mjs'
 

@@ -10,7 +10,7 @@ import { Option } from '../components/Option';
 import { Grouping } from '../constants/grouping';
 
 // CONFIG
-import { ConfigProvider } from '@flash-global66/b2b-ui-config-element';
+import { ConfigProvider } from '../components/ConfigProvider';
 
 // TYPES
 import { EnumRadioSize } from '../components/Radio/types/type';
@@ -125,7 +125,7 @@ const Template: StoryFn<typeof Select> = (args, selected) => {
     },
     template: `
       <config-provider>
-        <div class="p-7 h-80 bg-gray-10">
+        <div class="p-7 h-80">
           <Select
             class="flex items-center gap-x-8"
             v-model="selected"
