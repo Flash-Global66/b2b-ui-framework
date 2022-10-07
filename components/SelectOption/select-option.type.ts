@@ -1,4 +1,4 @@
-type TypeRadioSize = 'small' | 'default' | 'large' | 'custom';
+type TypeRadioSize = 'small' | 'default' | 'large';
 
 type TypeRadio = string | number | boolean;
 

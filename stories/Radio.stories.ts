@@ -3,11 +3,10 @@ import { ref } from 'vue';
 import { action } from '@storybook/addon-actions';
 
 // COMPONENTS
-import { ElConfigProvider } from 'element-plus';
 import { GRadio } from '../components/Radio';
 
 // TYPES
-import { EnumRadioSize } from '../components/Radio/types/type';
+import { EnumRadioSize } from '../components/Radio/radio.type';
 
 // CONSTANTS
 import { Grouping } from '../constants/grouping';

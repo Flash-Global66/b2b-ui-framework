@@ -15,7 +15,7 @@ import { defineComponent, PropType } from 'vue';
 import { ElRadioGroup } from "element-plus";
 
 // TYPES
-import { TypeRadioSize, EnumRadioSize } from '../Radio/types/type';
+import { TypeRadioSize, EnumRadioSize } from '../Radio/radio.type';
 
 export default defineComponent({
   name: 'RadioGroup',

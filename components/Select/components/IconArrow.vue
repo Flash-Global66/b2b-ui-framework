@@ -1,5 +1,5 @@
 <template>
-  <font-awesome-icon :icon="['far', 'chevron-up']" />
+  <font-awesome-icon :icon="['far', 'chevron-down']" />
 </template>
 
 <script lang='ts'>
