@@ -1,5 +1,5 @@
 <template>
-  <div class="g-radio-wrapper">
+  <div class="gui-radio-wrapper">
     <el-radio
       v-bind="{ ...$attrs, ...$props }"
       @change="(event) => $emit('change', event)"

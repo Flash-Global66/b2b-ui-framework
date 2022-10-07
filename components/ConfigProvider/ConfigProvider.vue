@@ -1,6 +1,6 @@
 <template>
   <section>
-    <el-config-provider namespace="g">
+    <el-config-provider namespace="gui">
       <!--
         @slot customize default content
       -->

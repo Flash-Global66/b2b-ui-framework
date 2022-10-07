@@ -1,29 +1,29 @@
 @use "element-plus/theme-chalk/src/radio.scss" as *;
 
-.g-radio-wrapper {
-  .g-radio {
+.gui-radio-wrapper {
+  .gui-radio {
     @apply mr-0 h-auto;
     --radio-input-size: 18px;
-    &.g-radio--small {
+    &.gui-radio--small {
       --radio-input-size: 14px;
-      .g-radio__label {
+      .gui-radio__label {
         font-size: inherit;
       }
     }
-    &.g-radio--large {
+    &.gui-radio--large {
       --radio-input-size: 24px;
-      .g-radio__label {
+      .gui-radio__label {
         font-size: inherit;
       }
     }
-    &.g-radio--default {
-      .g-radio__label {
+    &.gui-radio--default {
+      .gui-radio__label {
         font-size: inherit;
       }
     }
-    .g-radio__input {
+    .gui-radio__input {
       @apply shadow-input rounded-full;
-      .g-radio__inner {
+      .gui-radio__inner {
         @apply border bg-transparent border-solid bg-white;
         width: var(--radio-input-size);
         height: var(--radio-input-size);

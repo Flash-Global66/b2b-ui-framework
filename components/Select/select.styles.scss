@@ -1,8 +1,8 @@
 @use "element-plus/theme-chalk/src/select.scss" as *;
 
-.g-select-wrapper {
-  .g-select {
-    .g-input__wrapper {
+.gui-select-wrapper {
+  .gui-select {
+    .gui-input__wrapper {
       @apply rounded-md shadow-sm border-none px-3;
       &:hover {
         @apply shadow-none;
@@ -10,30 +10,30 @@
     }
     
     &:hover {
-      .g-input__wrapper {
+      .gui-input__wrapper {
         @apply border-none;
       }
-      &:not(.g-select-disabled) {
-        .g-input__wrapper {
+      &:not(.gui-select-disabled) {
+        .gui-input__wrapper {
           @apply shadow-input;
         }
       }
     }
     
     
-    .g-input {
+    .gui-input {
       @apply h-14;
-      .g-input__inner {
+      .gui-input__inner {
         @apply h-auto relative duration-200 transition-all text-gray-2 leading-none;
       }
     
-      &.g-input--large {
-        .g-input__inner {
-          --g-input-inner-height: 80px;
+      &.gui-input--large {
+        .gui-input__inner {
+          --gui-input-inner-height: 80px;
         }
       }
       &.is-disabled {
-        .g-input__wrapper {
+        .gui-input__wrapper {
           @apply bg-gray-11 cursor-not-allowed shadow-sm;
         }
       }
