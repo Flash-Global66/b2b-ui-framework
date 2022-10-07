@@ -1,0 +1,41 @@
+@use "element-plus/theme-chalk/src/radio.scss" as *;
+
+.g-radio-wrapper {
+  .g-radio {
+    @apply mr-0 h-auto;
+    --radio-input-size: 18px;
+    &.g-radio--small {
+      --radio-input-size: 14px;
+      .g-radio__label {
+        font-size: inherit;
+      }
+    }
+    &.g-radio--large {
+      --radio-input-size: 24px;
+      .g-radio__label {
+        font-size: inherit;
+      }
+    }
+    &.g-radio--default {
+      .g-radio__label {
+        font-size: inherit;
+      }
+    }
+    .g-radio__input {
+      @apply shadow-input rounded-full;
+      .g-radio__inner {
+        @apply border bg-transparent border-solid bg-white;
+        width: var(--radio-input-size);
+        height: var(--radio-input-size);
+        &::after {
+          @apply bg-blue-3;
+          width: calc(var(--radio-input-size) - 45%);
+          height: calc(var(--radio-input-size) - 45%);
+        }
+      }
+      &.is-checked {
+        @apply border-blue-3;
+      }
+    }
+  }
+}

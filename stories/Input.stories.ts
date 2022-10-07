@@ -12,7 +12,7 @@ import { Grouping } from '../constants/grouping';
 import { GConfigProvider } from '../components/ConfigProvider';
 
 // TYPES
-import { EnumRadioSize } from '../components/Radio/types/type';
+import { EnumRadioSize } from '../components/Radio/radio.type';
 
 export default {
   title: `${Grouping.FORM}/Input`,

@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 // COMPONENTS
 import { Select } from '../components/Select';
-import { Option } from '../components/Option';
+import { GSelectOption } from '../components/SelectOption';
 
 // HELPERS
 import { Grouping } from '../constants/grouping';
@@ -13,12 +13,12 @@ import { Grouping } from '../constants/grouping';
 import { GConfigProvider } from '../components/ConfigProvider';
 
 // TYPES
-import { EnumRadioSize } from '../components/Radio/types/type';
+import { EnumRadioSize } from '../components/Radio/radio.type';
 
 export default {
   title: `${Grouping.FORM}/Select`,
   component: Select,
-  subcomponents: { Option },
+  subcomponents: { GSelectOption },
   argTypes: {
     'v-model': {
       description: 'binding value.',
@@ -65,7 +65,7 @@ export default {
 
 const Template: StoryFn<typeof Select> = (args, selected) => {
   return {
-    components: { Select, Option, GConfigProvider },
+    components: { Select, GSelectOption, GConfigProvider },
     setup() {
       const selected = ref('');
 
@@ -133,13 +133,13 @@ const Template: StoryFn<typeof Select> = (args, selected) => {
             label="Seleccionar"
             @change="onChange"
           >
-            <Option
+            <g-select-option
               v-for="item in options"
               :key="item.value"
               :value="item.value"
             >
               {{ item.label }}
-            </Option>
+            </g-select-option>
           </Select>
         </div>
       </g-config-provider>

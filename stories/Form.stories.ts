@@ -8,7 +8,7 @@ import { GForm } from '../components/Form';
 import { GFormItem } from '../components/FormItem';
 import { GInput } from '../components/Input';
 import { Select } from '../components/Select';
-import { Option } from '../components/Option';
+import { GSelectOption } from '../components/SelectOption';
 
 // HELPERS
 import { Grouping } from '../constants/grouping';
@@ -17,7 +17,7 @@ import { Grouping } from '../constants/grouping';
 import { GConfigProvider } from '../components/ConfigProvider';
 
 // TYPES
-import { EnumRadioSize } from '../components/Radio/types/type';
+import { EnumRadioSize } from '../components/Radio/radio.type';
 
 export default {
   title: `${Grouping.FORM}/Form`,
@@ -60,7 +60,7 @@ export default {
 
 const Template: StoryFn<typeof GForm> = (args, selected) => {
   return {
-    components: { GForm, GFormItem, GInput, GConfigProvider, Select, Option },
+    components: { GForm, GFormItem, GInput, GConfigProvider, Select, GSelectOption },
     setup() {
 
       const ruleFormRef = ref<FormInstance>()
@@ -76,8 +76,7 @@ const Template: StoryFn<typeof GForm> = (args, selected) => {
       });
 
       async function onReset(formEl: FormInstance | undefined) {
-        console.log('onReset', formEl.form);
-        if (!formEl.form) return
+        if (!formEl?.form) return
         formEl.form.resetFields();
       }
 
@@ -193,13 +192,13 @@ const Template: StoryFn<typeof GForm> = (args, selected) => {
                   label="Seleccionar"
                   @change="onChange"
                 >
-                  <Option
+                  <g-select-option
                     v-for="item in options"
                     :key="item.value"
                     :value="item.value"
                   >
                     {{ item.label }}
-                  </Option>
+                  </g-select-option>
                 </Select>
               </g-form-item>
             </div>

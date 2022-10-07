@@ -14,7 +14,7 @@ import { defineComponent, PropType } from 'vue';
 import { ElOption } from 'element-plus';
 
 // TYPES
-import { TypeRadioSize } from './option.type';
+import { TypeRadioSize } from './select-option.type';
 
 export default defineComponent({
   name: 'Option',

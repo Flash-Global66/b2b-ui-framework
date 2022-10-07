@@ -1,13 +1,15 @@
 <template>
-  <el-radio
-    v-bind="{ ...$attrs, ...$props }"
-    @change="(event) => $emit('change', event)"
-  >
-    <!--
-      @slot customize default content
-    -->
-    <slot />
-  </el-radio>
+  <div class="g-radio-wrapper">
+    <el-radio
+      v-bind="{ ...$attrs, ...$props }"
+      @change="(event) => $emit('change', event)"
+    >
+      <!--
+        @slot customize default content
+      -->
+      <slot />
+    </el-radio>
+  </div>
 </template>
 
 <script lang="ts">
@@ -15,7 +17,7 @@ import { defineComponent, PropType } from 'vue';
 import { ElRadio } from "element-plus";
 
 // TYPES
-import { TypeRadioSize } from './types/type';
+import { TypeRadioSize } from './radio.type';
 
 export default defineComponent({
   name: 'Radio',
@@ -39,10 +41,10 @@ export default defineComponent({
     /**
      * size of the Radio
     */
-    // size: {
-    //   type: String as PropType<TypeRadioSize>,
-    //   default: '',
-    // },
+    size: {
+      type: String as PropType<TypeRadioSize>,
+      default: '',
+    },
     /**
      *  the value of Radio
     */
