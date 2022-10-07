@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 // COMPONENTS
 import { ElConfigProvider } from 'element-plus';
-import { Radio } from '../components/Radio';
+import { GRadio } from '../components/Radio';
 
 // TYPES
 import { EnumRadioSize } from '../components/Radio/types/type';
@@ -17,7 +17,7 @@ import { GConfigProvider } from '../components/ConfigProvider';
 
 export default {
   title: `${Grouping.FORM}/${Grouping.RADIO}/Single`,
-  component: Radio,
+  component: GRadio,
   argTypes: {
     'v-model': {
       description: 'binding value.',
@@ -78,11 +78,11 @@ export default {
       },
     },
   },
-} as Meta<typeof Radio>;
+} as Meta<typeof GRadio>;
 
-const Template: StoryFn<typeof Radio> = (args) => {
+const Template: StoryFn<typeof GRadio> = (args) => {
   return {
-    components: { Radio, GConfigProvider },
+    components: { GRadio, GConfigProvider },
     setup() {
       const selected = ref('')
 
@@ -95,18 +95,18 @@ const Template: StoryFn<typeof Radio> = (args) => {
     template: `
       <g-config-provider>
         <div class="flex items-center gap-x-8">
-          <Radio v-model="selected" @change="onChange" class="custom" v-bind="args">
+          <g-radio v-model="selected" @change="onChange" class="custom" v-bind="args">
             {{ args.default }}
-          </Radio>
-          <Radio v-model="selected" @change="onChange" label="Option B">
+          </g-radio>
+          <g-radio v-model="selected" @change="onChange" label="Option B">
             Option B
-          </Radio>
-          <Radio v-model="selected" @change="onChange" label="Option C">
+          </g-radio>
+          <g-radio v-model="selected" @change="onChange" label="Option C">
             Option C
-          </Radio>
-          <Radio v-model="selected" label="Option D" disabled>
+          </g-radio>
+          <g-radio v-model="selected" label="Option D" disabled>
             Option D
-          </Radio>
+          </g-radio>
         </div>
       </g-config-provider>
     `,

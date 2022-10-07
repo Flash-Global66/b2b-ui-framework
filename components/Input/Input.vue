@@ -1,6 +1,15 @@
 <template>
-  <div @click="onClick" class="g-input-wrapper relative font-montserrat">
+  <div @click="onClick" class="g-input-wrapper relative font-montserrat flex items-center">
     <label
+      v-if="label"
+      class="absolute top-1/2 -translate-y-1/2 z-10 duration-200 transition-all text-gray-4 px-3 text-ellipsis overflow-hidden whitespace-nowrap select-none g-input-label"
+      :class="[
+        isValue ? 'label--active' : 'label--no-active',
+      ]"
+      :style="{ marginLeft: `${prefixWidth}px`}">
+      {{ label }}
+    </label>
+    <!-- <label
       v-if="label"
       class="absolute z-10 duration-200 transition-all text-gray-4 px-3 text-ellipsis overflow-hidden whitespace-nowrap select-none g-input-label"
       :class="[
@@ -8,7 +17,7 @@
       ]"
       :style="{ marginLeft: `${prefixWidth}px`}">
       {{ label }}
-    </label>
+    </label> -->
     <el-input
       ref="refInput"
       class="h-14"
@@ -324,6 +333,13 @@ export default defineComponent({
 
 <style lang="scss">
 .g-input-wrapper {
+  .label--active {
+    top: 16%;
+    @apply text-xs translate-y-0;
+  }
+  .label--no-active {
+    @apply top-1/2 -translate-y-1/2 text-base;
+  }
   .g-input {
     .g-input__inner {
       bottom: v-bind(inputInnerStyleButton);
