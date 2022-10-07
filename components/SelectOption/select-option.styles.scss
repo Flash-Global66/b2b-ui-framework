@@ -1,18 +1,18 @@
 @use "element-plus/theme-chalk/src/option.scss" as *;
 
-.g-popper {
+.gui-popper {
   &.is-light {
-    &.g-select__popper {
+    &.gui-select__popper {
       @apply shadow-md border-none rounded-md;
     }
   }
 }
 
-.g-select-dropdown__list {
+.gui-select-dropdown__list {
   @apply p-0;
 }
 
-.g-select-dropdown__item {
+.gui-select-dropdown__item {
   @apply text-base h-auto py-3 font-montserrat;
   &:hover {
     @apply bg-gray-9;

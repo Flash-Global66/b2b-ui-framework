@@ -1,5 +1,5 @@
 <template>
-  <div class="g-select-wrapper relative font-montserrat">
+  <div class="gui-select-wrapper relative font-montserrat">
     <label
       class="absolute z-10 duration-200 transition-all text-gray-4 px-3 text-ellipsis overflow-hidden whitespace-nowrap w-full select-none"
       :class="[
@@ -264,7 +264,7 @@ export default defineComponent({
         isValue.value = !!attrs.modelValue;
         
         if (slots.prefix) {
-          const prefix = refEl.querySelector('.g-input__prefix')
+          const prefix = refEl.querySelector('.gui-input__prefix')
           prefixWidth.value = prefix.getBoundingClientRect().width;
         }
       })
@@ -322,16 +322,16 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.g-select-wrapper {
-  .g-select {
-    .g-input__inner {
+.gui-select-wrapper {
+  .gui-select {
+    .gui-input__inner {
       bottom: v-bind(styleInputInner);
     }
-    .g-input__wrapper {
+    .gui-input__wrapper {
       border-radius: v-bind(inputRounded);
     }
     &.is-disabled {
-      .g-input__wrapper {
+      .gui-input__wrapper {
         @apply bg-gray-11 cursor-not-allowed shadow-sm;
       }
     }

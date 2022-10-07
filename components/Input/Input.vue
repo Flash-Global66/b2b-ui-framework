@@ -1,8 +1,8 @@
 <template>
-  <div @click="onClick" class="g-input-wrapper">
+  <div @click="onClick" class="gui-input-wrapper">
     <label
       v-if="label"
-      class="g-input-label"
+      class="gui-input-label"
       :class="[
         isValue ? 'label--active' : 'label--no-active',
       ]"
@@ -247,12 +247,12 @@ export default defineComponent({
         isValue.value = !!attrs.modelValue;
 
         if (slots.prefix) {
-          const prefix = refEl.querySelector('.g-input__prefix')
+          const prefix = refEl.querySelector('.gui-input__prefix')
           prefixWidth.value = prefix.getBoundingClientRect().width;
         }
 
         if (slots.suffix || props.showPassword || props.clearable) {
-          const suffix = refEl.querySelector('.g-input__suffix')
+          const suffix = refEl.querySelector('.gui-input__suffix')
           suffixWidth.value = suffix.getBoundingClientRect().width;
         }
       })
@@ -324,20 +324,20 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.g-input-wrapper {
-  .g-input {
-    .g-input__inner {
+.gui-input-wrapper {
+  .gui-input {
+    .gui-input__inner {
       bottom: v-bind(inputInnerStyleButton);
       opacity: v-bind(inputInnerStyleOpacity);
     }
-    .g-input__suffix {
+    .gui-input__suffix {
       width: v-bind(passwordIconShow);
     }
-    .g-input__wrapper {
+    .gui-input__wrapper {
       border-radius: v-bind(inputRounded);
     }
   }
-  .g-input-label {
+  .gui-input-label {
     width: calc(100% - v-bind(labelStyleWidth));
   }
 }
