@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { action } from '@storybook/addon-actions';
 
 // COMPONENTS
-import { Radio } from '../components/Radio';
+import { GRadio } from '../components/Radio';
 import { RadioGroup } from '../components/RadioGroup';
 
 // HELPERS
@@ -18,7 +18,7 @@ import { EnumRadioSize } from '../components/Radio/types/type';
 export default {
   title: `${Grouping.FORM}/${Grouping.RADIO}/Group`,
   component: RadioGroup,
-  subcomponents: { Radio },
+  subcomponents: { GRadio },
   argTypes: {
     'v-model': {
       description: 'binding value.',
@@ -67,11 +67,11 @@ export default {
       },
     },
   },
-} as Meta<typeof Radio>;
+} as Meta<typeof GRadio>;
 
-const Template: StoryFn<typeof Radio> = (args, selected) => {
+const Template: StoryFn<typeof GRadio> = (args, selected) => {
   return {
-    components: { Radio, RadioGroup, GConfigProvider },
+    components: { GRadio, RadioGroup, GConfigProvider },
     setup() {
       const selected = ref('')
       return {
@@ -88,15 +88,15 @@ const Template: StoryFn<typeof Radio> = (args, selected) => {
           v-bind="args"
           @change="onChange"
         >
-          <Radio label="female">
+          <g-radio label="female">
             Femenino
-          </Radio>
-          <Radio label="male">
+          </g-radio>
+          <g-radio label="male">
             Masculino
-          </Radio>
-          <Radio label="non-binary">
+          </g-radio>
+          <g-radio label="non-binary">
             No binario
-          </Radio>
+          </g-radio>
         </RadioGroup>
       </g-config-provider>
     `,
