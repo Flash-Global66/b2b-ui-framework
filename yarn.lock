@@ -1237,10 +1237,12 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@flash-global66/b2b-ui-config-element@^0.0.5":
-  version "0.0.5"
-  resolved "https://npm.pkg.github.com/download/@Flash-Global66/b2b-ui-config-element/0.0.5/532ee090dcd06dcc2108861c0e3e7952f5bfa1bd#532ee090dcd06dcc2108861c0e3e7952f5bfa1bd"
-  integrity sha512-yQk4Q6bRYPi3EZMTUljAkME0/kcnNNmbmLZVUxxGkgsLkR9d2mexNFIW1AVV9ryBA+vPyLS8KPy25V8IyYE7BQ==
+"@flash-global66/b2b-ui-config-element@^0.0.12":
+  version "0.0.12"
+  resolved "https://npm.pkg.github.com/download/@Flash-Global66/b2b-ui-config-element/0.0.12/a0d471b1be44b0504365106effe1a2b58e00943c#a0d471b1be44b0504365106effe1a2b58e00943c"
+  integrity sha512-Fz8bvAAsCq7ab0BUQDJWa6wEMcGvpx+bfep8jw2BTSHXgPBSeJm/DffvMfcCPGJ7l6xXdXrOiMO/CCAxgjfeSA==
+  dependencies:
+    element-plus "^2.2.17"
 
 "@floating-ui/core@^1.0.1":
   version "1.0.1"
@@ -6114,7 +6116,7 @@ electron-to-chromium@^1.4.251:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.274.tgz#74369ac6f020c3cea7c77ec040ddf159fe226233"
   integrity sha512-Fgn7JZQzq85I81FpKUNxVLAzoghy8JZJ4NIue+YfUYBbu1AkpgzFvNwzF/ZNZH9ElkmJD0TSWu1F2gTpw/zZlg==
 
-element-plus@^2.2.3:
+element-plus@^2.2.17, element-plus@^2.2.3:
   version "2.2.17"
   resolved "https://registry.yarnpkg.com/element-plus/-/element-plus-2.2.17.tgz#abbb12c19dc029c95b0271822ea9a0e635704bc2"
   integrity sha512-MGwMIE/q+FFD3kgS23x8HIe5043tmD1cTRwjhIX9o6fim1avFnUkrsfYRvybbz4CkyqSb185EheZS5AUPpXh2g==
