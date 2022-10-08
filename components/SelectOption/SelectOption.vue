@@ -40,7 +40,7 @@ export default defineComponent({
      *  value of option
     */
     value: {
-      type: [String, Number, Boolean],
+      type: [String, Number, Boolean, Object],
       default: '',
     },
   },
