@@ -1,7 +1,7 @@
 @use "element-plus/theme-chalk/src/select.scss" as *;
 
 .gui-select-wrapper {
-  @apply relative font-montserrat;
+  @apply relative font-montserrat w-full;
 
   .gui-input-label {
     @apply absolute z-10 duration-200 transition-all text-gray-4 px-3 text-ellipsis overflow-hidden whitespace-nowrap select-none leading-none;
