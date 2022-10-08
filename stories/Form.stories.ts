@@ -1,9 +1,9 @@
 import { Meta, StoryFn } from '@storybook/vue3';
 import { reactive, ref } from 'vue';
 import { action } from '@storybook/addon-actions';
-import type { FormInstance, FormRules } from 'element-plus';
 
 // COMPONENTS
+import type { GFormInstance, GFormRules } from '../components/Form';
 import { GForm } from '../components/Form';
 import { GFormItem } from '../components/FormItem';
 import { GInput } from '../components/Input';
@@ -63,24 +63,24 @@ const Template: StoryFn<typeof GForm> = (args, selected) => {
     components: { GForm, GFormItem, GInput, GConfigProvider, Select, GSelectOption },
     setup() {
 
-      const ruleFormRef = ref<FormInstance>()
+      const ruleFormRef = ref<GFormInstance>()
       const ruleForm = reactive({
         name: '',
       })
 
-      const rules = reactive<FormRules>({
+      const rules = reactive<GFormRules>({
         name: [
           { required: true, message: 'Campo requerido', trigger: 'blur' },
           { min: 3, max: 10, message: 'Length should be 3 to 10', trigger: 'blur' },
         ],
       });
 
-      async function onReset(formEl: FormInstance | undefined) {
+      async function onReset(formEl: GFormInstance | undefined) {
         if (!formEl?.form) return
         formEl.form.resetFields();
       }
 
-      async function onSend(formEl: FormInstance | undefined) {
+      async function onSend(formEl: GFormInstance | undefined) {
         // console.log('formEl', formEl);
         console.log('ruleFormRef', ruleFormRef.value);
         // const form = ruleFormRef.value?.form
