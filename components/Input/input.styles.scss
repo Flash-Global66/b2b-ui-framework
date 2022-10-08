@@ -29,5 +29,11 @@
         @apply bg-gray-11 cursor-not-allowed shadow-sm;
       }
     }
+
+    .gui-input__clear,
+    .gui-input__password {
+      font-size: 18px;
+    }
   }
+
 }

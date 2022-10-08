@@ -1,1 +1,25 @@
 @use "element-plus/theme-chalk/src/form.scss" as *;
+
+.gui-form-item {
+  &.is-error {
+    .gui-select-v2__wrapper,
+    .gui-textarea__inner {
+      &,
+      &:focus {
+        box-shadow: 0 0 0 2px theme('colors.red.1') inset;
+      }
+    }
+    .gui-input__wrapper {
+      box-shadow: 0 0 0 2px theme('colors.red.1') inset;
+    }
+    .gui-input-group__append,
+    .gui-input-group__prepend {
+      .gui-input__wrapper {
+        box-shadow: 0 0 0 2px transparent inset;
+      }
+    }
+    .gui-input__validateIcon {
+      color: theme('colors.red.1');
+    }
+  }
+}
