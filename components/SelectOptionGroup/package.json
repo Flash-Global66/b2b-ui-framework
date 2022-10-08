@@ -1,0 +1,19 @@
+{
+  "name": "@flash-global66/b2b-ui-select-option-group",
+  "author": "Global66",
+  "version": "0.0.13",
+  "license": "MIT",
+  "exports": {
+    ".": "./index.ts",
+    "./*": "./*"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
+  },
+  "dependencies": {
+    "element-plus": "^2.2.3"
+  }
+}
