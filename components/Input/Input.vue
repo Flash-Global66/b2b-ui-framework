@@ -211,7 +211,7 @@ export default defineComponent({
     });
 
     const passwordIconShow = computed(
-      () => props.showPassword || props.clearable ? '22px' : 'auto'
+      () => props.showPassword || props.clearable ? '26px' : 'auto'
     )
 
     const inputInnerStyleButton = computed(() => {
