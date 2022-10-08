@@ -1,12 +1,12 @@
 <template>
-  <div class="gui-select-wrapper relative font-montserrat">
+  <div @click="onClick" class="gui-select-wrapper">
     <label
-      class="absolute z-10 duration-200 transition-all text-gray-4 px-3 text-ellipsis overflow-hidden whitespace-nowrap w-full select-none"
+      v-if="label"
+      class="gui-input-label"
       :class="[
-        isVisible || isValue ? 'top-2 text-xs translate-y-0' : 'top-1/2 -translate-y-1/2 text-base',
+        isVisible || isValue ? 'label--active' : 'label--no-active',
       ]"
-      :style="{ marginLeft: `${prefixWidth}px`}"
-      @click="onClick">
+      :style="{ marginLeft: `${prefixWidth}px`}">
       {{ label }}
     </label>
     <el-select
@@ -61,6 +61,13 @@ export default defineComponent({
      disabled: {
       type: Boolean,
       default: false
+    },
+    /**
+     * same as readonly in native input
+     */
+     readonly: {
+      type: Boolean,
+      default: false,
     },
     /**
      * unique identity key name for value, required when value is an object
@@ -256,6 +263,10 @@ export default defineComponent({
       return Object.fromEntries(Object.entries(attrs).filter(([key]) => !excludeKeys.includes(key)));
     });
 
+    const labelStyleWidth = computed(() => {
+      return `${prefixWidth.value}px`;
+    });
+
     onMounted(() => {
       nextTick(() => {
         const refEl = refSelect.value && refSelect.value.$el
@@ -271,6 +282,8 @@ export default defineComponent({
     });
 
     function onClick() {
+      if (props.disabled || props.readonly) return;
+      // isValue.value = true;
       refSelect.value.toggleMenu();
     };
 
@@ -307,6 +320,7 @@ export default defineComponent({
       styleInputInner,
       attrsCustom,
       prefixWidth,
+      labelStyleWidth,
 
       onVisibleChange,
       onClick,
@@ -335,6 +349,9 @@ export default defineComponent({
         @apply bg-gray-11 cursor-not-allowed shadow-sm;
       }
     }
+  }
+  .gui-input-label {
+    width: calc(100% - v-bind(labelStyleWidth));
   }
 }
 </style>
