@@ -1,3 +1,5 @@
 import GFormItem from "./FormItem.vue";
 
-export { GFormItem };
+type GFormItemInstance = InstanceType<typeof GFormItem>
+
+export { GFormItem, GFormItemInstance };
