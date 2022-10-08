@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { action } from '@storybook/addon-actions';
 
 // COMPONENTS
-import { Select } from '../components/Select';
+import { GSelect } from '../components/Select';
 import { GSelectOption } from '../components/SelectOption';
 
 // HELPERS
@@ -17,7 +17,7 @@ import { EnumRadioSize } from '../components/Radio/radio.type';
 
 export default {
   title: `${Grouping.FORM}/Select`,
-  component: Select,
+  component: GSelect,
   subcomponents: { GSelectOption },
   argTypes: {
     'v-model': {
@@ -61,11 +61,11 @@ export default {
       },
     },
   },
-} as Meta<typeof Select>;
+} as Meta<typeof GSelect>;
 
-const Template: StoryFn<typeof Select> = (args, selected) => {
+const Template: StoryFn<typeof GSelect> = (args, selected) => {
   return {
-    components: { Select, GSelectOption, GConfigProvider },
+    components: { GSelect, GSelectOption, GConfigProvider },
     setup() {
       const selected = ref('');
 
@@ -126,7 +126,7 @@ const Template: StoryFn<typeof Select> = (args, selected) => {
     template: `
       <g-config-provider>
         <div class="p-7 h-80">
-          <Select
+          <g-select
             class="flex items-center gap-x-8"
             v-model="selected"
             v-bind="args"
@@ -140,7 +140,7 @@ const Template: StoryFn<typeof Select> = (args, selected) => {
             >
               {{ item.label }}
             </g-select-option>
-          </Select>
+          </g-select>
         </div>
       </g-config-provider>
     `,

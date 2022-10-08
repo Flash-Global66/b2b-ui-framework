@@ -7,7 +7,7 @@ import type { GFormInstance, GFormRules } from '../components/Form';
 import { GForm } from '../components/Form';
 import { GFormItem } from '../components/FormItem';
 import { GInput } from '../components/Input';
-import { Select } from '../components/Select';
+import { GSelect } from '../components/Select';
 import { GSelectOption } from '../components/SelectOption';
 
 // HELPERS
@@ -60,7 +60,7 @@ export default {
 
 const Template: StoryFn<typeof GForm> = (args, selected) => {
   return {
-    components: { GForm, GFormItem, GInput, GConfigProvider, Select, GSelectOption },
+    components: { GForm, GFormItem, GInput, GConfigProvider, GSelect, GSelectOption },
     setup() {
 
       const ruleFormRef = ref<GFormInstance>()
@@ -96,7 +96,7 @@ const Template: StoryFn<typeof GForm> = (args, selected) => {
         })
       }
 
-      const selected = ref('Option1');
+      const selected = ref('');
 
       const options = [
         {
@@ -185,7 +185,7 @@ const Template: StoryFn<typeof GForm> = (args, selected) => {
               </g-form-item>
 
               <g-form-item prop="name">
-                <Select
+                <g-select
                   class="flex items-center gap-x-8"
                   v-model="selected"
                   v-bind="args"
@@ -199,7 +199,7 @@ const Template: StoryFn<typeof GForm> = (args, selected) => {
                   >
                     {{ item.label }}
                   </g-select-option>
-                </Select>
+                </g-select>
               </g-form-item>
             </div>
           </g-form>

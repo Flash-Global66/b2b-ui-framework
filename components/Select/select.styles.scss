@@ -1,6 +1,21 @@
 @use "element-plus/theme-chalk/src/select.scss" as *;
 
 .gui-select-wrapper {
+  @apply relative font-montserrat;
+
+  .gui-input-label {
+    @apply absolute z-10 duration-200 transition-all text-gray-4 px-3 text-ellipsis overflow-hidden whitespace-nowrap select-none leading-none;
+  }
+
+  .label--active {
+    top: 16%;
+    @apply text-xs translate-y-0;
+  }
+
+  .label--no-active {
+    @apply top-1/2 -translate-y-1/2 text-base;
+  }
+
   .gui-select {
     .gui-input__wrapper {
       @apply rounded-md shadow-sm border-none px-3;
