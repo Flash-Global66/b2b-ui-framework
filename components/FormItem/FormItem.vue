@@ -1,16 +1,9 @@
 <template>
   <el-form-item
-    v-bind="{ ...$attrs, ...$props }"
+    v-bind="$attrs"
   >
-    <!--
-      @slot customize default content
-    -->
-    <slot />
-    <!--
-      @slot customize error
-    -->
-    <template v-if="$slots.error" #error>
-      <slot name="error" />
+    <template v-for="(_, name) in $slots" #[name]="slotData">
+      <slot :name="name" v-bind="slotData || {}"></slot>
     </template>
   </el-form-item>
 </template>
