@@ -27,7 +27,7 @@
         @slot customize prefix
       -->
       <template v-if="$slots.prefix" #prefix>
-        <slot name="prefix" />
+        <slot name="prefix" :value="$attrs.modelValue" />
       </template>
       <!--
         @slot customize default content
