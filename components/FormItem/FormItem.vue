@@ -7,17 +7,19 @@
     <!--
       @slot customize prepend
       @slot customize default content
+      @slot customize error
       @slot customize append
     -->
-    <slot name="prepend" />
+    
     <slot />
-    <slot name="append" />
-    <!--
-      @slot customize error
-    -->
+
+    <slot name="prepend" />
+
     <template v-if="$slots.error" #error>
       <slot name="error" />
     </template>
+
+    <slot name="append" />
 
   </el-form-item>
   <section class="g-form-item-wrapper">
