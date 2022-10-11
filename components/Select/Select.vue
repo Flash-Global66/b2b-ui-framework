@@ -16,6 +16,8 @@
       :clear-icon="IconTimes"
       v-bind="attrsCustom"
       :placeholder="label ? ' ' : placeholder"
+      :disabled="disabled"
+      :readonly="readonly"
       @change="onChange"
       @visible-change="onVisibleChange"
       @remove-tag="(event) => $emit('remove-tag', event)"
@@ -55,6 +57,145 @@ export default defineComponent({
     ElSelect,
   },
   props: {
+    // /**
+    //  * unique identity key name for value, required when value is an object
+    //  */
+    //  valueKey: {
+    //   type: String,
+    //   default: ''
+    // },
+    // /**
+    //  * size of Input
+    // */
+    // size: {
+    //   type: String as PropType<TypeRadioSize>,
+    //   default: '',
+    // },
+    // /**
+    //  * whether select can be cleared
+    //  */
+    // clearable: {
+    //   type: Boolean,
+    //   default: false
+    // },
+    // /**
+    //  *  the name attribute of select input
+    //  */
+    // name: {
+    //   type: String,
+    //   default: '',
+    // },
+    // /**
+    //  *  the autocomplete attribute of select input
+    //  */
+    // autocomplete: {
+    //   type: String,
+    //   default: 'off',
+    // },
+    // /**
+    //  *  whether Select is filterable
+    // */
+    // filterable: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // /**
+    //  *  whether creating new items is allowed. To use this, filterable must be true
+    // */
+    // allowCreate: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // /**
+    //  *  custom filter method
+    // */
+    // filterMethod: {
+    //   type: Function
+    // },
+    // /**
+    //  * whether Select is loading data from server
+    // */
+    // loading: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // /**
+    //  * displayed text while loading data from server
+    // */
+    // loadingText: {
+    //   type: String,
+    //   default: '',
+    //  },
+    // /**
+    //   * displayed text when no data matches the filtering query, you can also use slot empty
+    // */
+    // noMatchText: {
+    //   type: String,
+    //   default: 'Sin datos coincidentes',
+    // },
+    // /**
+    //   * displayed text when there is no options, you can also use slot empty
+    // */
+    // noDataText: {
+    //   type: String,
+    //   default: 'Sin datos',
+    // },
+    // /**
+    //   * select first matching option on enter key. Use with filterable or remote
+    // */
+    // defaultFirstOption: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // /**
+    //   * whether select dropdown is teleported to the body
+    // */
+    // teleported: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // /**
+    //   * when select dropdown is inactive and persistent is false, select dropdown will be destroyed
+    // */
+    // persistent: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // /**
+    //   * for non-filterable Select, this prop decides if the option menu pops up when the input is focused
+    // */
+    // automaticDropdown: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // /**
+    //   * whether the width of the dropdown is the same as the input
+    // */
+    // fitInputWidth: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // /**
+    //   * whether to trigger form validation
+    // */
+    // validateEvent: {
+    //   type: Boolean,
+    //   default: true,
+    // },
+    /**
+     *  the label
+    */
+    label: {
+      type: String,
+      default: '',
+    },
+    /**
+     *  As a requirement you must not declare the label
+     */
+     placeholder: {
+      type: String,
+      default: ' ',
+    },
     /**
      * whether Select is disabled
      */
@@ -68,145 +209,6 @@ export default defineComponent({
      readonly: {
       type: Boolean,
       default: false,
-    },
-    /**
-     * unique identity key name for value, required when value is an object
-     */
-     valueKey: {
-      type: String,
-      default: ''
-    },
-    /**
-     * size of Input
-    */
-    size: {
-      type: String as PropType<TypeRadioSize>,
-      default: '',
-    },
-    /**
-     * whether select can be cleared
-     */
-     clearable: {
-      type: Boolean,
-      default: false
-    },
-    /**
-     *  the name attribute of select input
-     */
-     name: {
-      type: String,
-      default: '',
-    },
-    /**
-     *  the autocomplete attribute of select input
-     */
-     autocomplete: {
-      type: String,
-      default: 'off',
-    },
-    /**
-     *  As a requirement you must not declare the label
-     */
-     placeholder: {
-      type: String,
-      default: ' ',
-    },
-    /**
-     *  the label
-    */
-    label: {
-      type: String,
-      default: '',
-    },
-    /**
-     *  whether Select is filterable
-    */
-    filterable: {
-      type: Boolean,
-      default: false,
-    },
-    /**
-     *  whether creating new items is allowed. To use this, filterable must be true
-    */
-    allowCreate: {
-      type: Boolean,
-      default: false,
-    },
-    /**
-     *  custom filter method
-    */
-    filterMethod: {
-      type: Function
-    },
-    /**
-     * whether Select is loading data from server
-    */
-    loading: {
-    type: Boolean,
-    default: false,
-    },
-    /**
-     * displayed text while loading data from server
-    */
-     loadingText: {
-      type: String,
-      default: '',
-     },
-    /**
-      * displayed text when no data matches the filtering query, you can also use slot empty
-    */
-    noMatchText: {
-      type: String,
-      default: 'Sin datos coincidentes',
-    },
-    /**
-      * displayed text when there is no options, you can also use slot empty
-    */
-    noDataText: {
-      type: String,
-      default: 'Sin datos',
-    },
-    /**
-      * select first matching option on enter key. Use with filterable or remote
-    */
-    defaultFirstOption: {
-      type: Boolean,
-      default: false,
-    },
-    /**
-      * whether select dropdown is teleported to the body
-    */
-    teleported: {
-      type: Boolean,
-      default: false,
-    },
-    /**
-      * when select dropdown is inactive and persistent is false, select dropdown will be destroyed
-    */
-    persistent: {
-      type: Boolean,
-      default: false,
-    },
-    /**
-      * for non-filterable Select, this prop decides if the option menu pops up when the input is focused
-    */
-    automaticDropdown: {
-      type: Boolean,
-      default: false,
-    },
-    /**
-      * whether the width of the dropdown is the same as the input
-    */
-    fitInputWidth: {
-      type: Boolean,
-      default: false,
-    },
-    /**
-      * whether to trigger form validation
-    */
-    validateEvent: {
-      type: Boolean,
-      default: true,
     },
     /**
      * Remove rounded corners from the right side to join with another component.
