@@ -2,14 +2,17 @@
 
 .gui-form-item {
   &.is-error {
+    .gui-select-wrapper .gui-select .gui-input__wrapper,
     .gui-select-v2__wrapper,
     .gui-textarea__inner {
       &,
+      &:hover,
       &:focus {
         box-shadow: 0 0 0 2px theme('colors.red.1') inset;
       }
     }
-    .gui-input__wrapper {
+    .gui-input__wrapper, 
+    &:hover {
       box-shadow: 0 0 0 2px theme('colors.red.1') inset;
     }
     .gui-input-group__append,
@@ -20,6 +23,20 @@
     }
     .gui-input__validateIcon {
       color: theme('colors.red.1');
+    }
+
+  }
+}
+
+.gui-form-item__error {
+  @apply pt-1;
+}
+
+.gui-form-item {
+  &.is-error {
+    .gui-select-wrapper .gui-select .gui-input__wrapper:hover,
+    .gui-input__wrapper {
+      
     }
   }
 }

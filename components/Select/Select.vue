@@ -14,7 +14,7 @@
       popper-class="!z-100"
       :suffix-icon="IconArrow"
       :clear-icon="IconTimes"
-      v-bind="{ ...attrsCustom, ...$props }"
+      v-bind="attrsCustom"
       :placeholder="label ? ' ' : placeholder"
       @change="onChange"
       @visible-change="onVisibleChange"
