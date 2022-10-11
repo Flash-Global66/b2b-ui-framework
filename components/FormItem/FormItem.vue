@@ -1,14 +1,26 @@
 <template>
-  <section class="g-form-item-wrapper">
-    <el-form-item
-      v-bind="$attrs"
-    >
-      <template v-for="(_, name) in $slots" #[name]="slotData">
-        <slot :name="name" v-bind="slotData || {}" />
-      </template>
-  
-    </el-form-item>
+  <el-form-item
+    v-bind="$attrs"
+  >
+
+
+    <!--
+      @slot customize prepend
+      @slot customize default content
+      @slot customize append
+    -->
+    <slot name="prepend" />
+    <slot />
     <slot name="append" />
+    <!--
+      @slot customize error
+    -->
+    <template v-if="$slots.error" #error>
+      <slot name="error" />
+    </template>
+
+  </el-form-item>
+  <section class="g-form-item-wrapper">
   </section>
 </template>
 
