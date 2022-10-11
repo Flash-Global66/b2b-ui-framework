@@ -190,6 +190,7 @@ const Template: StoryFn<typeof GForm> = (args, selected) => {
                   v-model="selected"
                   v-bind="args"
                   label="Seleccionar"
+                  filterable
                   @change="onChange"
                 >
                   <g-select-option

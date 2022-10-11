@@ -5,21 +5,18 @@
 
 
     <!--
-      @slot customize prepend
       @slot customize default content
       @slot customize error
-      @slot customize append
+      @slot customize append error
     -->
     
     <slot />
-
-    <slot name="prepend" />
 
     <template v-if="$slots.error" #error>
       <slot name="error" />
     </template>
 
-    <slot name="append" />
+    <slot name="append-error" />
 
   </el-form-item>
 </template>
