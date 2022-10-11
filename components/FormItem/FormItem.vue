@@ -22,8 +22,6 @@
     <slot name="append" />
 
   </el-form-item>
-  <section class="g-form-item-wrapper">
-  </section>
 </template>
 
 <script lang="ts">
