@@ -25,19 +25,11 @@
     >
       <!--
         @slot content as Input prefix, only works when type is not 'textarea'
-      -->
-      <template v-if="$slots.prefix" #prefix>
-        <slot name="prefix" />
-      </template>
-      <!--
         @slot customize default content
-      -->
-      <slot />
-      <!--
         @slot content as Input suffix, only works when type is not 'textarea'
       -->
-      <template #suffix>
-        <slot name="suffix" />
+      <template v-for="(_, name) in $slots" #[name]="slotData">
+        <slot :name="name" v-bind="slotData || {}" />
       </template>
     </el-input>
   </div>
