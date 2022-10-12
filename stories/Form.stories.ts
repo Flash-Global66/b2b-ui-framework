@@ -203,6 +203,16 @@ const Template: StoryFn<typeof GForm> = (args, selected) => {
                 </g-select>
               </g-form-item>
             </div>
+
+            <div>
+              <g-form-item prop="name">
+                <g-input
+                  label="Mensaje"
+                  type="textarea"
+                  v-model="ruleForm.name">
+                </g-input>
+              </g-form-item>
+            </div>
           </g-form>
 
           <button @click="onSend(ruleFormRef)">Validar</button>

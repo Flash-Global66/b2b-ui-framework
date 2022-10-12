@@ -8,12 +8,19 @@
   }
 
   .label--active {
-    top: 16%;
-    @apply text-xs translate-y-0;
+    @apply text-xs translate-y-0 top-2;
   }
 
   .label--no-active {
     @apply top-1/2 -translate-y-1/2 text-base;
+  }
+
+  .label__textarea--active {
+    @apply text-xs translate-y-0 top-2;
+  }
+
+  .label__textarea--no-active {
+    @apply top-5 -translate-y-1/2 text-base;
   }
 
   .gui-input {
@@ -34,6 +41,25 @@
 
     .gui-input__clear,
     .gui-input__password {
+      font-size: 18px;
+    }
+  }
+
+  .gui-textarea {
+    @apply shadow-sm border-none px-3 bg-white pb-4 pt-7 rounded-md;
+  
+    .gui-textarea__inner {
+      @apply relative duration-200 transition-all text-gray-2 leading-5 shadow-none p-0;
+    }
+  
+    &.is-disabled {
+      .gui-textarea__wrapper {
+        @apply bg-gray-11 cursor-not-allowed shadow-sm;
+      }
+    }
+
+    .gui-textarea__clear,
+    .gui-textarea__password {
       font-size: 18px;
     }
   }
