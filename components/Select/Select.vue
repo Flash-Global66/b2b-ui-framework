@@ -16,8 +16,6 @@
       :suffix-icon="IconArrow"
       :clear-icon="IconTimes"
       :placeholder="label ? ' ' : placeholder"
-      :disabled="disabled"
-      :readonly="readonly"
       @change="onChange"
       @visible-change="onVisibleChange"
       @remove-tag="(event) => $emit('remove-tag', event)"
@@ -48,7 +46,6 @@ import IconArrow from './components/IconArrow.vue';
 import IconTimes from './components/IconTimes.vue';
 
 // TYPES
-import { TypeRadioSize } from './select.type';
 
 
 export default defineComponent({
@@ -57,6 +54,13 @@ export default defineComponent({
     ElSelect,
   },
   props: {
+    /**
+     * binding value.
+     */
+    modelValue: {
+      type: [Array, String, Number, Boolean, Object],
+      default: undefined,
+    },
     /**
      * unique identity key name for value, required when value is an object
      */
@@ -67,10 +71,10 @@ export default defineComponent({
     /**
      * size of Input
     */
-    size: {
-      type: String as PropType<TypeRadioSize>,
-      default: '',
-    },
+    // size: {
+    //   type: String>,
+    //   default: '',
+    // },
     /**
      * whether select can be cleared
      */
@@ -192,35 +196,35 @@ export default defineComponent({
     /**
      *  As a requirement you must not declare the label
      */
-     placeholder: {
+    placeholder: {
       type: String,
       default: ' ',
     },
     /**
      * whether Select is disabled
      */
-     disabled: {
+    disabled: {
       type: Boolean,
       default: false
     },
     /**
      * same as readonly in native input
      */
-     readonly: {
+    readonly: {
       type: Boolean,
       default: false,
     },
     /**
      * Remove rounded corners from the right side to join with another component.
      */
-     joinRight: {
+    joinRight: {
       type: Boolean,
       default: false,
     },
     /**
      * Remove rounded edges from left side to join with another component.
      */
-     joinLeft: {
+    joinLeft: {
       type: Boolean,
       default: false,
     },

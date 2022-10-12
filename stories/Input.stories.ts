@@ -47,7 +47,8 @@ const Template: StoryFn<typeof GInput> = (args, selected) => {
 
       return {
         args,
-        name
+        name,
+        onKeydown: action('keydown'),
       };
     },
     template: `
@@ -55,17 +56,34 @@ const Template: StoryFn<typeof GInput> = (args, selected) => {
         <g-input
           v-model="name"
           v-bind="args"
+          @keydown="onKeydown"
         >
         </g-input>
-        <br />
+      </g-config-provider>
+    `,
+  }
+};
+
+const TemplateTextarea: StoryFn<typeof GInput> = (args, selected) => {
+  return {
+    components: { GInput, GConfigProvider },
+    setup() {
+      const message = ref('');
+
+      return {
+        args,
+        message,
+        onKeydown: action('change'),
+      };
+    },
+    template: `
+      <g-config-provider>
         <g-input
-          v-model="name"
+          v-model="message"
           v-bind="args"
           label="Mensaje"
           type="textarea"
-          :rows="2"
         >
-        </g-input>
       </g-config-provider>
     `,
   }
@@ -83,7 +101,7 @@ Default.parameters = {
 /**
  * variante
  */
-export const Textarea = Template.bind({});
+export const Textarea = TemplateTextarea.bind({});
 
 Textarea.args = {
   type: 'textarea',

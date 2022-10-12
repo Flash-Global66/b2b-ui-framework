@@ -12,48 +12,10 @@ import { Grouping } from '../constants/grouping';
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';
 
-// TYPES
-import { EnumRadioSize } from '../components/Radio/radio.type';
-
 export default {
   title: `${Grouping.FORM}/Select`,
   component: GSelect,
   subcomponents: { GSelectOption },
-  argTypes: {
-    'v-model': {
-      description: 'binding value.',
-      table: {
-        type: { summary: 'Number, String, Boolean, Object' } 
-      }
-    },
-    // slots
-    default: {
-      control: { type: null },
-      table: {
-        type: { summary: 'Components' } 
-      }
-    },
-    size: { 
-      control: { 
-        type: 'select',
-      },
-      options: Object.values(EnumRadioSize),
-      table: {
-        type: { summary: 'String' } 
-      }
-    },
-    // events
-    change: {
-      control: { type: null },
-      table: {
-        type: { summary: 'String, Number, Boolean' } 
-      }
-    },
-  },
-  args: {
-    size: '',
-    disabled: false,
-  },
   parameters: {
     docs: {
       description: {
@@ -112,15 +74,16 @@ const Template: StoryFn<typeof GSelect> = (args, selected) => {
         },
       ];
 
-      function onChange() {
-        action('change');
-      }
-
       return {
         args,
         selected,
         options,
-        onChange,
+        onChange: action('change'),
+        onFocus: action('focus'),
+        onBlur: action('blur'),
+        onVisible: action('visible-change'),
+        onRemoteTag: action('remove-tag'),
+        onClear: action('clear'),
       };
     },
     template: `
@@ -132,6 +95,11 @@ const Template: StoryFn<typeof GSelect> = (args, selected) => {
             v-bind="args"
             label="Seleccionar"
             @change="onChange"
+            @focus="onFocus"
+            @blur="onBlur"
+            @clear="onClear"
+            @visible-change="onVisible"
+            @remove-tag="onRemoteTag"
           >
             <g-select-option
               v-for="item in options"
