@@ -3,16 +3,14 @@
     <label
       v-if="label"
       class="gui-input-label"
-      :class="[
-        isValue ? 'label--active' : 'label--no-active',
-      ]"
+      :class="styleLabel"
       :style="{ marginLeft: `${prefixWidth}px`}">
       {{ label }}
     </label>
 
     <el-input
       ref="refInput"
-      class="h-14"
+      :class="{ 'h-14' : type !== 'textarea' }"
       v-bind="{ ...attrsCustom, ...$props }"
       @change="onChange"
       @focus="onFocus"
@@ -51,6 +49,13 @@ export default defineComponent({
     type: {
       type: String,
       default: 'text',
+    },
+    /**
+      * rows of textarea native
+    */
+    rows: {
+      type: Number,
+      default: 5,
     },
     /**
      * the max length
@@ -206,6 +211,16 @@ export default defineComponent({
       () => props.showPassword || props.clearable ? '26px' : 'auto'
     )
 
+    const styleLabel = computed(
+      () => {
+        if (props.type === 'textarea') {
+          return isValue.value ? 'label__textarea--active' : 'label__textarea--no-active';
+        } else {
+          return isValue.value ? 'label--active' : 'label--no-active';
+        }
+      }
+    )
+
     const inputInnerStyleButton = computed(() => {
       return props.label && isValue.value ? '-8px' : '0px';
     });
@@ -301,6 +316,7 @@ export default defineComponent({
       labelStyleWidth,
       passwordIconShow,
       inputRounded,
+      styleLabel,
       onChange,
       onClick,
       onBlur,

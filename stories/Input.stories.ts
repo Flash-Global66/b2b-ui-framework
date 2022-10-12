@@ -57,6 +57,15 @@ const Template: StoryFn<typeof GInput> = (args, selected) => {
           v-bind="args"
         >
         </g-input>
+        <br />
+        <g-input
+          v-model="name"
+          v-bind="args"
+          label="Mensaje"
+          type="textarea"
+          :rows="2"
+        >
+        </g-input>
       </g-config-provider>
     `,
   }
@@ -67,6 +76,23 @@ Default.parameters = {
   docs: {
     description: {
       component: `When there are plenty of options, use a drop-down menu to display and select desired ones.`,
+    },
+  },
+};
+
+/**
+ * variante
+ */
+export const Textarea = Template.bind({});
+
+Textarea.args = {
+  type: 'textarea',
+};
+
+Textarea.parameters = {
+  docs: {
+    description: {
+      story: `Disable the Input with the \`disabled\` attribute.`,
     },
   },
 };

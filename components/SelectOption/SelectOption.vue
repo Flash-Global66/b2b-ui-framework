@@ -1,7 +1,5 @@
 <template>
-  <el-option
-    v-bind="{ ...$attrs, ...$props }"
-  >
+  <el-option v-bind="{ ...attrsCustom, ...propsCustom }">
     <!--
       @slot customize default content
     -->
@@ -10,11 +8,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { computed, defineComponent } from 'vue';
 import { ElOption } from 'element-plus';
-
-// TYPES
-import { TypeRadioSize } from './select-option.type';
 
 export default defineComponent({
   name: 'Option',
@@ -33,16 +28,31 @@ export default defineComponent({
      *  label of option, same as value if omitted
     */
     label: {
-      type: [String, Number, Boolean],
-      default: '',
+      type: [String, Number],
     },
     /**
-     *  value of option
+     *  value that will be returned in the v-model of the select
     */
     value: {
       type: [String, Number, Boolean, Object],
       default: '',
     },
   },
+  setup(props, { attrs }) {
+    const attrsCustom = computed(() => {
+      const excludeKeys = ['class'];
+      return Object.fromEntries(Object.entries(attrs).filter(([key]) => !excludeKeys.includes(key)));
+    });
+
+    const propsCustom = computed(() => {
+      const excludeKeys = [''];
+      return Object.fromEntries(Object.entries(props).filter(([key]) => !excludeKeys.includes(key)));
+    });
+
+    return {
+      attrsCustom,
+      propsCustom,
+    }
+  }
 });
 </script>
