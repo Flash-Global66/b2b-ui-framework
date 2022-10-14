@@ -57,10 +57,10 @@ export default defineComponent({
     /**
      * binding value.
      */
-    modelValue: {
-      type: [Array, String, Number, Boolean, Object],
-      default: undefined,
-    },
+    // modelValue: {
+    //   type: [Array, String, Number, Boolean, Object],
+    //   default: undefined,
+    // },
     /**
      * unique identity key name for value, required when value is an object
      */
