@@ -41,7 +41,7 @@
 
     .gui-input__clear,
     .gui-input__password {
-      font-size: 18px;
+      @apply select-none text-lg;
     }
   }
 
