@@ -1,57 +1,64 @@
 <template>
   <component
-    :is="type"
-    :title="title"
-    :size="size"
-    :icon="icon"
-    :class="cssClass"
-    :type="typeColor"
-  ></component>
+    :is="componentId"
+    :class="classes"
+  >
+    hola
+  </component>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent, PropType } from 'vue';
 
-import Primary from './Alternatives/Primary.vue';
-import PrimaryAligned from './Alternatives/GButtonPrimaryAligned.vue';
-import Secondary from './Alternatives/GButtonSecondary.vue';
-import Ghost from './Alternatives/GButtonGhost.vue';
-import GhostAligned from './Alternatives/GButtonGhostAligned.vue';
-import Outlined from './Alternatives/GButtonOutlined.vue';
-import Next from './Alternatives/GButtonNext.vue';
-import Main from './Alternatives/GButtonMain.vue';
+export type ButtonType = 'default' | 'ghost' | 'dashed' | 'text';
+export type ButtonShape = 'default' | 'circle' | 'round';
 
-import {
-  ButtonColor,
-  ButtonSize,
-  ButtonType
-} from './types/button.type';
+export type ButtonHTMLType = 'submit' | 'button' | 'reset';
 
 export default defineComponent({
-  name: 'Button',
+  name: 'GButton',
   props: {
-    cssClass: { type: String, default: '' },
-    type: { type: Object as () => ButtonType, default: ButtonType.Primary },
-    size: { 
-      type: Object as () => ButtonSize, 
-      default: ButtonSize.M
+    type: {
+      type: String as PropType<ButtonType>,
+      default: 'default'
     },
-    title: { type: String, default: 'Button' },
-    icon: { type: String },
-    typeColor: {
-      type: String as () => ButtonColor,
-      default: ButtonColor.Primary,
+    nativeType: {
+      type: String as PropType<ButtonHTMLType>,
+      default: 'button'
+    },
+    shape: {
+      type: String as PropType<ButtonShape>,
+      default: 'default',
+    },
+    size: String,
+    disabled: { type: Boolean, default: undefined },
+    full: { type: Boolean, default: false },
+    link: { type: Boolean, default: false },
+    href: String,
+    target: String,
+    onClick: {
+      type: Function as PropType<(event: MouseEvent) => void>,
+    },
+    onMousedown: {
+      type: Function as PropType<(event: MouseEvent) => void>,
     },
   },
-  components: {
-    Primary,
-    PrimaryAligned,
-    Secondary,
-    Ghost,
-    GhostAligned,
-    Outlined,
-    Next,
-    Main,
-  },
+  setup (props) {
+    const componentId = computed(() => {
+      return !props.link ? 'button' : 'a';
+    })
+
+    const classes = computed(() => {
+      return {
+        'prueba': true,
+      };
+    });
+
+    return {
+      componentId,
+      classes
+    };
+  }
 });
+
 </script>

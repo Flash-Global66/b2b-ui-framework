@@ -1,4 +1,4 @@
-import Button from "./Button.vue";
-import { ButtonType, ButtonColor, ButtonSize } from "./types/button.type";
+import GButton from "./Button.vue";
+export { ButtonColor, ButtonType, ButtonSize } from './button.type';
 
-export {Button, ButtonType, ButtonColor, ButtonSize};
+export { GButton };

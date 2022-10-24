@@ -1,12 +1,12 @@
 import { StoryFn, Meta } from "@storybook/vue3";
-import { GButton, ButtonType, ButtonColor, ButtonSize } from '../components/Button';
+import { Button, ButtonType, ButtonColor, ButtonSize } from '../components/Button-old';
 
 // CONSTANTS
 import { Grouping } from '../constants/grouping';
 
 export default {
   title: `${Grouping.Data}/Button`,
-  component: GButton,
+  component: Button,
   argTypes: {
     type: {
       options: Object.keys(ButtonType),
@@ -18,11 +18,11 @@ export default {
       options: Object.keys(ButtonSize)
     },
   }
-} as Meta<typeof GButton>;
+} as Meta<typeof Button>;
 
-const Template: StoryFn<typeof GButton> = (args) => ({
-  components: { GButton },
-  template: `<g-button v-bind="args">`,
+const Template: StoryFn<typeof Button> = (args) => ({
+  components: { Button },
+  template: `<Button v-bind="args">`,
   setup() {
     return { args };
   },
