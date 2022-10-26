@@ -15,18 +15,23 @@ export default {
       options: ['default', 'outlined', 'ghost'],
     },
     color: {
-      options: ['primary', 'secondary', 'danger', 'default'],
+      options: ['primary', 'secondary', 'danger', 'info', 'custom'],
     },
     size: {
-      options: ['large', 'medium', 'small', 'tiny', ''],
+      options: ['large', 'medium', 'small', 'tiny', 'custom'],
     },
+  },
+  args: {
+    default: 'texto de un botón',
   }
 } as Meta<typeof GButton>;
 
 const Template: StoryFn<typeof GButton> = (args) => ({
   components: { GButton },
   template: `
-    <g-button v-bind="args">que paso</g-button>
+    <g-button v-bind="args">
+      {{ args.default }}
+    </g-button>
   `,
   setup() {
     return { args };

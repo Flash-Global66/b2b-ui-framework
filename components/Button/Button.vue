@@ -29,15 +29,15 @@ export default defineComponent({
     },
     type: {
       type: String as PropType<ButtonType>,
-      default: 'button',
+      default: 'default',
+    },
+    color: {
+      type: String as PropType<ButtonColor>,
+      default: 'primary'
     },
     size: {
       type: String as PropType<ButtonSize>,
       default: 'medium'
-    },
-    color: {
-      type: String as PropType<ButtonColor>,
-      default: 'default'
     },
     disabled: {
       type: Boolean,
