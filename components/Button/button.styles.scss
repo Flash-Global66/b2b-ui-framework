@@ -3,7 +3,6 @@
   @apply px-5
         py-2
         rounded-xl
-        font-normal
         leading-none
         duration-200
         text-base
@@ -13,6 +12,7 @@
         inline-flex
         items-center
         justify-center
+        font-medium
       ;
 
   &--full {
