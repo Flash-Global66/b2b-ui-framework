@@ -50,7 +50,7 @@
   }
 
   &#{$root}--primary {
-    @apply bg-blue-1 border-blue-1 text-white;
+    @apply bg-blue-1 border-blue-1 text-white active:bg-cyan-400;
     &:hover {
       @apply bg-blue-1/80;
     }
@@ -139,17 +139,33 @@
     }
   }
 
+  &#{$root}--icon {
+    @apply rounded-full p-0;
+  }
+
   &--tiny {
     @apply h-10;
+    @at-root &#{$root}--icon {
+      @apply w-10 text-base;
+    }
   }
   &--small {
     @apply h-12;
+    @at-root &#{$root}--icon {
+      @apply w-12 text-xl;
+    }
   }
   &--medium {
     @apply h-14;
+    @at-root &#{$root}--icon {
+      @apply w-14  text-2xl;
+    }
   }
   &--large {
     @apply h-16;
+    @at-root &#{$root}--icon {
+      @apply w-16 text-3xl;
+    }
   }
 }
 
