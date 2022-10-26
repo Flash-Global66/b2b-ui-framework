@@ -19,7 +19,7 @@
     @apply w-full;
   }
 
-  &#{$root}--default {
+  &#{$root}--info {
     @apply text-gray-2 border-white bg-white;
     &:hover {
       @apply opacity-75;

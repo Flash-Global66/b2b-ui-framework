@@ -12,7 +12,7 @@ type ButtonSize = 'large' | 'medium' | 'small' | 'tiny' | 'auto';
 
 type ButtonColor = 'primary' | 'secondary' | 'danger' | 'info' | 'custom';
 
-type ButtonType = 'default' | 'outlined' | 'ghost';
+type ButtonType = 'default' | 'outlined' | 'ghost' | 'icon';
 
 type ButtonNativeType = 'submit' | 'button' | 'reset';
 
