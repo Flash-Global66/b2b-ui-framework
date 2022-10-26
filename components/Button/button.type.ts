@@ -1,26 +1,17 @@
-enum ButtonType {
-  Primary = 'primary',
-  PrimaryAligned = 'primary-aligned',
-  Secondary = 'secondary',
-  Ghost = 'ghost',
-  GhostAligned = 'ghost-aligned',
-  Outlined = 'outlined',
-  Next = 'next',
-}
+// enum ButtonType {
+//   Primary = 'primary',
+//   PrimaryAligned = 'primary-aligned',
+//   Secondary = 'secondary',
+//   Ghost = 'ghost',
+//   GhostAligned = 'ghost-aligned',
+//   Outlined = 'outlined',
+//   Next = 'next',
+// }
 
-enum ButtonColor {
-  Primary = 'primary',
-  Success = 'success',
-  Info = 'info',
-  Warning = 'warning',
-  Danger = 'danger',
-}
+type ButtonSize = 'large' | 'medium' | 'small' | 'tiny' | 'auto';
 
-enum ButtonSize {
-  XS = 'h-8',
-  S = 'h-10',
-  M = 'h-12',
-  L = 'h-16',
-}
+type ButtonColor = 'primary' | 'secondary' | 'danger' | 'default';
 
-export { ButtonType, ButtonColor, ButtonSize };
+type ButtonType = 'submit' | 'button' | 'reset';
+
+export { ButtonColor, ButtonSize, ButtonType };

@@ -1,5 +1,5 @@
 import { StoryFn, Meta } from "@storybook/vue3";
-import { GButton, ButtonType, ButtonColor, ButtonSize } from '../components/Button';
+import { GButton } from '../components/Button';
 
 // CONSTANTS
 import { Grouping } from '../constants/grouping';
@@ -9,29 +9,26 @@ export default {
   component: GButton,
   argTypes: {
     type: {
-      options: Object.keys(ButtonType),
+      options: ['reset', 'submit', 'button', undefined],
     },
-    typeColor: {
-      options: Object.keys(ButtonColor),
+    color: {
+      options: ['primary', 'secondary', 'danger', 'default'],
     },
     size: {
-      options: Object.keys(ButtonSize)
+      options: ['large', 'medium', 'small', 'tiny', ''],
     },
   }
 } as Meta<typeof GButton>;
 
 const Template: StoryFn<typeof GButton> = (args) => ({
   components: { GButton },
-  template: `<g-button v-bind="args">`,
+  template: `
+    <g-button v-bind="args">que paso</g-button>
+  `,
   setup() {
     return { args };
   },
 });
 
 export const Primary = Template.bind({});
-Primary.args = {
-  type: 'Primary',
-  typeColor: 'Primary',
-  size: 'M',
-  icon: 'home'
-};
+Primary.args = {};
