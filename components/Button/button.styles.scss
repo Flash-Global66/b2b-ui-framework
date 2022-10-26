@@ -1,6 +1,127 @@
-.prueba {
-  background-color: aqua;
-  padding: 6px 30px;
-  border-radius: 10px;
-  color: gray;
+.gui-button {
+  $root: &;
+  @apply px-5
+        py-2
+        rounded-xl
+        font-normal
+        leading-none
+        duration-200
+        text-base
+        border
+        border-solid
+        text-left
+        inline-flex
+        items-center
+        justify-center
+      ;
+
+  &--full {
+    @apply w-full;
+  }
+
+  &--default {
+    &:not(#{$root}--outlined) {
+      @apply text-gray-2 border-white bg-white;
+      &:hover {
+        @apply opacity-75;
+      }
+      @at-root &#{$root}--disabled {
+        @apply opacity-70 cursor-not-allowed;
+      }
+    }
+
+    @at-root &#{$root}--outlined {
+      @apply border-gray-2 text-gray-2 bg-transparent;
+      &:hover {
+        @apply opacity-75;
+      }
+      @at-root &#{$root}--disabled {
+        @apply text-gray-2/80 cursor-not-allowed;
+      }
+    }
+  }
+
+  &--primary {
+    &:not(#{$root}--outlined) {
+      @apply bg-blue-1 border-blue-1 text-white;
+      &:hover {
+        @apply bg-blue-1/80;
+      }
+      @at-root &#{$root}--disabled {
+        @apply bg-blue-10 border-blue-10 cursor-not-allowed;
+      }
+    }
+
+    @at-root &#{$root}--outlined {
+      @apply border-blue-1 text-blue-1 bg-transparent;
+      &:hover {
+        @apply opacity-75;
+      }
+      @at-root &#{$root}--disabled {
+        @apply opacity-50 cursor-not-allowed;
+      }
+    }
+  }
+
+  &--secondary {
+    &:not(#{$root}--outlined) {
+      @apply bg-green-2 border-green-2 text-white;
+      &:hover {
+        @apply bg-green-3;
+      }
+      @at-root &#{$root}--disabled {
+        @apply bg-green-4 border-green-4 cursor-not-allowed;
+      }
+    }
+
+    @at-root &#{$root}--outlined {
+      @apply border-green-2 text-green-2 bg-transparent;
+      &:hover {
+        @apply opacity-75;
+      }
+      @at-root &#{$root}--disabled {
+        @apply opacity-50 cursor-not-allowed;
+      }
+    }
+  }
+
+  &--danger {
+    &:not(#{$root}--outlined) {
+      @apply bg-red-1 border-red-1 text-white;
+      &:hover {
+        @apply opacity-75;
+      }
+      @at-root &#{$root}--disabled {
+        @apply bg-red-1/60 border-red-1/60 cursor-not-allowed;
+      }
+    }
+
+    @at-root &#{$root}--outlined {
+      @apply border-red-1 text-red-1 bg-transparent;
+      &:hover {
+        @apply border-red-6 text-red-6;
+      }
+      @at-root &#{$root}--disabled {
+        @apply opacity-50 cursor-not-allowed;
+      }
+    }
+  }
+
+  &--tiny {
+    @apply h-10;
+  }
+  &--small {
+    @apply h-12;
+  }
+  &--medium {
+    @apply h-14;
+  }
+  &--large {
+    @apply h-16;
+  }
 }
+
+// XS = 'h-8',
+// S = 'h-10',
+// M = 'h-12',
+// L = 'h-16',

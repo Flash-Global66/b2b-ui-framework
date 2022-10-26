@@ -1,8 +1,8 @@
 import * as jest from "jest-mock";
 window.jest = jest;
 
-import '../stories/assets/styles/tailwind.css';
 import '../assets/scss/index.scss';
+import '../stories/assets/styles/tailwind.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import * as SolidPro from "../libs/vue-fontawesome/src/solid-pro";
