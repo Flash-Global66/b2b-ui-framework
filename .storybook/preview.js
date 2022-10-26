@@ -1,6 +1,7 @@
 import * as jest from "jest-mock";
 window.jest = jest;
 
+import '../assets/scss/index.scss';
 import '../stories/assets/styles/tailwind.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -19,5 +20,19 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/,
     },
+    expanded: true,
+  },
+  viewMode: "docs",
+  previewTabs: {
+    "storybook/docs/panel": {
+      index: -1
+    },
+  },
+  backgrounds: {
+    values: [
+      { name: 'Gray', value: '#F5F7FF' },
+      { name: 'White', value: '#FFF' },
+    ],
+    default: "Gray",
   },
 }
