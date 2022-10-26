@@ -19,15 +19,13 @@
     @apply w-full;
   }
 
-  &--default {
-    &:not(#{$root}--outlined) {
-      @apply text-gray-2 border-white bg-white;
-      &:hover {
-        @apply opacity-75;
-      }
-      @at-root &#{$root}--disabled {
-        @apply opacity-70 cursor-not-allowed;
-      }
+  &#{$root}--default {
+    @apply text-gray-2 border-white bg-white;
+    &:hover {
+      @apply opacity-75;
+    }
+    @at-root &#{$root}--disabled {
+      @apply opacity-70 cursor-not-allowed;
     }
 
     @at-root &#{$root}--outlined {
@@ -39,17 +37,25 @@
         @apply text-gray-2/80 cursor-not-allowed;
       }
     }
-  }
 
-  &--primary {
-    &:not(#{$root}--outlined) {
-      @apply bg-blue-1 border-blue-1 text-white;
+    @at-root &#{$root}--ghost {
+      @apply border-transparent text-gray-2 bg-transparent;
       &:hover {
-        @apply bg-blue-1/80;
+        @apply bg-white;
       }
       @at-root &#{$root}--disabled {
-        @apply bg-blue-10 border-blue-10 cursor-not-allowed;
+        @apply text-gray-2/80 cursor-not-allowed;
       }
+    }
+  }
+
+  &#{$root}--primary {
+    @apply bg-blue-1 border-blue-1 text-white;
+    &:hover {
+      @apply bg-blue-1/80;
+    }
+    @at-root &#{$root}--disabled {
+      @apply bg-blue-10 border-blue-10 cursor-not-allowed;
     }
 
     @at-root &#{$root}--outlined {
@@ -61,17 +67,25 @@
         @apply opacity-50 cursor-not-allowed;
       }
     }
-  }
 
-  &--secondary {
-    &:not(#{$root}--outlined) {
-      @apply bg-green-2 border-green-2 text-white;
+    @at-root &#{$root}--ghost {
+      @apply border-transparent text-blue-1 bg-transparent;
       &:hover {
-        @apply bg-green-3;
+        @apply bg-blue-1 text-white;
       }
       @at-root &#{$root}--disabled {
-        @apply bg-green-4 border-green-4 cursor-not-allowed;
+        @apply opacity-50 cursor-not-allowed;
       }
+    }
+  }
+
+  &#{$root}--secondary {
+    @apply bg-green-2 border-green-2 text-white;
+    &:hover {
+      @apply bg-green-3;
+    }
+    @at-root &#{$root}--disabled {
+      @apply bg-green-4 border-green-4 cursor-not-allowed;
     }
 
     @at-root &#{$root}--outlined {
@@ -83,23 +97,41 @@
         @apply opacity-50 cursor-not-allowed;
       }
     }
-  }
 
-  &--danger {
-    &:not(#{$root}--outlined) {
-      @apply bg-red-1 border-red-1 text-white;
+    @at-root &#{$root}--ghost {
+      @apply border-transparent text-green-2 bg-transparent;
       &:hover {
-        @apply opacity-75;
+        @apply bg-green-2 text-white;
       }
       @at-root &#{$root}--disabled {
-        @apply bg-red-1/60 border-red-1/60 cursor-not-allowed;
+        @apply opacity-50 cursor-not-allowed;
       }
+    }
+  }
+
+  &#{$root}--danger {
+    @apply bg-red-1 border-red-1 text-white;
+    &:hover {
+      @apply opacity-75;
+    }
+    @at-root &#{$root}--disabled {
+      @apply bg-red-1/60 border-red-1/60 cursor-not-allowed;
     }
 
     @at-root &#{$root}--outlined {
       @apply border-red-1 text-red-1 bg-transparent;
       &:hover {
         @apply border-red-6 text-red-6;
+      }
+      @at-root &#{$root}--disabled {
+        @apply opacity-50 cursor-not-allowed;
+      }
+    }
+
+    @at-root &#{$root}--ghost {
+      @apply border-transparent text-red-1 bg-transparent;
+      &:hover {
+        @apply bg-red-1 text-white;
       }
       @at-root &#{$root}--disabled {
         @apply opacity-50 cursor-not-allowed;

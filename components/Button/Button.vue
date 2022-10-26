@@ -1,7 +1,7 @@
 <template>
   <component
     :is="componentId"
-    :type="type"
+    :type="typeNative"
     :href="href"
     :target="target"
     :class="classes"
@@ -16,12 +16,17 @@
 </template>
 
 <script lang="ts">
+import { ButtonNativeType } from 'element-plus';
 import { computed, defineComponent, PropType } from 'vue';
 import { ButtonSize, ButtonColor, ButtonType } from './button.type';
 
 export default defineComponent({
   name: 'GButton',
   props: {
+    typeNative: {
+      type: String as PropType<ButtonNativeType>,
+      default: 'button',
+    },
     type: {
       type: String as PropType<ButtonType>,
       default: 'button',
@@ -34,19 +39,11 @@ export default defineComponent({
       type: String as PropType<ButtonColor>,
       default: 'default'
     },
-    outlined: {
-      type: Boolean,
-      default: false,
-    },
     disabled: {
       type: Boolean,
       default: false,
     },
     full: { 
-      type: Boolean,
-      default: false
-    },
-    text: {
       type: Boolean,
       default: false
     },
@@ -69,10 +66,10 @@ export default defineComponent({
         `gui-button--${props.color}`,
         {
           'gui-button--disabled': props.disabled,
-          'gui-button--outlined': props.outlined,
+          'gui-button--outlined': props.type === 'outlined',
+          'gui-button--ghost': props.type === 'ghost',
           'gui-button--full': props.full,
           'gui-button--href': props.href,
-          'gui-button--text': props.text,
         }
       ]
     });

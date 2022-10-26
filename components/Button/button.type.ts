@@ -12,6 +12,8 @@ type ButtonSize = 'large' | 'medium' | 'small' | 'tiny' | 'auto';
 
 type ButtonColor = 'primary' | 'secondary' | 'danger' | 'default';
 
-type ButtonType = 'submit' | 'button' | 'reset';
+type ButtonType = 'default' | 'outlined' | 'ghost';
 
-export { ButtonColor, ButtonSize, ButtonType };
+type ButtonNativeType = 'submit' | 'button' | 'reset';
+
+export { ButtonColor, ButtonSize, ButtonType, ButtonNativeType };

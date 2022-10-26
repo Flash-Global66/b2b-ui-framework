@@ -8,8 +8,11 @@ export default {
   title: `${Grouping.Data}/Button`,
   component: GButton,
   argTypes: {
+    typeNative: {
+      options: ['reset', 'submit', 'button'],
+    },
     type: {
-      options: ['reset', 'submit', 'button', undefined],
+      options: ['default', 'outlined', 'ghost'],
     },
     color: {
       options: ['primary', 'secondary', 'danger', 'default'],
