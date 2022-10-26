@@ -1,3 +1,6 @@
+const { mergeConfig } = require('vite');
+const { resolve } = require('path');
+
 module.exports = {
   stories: ["../stories/**/*.stories.mdx", "../stories/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
@@ -11,23 +14,13 @@ module.exports = {
   core: {
     "builder": "@storybook/builder-vite"
   },
-  webpackFinal: async config => {
-    config.module.rules.push({
-      test: /\.css$/,
-      use: [
-        {
-          loader: "postcss-loader",
-          options: {
-            ident: "postcss",
-            plugins: [
-              require("tailwindcss"),
-              require("autoprefixer")
-            ]
-          },
-        }
-      ],
-      include: path.resolve(__dirname, "../")
-    })
-    return config
+  async viteFinal(config) {
+    return mergeConfig(config, {
+      resolve: {
+        alias: {
+          '@': resolve(__dirname, '../'),
+        },
+      },
+    });
   },
 };

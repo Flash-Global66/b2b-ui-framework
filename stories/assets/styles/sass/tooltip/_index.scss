@@ -3,27 +3,27 @@
 }
 
 .tippy-box {
-  --g-color-tooltip: theme('colors.gray.2');
+  --gui-color-tooltip: theme('colors.gray.2');
 
   &[data-theme~='error'] {
-    --g-color-tooltip: theme('colors.red.1');
+    --gui-color-tooltip: theme('colors.red.1');
   }
 
   &[data-theme~='success'] {
-    --g-color-tooltip: theme('colors.green.1');
+    --gui-color-tooltip: theme('colors.green.1');
   }
 
   &[data-theme~='warning'] {
-    --g-color-tooltip: theme('colors.yellow.1');
+    --gui-color-tooltip: theme('colors.yellow.1');
   }
 
   &[data-theme~='disabled'] {
-    --g-color-tooltip: theme('colors.gray.15');
+    --gui-color-tooltip: theme('colors.gray.15');
   }
 
   @apply relative text-white rounded-xl text-sm outline-none;
 
-  background-color: var(--g-color-tooltip);
+  background-color: var(--gui-color-tooltip);
   transition-property: transform, visibility, opacity;
 
   &[data-tippy-root] {
@@ -94,7 +94,7 @@
   
   .tippy-arrow {
     @apply w-4 h-4;
-    color: var(--g-color-tooltip);
+    color: var(--gui-color-tooltip);
     &:before {
       content: "";
       @apply absolute border-transparent border-solid;

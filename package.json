@@ -16,23 +16,23 @@
     "@fortawesome/pro-regular-svg-icons": "^6.1.1",
     "@fortawesome/pro-solid-svg-icons": "^6.1.1",
     "@fortawesome/vue-fontawesome": "3.0.0-4",
-    "@storybook/addon-actions": "^6.5.4",
-    "@storybook/addon-controls": "^6.5.4",
-    "@storybook/addon-essentials": "^6.5.4",
-    "@storybook/addon-interactions": "^6.5.4",
-    "@storybook/addon-jest": "^6.5.4",
-    "@storybook/addon-links": "^6.5.4",
+    "@storybook/addon-actions": "^6.5.10",
+    "@storybook/addon-controls": "^6.5.10",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-interactions": "^6.5.10",
+    "@storybook/addon-jest": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
     "@storybook/addon-postcss": "^2.0.0",
-    "@storybook/builder-vite": "^0.1.35",
-    "@storybook/testing-library": "^0.0.11",
-    "@storybook/vue3": "^6.5.4",
+    "@storybook/builder-vite": "^0.2.2",
+    "@storybook/testing-library": "^0.0.13",
+    "@storybook/vue3": "^6.5.10",
     "@vitejs/plugin-vue": "^2.3.3",
     "babel-loader": "^8.2.5",
     "jest-mock": "^28.1.0",
     "lerna": "^4.0.0",
     "sass": "^1.52.1",
     "tailwindcss": "^3.0.24",
-    "vite": "^2.9.9",
+    "vite": "^3.0.4",
     "vite-dts": "^1.0.4",
     "vue": "^3.2.35",
     "vue-loader": "^16.8.3"
@@ -47,5 +47,8 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@flash-global"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@flash-global66/b2b-ui-config-element": "^0.0.12",
+    "element-plus": "^2.2.3"
+  }
 }
