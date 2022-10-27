@@ -1,18 +1,7 @@
 <template>
   <transition name="fade">
     <div
-      class="
-        fixed
-        top-0
-        left-0
-        z-[300]
-        overflow
-        flex
-        w-full
-        h-full
-        justify-center
-        items-center
-      "
+      class="gui-loader"
       style="background-color: rgba(4, 16, 66, 0.8)"
       v-if="show"
     >
@@ -35,7 +24,12 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style lang="scss">
+.gui-loader {
+  @apply fixed top-0 left-0 overflow-hidden flex w-full h-full justify-center items-center;
+  z-index: 300;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   @apply duration-500;
