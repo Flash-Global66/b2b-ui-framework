@@ -12,15 +12,19 @@ export default {
   argTypes: {
     typeNative: {
       options: ['reset', 'submit', 'button'],
+      defaultValue: 'button',
     },
     type: {
       options: ['default', 'outlined', 'ghost', 'icon'],
+      defaultValue: 'default',
     },
     color: {
       options: ['primary', 'secondary', 'danger', 'info', 'custom'],
+      defaultValue: 'primary',
     },
     size: {
       options: ['large', 'medium', 'small', 'tiny', 'custom'],
+      defaultValue: 'medium',
     },
   },
   args: {
