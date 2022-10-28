@@ -27,9 +27,10 @@
         @slot customize default content
         @slot content as Input suffix, only works when type is not 'textarea'
       -->
-      <template v-for="(_, name) in $slots" #[name]="slotData">
+      <!-- <template v-for="(_, name) in $slots" #[name]="slotData">
         <slot :name="name" v-bind="slotData || {}" />
-      </template>
+      </template> -->
+      <slot />
     </el-input>
   </div>
 </template>
