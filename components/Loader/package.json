@@ -11,5 +11,6 @@
   },
   "exports": {
     "default": "./index.ts"
-  }
+  },
+  "gitHead": "649ad3773f1582c4f27d6a287197c4db2a878445"
 }

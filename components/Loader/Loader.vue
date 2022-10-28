@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div
-      class="gui-loader select-none"
+      class="gui-loader"
       style="background-color: rgba(4, 16, 66, 0.8)"
       v-if="show"
     >
@@ -26,7 +26,7 @@ export default defineComponent({
 
 <style lang="scss">
 .gui-loader {
-  @apply fixed top-0 left-0 overflow-hidden flex w-full h-full justify-center items-center;
+  @apply fixed top-0 left-0 overflow-hidden flex w-full h-full justify-center items-center select-none;
   z-index: 300;
 }
 
