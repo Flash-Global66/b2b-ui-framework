@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div
-      class="gui-loader"
+      class="gui-loader select-none"
       style="background-color: rgba(4, 16, 66, 0.8)"
       v-if="show"
     >
