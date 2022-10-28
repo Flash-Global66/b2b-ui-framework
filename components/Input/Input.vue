@@ -20,6 +20,7 @@
       @compositionend="onCompositionEnd"
       @input="onInput"
       @keydown="onKeydown"
+      @keypress="onKeypress"
     >
       <!--
         @slot content as Input prefix, only works when type is not 'textarea'
@@ -192,6 +193,7 @@ export default defineComponent({
     'mouseenter',
     'keydown',
     'input',
+    'keypress',
   ],
   setup(props, { emit, slots, attrs }) {
     const refInput = ref();
@@ -306,6 +308,10 @@ export default defineComponent({
       emit('input', event)
     }
 
+    function onKeypress (event: KeyboardEvent) {
+      emit('keypress', event)
+    }
+
     return {
       refInput,
       isValue,
@@ -326,6 +332,7 @@ export default defineComponent({
       onCompositionEnd,
       onKeydown,
       onInput,
+      onKeypress,
     }
   }
 });
