@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-loader",
   "author": "Global66",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "license": "MIT",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
@@ -12,5 +12,5 @@
   "exports": {
     "default": "./index.ts"
   },
-  "gitHead": "649ad3773f1582c4f27d6a287197c4db2a878445"
+  "gitHead": "098db4f485f77c6c023624b318b73c793765671d"
 }
