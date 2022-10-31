@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-input",
   "author": "Global66",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "license": "MIT",
   "exports": {
     ".": "./index.ts",
@@ -16,5 +16,5 @@
   "dependencies": {
     "element-plus": "^2.2.3"
   },
-  "gitHead": "75834b56e4b7f9da721fc72a33cea8909130dbf2"
+  "gitHead": "86067627316eb24899e81c643b51121b1ed695f9"
 }
