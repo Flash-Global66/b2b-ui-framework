@@ -4,7 +4,7 @@
   @apply relative font-montserrat flex items-center w-full;
 
   .gui-input-label {
-    @apply absolute z-10 duration-200  transition-all text-gray-4 px-3 text-ellipsis overflow-hidden whitespace-nowrap select-none;
+    @apply absolute z-10 duration-200 transition-all text-gray-4 px-3 text-ellipsis overflow-hidden whitespace-nowrap select-none;
   }
 
   .label--active {
