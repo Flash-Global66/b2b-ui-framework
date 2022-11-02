@@ -5,6 +5,8 @@ import { action } from '@storybook/addon-actions';
 // COMPONENTS
 import { GSelect } from '../components/Select';
 import { GSelectOption } from '../components/SelectOption';
+import { ElSelect } from 'element-plus';
+import { ElOption } from 'element-plus';
 
 // HELPERS
 import { Grouping } from '../constants/grouping';
@@ -27,51 +29,63 @@ export default {
 
 const Template: StoryFn<typeof GSelect> = (args, selected) => {
   return {
-    components: { GSelect, GSelectOption, GConfigProvider },
+    components: { GSelect, GSelectOption, GConfigProvider, ElSelect, ElOption },
     setup() {
-      const selected = ref('');
+      const selected = ref('CC');
 
       const options = [
         {
-          value: 'Option1',
-          label: 'Option1',
+          "countryCode": "CO",
+          "nameDisplay": "Cédula de Ciudadanía",
+          "numberType": "CC",
+          "numberTypeLabel": "Número CC",
+          "docType": "CC",
+          "minSize": 6,
+          "maxSize": 10,
+          "idDefault": true,
+          "enabled": true,
+          "jumioIdType": "ID_CARD",
+          "tooltip": null
         },
         {
-          value: 'Option2',
-          label: 'Option2',
+          "countryCode": "CO",
+          "nameDisplay": "Cédula de Extranjería",
+          "numberType": "CE",
+          "numberTypeLabel": "Número CE",
+          "docType": "CE",
+          "minSize": 6,
+          "maxSize": 10,
+          "idDefault": false,
+          "enabled": true,
+          "jumioIdType": "ID_CARD",
+          "tooltip": null
         },
         {
-          value: 'Option3',
-          label: 'Option3',
+          "countryCode": "CO",
+          "nameDisplay": "Pasaporte",
+          "numberType": "PASS",
+          "numberTypeLabel": "Número Pasaporte",
+          "docType": "PASS",
+          "minSize": 8,
+          "maxSize": 10,
+          "idDefault": false,
+          "enabled": true,
+          "jumioIdType": "ID_CARD",
+          "tooltip": null
         },
         {
-          value: 'Option4',
-          label: 'Option4',
-        },
-        {
-          value: 'Option5',
-          label: 'Option5',
-        },
-        {
-          value: 'Option6',
-          label: 'Option6',
-        },
-        {
-          value: 'Option7',
-          label: 'Option7',
-        },
-        {
-          value: 'Option8',
-          label: 'Option8',
-        },
-        {
-          value: 'Option9',
-          label: 'Option9',
-        },
-        {
-          value: 'Option10',
-          label: 'Option10',
-        },
+          "countryCode": "CO",
+          "nameDisplay": "Permiso Especial de Permanencia",
+          "numberType": "PEP",
+          "numberTypeLabel": "Número PEP",
+          "docType": "PEP",
+          "minSize": 15,
+          "maxSize": 15,
+          "idDefault": false,
+          "enabled": true,
+          "jumioIdType": "ID_CARD",
+          "tooltip": null
+        }
       ];
 
       return {
@@ -103,10 +117,11 @@ const Template: StoryFn<typeof GSelect> = (args, selected) => {
           >
             <g-select-option
               v-for="item in options"
-              :key="item.value"
-              :value="item.value"
+              :key="item.numberType"
+              :label="item.nameDisplay"
+              :value="item.numberType"
             >
-              {{ item.label }}
+              {{ item.nameDisplay }} - {{ item.numberType }}
             </g-select-option>
           </g-select>
         </div>

@@ -161,10 +161,10 @@ export default defineComponent({
     /**
       * when select dropdown is inactive and persistent is false, select dropdown will be destroyed
     */
-    persistent: {
-      type: Boolean,
-      default: false,
-    },
+    // persistent: {
+    //   type: Boolean,
+    //   default: false,
+    // },
     /**
       * for non-filterable Select, this prop decides if the option menu pops up when the input is focused
     */
@@ -265,12 +265,12 @@ export default defineComponent({
     });
 
     const attrsCustom = computed(() => {
-      const excludeKeys = ['class'];
+      const excludeKeys = ['class', 'persistent'];
       return Object.fromEntries(Object.entries(attrs).filter(([key]) => !excludeKeys.includes(key)));
     });
 
     const propsCustom = computed(() => {
-      const excludeKeys = ['joinRight', 'joinLeft'];
+      const excludeKeys = ['joinRight', 'joinLeft', 'persistent'];
       return Object.fromEntries(Object.entries(props).filter(([key]) => !excludeKeys.includes(key)));
     });
 
