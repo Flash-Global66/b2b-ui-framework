@@ -18,5 +18,6 @@
     "@fortawesome/pro-regular-svg-icons": "^6.2.0",
     "@fortawesome/vue-fontawesome": "^3.0.1",
     "element-plus": "^2.2.3"
-  }
+  },
+  "gitHead": "3d2df5880e22d2bc7293ff916ef163410f9682d4"
 }
