@@ -268,6 +268,10 @@ export default defineComponent({
       })
     });
 
+    watch(() => attrs.modelValue, (val) => { 
+      isValue.value = !!val;
+    })
+
     function onClick() {
       if (props.disabled || props.readonly) return;
       refInput.value.focus();

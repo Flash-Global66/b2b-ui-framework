@@ -278,6 +278,10 @@ export default defineComponent({
       return `${prefixWidth.value}px`;
     });
 
+    watch(() => attrs.modelValue, (val) => { 
+      isValue.value = !!val;
+    })
+
     onMounted(() => {
       nextTick(() => {
         const refEl = refSelect.value && refSelect.value.$el
