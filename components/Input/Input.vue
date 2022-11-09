@@ -27,10 +27,10 @@
         @slot customize default content
         @slot content as Input suffix, only works when type is not 'textarea'
       -->
-      <!-- <template v-for="(_, name) in $slots" #[name]="slotData">
+      <template v-for="(_, name) in $slots" #[name]="slotData">
         <slot :name="name" v-bind="slotData || {}" />
-      </template> -->
-      <slot />
+      </template>
+      <!-- <slot /> -->
     </el-input>
   </div>
 </template>
@@ -258,12 +258,12 @@ export default defineComponent({
 
         if (slots.prefix) {
           const prefix = refEl.querySelector('.gui-input__prefix')
-          prefixWidth.value = prefix.getBoundingClientRect().width;
+          prefixWidth.value = prefix?.getBoundingClientRect()?.width;
         }
 
         if (slots.suffix || props.showPassword || props.clearable) {
           const suffix = refEl.querySelector('.gui-input__suffix')
-          suffixWidth.value = suffix.getBoundingClientRect().width;
+          suffixWidth.value = suffix?.getBoundingClientRect()?.width;
         }
       })
     });
