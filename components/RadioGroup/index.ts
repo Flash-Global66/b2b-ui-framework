@@ -1,3 +1,3 @@
-import RadioGroup from "./RadioGroup.vue";
+import GRadioGroup from "./RadioGroup.vue";
 
-export { RadioGroup };
+export { GRadioGroup };
