@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 // COMPONENTS
 import { GRadio } from '../components/Radio';
-import { RadioGroup } from '../components/RadioGroup';
+import { GRadioGroup } from '../components/RadioGroup';
 
 // HELPERS
 import { Grouping } from '../constants/grouping';
@@ -17,7 +17,7 @@ import { EnumRadioSize } from '../components/Radio/radio.type';
 
 export default {
   title: `${Grouping.FORM}/${Grouping.RADIO}/Group`,
-  component: RadioGroup,
+  component: GRadioGroup,
   subcomponents: { GRadio },
   argTypes: {
     'v-model': {
@@ -71,7 +71,7 @@ export default {
 
 const Template: StoryFn<typeof GRadio> = (args, selected) => {
   return {
-    components: { GRadio, RadioGroup, GConfigProvider },
+    components: { GRadio, GRadioGroup, GConfigProvider },
     setup() {
       const selected = ref('')
       return {
@@ -82,7 +82,7 @@ const Template: StoryFn<typeof GRadio> = (args, selected) => {
     },
     template: `
       <g-config-provider>
-        <RadioGroup
+        <g-radioGroup
           class="flex items-center gap-x-8"
           v-model="selected"
           v-bind="args"
@@ -97,7 +97,7 @@ const Template: StoryFn<typeof GRadio> = (args, selected) => {
           <g-radio label="non-binary">
             No binario
           </g-radio>
-        </RadioGroup>
+        </g-radioGroup>
       </g-config-provider>
     `,
   }
