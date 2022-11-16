@@ -2,7 +2,7 @@
 
 .gui-radio-wrapper {
   .gui-radio {
-    @apply mr-0 h-auto;
+    @apply mr-0 h-auto flex;
     --radio-input-size: 18px;
     &.gui-radio--small {
       --radio-input-size: 14px;
