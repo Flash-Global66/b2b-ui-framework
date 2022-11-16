@@ -55,4 +55,12 @@
       }
     }
   }
+
+  &.gui-select-border-bg {
+    .gui-select {
+      .gui-input__wrapper {
+        @apply shadow-input2;
+      }
+    }
+  }
 }

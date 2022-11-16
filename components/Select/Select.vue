@@ -1,5 +1,13 @@
 <template>
-  <div @click="onClick" class="gui-select-wrapper">
+  <div
+    @click="onClick"
+    class="gui-select-wrapper"
+    :class="[
+      {
+        'gui-select-border-bg': border,
+      }
+    ]"
+  >
     <label
       v-if="label"
       class="gui-input-label"
@@ -225,6 +233,13 @@ export default defineComponent({
      * Remove rounded edges from left side to join with another component.
      */
     joinLeft: {
+      type: Boolean,
+      default: false,
+    },
+    /**
+     * Add borders for white backgrounds.
+     */
+    border: {
       type: Boolean,
       default: false,
     },
