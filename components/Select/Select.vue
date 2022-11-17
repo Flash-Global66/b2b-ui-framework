@@ -13,6 +13,7 @@
       class="gui-input-label"
       :class="[
         isVisible || isValue ? 'label--active' : 'label--no-active',
+        disabled ? 'cursor-not-allowed' : 'cursor-pointer',
       ]"
       :style="{ marginLeft: `${prefixWidth}px`}">
       {{ label }}
