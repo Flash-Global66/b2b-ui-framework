@@ -52,13 +52,6 @@ const Template: StoryFn<typeof GSkeleton> = (args) => ({
 });
 
 export const Default = Template.bind({});
-Default.parameters = {
-  docs: {
-    description: {
-      component: `When loading data, and you need a rich experience for visual and interactions for your end users, you can choose skeleton.`,
-    },
-  },
-};
 
 const TemplateSkeletonCustom: StoryFn<typeof GSkeleton> = () => ({
   components: { GSkeleton, GConfigProvider, GSkeletonItem },
