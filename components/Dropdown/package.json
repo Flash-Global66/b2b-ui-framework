@@ -8,7 +8,7 @@
     "./*": "./*"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com/@flash-global66"
   },
   "repository": {
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
