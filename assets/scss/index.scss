@@ -27,3 +27,8 @@
 
 @use "../../components/Skeleton/skeleton.styles.scss" as *;
 @use "../../components/Skeleton/skeleton-item.styles.scss" as *;
+@use "../../components/InputCode/input-code.styles.scss" as *;
+
+* {
+  @apply font-montserrat;
+}

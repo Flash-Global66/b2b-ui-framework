@@ -1,0 +1,58 @@
+.gui-password-item {
+  @apply relative flex justify-center items-center;
+  &.password {
+    &:after {
+      content: '';
+      @apply absolute w-5 h-5 md:w-7 md:h-7 rounded-full;
+    }
+  }
+
+  &.point {
+    &:after {
+      @apply bg-blue-1;
+    }
+  }
+  &.circle {
+    &:after {
+      @apply border-blue-1 border-4 border-solid;
+    }
+  }
+
+  &.success {
+    &.circle {
+      &:after {
+        @apply border-green-3;
+      }
+    }
+    &.point {
+      &:after {
+        @apply bg-green-3;
+      }
+    }
+  }
+
+  &.error {
+    &.circle {
+      &:after {
+        @apply border-red-1;
+      }
+    }
+    &.point {
+      &:after {
+        @apply bg-red-1;
+      }
+    }
+  }
+  &.disabled {
+    &.circle {
+      &:after {
+        @apply border-gray-7;
+      }
+    }
+    &.point {
+      &:after {
+        @apply bg-gray-7;
+      }
+    }
+  }
+}
