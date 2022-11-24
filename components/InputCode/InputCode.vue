@@ -224,7 +224,7 @@ onBeforeUpdate(() => {
 </script>
 
 <template>
-  <section class="flex flex-col items-center">
+  <section class="inline-flex flex-col items-center">
     <div class="flex flex-col md:flex-row items-center">
       <div class="flex space-x-3 md:space-x-6">
         <div v-for="(item, index) in values" :key="index"

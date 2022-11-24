@@ -59,12 +59,14 @@ const Template: StoryFn<typeof GInputCode> = (args, selected) => {
     },
     template: `
       <g-config-provider>
-        <p class="text-center mb-4 text-gray-2">Estado: {{ status }}</p>
-        <g-input-code
-          v-bind="args"
-          @complete="onComplete"
-          @change="onChangeCode"
-        />
+        <div class="flex items-center flex-col">
+          <p class="text-center mb-4 text-gray-2">Estado: {{ status }}</p>
+          <g-input-code
+            v-bind="args"
+            @complete="onComplete"
+            @change="onChangeCode"
+          />
+        </div>
       </g-config-provider>
     `,
   }
