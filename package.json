@@ -9,13 +9,13 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.18.0",
-    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/pro-duotone-svg-icons": "^6.1.1",
     "@fortawesome/pro-light-svg-icons": "^6.1.1",
     "@fortawesome/pro-regular-svg-icons": "^6.1.1",
-    "@fortawesome/pro-solid-svg-icons": "^6.1.1",
-    "@fortawesome/vue-fontawesome": "3.0.0-4",
+    "@fortawesome/pro-solid-svg-icons": "^6.2.1",
+    "@fortawesome/vue-fontawesome": "^3.0.2",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-controls": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "@flash-global66/b2b-ui-config-element": "^0.0.12",
+    "@fortawesome/fontawesome-common-types": "^6.2.1",
     "element-plus": "^2.2.3"
   }
 }
