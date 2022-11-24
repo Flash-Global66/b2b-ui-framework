@@ -83,9 +83,9 @@ const initVals = () => {
 };
 
 const styleInputCode = computed(() => {
-  if (!!props.textError) return 'text-red-1';
+  if (!!props.textError) return 'gui-input-code-text-error';
 
-  if(isComplete.value) return 'text-green-3';
+  if(isComplete.value) return 'gui-input-code-text-success';
 
   return 'text-blue-3';
 });
@@ -224,11 +224,11 @@ onBeforeUpdate(() => {
 </script>
 
 <template>
-  <section class="inline-flex flex-col items-center">
-    <div class="flex flex-col md:flex-row items-center">
-      <div class="flex space-x-3 md:space-x-6">
+  <section class="gui-input-code-wrapper">
+    <div class="gui-input-code-container">
+      <div class="gui-input-content">
         <div v-for="(item, index) in values" :key="index"
-          class="gui-password-item"
+          class="gui-input-item"
           :class="[
             { 'password': password },
             { 'error': !!textError },
@@ -238,10 +238,9 @@ onBeforeUpdate(() => {
           ]">
           <input
             :ref="(el) => setInputs(el, index + 1)"
-            class="appearance-none"
             :class="[classInput ?
               classInput :
-              `border-2 border-solid border-white h-16 w-16 md:w-20 md:h-20 rounded-2xl text-center shadow-input text-2xl font-semibold ${styleInputCode}`
+              `gui-input ${styleInputCode}`
             ]"
             type="tel"
             pattern="[0-9]"
@@ -262,12 +261,12 @@ onBeforeUpdate(() => {
       <div
         v-if="password && iconPassword"
         @click="showPassword = !showPassword"
-        class="flex items-center text-2xl md:text-3xl text-gray-3 cursor-pointer select-none mt-4 md:mt-0 md:ml-6">
+        class="gui-input-code-password">
 
         <font-awesome-icon v-if="!showPassword" :icon="faEye" />
         <font-awesome-icon v-else :icon="faEyeSlash" />
 
-        <p class="ml-3 text-base md:hidden">
+        <p class="gui-input-code-icon">
           {{ showPassword ? 'Mostrar' : 'Ocultar' }}
         </p>
       </div>
@@ -277,7 +276,7 @@ onBeforeUpdate(() => {
       @slot error custom message error.
      -->
     <slot name="error">
-      <p v-if="!!textError && !hideTextError" class="mt-4 text-center text-red-1 text-base">
+      <p v-if="!!textError && !hideTextError" class="gui-input-code-error">
         {{ textError }}
       </p>
     </slot>

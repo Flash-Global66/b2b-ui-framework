@@ -1,58 +1,93 @@
-.gui-password-item {
-  @apply relative flex justify-center items-center;
-  &.password {
-    &:after {
-      content: '';
-      @apply absolute w-5 h-5 md:w-7 md:h-7 rounded-full;
+.gui-input-code-wrapper {
+  @apply inline-flex flex-col items-center;
+  .gui-input-content {
+    @apply flex space-x-3 md:space-x-6;
+  }
+
+  .gui-input-item {
+    @apply relative flex justify-center items-center;
+    &.password {
+      &:after {
+        content: '';
+        @apply absolute w-5 h-5 md:w-7 md:h-7 rounded-full;
+      }
+    }
+  
+    &.point {
+      &:after {
+        @apply bg-blue-1;
+      }
+    }
+    &.circle {
+      &:after {
+        @apply border-blue-1 border-4 border-solid;
+      }
+    }
+  
+    &.success {
+      &.circle {
+        &:after {
+          @apply border-green-3;
+        }
+      }
+      &.point {
+        &:after {
+          @apply bg-green-3;
+        }
+      }
+    }
+  
+    &.error {
+      &.circle {
+        &:after {
+          @apply border-red-1;
+        }
+      }
+      &.point {
+        &:after {
+          @apply bg-red-1;
+        }
+      }
+    }
+    &.disabled {
+      &.circle {
+        &:after {
+          @apply border-gray-7;
+        }
+      }
+      &.point {
+        &:after {
+          @apply bg-gray-7;
+        }
+      }
     }
   }
 
-  &.point {
-    &:after {
-      @apply bg-blue-1;
-    }
-  }
-  &.circle {
-    &:after {
-      @apply border-blue-1 border-4 border-solid;
-    }
+  .gui-input-code-container {
+    @apply flex flex-col md:flex-row items-center;
   }
 
-  &.success {
-    &.circle {
-      &:after {
-        @apply border-green-3;
-      }
-    }
-    &.point {
-      &:after {
-        @apply bg-green-3;
-      }
-    }
+  .gui-input-code-password {
+    @apply flex items-center text-2xl md:text-3xl text-gray-3 cursor-pointer select-none mt-4 md:mt-0 md:ml-6;
   }
 
-  &.error {
-    &.circle {
-      &:after {
-        @apply border-red-1;
-      }
-    }
-    &.point {
-      &:after {
-        @apply bg-red-1;
-      }
-    }
+  .gui-input-code-icon {
+    @apply ml-3 text-base md:hidden;
   }
-  &.disabled {
-    &.circle {
-      &:after {
-        @apply border-gray-7;
-      }
-    }
-    &.point {
-      &:after {
-        @apply bg-gray-7;
-      }
-    }
+
+  .gui-input-code-error {
+    @apply mt-4 text-center text-red-1 text-base;
+  }
+
+  .gui-input {
+    @apply border-2 border-solid border-white h-16 w-16 md:w-20 md:h-20 rounded-2xl text-center shadow-input text-2xl font-semibold appearance-none;
+  }
+
+  .gui-input-code-text-error {
+    @apply text-red-1;
+  }
+
+  .gui-input-code-text-success {
+    @apply text-green-3;
   }
 }
