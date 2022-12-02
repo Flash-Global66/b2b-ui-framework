@@ -27,7 +27,7 @@ export default defineComponent({
 <style lang="scss">
 .gui-loader {
   @apply fixed top-0 left-0 overflow-hidden flex w-full h-full justify-center items-center select-none;
-  z-index: 11000;
+  z-index: 5000;
 }
 
 .fade-enter-active,
