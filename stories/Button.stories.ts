@@ -19,7 +19,7 @@ export default {
       defaultValue: 'default',
     },
     color: {
-      options: ['primary', 'secondary', 'danger', 'info', 'custom'],
+      options: ['primary', 'secondary', 'danger', 'info', 'warning', 'custom'],
       defaultValue: 'primary',
     },
     size: {
