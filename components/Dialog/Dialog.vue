@@ -1,10 +1,12 @@
 <template>
-  <el-drawer
+  <el-dialog
     v-bind="{ ...$attrs, ...$props }"
     @open="$emit('open')"
     @opened="$emit('opened')"
     @close="$emit('close')"
     @closed="$emit('closed')"
+    @open-auto-focus="$emit('open-auto-focus')"
+    @close-auto-focus="$emit('close-auto-focus')"
   >
 
     <!--
@@ -24,38 +26,46 @@
       -->
       <slot name="footer" />
     </template>
-  </el-drawer>
+  </el-dialog>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import {
-  ElDrawer,
+  ElDialog,
   DialogBeforeCloseFn,
 } from "element-plus";
 
 export default defineComponent({
-  name: 'GDrawer',
+  name: 'GDialog',
   components: {
-    ElDrawer,
+    ElDialog,
   },
   emits: [
     /**
-     * Triggered before Drawer opening animation begins
+     * triggers when the Dialog opens
      */
     'open',
     /**
-     * Triggered after Drawer opening animation ended
+     * triggers when the Dialog opening animation ends
      */
     'opened',
     /**
-     * Triggered before Drawer closing animation begins
+     * triggers when the Dialog closes
      */
     'close',
     /**
-     * 	Triggered after Drawer closing animation ended
+     * 	triggers when the Dialog closing animation ends
      */
     'closed',
+    /**
+     * 	triggers after Dialog opens and content focused
+     */
+    'open-auto-focus',
+    /**
+     * 	triggers after Dialog closed and content focused
+     */
+    'close-auto-focus',
   ],
   props: {
     appendToBody: {
@@ -96,6 +106,10 @@ export default defineComponent({
     top: {
       type: String,
     },
+    modelValue: {
+      type: Boolean,
+      default: false,
+    },
     modalClass: String,
     width: {
       type: [String, Number],
@@ -106,22 +120,6 @@ export default defineComponent({
     trapFocus: {
       type: Boolean,
       default: false,
-    },
-    direction: {
-      type: String,
-      default: 'rtl',
-    },
-    size: {
-      type: [String, Number],
-      default: '30%',
-    },
-    withHeader: {
-      type: Boolean,
-      default: true,
-    },
-    modalFade: {
-      type: Boolean,
-      default: true,
     },
   },
 });
