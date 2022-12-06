@@ -39,7 +39,7 @@ type ClassObjectType = Record<string, boolean>
 type ClassType = string | ClassObjectType | ClassType[]
 
 export default defineComponent({
-  name: 'Radio',
+  name: 'GPopover',
   components: {
     ElPopover,
   },
