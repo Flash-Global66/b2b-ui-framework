@@ -137,6 +137,36 @@
     }
   }
 
+  &#{$root}--warning {
+    @apply bg-yellow-8 border-yellow-8 text-white;
+    &:hover {
+      @apply opacity-75;
+    }
+    @at-root &#{$root}--disabled {
+      @apply bg-yellow-8/60 border-yellow-8/60 cursor-not-allowed;
+    }
+
+    @at-root &#{$root}--outlined {
+      @apply border-yellow-8 text-yellow-8 bg-transparent;
+      &:hover {
+        @apply border-y-yellow-7 text-yellow-7;
+      }
+      @at-root &#{$root}--disabled {
+        @apply opacity-50 cursor-not-allowed;
+      }
+    }
+
+    @at-root &#{$root}--ghost {
+      @apply border-transparent text-yellow-8 bg-transparent;
+      &:hover {
+        @apply bg-yellow-8 text-white;
+      }
+      @at-root &#{$root}--disabled {
+        @apply opacity-50 cursor-not-allowed;
+      }
+    }
+  }
+
   &#{$root}--icon {
     @apply rounded-full p-0;
   }
