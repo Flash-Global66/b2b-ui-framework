@@ -16,7 +16,7 @@ import { Grouping } from '../constants/grouping';
 import { GConfigProvider } from '../components/ConfigProvider';
 
 export default {
-  title: `${Grouping.Data}/Popover`,
+  title: `${Grouping.FEEDBACK}/Popover`,
   component: GPopover,
   argTypes: {
     placement: {
