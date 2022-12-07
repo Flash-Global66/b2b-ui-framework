@@ -1237,12 +1237,12 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@flash-global66/b2b-ui-config-element@^0.0.12":
-  version "0.0.12"
-  resolved "https://npm.pkg.github.com/download/@Flash-Global66/b2b-ui-config-element/0.0.12/a0d471b1be44b0504365106effe1a2b58e00943c#a0d471b1be44b0504365106effe1a2b58e00943c"
-  integrity sha512-Fz8bvAAsCq7ab0BUQDJWa6wEMcGvpx+bfep8jw2BTSHXgPBSeJm/DffvMfcCPGJ7l6xXdXrOiMO/CCAxgjfeSA==
+"@flash-global66/b2b-ui-config-element@^0.0.14":
+  version "0.0.14"
+  resolved "https://npm.pkg.github.com/download/@Flash-Global66/b2b-ui-config-element/0.0.14/cb572f2caefb2b72bdb9142d3f41bedc1c751091#cb572f2caefb2b72bdb9142d3f41bedc1c751091"
+  integrity sha512-tpEPsQo6DvmggBxgbB0/5eoZxgEkQ7sF63xIks1eqpHsZQsFFFTMepwyfR1lC7rSsk1ICfQhNDNBpRYCJ77JDA==
   dependencies:
-    element-plus "^2.2.17"
+    element-plus "^2.2.26"
 
 "@floating-ui/core@^1.0.1":
   version "1.0.1"
@@ -6350,31 +6350,10 @@ electron-to-chromium@^1.4.251:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.274.tgz#74369ac6f020c3cea7c77ec040ddf159fe226233"
   integrity sha512-Fgn7JZQzq85I81FpKUNxVLAzoghy8JZJ4NIue+YfUYBbu1AkpgzFvNwzF/ZNZH9ElkmJD0TSWu1F2gTpw/zZlg==
 
-element-plus@^2.2.16:
+element-plus@^2.2.26:
   version "2.2.26"
   resolved "https://registry.yarnpkg.com/element-plus/-/element-plus-2.2.26.tgz#5e46aa5d8127786bb158713957f8a253b35bf019"
   integrity sha512-O/rdY5m9DkclpVg8r3GynyqCunm7MxSR142xSsjrZA77bi7bcwA3SIy6SPEDqHi5R4KqgkGYgKSp4Q4e3irbYg==
-  dependencies:
-    "@ctrl/tinycolor" "^3.4.1"
-    "@element-plus/icons-vue" "^2.0.6"
-    "@floating-ui/dom" "^1.0.1"
-    "@popperjs/core" "npm:@sxzz/popperjs-es@^2.11.7"
-    "@types/lodash" "^4.14.182"
-    "@types/lodash-es" "^4.17.6"
-    "@vueuse/core" "^9.1.0"
-    async-validator "^4.2.5"
-    dayjs "^1.11.3"
-    escape-html "^1.0.3"
-    lodash "^4.17.21"
-    lodash-es "^4.17.21"
-    lodash-unified "^1.0.2"
-    memoize-one "^6.0.0"
-    normalize-wheel-es "^1.2.0"
-
-element-plus@^2.2.17:
-  version "2.2.17"
-  resolved "https://registry.yarnpkg.com/element-plus/-/element-plus-2.2.17.tgz#abbb12c19dc029c95b0271822ea9a0e635704bc2"
-  integrity sha512-MGwMIE/q+FFD3kgS23x8HIe5043tmD1cTRwjhIX9o6fim1avFnUkrsfYRvybbz4CkyqSb185EheZS5AUPpXh2g==
   dependencies:
     "@ctrl/tinycolor" "^3.4.1"
     "@element-plus/icons-vue" "^2.0.6"
