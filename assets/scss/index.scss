@@ -1,4 +1,5 @@
-@use "@flash-global66/b2b-ui-config-element/styles/index.scss" as *;
+// @use "@flash-global66/b2b-ui-config-element/styles/index.scss";
+@use "../../components/ConfigProvider/config.styles.scss" as *;
 
 @use "../../components/Popper/popper.styles.scss" as *;
 

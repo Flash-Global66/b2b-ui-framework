@@ -15,7 +15,7 @@ import { ElConfigProvider } from 'element-plus';
 import es from 'element-plus/dist/locale/es.mjs';
 
 // TYPES
-import { TypeLanguage } from './types/locale';
+import { TypeLanguage } from './config-type';
 
 export default defineComponent({
   name: 'ConfigProvider',
