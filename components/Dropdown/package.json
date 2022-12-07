@@ -13,8 +13,5 @@
   "repository": {
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
   },
-  "dependencies": {
-    "element-plus": "^2.2.3"
-  },
   "gitHead": "841b25f4ac7de0974c9949529ecbb68a7761463e"
 }
