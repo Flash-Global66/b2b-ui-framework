@@ -113,13 +113,13 @@ const onValueChange = (e) => {
   const index = parseInt(e.target.dataset.id);
   e.target.value = e.target.value.replace(/[^\d]/gi, '');
 
-  if (e.target.value === '' || !e.target.validity.valid) {
-    return;
-  }
-
-  let next;
+  let next: number;
   const value: string = e.target.value;
   values.value = Object.assign([], values.value);
+
+  if (e.target.value === '' || !e.target.validity.valid) {
+    return triggerChange(values.value);
+  }
 
   if (value.length > 1) {
     let nextIndex = value.length + index - 1;
@@ -243,7 +243,7 @@ onBeforeUpdate(() => {
               `gui-input ${styleInputCode}`
             ]"
             type="tel"
-            pattern="[0-9]"
+            pattern="[0-9]+"
             :autoFocus="autoFocus && index === autoFocusIndex"
             :data-id="index"
             :value="item"
