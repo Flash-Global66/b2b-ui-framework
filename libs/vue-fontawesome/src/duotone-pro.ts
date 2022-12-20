@@ -1,8 +1,9 @@
 // prefijo fad
 export {
-  faSpinner as fadSpinner,
-  faUserCircle as fadUserCircle,
-  faCloudUpload as fadCloudUpload,
-  faMegaphone as fadMegaphone,
-  faExclamationTriangle as fadExclamationTriangle,
+  faSpinner,
+  faUserCircle,
+  faCloudUpload,
+  faMegaphone,
+  faExclamationTriangle,
+  faCopy,
 } from '@fortawesome/pro-duotone-svg-icons';
