@@ -1,10 +1,17 @@
-// prefijo fal
+// prefijo FAL
 export {
-  faTimes as falTimes,
-  faCopy as falCopy,
-  faCalendarAlt as falCalendarAlt,
-  faLongArrowRight as falLongArrowRight,
-  faArrowLeft as falArrowLeft,
-  faArrowRight as falArrowRight,
-  faCloudDownloadAlt as faCloudDownloadAlt,
+  faTimes,
+  faCopy,
+  faCalendarAlt,
+  faLongArrowRight,
+  faArrowLeft,
+  faArrowRight,
+  faCloudDownloadAlt,
+  faAngleDown,
+  faClock,
+  faMinus,
+  faEquals,
+  faDivide,
+  faExclamation,
+  faMoneyBillWave,
 } from '@fortawesome/pro-light-svg-icons';
