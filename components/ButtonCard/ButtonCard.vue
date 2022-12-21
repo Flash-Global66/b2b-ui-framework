@@ -13,6 +13,10 @@ defineProps({
     type: String,
     default: '',
   },
+  note: {
+    type: String,
+    default: '',
+  },
   icon: {
     type: Array,
     default: () => [''],
@@ -40,41 +44,66 @@ function onClick (event: Event) {
 </script>
 
 <template>
-  <section
-    @click="onClick"
-    class="rounded-xl flex flex-col justify-center items-center border-[1px] duration-200 group"
-    :class="[
-      disabled
-        ? 'cursor-not-allowed bg-transparent border-gray-7'
-        : 'cursor-pointer bg-white shadow-md border-transparent hover:border-blue-3',
-      height.length ? height : 'min-h-[200px]',
-    ]"
-  >
-    <slot name="image">
-      <div :class="{ 'w-20 h-20 bg-gray-9 rounded-full flex justify-center items-center': iconRounded }">
-        <fa-icon class="text-blue-1 text-5xl duration-200 group-hover:text-gray-3" :icon="icon" />
-      </div>
-    </slot>
-
-    <slot name="title">
-      <h4
-        :class="disabled ? 'text-gray-5' : 'text-gray-2'"
-        class=" font-semibold text-xl leading-6 mb-2 text mt-5"
-        v-html="title"
-      />
-    </slot>
-    <slot name="subtitle">
+  <div class="">
+    <section
+      @click="onClick"
+      class="card group"
+      :class="[
+        disabled ? 'card-disabled' : 'card-active',
+        height.length ? height : 'card-height',
+      ]"
+    >
+      <slot name="image">
+        <div :class="{ 'w-20 h-20 bg-gray-9 rounded-full flex justify-center items-center': iconRounded }">
+          <fa-icon class="text-blue-1 text-5xl duration-200 group-hover:text-gray-3" :icon="icon" />
+        </div>
+      </slot>
+  
+      <slot name="title">
+        <h4
+          :class="disabled ? 'text-gray-5' : 'text-gray-2'"
+          class=" font-semibold text-xl leading-6 mb-2 text mt-5"
+          v-html="title"
+        />
+      </slot>
+      <slot name="subtitle">
+        <p
+          :class="disabled ? 'text-gray-5' : 'text-gray-2'"
+          class="leading-6 text"
+          v-html="subtitle"
+        />
+      </slot>
+    </section>
+    <slot name="note">
       <p
-        :class="disabled ? 'text-gray-5' : 'text-gray-2'"
-        class="leading-6 text"
-        v-html="subtitle"
+        v-if="note.length"
+        class="text-center font-normal text-sm mt-4"
+        :class="disabled ? 'text-gray-4' : 'text-gray-2'"
+        v-html="note"
       />
     </slot>
-  </section>
+  </div>
 </template>
 
 <style lang="scss" scoped>
 .text {
-  @apply group-hover:text-gray-3 duration-200 w-4/5 text-center
+  @apply group-hover:text-gray-3 duration-200 w-4/5 text-center;
 }
+
+.card {
+  @apply rounded-xl flex flex-col justify-center items-center border-[1px] duration-200;
+}
+
+.card-disabled {
+  @apply cursor-not-allowed bg-transparent border-gray-7;
+}
+
+.card-active {
+  @apply cursor-pointer bg-white shadow-md border-transparent hover:border-blue-3;
+}
+
+.card-height {
+  @apply min-h-[200px];
+}
+
 </style>

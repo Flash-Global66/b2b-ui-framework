@@ -10,8 +10,9 @@ export default {
   component: GButtonCard,
   argTypes: {},
   args: {
-    title: 'Hola es el titulo',
+    title: 'Links individuales',
     subtitle: 'Este es el subtitulo',
+    note: 'Generar link individual con monto, moneda y propósito para cada uno de tus clientes. Esto te permite tener un mejor control de tus cobranzas.',
     icon: ['fad', 'copy'],
   }
 } as Meta<typeof GButtonCard>;
