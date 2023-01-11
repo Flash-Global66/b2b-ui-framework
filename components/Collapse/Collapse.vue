@@ -11,6 +11,10 @@ const props = defineProps({
     type: Number as PropType<number | string | null>,
     default: null,
   },
+  default: {
+    type: Number as PropType<number | string | null>,
+    default: null,
+  },
   disabled: {
     type: Boolean,
     default: false,
@@ -24,7 +28,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue', 'click-item']);
 
 const count = ref(0);
-const active = ref(props.modelValue);
+const active = ref(props.modelValue || props.default);
 const accordion = ref(props.accordion);
 const disabled = ref(props.disabled);
 
@@ -36,12 +40,13 @@ watch(
 );
 
 const setActiveItem = (item: string | number | null, visible: boolean) => {
-  active.value = item;
   emit('update:modelValue', item);
   emit('click-item', {
+    itemOld: active.value,
     item,
     visible,
   });
+  active.value = item;
 }
 
 provide(ProviderGCollapse, {
