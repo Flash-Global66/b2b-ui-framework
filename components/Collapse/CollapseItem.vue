@@ -59,7 +59,7 @@ const stylesIconCustom = computed(() => {
   return [
     props.classIcon.length ? props.classIcon : 'flex items-center text-xl',
     isDisabled.value ? 'text-gray-5' : 'text-gray-3',
-    { 'rotate-90': visible.value }
+    visible.value ? 'rotate-90': '',
   ]
 })
 

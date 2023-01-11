@@ -23,6 +23,11 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  preventDefault: {
+    type: Boolean,
+    default: false,
+  },
+  
 })
 
 const emit = defineEmits(['update:modelValue', 'click-item']);
@@ -40,13 +45,17 @@ watch(
 );
 
 const setActiveItem = (item: string | number | null, visible: boolean) => {
-  emit('update:modelValue', item);
   emit('click-item', {
     itemOld: active.value,
     item,
     visible,
   });
-  active.value = item;
+
+  if (!props.preventDefault) {
+    active.value = item;
+    emit('update:modelValue', item);
+  };
+
 }
 
 provide(ProviderGCollapse, {
