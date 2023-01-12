@@ -37,7 +37,7 @@ const props = defineProps({
 
 const emit = defineEmits(['open', 'close', 'opened', 'closed', 'click']);
 
-const { count, active, disabled, accordion, setActiveItem } = inject(
+const { count, active, disabled, accordion, setActiveItem, preventDefault } = inject(
   ProviderGCollapse,
   initialGCollapse
 );
@@ -70,7 +70,7 @@ watch(
 
 function toggleVisibility (e: Event) {
   e.preventDefault();
-  if (isDisabled.value) return;
+  if (preventDefault.value || isDisabled.value) return;
 
   visible.value = !visible.value
   !accordion && visible && (active.value = itemKey.value)
@@ -121,7 +121,7 @@ function onAfterLeave(el: HTMLElement) {
             {{ title }}
           </slot>
           <slot name="icon" :active="visible" :disabled="disabled">
-            <div :class="[stylesIconCustom, 'duration-200']">
+            <div :class="[...stylesIconCustom, 'duration-200']">
               <fa-icon :icon="['fas', 'chevron-right']" />
             </div>
           </slot>
