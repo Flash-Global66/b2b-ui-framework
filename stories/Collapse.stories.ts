@@ -37,6 +37,7 @@ const Template: StoryFn<typeof GCollapse> = (args) => ({
       <g-collapse
         v-model="accordionIndex"
         accordion
+        prevent-default
         @click-item="onClickItem"
         class="grid grid-cols-1 gap-y-6 mt-6">
           <g-collapse-item title="Anderson Mesa" class="bg-gray-18 rounded-lg">
@@ -64,6 +65,7 @@ const TemplateSkeletonCustom: StoryFn<typeof GCollapse> = () => ({
       <g-collapse
         v-model="accordionIndex"
         :default="1"
+        prevent-default
         @click-item="onClickItem"
         class="grid grid-cols-1 gap-y-6 mt-6">
           <g-collapse-item title="Titulo 01" class="bg-gray-18 rounded-lg">

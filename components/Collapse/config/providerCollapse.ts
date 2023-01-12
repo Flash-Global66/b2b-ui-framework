@@ -5,6 +5,7 @@ export type GCollapse = {
   count: Ref<number>;
   accordion: Ref<boolean>;
   disabled: Ref<boolean>;
+  preventDefault: Ref<boolean>;
   setActiveItem: (item: string | number | null, visible: boolean) => void;
 };
 
@@ -13,6 +14,7 @@ export const initialGCollapse: GCollapse = {
   count: ref(0),
   accordion: ref(false),
   disabled: ref(false),
+  preventDefault: ref(false),
   setActiveItem: () => console.log,
 };
 
