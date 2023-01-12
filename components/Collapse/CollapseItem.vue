@@ -33,11 +33,15 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  hideIcon: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const emit = defineEmits(['open', 'close', 'opened', 'closed', 'click']);
 
-const { count, active, disabled, accordion, setActiveItem } = inject(
+const { count, active, disabled, accordion, setActiveItem, hideIcon } = inject(
   ProviderGCollapse,
   initialGCollapse
 );
@@ -46,6 +50,7 @@ const itemKey = ref<number | string | null>(props.name ? props.name : count.valu
 const visible = ref(Boolean(active.value === itemKey.value));
 
 const isDisabled = computed(() => disabled.value || props.disabled)
+const isHideIcon = computed(() => hideIcon.value || props.hideIcon)
 
 const stylesHeadCustom = computed(() => {
   return [
@@ -121,7 +126,7 @@ function onAfterLeave(el: HTMLElement) {
             {{ title }}
           </slot>
           <slot name="icon" :active="visible" :disabled="disabled">
-            <div :class="[...stylesIconCustom, 'duration-200',]">
+            <div v-if="!isHideIcon" :class="[...stylesIconCustom, 'duration-200']">
               <fa-icon :icon="['fas', 'chevron-right']" />
             </div>
           </slot>

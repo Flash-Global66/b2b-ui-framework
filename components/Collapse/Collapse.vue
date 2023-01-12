@@ -3,7 +3,6 @@ export default { name: 'GCollapseContent' }
 </script>
 
 <script lang='ts' setup>
-import { faCommentsDollar } from '@fortawesome/pro-solid-svg-icons';
 import { provide, ref, watch, PropType } from 'vue';
 import { ProviderGCollapse } from './config/providerCollapse';
 
@@ -24,7 +23,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  
+  hideIcon: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const emit = defineEmits(['update:modelValue', 'click-item']);
@@ -33,6 +35,7 @@ const count = ref(0);
 const active = ref(props.modelValue || props.default);
 const accordion = ref(props.accordion);
 const disabled = ref(props.disabled);
+const hideIcon = ref(props.hideIcon);
 
 watch(
   () => props.modelValue,
@@ -45,6 +48,13 @@ watch(
   () => props.disabled,
   (newValue) => {
     disabled.value = newValue;
+  }
+);
+
+watch(
+  () => props.hideIcon,
+  (newValue) => {
+    hideIcon.value = newValue;
   }
 );
 
@@ -65,6 +75,7 @@ provide(ProviderGCollapse, {
   active,
   accordion,
   disabled,
+  hideIcon,
   setActiveItem,
 });
 </script>
