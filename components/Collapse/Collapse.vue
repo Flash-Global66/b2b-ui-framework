@@ -53,8 +53,11 @@ const setActiveItem = (item: string | number | null, visible: boolean) => {
     visible,
   });
 
-  active.value = item;
-  emit('update:modelValue', item);
+  if (!props.preventDefault) {
+    active.value = item;
+    emit('update:modelValue', item);
+  };
+
 }
 
 provide(ProviderGCollapse, {

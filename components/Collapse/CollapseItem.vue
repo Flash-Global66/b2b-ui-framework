@@ -70,7 +70,12 @@ watch(
 
 function toggleVisibility (e: Event) {
   e.preventDefault();
-  if (preventDefault.value || isDisabled.value) return;
+  if (isDisabled.value) return;
+
+  if (preventDefault.value) {
+    setActiveItem(itemKey.value, visible.value);
+    return;
+  };
 
   visible.value = !visible.value
   !accordion && visible && (active.value = itemKey.value)
