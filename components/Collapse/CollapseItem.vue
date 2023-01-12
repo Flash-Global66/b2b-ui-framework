@@ -59,7 +59,7 @@ const stylesIconCustom = computed(() => {
   return [
     props.classIcon.length ? props.classIcon : 'flex items-center text-xl',
     isDisabled.value ? 'text-gray-5' : 'text-gray-3',
-    visible.value ? 'rotate-90': '',
+    { 'active-icon': visible.value },
   ]
 })
 
@@ -121,7 +121,7 @@ function onAfterLeave(el: HTMLElement) {
             {{ title }}
           </slot>
           <slot name="icon" :active="visible" :disabled="disabled">
-            <div :class="[...stylesIconCustom, 'duration-200']">
+            <div :class="[...stylesIconCustom, 'duration-200',]">
               <fa-icon :icon="['fas', 'chevron-right']" />
             </div>
           </slot>
@@ -146,9 +146,13 @@ function onAfterLeave(el: HTMLElement) {
   </section>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 * {
   will-change: height;
+}
+
+.active-icon {
+  @apply rotate-90;
 }
 </style>
 
