@@ -90,7 +90,7 @@ function onEnter(el: HTMLElement) {
 
 function onAfterEnter(el: HTMLElement) {
   emit('opened');
-  el.style.height = el.scrollHeight + 'px';
+  el.style.height = 'auto';
 }
 
 function onBeforeLeave(el: HTMLElement) {
