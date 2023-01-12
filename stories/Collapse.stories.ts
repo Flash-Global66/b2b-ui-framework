@@ -34,9 +34,13 @@ const Template: StoryFn<typeof GCollapse> = (args) => ({
   components: { GCollapse, GConfigProvider, GCollapseItem },
   template: `
     <g-config-provider>
+      <button @click="toggleDisabled">
+        click {{ disabled }}
+      </button>
       <g-collapse
         v-model="accordionIndex"
         accordion
+        :disabled="disabled"
         prevent-default
         @click-item="onClickItem"
         class="grid grid-cols-1 gap-y-6 mt-6">
@@ -49,8 +53,17 @@ const Template: StoryFn<typeof GCollapse> = (args) => ({
     </g-config-provider>
   `,
   setup() {
+
+    const disabled = ref(false);
+
+    function toggleDisabled () {
+      disabled.value = !disabled.value;
+    }
+
     return {
       args,
+      toggleDisabled,
+      disabled,
     };
   },
 });

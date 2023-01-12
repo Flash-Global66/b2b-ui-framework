@@ -41,6 +41,13 @@ watch(
   }
 );
 
+watch(
+  () => props.disabled,
+  (newValue) => {
+    disabled.value = newValue;
+  }
+);
+
 const setActiveItem = (item: string | number | null, visible: boolean) => {
   emit('click-item', {
     itemOld: active.value,
