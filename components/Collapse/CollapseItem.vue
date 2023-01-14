@@ -47,7 +47,7 @@ const { count, active, disabled, accordion, setActiveItem, hideIcon } = inject(
 );
 
 const itemKey = ref<number | string | null>(props.name ? props.name : count.value++);
-const visible = ref(Boolean(active.value === itemKey.value));
+const visible = ref(false);
 
 const isDisabled = computed(() => disabled.value || props.disabled)
 const isHideIcon = computed(() => hideIcon.value || props.hideIcon)
@@ -70,15 +70,26 @@ const stylesIconCustom = computed(() => {
 
 watch(
   active,
-  () => (visible.value = Boolean(active.value === itemKey.value))
+  () => {
+    fillVisible()
+  }
 )
+
+function fillVisible () {
+  if (accordion.value && Array.isArray(active.value)) {
+    visible.value = active.value.includes(itemKey.value);
+  } else {
+    visible.value = Boolean(active.value === itemKey.value)
+  }
+}
+fillVisible();
 
 function toggleVisibility (e: Event) {
   e.preventDefault();
   if (isDisabled.value) return;
 
   visible.value = !visible.value
-  !accordion && visible && (active.value = itemKey.value)
+  !accordion.value && visible.value && (active.value = itemKey.value)
   setActiveItem(itemKey.value, visible.value);
 }
 
