@@ -6,13 +6,16 @@ export default { name: 'GCollapseContent' }
 import { provide, ref, watch, PropType } from 'vue';
 import { ProviderGCollapse } from './config/providerCollapse';
 
+// TYPES
+import { ChangeCollapse, ValueCollapse } from './collapse.type';
+
 const props = defineProps({
   modelValue: {
-    type: Number as PropType<number | string | null>,
+    type: Number as PropType<ValueCollapse>,
     default: null,
   },
   default: {
-    type: Number as PropType<number | string | null>,
+    type: Number as PropType<number | string>,
     default: null,
   },
   disabled: {
@@ -29,19 +32,31 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['update:modelValue', 'click-item']);
+const emit = defineEmits<{
+  (e: 'update:modelValue', update: ValueCollapse): void
+  (e: 'click-item', change: ChangeCollapse): void
+}>();
 
 const count = ref(0);
-const active = ref(props.modelValue || props.default);
+const active = ref<ValueCollapse>(props.modelValue || props.default);
 const accordion = ref(props.accordion);
 const disabled = ref(props.disabled);
 const hideIcon = ref(props.hideIcon);
 
+if (!props.modelValue) {
+  if(accordion.value) {
+    active.value = props.default !== null ? [props.default] : [];
+  } else {
+    active.value = props.default;
+  }
+}
+
 watch(
   () => props.modelValue,
-  (newValue) => {
+  (newValue: ValueCollapse) => {
     active.value = newValue;
-  }
+  },
+  { deep: true }
 );
 
 watch(
@@ -58,15 +73,34 @@ watch(
   }
 );
 
-const setActiveItem = (item: string | number | null, visible: boolean) => {
+const setActiveItem = (item: string | number, visible: boolean) => {
+  let itemNew: NonNullable<ValueCollapse> = item;
+  const itemOld = active.value;
+  const actives = accordion.value && Array.isArray(active.value) ? 
+    [...active.value] : 
+    active.value;
+
+
+  if (accordion.value && Array.isArray(actives)) {
+    const findIndex = actives.findIndex(val => val === item);
+    if (findIndex !== -1) {
+      actives.splice(findIndex, 1)
+    } else {
+      actives.push(item);
+    }
+
+    itemNew = actives;
+    active.value = actives;
+  }
+
   emit('click-item', {
-    itemOld: active.value,
-    item,
-    visible,
+    itemOld,
+    itemNew,
+    itemCurrent: item,
+    visible
   });
 
-  active.value = item;
-  emit('update:modelValue', item);
+  emit('update:modelValue', itemNew);
 
 }
 

@@ -44,7 +44,12 @@ const Template: StoryFn<typeof GCollapse> = (args) => ({
         prevent-default
         @click-item="onClickItem"
         class="grid grid-cols-1 gap-y-6 mt-6">
-          <g-collapse-item title="Anderson Mesa" class="bg-gray-18 rounded-lg">
+          <g-collapse-item title="Titulo 01" class="bg-gray-18 rounded-lg">
+            <template #content>
+              que paso
+            </template>
+          </g-collapse-item>
+          <g-collapse-item title="Titulo 02" class="bg-gray-18 rounded-lg">
             <template #content>
               que paso
             </template>
@@ -55,6 +60,10 @@ const Template: StoryFn<typeof GCollapse> = (args) => ({
   setup() {
 
     const disabled = ref(false);
+    const accordionIndex = ref(0);
+    function onClickItem(item) {
+      console.log(item)
+    }
 
     function toggleDisabled () {
       disabled.value = !disabled.value;
@@ -64,6 +73,8 @@ const Template: StoryFn<typeof GCollapse> = (args) => ({
       args,
       toggleDisabled,
       disabled,
+      onClickItem,
+      accordionIndex,
     };
   },
 });
@@ -77,8 +88,6 @@ const TemplateSkeletonCustom: StoryFn<typeof GCollapse> = () => ({
       accordionIndex: {{ accordionIndex }}
       <g-collapse
         v-model="accordionIndex"
-        :default="1"
-        prevent-default
         @click-item="onClickItem"
         class="grid grid-cols-1 gap-y-6 mt-6">
           <g-collapse-item title="Titulo 01" class="bg-gray-18 rounded-lg">
@@ -95,9 +104,9 @@ const TemplateSkeletonCustom: StoryFn<typeof GCollapse> = () => ({
     </g-config-provider>
   `,
   setup() {
-    const accordionIndex = ref(0);
+    const accordionIndex = ref([0]);
     function onClickItem(item) {
-      console.log({ item })
+      console.log(item)
     }
 
     return {
