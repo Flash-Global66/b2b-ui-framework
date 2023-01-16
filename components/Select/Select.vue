@@ -50,6 +50,8 @@
 import { defineComponent, nextTick, onMounted, PropType, ref, watch, computed, onUpdated } from 'vue';
 import { ElSelect } from 'element-plus';
 
+import { useResizeObserver } from '@vueuse/core'
+
 // ICONS
 import IconArrow from './components/IconArrow.vue';
 import IconTimes from './components/IconTimes.vue';
@@ -305,22 +307,17 @@ export default defineComponent({
       })
     });
 
-    onUpdated(() => {
-      console.log('onUpdated')
-      updateWidthPrefix();
-    })
-
     function updateWidthPrefix () {
       const refEl = refSelect.value && refSelect.value.$el
       if (!refEl) return
 
       if (slots.prefix) {
-        const prefix = refEl.querySelector('.gui-input__prefix')
-        if (prefixWidth.value === 0) {
-          setTimeout(() => {
-            prefixWidth.value = prefix.getBoundingClientRect().width;
-          }, 10)
-        }
+        const prefix = refEl.querySelector('.gui-input__prefix');
+        useResizeObserver(prefix, (entries) => {
+          const entry = entries[0]
+          const { width } = entry.contentRect
+          prefixWidth.value = width;
+        })
       }
     }
 
