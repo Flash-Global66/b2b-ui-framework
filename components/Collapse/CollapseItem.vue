@@ -89,7 +89,6 @@ function toggleVisibility (e: Event) {
   if (isDisabled.value) return;
 
   visible.value = !visible.value
-  !accordion.value && visible.value && (active.value = itemKey.value)
   setActiveItem(itemKey.value, visible.value);
 }
 
