@@ -47,7 +47,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, onMounted, PropType, ref, watch, computed } from 'vue';
+import { defineComponent, nextTick, onMounted, PropType, ref, watch, computed, onUpdated } from 'vue';
 import { ElSelect } from 'element-plus';
 
 // ICONS
@@ -300,17 +300,29 @@ export default defineComponent({
 
     onMounted(() => {
       nextTick(() => {
-        const refEl = refSelect.value && refSelect.value.$el
-        if (!refEl) return
-
         isValue.value = !!attrs.modelValue;
-        
-        if (slots.prefix) {
-          const prefix = refEl.querySelector('.gui-input__prefix')
-          prefixWidth.value = prefix.getBoundingClientRect().width;
-        }
+        updateWidthPrefix();
       })
     });
+
+    onUpdated(() => {
+      console.log('onUpdated')
+      updateWidthPrefix();
+    })
+
+    function updateWidthPrefix () {
+      const refEl = refSelect.value && refSelect.value.$el
+      if (!refEl) return
+
+      if (slots.prefix) {
+        const prefix = refEl.querySelector('.gui-input__prefix')
+        if (prefixWidth.value === 0) {
+          setTimeout(() => {
+            prefixWidth.value = prefix.getBoundingClientRect().width;
+          }, 10)
+        }
+      }
+    }
 
     function onClick() {
       if (props.disabled || props.readonly) return;
