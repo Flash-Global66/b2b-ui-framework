@@ -43,20 +43,31 @@ const accordion = ref(props.accordion);
 const disabled = ref(props.disabled);
 const hideIcon = ref(props.hideIcon);
 
+if (!props.accordion && props.modelValue !== undefined && !Array.isArray(props.modelValue)) {
+  console.error('El v-model no es un array. Envuelva su referencia en un array.')
+}
+
+if (props.accordion && Array.isArray(props.modelValue)) {
+  console.error('El v-model es un array. Su referencia debe ser en un tipo primitivo.')
+}
+
 if (!props.modelValue) {
   if(accordion.value) {
-    active.value = props.default !== null ? [props.default] : [];
-  } else {
     active.value = props.default;
+  } else {
+    active.value = props.default !== null ? [props.default] : [];
   }
 }
 
 watch(
   () => props.modelValue,
   (newValue: ValueCollapse) => {
+    if (Array.isArray(newValue)) {
+      console.log(newValue[0], typeof newValue)
+    }
     active.value = newValue;
   },
-  { deep: true }
+  { deep: true, immediate: true }
 );
 
 watch(
@@ -76,12 +87,14 @@ watch(
 const setActiveItem = (item: string | number, visible: boolean) => {
   let itemNew: NonNullable<ValueCollapse> = item;
   const itemOld = active.value;
-  const actives = accordion.value && Array.isArray(active.value) ? 
-    [...active.value] : 
-    active.value;
 
+  if (accordion.value && visible) {
+    active.value = item
+  }
 
-  if (accordion.value && Array.isArray(actives)) {
+  if (!accordion.value && Array.isArray(active.value)) {
+    const actives = active.value;
+
     const findIndex = actives.findIndex(val => val === item);
     if (findIndex !== -1) {
       actives.splice(findIndex, 1)
