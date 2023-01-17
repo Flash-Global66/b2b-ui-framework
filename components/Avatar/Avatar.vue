@@ -18,7 +18,7 @@
     }}</span>
     <img
       v-if="hasLogo"
-      class="w-4 h-4 absolute bottom-0 -right-2"
+      class="w-4 h-4 absolute bottom-0 left-7"
       :src="logoUrl"
       alt="global66 small icon"
     />
@@ -27,6 +27,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import companyIcon from '../../assets/img/global66-small-icon.svg';
 
 export default defineComponent({
   name: "Avatar",
@@ -45,7 +46,7 @@ export default defineComponent({
     },
     logoUrl: {
       type: String,
-      default: 'assets/img/global66-small-icon.svg'
+      default: companyIcon
     }
   },
 });
