@@ -27,7 +27,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import companyIcon from '../../assets/img/global66-small-icon.svg';
+import companyIcon from './assets/global66-small-icon.svg';
 
 export default defineComponent({
   name: "Avatar",
