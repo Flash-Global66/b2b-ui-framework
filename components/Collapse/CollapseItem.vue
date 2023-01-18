@@ -155,7 +155,7 @@ function onAfterLeave(el: HTMLElement) {
       @after-leave="onAfterLeave"
     >
       <div v-show="visible" :class="classContent">
-        <slot name="content"></slot>
+        <slot name="content" :active="visible" :disabled="disabled"></slot>
       </div>
     </transition>
   </section>
