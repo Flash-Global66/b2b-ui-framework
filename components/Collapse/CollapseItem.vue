@@ -39,7 +39,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['open', 'close', 'opened', 'closed', 'click']);
+const emit = defineEmits(['open', 'close', 'opened', 'closed', 'click-item']);
 
 const { count, active, disabled, accordion, setActiveItem, hideIcon } = inject(
   ProviderGCollapse,
@@ -127,7 +127,7 @@ function onAfterLeave(el: HTMLElement) {
 }
 
 function onClick(e: Event) {
-  emit('click', { event: e, itemKey: itemKey.value, visible: visible.value, disabled: disabled.value });
+  emit('click-item', { event: e, itemKey: itemKey.value, visible: visible.value, disabled: disabled.value });
 }
 </script>
 
