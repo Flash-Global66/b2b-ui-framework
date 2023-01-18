@@ -34,7 +34,7 @@ const props = defineProps({
 
 const emit = defineEmits<{
   (e: 'update:modelValue', update: ValueCollapse): void
-  (e: 'click-item', change: ChangeCollapse): void
+  (e: 'click-collapse', change: ChangeCollapse): void
 }>();
 
 const count = ref(0);
@@ -106,7 +106,7 @@ const setActiveItem = (item: string | number, visible: boolean) => {
     active.value = actives;
   }
 
-  emit('click-item', {
+  emit('click-collapse', {
     itemOld,
     itemNew,
     itemCurrent: item,
