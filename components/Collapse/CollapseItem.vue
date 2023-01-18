@@ -127,7 +127,6 @@ function onAfterLeave(el: HTMLElement) {
 }
 
 function onClick(e: Event) {
-  e.preventDefault();
   emit('click', { event: e, itemKey: itemKey.value, visible: visible.value, disabled: disabled.value });
 }
 </script>
