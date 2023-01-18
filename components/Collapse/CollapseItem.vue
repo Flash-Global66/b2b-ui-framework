@@ -125,10 +125,15 @@ function onAfterLeave(el: HTMLElement) {
     el.style.height = '0';
   });
 }
+
+function onClick(e: Event) {
+  e.preventDefault();
+  emit('click', e);
+}
 </script>
 
 <template>
-  <section>
+  <section @click="onClick">
     <div @click="toggleVisibility">
       <slot name="head" :active="visible" :disabled="disabled">
         <button :class="[stylesHeadCustom, { active: visible }]" :aria-disabled="disabled">
