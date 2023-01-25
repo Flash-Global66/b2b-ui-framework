@@ -296,6 +296,12 @@ export default defineComponent({
       return `${prefixWidth.value}px`;
     });
 
+    function yieldToMain () {
+      return new Promise(resolve => {
+        setTimeout(resolve, 0)
+      })
+    };
+
     watch(() => attrs.modelValue, (val) => { 
       isValue.value = !!val;
     })
@@ -303,7 +309,8 @@ export default defineComponent({
     onMounted(() => {
       nextTick(() => {
         isValue.value = !!attrs.modelValue;
-        updateWidthPrefix();
+        // yieldToMain();
+        // updateWidthPrefix();
       })
     });
 
