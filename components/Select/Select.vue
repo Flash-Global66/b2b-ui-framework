@@ -309,8 +309,8 @@ export default defineComponent({
     onMounted(() => {
       nextTick(() => {
         isValue.value = !!attrs.modelValue;
-        // yieldToMain();
-        // updateWidthPrefix();
+        yieldToMain();
+        updateWidthPrefix();
       })
     });
 
