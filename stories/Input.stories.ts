@@ -91,6 +91,7 @@ const TemplateTextarea: StoryFn<typeof GInput> = (args, selected) => {
 };
 
 export const Default = Template.bind({});
+
 Default.parameters = {
   docs: {
     description: {
@@ -99,9 +100,6 @@ Default.parameters = {
   },
 };
 
-/**
- * variante
- */
 export const Textarea = TemplateTextarea.bind({});
 
 Textarea.args = {
@@ -116,9 +114,6 @@ Textarea.parameters = {
   },
 };
 
-/**
- * variante
- */
 export const Disabled = Template.bind({});
 
 Disabled.args = {
@@ -133,9 +128,6 @@ Disabled.parameters = {
   },
 };
 
-/**
- * variante
- */
 export const Clearable = Template.bind({});
 
 Clearable.args = {
@@ -224,6 +216,70 @@ Slots.parameters = {
   docs: {
     description: {
       story: `\`Prefix\`: Content as Input prefix, only works when type is not 'textarea' -  \`Suffix\`: Content as Input suffix, only works when type is not 'textarea.'`,
+    },
+  },
+};
+
+const TemplateFormatter: StoryFn<typeof GInput> = (args, selected) => {
+  return {
+    components: { GInput, GConfigProvider },
+    setup() {
+      const name = ref('');
+      const amount = ref('');
+
+      function formatterCharacter(value: string) {
+        return value.replace(/[?!@#%^&*]/g, '');
+      }
+
+      function formatterAmount(value: string) {
+        return value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      }
+
+      function parseAmount(value: string) {
+        return value.replace(/\s|,|\./g, '');
+      }
+
+      return {
+        args,
+        name,
+        amount,
+        onKeydown: action('keydown'),
+        formatterCharacter,
+        formatterAmount,
+        parseAmount,
+      };
+    },
+    template: `
+      <g-config-provider>
+        <div class="grid grid-cols-1 gap-4">
+          <g-input
+            v-model="name"
+            label="No se permiten (?!@#%^&*))"
+            :formatter="formatterCharacter"
+            @keydown="onKeydown"
+          >
+          </g-input>
+
+          <g-input
+            v-model="amount"
+            label="Colocar decimales"
+            :formatter="formatterAmount"
+            :parser="parseAmount"
+            @keydown="onKeydown"
+          >
+          </g-input>
+        </div>
+      </g-config-provider>
+    `,
+  }
+};
+
+export const formatter = TemplateFormatter.bind({});
+
+formatter.parameters = {
+  docs: {
+    description: {
+      story: `Display value within it's situation with \`formatter\`, and we usually use \`parser\` at the same time.`,
     },
   },
 };
