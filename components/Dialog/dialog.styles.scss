@@ -13,6 +13,14 @@
   word-break: normal;
 }
 
+.gui-dialog__title {
+  @apply text-gray-2 text-xl font-semibold pt-5 pb-4 pl-5 pr-14;
+}
+
+.gui-dialog__head-close {
+  @apply bg-gray-9 w-8 h-8 rounded-full flex items-center justify-center top-4 right-4 hover:bg-gray-8 duration-300 cursor-pointer absolute;
+}
+
 .gui-dialog__headerbtn[type=button] {
   @apply bg-gray-7 w-9 h-9 rounded-full flex justify-center items-center duration-200 hover:opacity-70;
   .gui-dialog__close {
