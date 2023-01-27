@@ -3,26 +3,56 @@
     v-bind="{ ...$attrs, ...$props }"
     @open="$emit('open')"
     @opened="$emit('opened')"
-    @close="$emit('close')"
+    @close="onClose"
     @closed="$emit('closed')"
     @open-auto-focus="$emit('open-auto-focus')"
     @close-auto-focus="$emit('close-auto-focus')"
+    :show-close="false"
   >
 
     <!--
-      @slot Drawer's Content
+      @slot Dialog Content
     -->
-    <slot />
+    <slot>
+      <section
+        v-if="!$slots.default"
+        v-html="description"
+        class="gui-dialog__description px-5"
+      />
+    </slot>
 
-    <template #header>
-      <!--
-        @slot Drawer header section; Replacing this removes the title, but does not remove the close button.
-      -->
-      <slot name="header" />
+    <!--
+      @slot Dialog head
+    -->
+    <template #header="propsSlot">
+      <slot name="head" v-bind="propsSlot">
+        <!--
+          @slot Dialog head title
+        -->
+        <slot name="head-title" v-bind="propsSlot">
+          <h4
+            v-if="title.length"
+            :id="propsSlot.titleId"
+            class="text-gray-2 text-xl font-semibold pt-5 pb-4 pl-5 pr-14">
+            {{ title }}
+          </h4>
+        </slot>
+
+        <!--
+          @slot Dialog head close
+        -->
+        <slot name="head-close" v-bind="propsSlot">
+          <div
+            class="bg-gray-9 w-8 h-8 rounded-full flex items-center justify-center top-4 right-4 hover:bg-gray-8 duration-300 cursor-pointer absolute"
+            @click="propsSlot.close">
+            <fa-icon :icon="['far', 'times']" class="text-gray-4 text-xl" />
+          </div>
+        </slot>
+      </slot>
     </template>
     <template #footer>
       <!--
-        @slot Drawer footer Section.
+        @slot Dialog footer
       -->
       <slot name="footer" />
     </template>
@@ -30,7 +60,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { Component, defineComponent, PropType } from 'vue';
 import {
   ElDialog,
   DialogBeforeCloseFn,
@@ -68,6 +98,14 @@ export default defineComponent({
     'close-auto-focus',
   ],
   props: {
+    title: {
+      type: String,
+      default: '',
+    },
+    description: {
+      type: String,
+      default: '',
+    },
     appendToBody: {
       type: Boolean,
       default: false,
@@ -122,5 +160,15 @@ export default defineComponent({
       default: false,
     },
   },
+  setup(props, { emit }) {
+    function onClose () {
+      console.log('close')
+      emit('close')
+    }
+
+    return {
+      onClose,
+    }
+  }
 });
 </script>
