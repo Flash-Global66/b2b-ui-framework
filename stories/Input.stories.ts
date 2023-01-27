@@ -65,6 +65,16 @@ const Template: StoryFn<typeof GInput> = (args, selected) => {
   }
 };
 
+export const Default = Template.bind({});
+
+Default.parameters = {
+  docs: {
+    description: {
+      component: `When there are plenty of options, use a drop-down menu to display and select desired ones.`,
+    },
+  },
+};
+
 const TemplateTextarea: StoryFn<typeof GInput> = (args, selected) => {
   return {
     components: { GInput, GConfigProvider },
@@ -88,16 +98,6 @@ const TemplateTextarea: StoryFn<typeof GInput> = (args, selected) => {
       </g-config-provider>
     `,
   }
-};
-
-export const Default = Template.bind({});
-
-Default.parameters = {
-  docs: {
-    description: {
-      component: `When there are plenty of options, use a drop-down menu to display and select desired ones.`,
-    },
-  },
 };
 
 export const Textarea = TemplateTextarea.bind({});

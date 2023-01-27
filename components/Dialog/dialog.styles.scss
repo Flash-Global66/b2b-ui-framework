@@ -1,1 +1,21 @@
 @use "element-plus/theme-chalk/src/dialog.scss" as *;
+
+
+.gui-dialog {
+  @apply rounded-2xl;
+}
+
+.gui-dialog__header,
+.gui-dialog__body,
+.gui-dialog__footer {
+  @apply m-0 p-0;
+  hyphens: auto;
+  word-break: normal;
+}
+
+.gui-dialog__headerbtn[type=button] {
+  @apply bg-gray-7 w-9 h-9 rounded-full flex justify-center items-center duration-200 hover:opacity-70;
+  .gui-dialog__close {
+    @apply text-gray-6 text-2xl;
+  }
+}
