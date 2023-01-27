@@ -43,6 +43,7 @@
         -->
         <slot name="head-close" v-bind="propsSlot">
           <div
+            v-if="!hideClose"
             class="gui-dialog__head-close"
             @click="propsSlot.close">
             <fa-icon :icon="['far', 'times']" class="text-gray-4 text-xl" />
@@ -105,6 +106,10 @@ export default defineComponent({
     description: {
       type: String,
       default: '',
+    },
+    hideClose: {
+      type: Boolean,
+      default: false,
     },
     appendToBody: {
       type: Boolean,
