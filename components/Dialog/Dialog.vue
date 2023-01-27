@@ -33,7 +33,7 @@
           <h4
             v-if="title.length"
             :id="propsSlot.titleId"
-            class="text-gray-2 text-xl font-semibold pt-5 pb-4 pl-5 pr-14">
+            class="gui-dialog__title">
             {{ title }}
           </h4>
         </slot>
@@ -43,7 +43,7 @@
         -->
         <slot name="head-close" v-bind="propsSlot">
           <div
-            class="bg-gray-9 w-8 h-8 rounded-full flex items-center justify-center top-4 right-4 hover:bg-gray-8 duration-300 cursor-pointer absolute"
+            class="gui-dialog__head-close"
             @click="propsSlot.close">
             <fa-icon :icon="['far', 'times']" class="text-gray-4 text-xl" />
           </div>
