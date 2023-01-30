@@ -167,7 +167,6 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     function onClose () {
-      console.log('close')
       emit('close')
     }
 
