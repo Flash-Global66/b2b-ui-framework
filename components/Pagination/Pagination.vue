@@ -1,12 +1,12 @@
 <template>
   <el-pagination
     v-bind="{ ...$attrs, ...$props }"
-    @update:current-page="$emit('update:current-page')"
-    @update:page-size="$emit('update:page-size')"
-    @size-change="$emit('size-change')"
-    @current-change="$emit('current-change')"
-    @prev-click="$emit('prev-click')"
-    @next-click="$emit('next-click')"
+    @update:current-page="(e) => $emit('update:current-page', e)"
+    @update:page-size="(e) => $emit('update:page-size', e)"
+    @size-change="(e) => $emit('size-change', e)"
+    @current-change="(e) => $emit('current-change', e)"
+    @prev-click="(e) => $emit('prev-click', e)"
+    @next-click="(e) => $emit('next-click', e)"
   />
 </template>
 
