@@ -90,6 +90,13 @@ function toggleVisibility (e: Event) {
 
   visible.value = !visible.value
   setActiveItem(itemKey.value, visible.value);
+
+  emit('click-item', { 
+    event: e,
+    itemKey: itemKey.value,
+    visible: visible.value,
+    disabled: disabled.value
+  });
 }
 
 function onBeforeEnter(el: HTMLElement) {
@@ -126,13 +133,10 @@ function onAfterLeave(el: HTMLElement) {
   });
 }
 
-function onClick(e: Event) {
-  emit('click-item', { event: e, itemKey: itemKey.value, visible: visible.value, disabled: disabled.value });
-}
 </script>
 
 <template>
-  <section @click="onClick">
+  <section>
     <div @click="toggleVisibility">
       <slot name="head" :active="visible" :disabled="disabled">
         <button :class="[stylesHeadCustom, { active: visible }]" :aria-disabled="disabled">
