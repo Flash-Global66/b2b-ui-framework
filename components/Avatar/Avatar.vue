@@ -19,7 +19,7 @@
     <span
       v-else
       :class="[solid ? 'text-white' : 'text-blue-1']"
-      class="text-lg font-semibold uppercase">
+      class="text-lg font-medium uppercase">
       {{ text.trim() || "G81" }}
     </span>
     <img
