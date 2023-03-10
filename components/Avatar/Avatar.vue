@@ -10,12 +10,18 @@
       font-montserrat
       relative
     "
-    :class="{ 'border-2 border-blue-2 bg-blue-3 bg-opacity-10': !url }"
+    :class="[
+      !url && !solid ? 'bg-blue-3/10' : 'bg-blue-1', 
+      { 'border-2 border-blue-1' : !url }
+    ]"
   >
     <img v-if="url" :src="url" class="rounded-full h-10 w-10" />
-    <span v-else class="text-blue-1 text-lg font-semibold uppercase">{{
-      text.trim() || "G81"
-    }}</span>
+    <span
+      v-else
+      :class="[solid ? 'text-white' : 'text-blue-1']"
+      class="text-lg font-semibold uppercase">
+      {{ text.trim() || "G81" }}
+    </span>
     <img
       v-if="hasLogo"
       class="w-4 h-4 absolute bottom-0 left-7"
@@ -47,6 +53,10 @@ export default defineComponent({
     logoUrl: {
       type: String,
       default: companyIcon
+    },
+    solid: {
+      type: Boolean,
+      default: false,
     }
   },
 });
