@@ -11,7 +11,7 @@ export default {
 
 const Template: StoryFn<typeof Avatar> = (args) => ({
   components: { Avatar },
-  template: `<Avatar v-bind="args"/>`,
+  template: `<Avatar v-bind="args" solid />`,
   setup() {
     return { args };
   }
