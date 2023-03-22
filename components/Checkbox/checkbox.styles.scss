@@ -1,0 +1,62 @@
+@use "element-plus/theme-chalk/src/checkbox.scss" as *;
+
+.gui-checkbox-wrapper {
+  .gui-checkbox {
+    &.gui-checkbox-rounded {
+      .gui-checkbox__input {
+        .gui-checkbox__inner {
+          @apply rounded-full;
+        }
+      }
+    }
+    @apply mr-0 h-auto flex;
+    --checkbox-input-height: 18px;
+    --checkbox-input-width: 18px;
+
+    --checkbox-icon-width: 3px;
+    --checkbox-icon-height: 7px;
+    --checkbox-icon-border: 2px;
+
+    &.gui-checkbox--small {
+      --checkbox-input-height: 14px;
+      --checkbox-input-width: 14px;
+
+      --checkbox-icon-height: 6px;
+      --checkbox-icon-width: 2px;
+      --checkbox-icon-border: 1px;
+      .gui-checkbox__label {
+        font-size: inherit;
+      }
+    }
+    &.gui-checkbox--large {
+      --checkbox-input-height: 24px;
+      --checkbox-input-width: 24px;
+
+      --checkbox-icon-height: 11px;
+      --checkbox-icon-width: 4px;
+      .gui-checkbox__label {
+        font-size: inherit;
+      }
+    }
+    &.gui-checkbox--default {
+      .gui-checkbox__label {
+        font-size: inherit;
+      }
+    }
+    .gui-checkbox__input {
+      @apply shadow-input;
+      .gui-checkbox__inner {
+        @apply flex items-center justify-center;
+        width: var(--checkbox-input-width);
+        height: var(--checkbox-input-height);
+        &::after {
+          @apply left-auto top-auto;
+          border-width: var(--checkbox-icon-border);
+          margin-bottom: 2px;
+          height: var(--checkbox-icon-height);
+          width: var(--checkbox-icon-width);
+        }
+      }
+    }
+  }
+}
