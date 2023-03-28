@@ -145,7 +145,7 @@ function onAfterLeave(el: HTMLElement) {
           </slot>
           <slot name="icon" :active="visible" :disabled="disabled">
             <div v-if="!isHideIcon" :class="[...stylesIconCustom, 'duration-200']">
-              <fa-icon :icon="['fas', 'chevron-right']" />
+              <fa-icon :icon="['fas', 'chevron-down']" />
             </div>
           </slot>
         </button>
@@ -175,7 +175,7 @@ function onAfterLeave(el: HTMLElement) {
 }
 
 .active-icon {
-  @apply rotate-90;
+  @apply -rotate-180;
 }
 </style>
 
