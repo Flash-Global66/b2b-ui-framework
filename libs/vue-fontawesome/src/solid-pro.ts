@@ -39,4 +39,5 @@ export {
   faUserCog,
   faDotCircle,
   faFolderDownload,
+  faChevronDown,
 } from '@fortawesome/pro-solid-svg-icons';
