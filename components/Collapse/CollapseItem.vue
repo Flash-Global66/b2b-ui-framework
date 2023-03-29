@@ -9,6 +9,10 @@ import {
   initialGCollapse,
 } from './config/providerCollapse';
 
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faChevronDown } from '@fortawesome/pro-regular-svg-icons';
+
 const props = defineProps({
   classHead: {
     type: String,
@@ -145,7 +149,7 @@ function onAfterLeave(el: HTMLElement) {
           </slot>
           <slot name="icon" :active="visible" :disabled="disabled">
             <div v-if="!isHideIcon" :class="[...stylesIconCustom, 'duration-200']">
-              <fa-icon :icon="['fas', 'chevron-down']" />
+              <font-awesome-icon :icon="['far', 'chevron-down']" />
             </div>
           </slot>
         </button>
