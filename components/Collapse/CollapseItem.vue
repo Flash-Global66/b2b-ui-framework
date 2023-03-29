@@ -147,11 +147,15 @@ function onAfterLeave(el: HTMLElement) {
           <slot name="title" :active="visible" :disabled="disabled">
             {{ title }}
           </slot>
-          <slot name="icon" :active="visible" :disabled="disabled">
-            <div v-if="!isHideIcon" :class="[...stylesIconCustom, 'duration-200']">
-              <font-awesome-icon :icon="['far', 'chevron-down']" />
-            </div>
-          </slot>
+
+          <div class="flex">
+            <slot name="icon" :active="visible" :disabled="disabled">
+              <div v-if="!isHideIcon" :class="[...stylesIconCustom, 'duration-200']">
+                <font-awesome-icon :icon="['far', 'chevron-down']" />
+              </div>
+            </slot>
+            <slot name="right" />
+          </div>
         </button>
       </slot>
     </div>
