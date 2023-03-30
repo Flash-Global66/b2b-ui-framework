@@ -154,7 +154,7 @@ function onAfterLeave(el: HTMLElement) {
                 <font-awesome-icon :icon="['far', 'chevron-down']" />
               </div>
             </slot>
-            <slot name="right" />
+            <slot name="right" :active="visible" :disabled="disabled" />
           </div>
         </button>
       </slot>
