@@ -38,6 +38,8 @@
 @use "../../components/Dialog/dialog.styles.scss" as *;
 @use "../../components/Overlay/overlay.styles.scss" as *;
 
+@use "../../components/Table/table.styles.scss" as *;
+
 * {
   @apply font-montserrat;
 }
