@@ -19,7 +19,7 @@
   .gui-select {
     @apply w-full;
     .gui-input__wrapper {
-      @apply rounded-md shadow-input border-none px-3;
+      @apply shadow-input border-none px-3;
       &:hover {
         @apply shadow-none;
       }
