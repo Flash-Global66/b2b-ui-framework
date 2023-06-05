@@ -26,7 +26,7 @@
   .gui-input {
     @apply h-14;
     .gui-input__wrapper {
-      @apply shadow-sm border-none px-3;
+      @apply shadow-input border-none px-3 ;
     }
   
     .gui-input__inner {
@@ -35,7 +35,7 @@
   
     &.is-disabled {
       .gui-input__wrapper {
-        @apply bg-gray-11 cursor-not-allowed shadow-sm;
+        @apply bg-gray-11 cursor-not-allowed shadow-input;
       }
     }
 
@@ -46,7 +46,7 @@
   }
 
   .gui-textarea {
-    @apply shadow-sm border-none px-3 bg-white pb-4 pt-7 rounded-md;
+    @apply shadow-input border-none px-3 bg-white pb-4 pt-7 rounded-md;
   
     .gui-textarea__inner {
       @apply relative duration-200 transition-all text-gray-2 leading-5 shadow-none p-0;
@@ -54,7 +54,7 @@
   
     &.is-disabled {
       .gui-textarea__wrapper {
-        @apply bg-gray-11 cursor-not-allowed shadow-sm;
+        @apply bg-gray-11 cursor-not-allowed shadow-input;
       }
     }
 

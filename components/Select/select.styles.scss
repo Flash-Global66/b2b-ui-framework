@@ -19,7 +19,7 @@
   .gui-select {
     @apply w-full;
     .gui-input__wrapper {
-      @apply rounded-md shadow-sm border-none px-3;
+      @apply rounded-md shadow-input border-none px-3;
       &:hover {
         @apply shadow-none;
       }
@@ -50,7 +50,7 @@
       }
       &.is-disabled {
         .gui-input__wrapper {
-          @apply bg-gray-11 cursor-not-allowed shadow-sm;
+          @apply bg-gray-11 cursor-not-allowed shadow-input;
         }
       }
     }

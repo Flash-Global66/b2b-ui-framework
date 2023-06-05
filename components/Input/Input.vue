@@ -238,7 +238,7 @@ export default defineComponent({
     });
 
     const inputRounded = computed(() => {
-      const rounded = 0.375;
+      const rounded = 0.625;
 
       if (props.joinRight && props.joinLeft) return '0';
 
