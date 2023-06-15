@@ -50,6 +50,7 @@
   "dependencies": {
     "@flash-global66/b2b-ui-config-element": "^0.0.14",
     "@fortawesome/fontawesome-common-types": "^6.2.1",
-    "element-plus": "^2.2.26"
+    "element-plus": "^2.2.26",
+    "vue-router": "^4.2.2"
   }
 }
