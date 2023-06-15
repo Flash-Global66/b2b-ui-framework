@@ -40,6 +40,8 @@
 
 @use "../../components/Table/table.styles.scss" as *;
 
+@use "../../components/Menu/menu.styles.scss" as *;
+
 * {
   @apply font-montserrat;
 }

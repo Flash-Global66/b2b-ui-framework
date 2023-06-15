@@ -14,4 +14,9 @@ export {
   faDivide,
   faExclamation,
   faMoneyBillWave,
+  faHomeLgAlt,
+  faSack,
+  faCoins,
+  faReceipt,
+  faHandHoldingUsd,
 } from '@fortawesome/pro-light-svg-icons';
