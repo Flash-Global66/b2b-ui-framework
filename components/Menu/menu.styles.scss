@@ -6,9 +6,8 @@
 
 .gui-menu-wrapper {
   & > .gui-menu {
-    @apply py-5 px-0;
+    @apply px-0 py-0;
     &:not(.gui-menu--collapse) {
-      @apply px-0 py-0;
     }
   }
 
@@ -42,7 +41,8 @@
 }
 
 .gui-menu--collapse {
-  width: 76px;
+  --gui-menu-width-collapse: 44px;
+  width: var(--gui-menu-width-collapse);
   .gui-menu-item {
     @apply p-0;
   }
