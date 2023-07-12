@@ -42,6 +42,8 @@
 
 @use "../../components/Menu/menu.styles.scss" as *;
 
+@use "../../components/Tag/tag.styles.scss" as *;
+
 * {
   @apply font-montserrat;
 }
