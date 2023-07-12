@@ -2,9 +2,9 @@
   <div class="gui-menu-wrapper">
     <el-menu
       v-bind="{ ...$attrs, ...$props }"
-      @open="$emit('open')"
-      @close="$emit('close')"
-      :show-close="false"
+      @open="(e) => $emit('open', e)"
+      @close="(e) => $emit('close', e)"
+      @select="(e) => $emit('select', e)"
     >
   
       <!--
@@ -37,6 +37,7 @@ export default defineComponent({
      * close a specific sub-menu. Params:	index: index of the sub-menu to close
      */
     'close',
+    'select',
   ],
   props: {
     /**
