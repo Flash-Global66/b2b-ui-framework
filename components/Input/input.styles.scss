@@ -8,11 +8,36 @@
   }
 
   .label--active {
-    @apply text-xs translate-y-0 top-2;
+    @apply text-xs translate-y-0;
   }
 
   .label--no-active {
     @apply top-1/2 -translate-y-1/2 text-base;
+  }
+
+  &.size--tiny {
+    .label--active {
+      top: 14%;
+      @apply text-[11px] ;
+    }
+  }
+  &.size--small {
+    .label--active {
+      top: 15%;
+      @apply text-xs;
+    }
+  }
+  &.size--medium {
+    .label--active {
+      top: 16%;
+      @apply text-[14px];
+    }
+  }
+  &.size--large {
+    .label--active {
+      top: 16%;
+      @apply text-[14px];
+    }
   }
 
   .label__textarea--active {
@@ -25,8 +50,18 @@
 
   .gui-input {
     @apply h-14;
+    &--tiny {
+      @apply h-10 text-sm;
+    }
+    &--small {
+      @apply h-12 text-sm;
+    }
+    &--large {
+      @apply h-16 text-lg;
+    }
+
     .gui-input__wrapper {
-      @apply shadow-input border-none px-3 ;
+      @apply shadow-none border-none px-3 ;
     }
   
     .gui-input__inner {
@@ -64,4 +99,32 @@
     }
   }
 
+  
+  &.gui-input-wrapper--shadow {
+    .gui-input {
+      .gui-input__wrapper {
+        @apply shadow-input;
+      }
+      
+      &:hover {
+        &:not(.gui-input-disabled) {
+          .gui-input__wrapper {
+            @apply shadow-input;
+          }
+        }
+      }
+    }
+  }
+
+  &.gui-input-wrapper--transparent {
+    .gui-input {
+      .gui-input__wrapper {
+        @apply bg-transparent;
+      }
+      .gui-input.is-focus .gui-input__wrapper,
+      .gui-input .gui-input__wrapper.is-focus {
+        box-shadow: none;
+      }
+    }
+  }
 }
