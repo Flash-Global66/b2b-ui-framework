@@ -1,5 +1,14 @@
 <template>
-  <div @click="onClick" class="gui-input-wrapper">
+  <div
+    @click="onClick"
+    class="gui-input-wrapper"
+    :class="[
+      {
+        'gui-input-wrapper--shadow': shadow && !transparent,
+        'gui-input-wrapper--transparent': transparent,
+      },
+      'size--' + size
+    ]">
     <label
       v-if="label"
       class="gui-input-label"
@@ -10,7 +19,6 @@
 
     <el-input
       ref="refInput"
-      :class="{ 'h-14' : type !== 'textarea' }"
       v-bind="{ ...attrsCustom, ...$props }"
       @change="onChange"
       @focus="onFocus"
@@ -177,6 +185,20 @@ export default defineComponent({
     validateEvent: {
       type: Boolean,
       default: true,
+    },
+    /**
+     * Add shadow box.
+     */
+     shadow: {
+      type: Boolean,
+      default: true,
+    },
+    /**
+     * Add shadow box.
+     */
+    transparent: {
+      type: Boolean,
+      default: false,
     },
   },
   emits: [
