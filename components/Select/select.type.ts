@@ -1,13 +1,3 @@
-type TypeRadioSize = 'small' | 'default' | 'large' | 'custom';
+type SelectSize = 'large' | 'medium' | 'small' | 'tiny' | 'auto';
 
-type TypeRadio = string | number | boolean;
-
-
-enum EnumRadioSize {
-  Small = 'small',
-  Default = 'default',
-  Large = 'large',
-};
-
-
-export { TypeRadioSize, TypeRadio, EnumRadioSize };
+export { SelectSize };

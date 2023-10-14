@@ -3,10 +3,6 @@
 .gui-select-wrapper {
   @apply relative font-montserrat w-full;
 
-  .gui-input-label {
-    @apply absolute z-10 duration-200 transition-all text-gray-4 px-3 text-ellipsis overflow-hidden whitespace-nowrap select-none leading-none;
-  }
-
   .label--active {
     top: 16%;
     @apply text-xs translate-y-0;
@@ -16,10 +12,39 @@
     @apply top-1/2 -translate-y-1/2 text-base;
   }
 
+  &.size--tiny {
+    .label--active {
+      top: 14%;
+      @apply text-[11px] ;
+    }
+  }
+  &.size--small {
+    .label--active {
+      top: 15%;
+      @apply text-xs;
+    }
+  }
+  &.size--medium {
+    .label--active {
+      top: 16%;
+      @apply text-[14px];
+    }
+  }
+  &.size--large {
+    .label--active {
+      top: 16%;
+      @apply text-[14px];
+    }
+  }
+
+  .gui-input-label {
+    @apply absolute z-10 duration-200 transition-all text-gray-4 px-3 text-ellipsis overflow-hidden whitespace-nowrap select-none leading-none;
+  }
+
   .gui-select {
     @apply w-full;
     .gui-input__wrapper {
-      @apply shadow-input border-none px-3;
+      @apply shadow-none border-none px-3;
       &:hover {
         @apply shadow-none;
       }
@@ -29,29 +54,63 @@
       .gui-input__wrapper {
         @apply border-none;
       }
-      &:not(.gui-select-disabled) {
-        .gui-input__wrapper {
-          @apply shadow-input;
-        }
-      }
     }
     
     
     .gui-input {
-      @apply h-14;
       .gui-input__inner {
         @apply h-auto relative duration-200 transition-all text-gray-2 leading-none;
       }
     
-      &.gui-input--large {
+      &.gui-input {
         .gui-input__inner {
-          --gui-input-inner-height: 80px;
+          --gui-input-inner-height: auto;
         }
+      }
+      &--tiny {
+        @apply h-10 text-sm;
+      }
+      &--small {
+        @apply h-12 text-sm;
+      }
+      &--medium {
+        @apply h-14 text-base;
+      }
+      &--large {
+        @apply h-16 text-lg;
       }
       &.is-disabled {
         .gui-input__wrapper {
           @apply bg-gray-11 cursor-not-allowed shadow-input;
         }
+      }
+    }
+  }
+
+  &.gui-select-wrapper--shadow {
+    .gui-select {
+      .gui-input__wrapper {
+        @apply shadow-input;
+      }
+      
+      &:hover {
+        &:not(.gui-select-disabled) {
+          .gui-input__wrapper {
+            @apply shadow-input;
+          }
+        }
+      }
+    }
+  }
+
+  &.gui-select-wrapper--transparent {
+    .gui-select {
+      .gui-input__wrapper {
+        @apply bg-transparent;
+      }
+      .gui-input.is-focus .gui-input__wrapper,
+      .gui-input .gui-input__wrapper.is-focus {
+        box-shadow: none !important;
       }
     }
   }
