@@ -5,7 +5,10 @@
     :class="[
       {
         'gui-select-border-bg': border,
-      }
+        'gui-select-wrapper--shadow': shadow && !transparent,
+        'gui-select-wrapper--transparent': transparent,
+      },
+      'size--' + size,
     ]"
   >
     <label
@@ -57,6 +60,7 @@ import IconArrow from './components/IconArrow.vue';
 import IconTimes from './components/IconTimes.vue';
 
 // TYPES
+import { SelectSize } from './select.type';
 
 
 export default defineComponent({
@@ -80,12 +84,12 @@ export default defineComponent({
       default: ''
     },
     /**
-     * size of Input
+     * @description size of Input
     */
-    // size: {
-    //   type: String>,
-    //   default: '',
-    // },
+    size: {
+      type: String as PropType<SelectSize>,
+      default: 'medium',
+    },
     /**
      * whether select can be cleared
      */
@@ -243,6 +247,20 @@ export default defineComponent({
      * Add borders for white backgrounds.
      */
     border: {
+      type: Boolean,
+      default: false,
+    },
+    /**
+     * Add shadow box.
+     */
+    shadow: {
+      type: Boolean,
+      default: true,
+    },
+    /**
+     * Add shadow box.
+     */
+    transparent: {
       type: Boolean,
       default: false,
     },

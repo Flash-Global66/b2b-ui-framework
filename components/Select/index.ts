@@ -1,4 +1,4 @@
 import GSelect from "./Select.vue";
-import { EnumRadioSize } from "./select.type";
+export type { SelectSize } from "./select.type";
 
-export { GSelect, EnumRadioSize };
+export { GSelect };

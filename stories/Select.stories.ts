@@ -31,7 +31,7 @@ const Template: StoryFn<typeof GSelect> = (args, selected) => {
   return {
     components: { GSelect, GSelectOption, GConfigProvider, ElSelect, ElOption },
     setup() {
-      const selected = ref('CC');
+      const selected = ref('');
 
       const options = [
         {
@@ -106,8 +106,8 @@ const Template: StoryFn<typeof GSelect> = (args, selected) => {
           <g-select
             class="flex items-center gap-x-8"
             v-model="selected"
-            v-bind="args"
             label="Seleccionar"
+            v-bind="args"
             @change="onChange"
             @focus="onFocus"
             @blur="onBlur"
