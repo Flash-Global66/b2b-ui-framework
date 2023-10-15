@@ -17,6 +17,9 @@ module.exports = {
       zIndex: {
         100: 100,
       },
+      borderRadius: {
+        xl: '10px',
+      },
       colors: {
         white: '#FFFFFF',
         blue: {
@@ -27,11 +30,16 @@ module.exports = {
           5: '#869EFF',
           6: '#9DB0FF',
           7: '#4267B2',
+          8: '#8891BD',
+          9: '#6A75A9',
           10: '#CCD1EB',
+          11: '#4F5694',
+          12: '#6F75B8',
+          13: '#8386C2',
         },
         gray: {
           1: '#343E68',
-          2: '#475694',
+          2: '#4F5A95',
           3: '#5D6EB5',
           4: '#8B97CB',
           5: '#9AA5D3',
@@ -47,6 +55,8 @@ module.exports = {
           15: '#BFBFBF',
           16: '#9C9C9C',
           17: '#EBEBEB',
+          18: '#E4E8F6',
+          19: '#475694',
         },
         green: {
           1: '#00B682',
@@ -113,7 +123,7 @@ module.exports = {
         button: '0px 2px 10px rgba(0, 0, 0, 0.1)',
         menu: '0px 4px 4px rgba(0, 0, 0, 0.22);',
         radio: '0px 2px 4px rgba(0, 0, 0, 0.05)',
-        customdiverter: '0px 3px 10px rgba(0, 0, 0, 0.14)',
+        customDiverter: '0px 3px 10px rgba(0, 0, 0, 0.14)',
       },
     },
   },
@@ -130,6 +140,7 @@ module.exports = {
       borderColor: ['hover', 'focus', 'active', 'disabled'],
       textColor: ['hover', 'focus', 'active', 'disabled', 'label-checked'],
       cursor: ['hover', 'focus', 'active', 'disabled'],
+      borderWidth: ['last'],
     },
   },
   plugins: [

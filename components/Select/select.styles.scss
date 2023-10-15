@@ -122,4 +122,13 @@
       }
     }
   }
+
+  &.gui-select-border-bg {
+    .gui-select {
+      .gui-input__wrapper {
+        --color-border: theme(colors.blue.13);
+        box-shadow: var(--color-border) 0px 0px 0px 1px;
+      }
+    }
+  }
 }

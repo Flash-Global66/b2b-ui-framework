@@ -107,7 +107,7 @@ export default defineComponent({
      */
      size: {
       type: String,
-      default: undefined,
+      default: 'medium',
     },
     /**
      * whether to show toggleable password input.
