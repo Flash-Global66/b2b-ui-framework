@@ -107,6 +107,7 @@ const Template: StoryFn<typeof GSelect> = (args, selected) => {
             class="flex items-center gap-x-8"
             v-model="selected"
             label="Seleccionar"
+            border
             v-bind="args"
             @change="onChange"
             @focus="onFocus"

@@ -15,6 +15,11 @@
     @apply top-1/2 -translate-y-1/2 text-base;
   }
 
+  .label--active {
+    top: 16%;
+    @apply text-[14px];
+  }
+
   &.size--tiny {
     .label--active {
       top: 14%;
@@ -25,12 +30,6 @@
     .label--active {
       top: 15%;
       @apply text-xs;
-    }
-  }
-  &.size--medium {
-    .label--active {
-      top: 16%;
-      @apply text-[14px];
     }
   }
   &.size--large {
