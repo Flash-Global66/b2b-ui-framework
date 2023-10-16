@@ -1,7 +1,8 @@
 {
   "packages": [
     "components/*",
-    "config/*"
+    "config/*",
+    "tailwind/*"
   ],
   "version": "independent"
 }
