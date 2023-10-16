@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const plugin = require('tailwindcss/plugin');
+
 export const tGlobalTheme = {
   extend: {
     fontFamily: {
@@ -81,14 +84,12 @@ export const tGlobalTheme = {
     },
     minHeight: (theme) => ({
       ...theme('spacing'),
-    }),
-    minWidth: {
-      '250px': '250px',
-    },
-    minHeight: {
       '3/4': '75vh',
       '1/2': '50vh',
       '1/4': '25vh',
+    }),
+    minWidth: {
+      '250px': '250px',
     },
     width: {
       fit: 'fit-content',

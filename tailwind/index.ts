@@ -1,1 +1,1 @@
-export { tGlobalPlugins, tGlobalTheme, tGlobalVariants } from './tailwind.config'
+export { tGlobalPlugins, tGlobalTheme, tGlobalVariants } from './theme'
