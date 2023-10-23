@@ -2,7 +2,7 @@
   "packages": [
     "components/*",
     "config/*",
-    "tailwind/*"
+    "common/*"
   ],
   "version": "independent"
 }
