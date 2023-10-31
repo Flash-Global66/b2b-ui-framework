@@ -28,6 +28,7 @@
       :suffix-icon="IconArrow"
       :clear-icon="IconTimes"
       :placeholder="label ? ' ' : placeholder"
+      :aria-label="label ? label : placeholder"
       @change="onChange"
       @visible-change="onVisibleChange"
       @remove-tag="(event) => $emit('remove-tag', event)"
