@@ -40,6 +40,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  classContent: {
+    type: String,
+    default: '',
+  },
 });
 
 const emit = defineEmits(['change', 'complete']);
@@ -226,7 +230,7 @@ onBeforeUpdate(() => {
 <template>
   <section class="gui-input-code-wrapper">
     <div class="gui-input-code-container">
-      <div class="gui-input-content">
+      <div :class="classContent" class="gui-input-content">
         <div v-for="(item, index) in values" :key="index"
           class="gui-input-item"
           :class="[
