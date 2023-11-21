@@ -1,7 +1,7 @@
 .gui-input-code-wrapper {
   @apply inline-flex flex-col items-center;
   .gui-input-content {
-    @apply flex space-x-3 md:space-x-5;
+    @apply flex gap-3 md:gap-5;
   }
 
   .gui-input-item {
