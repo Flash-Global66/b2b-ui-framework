@@ -1,7 +1,7 @@
 .gui-input-code-wrapper {
   @apply inline-flex flex-col items-center;
   .gui-input-content {
-    @apply flex space-x-3 md:space-x-6;
+    @apply flex space-x-3 md:space-x-5;
   }
 
   .gui-input-item {
@@ -83,7 +83,7 @@
   }
 
   .gui-input {
-    @apply border-2 border-solid border-white h-16 w-16 md:w-20 md:h-20 rounded-2xl text-center shadow-input text-2xl md:text-4xl font-semibold appearance-none;
+    @apply border-2 border-solid border-white h-14 w-14 md:w-16 md:h-16 rounded-2xl text-center shadow-input text-2xl md:text-4xl font-semibold appearance-none;
   }
 
   .gui-input-code-text-error {
