@@ -12,3 +12,9 @@ Link: [Docs](https://storybook.js.org/docs/vue/writing-stories/introduction)
 Config:
 <br />
 Link [Medium Article](https://medium.com/swlh/npm-new-package-json-exports-field-1a7d1f489ccf)
+
+# Config token
+ - Config: When you get an expired token you must generate a new token and change it in .npmrc
+ - Permission: delete:packages, repo, workflow, write:packages
+<br />
+Link [You must be logged in](https://github.com/settings/tokens)
