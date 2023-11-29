@@ -44,6 +44,8 @@
 
 @use "../../components/Tag/tag.styles.scss" as *;
 
+@use "../../components/Switch/switch.styles.scss" as *;
+
 * {
   @apply font-montserrat;
 }
