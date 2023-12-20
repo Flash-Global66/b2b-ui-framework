@@ -1,3 +1,9 @@
+<!-- 
+
+  NO FUNCIONA. TOCA REVISAR. El provider y el inject no funcionan bien. en el proyecto que instalo tengo que importarlo de la siguiente manera '../node_modules/@flash-global66/b2b-ui-alert' y no como '@flash-global66/b2b-ui-alert' como deberia ser. Tambien tengo error con las imagenes. No las encuentra.
+
+-->
+
 <template>
   <g-dialog
     :model-value="alertState.showAlert"
@@ -78,6 +84,10 @@ function getAsset(src?:string){
 
 export default defineComponent({
   name: 'GAlert',
+  components: {
+    GDialog,
+    GButton,
+  },
   setup () {
 
     const alertState = useAlertInject();
