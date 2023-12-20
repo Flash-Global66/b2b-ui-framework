@@ -1,4 +1,5 @@
 import GAlert from "./Alert.vue";
-export type { IAlert, IAlertAttributesProvider, IAlertButton, IAlertProvider } from './alert.type';
 
+export { useAlertInject, useAlertProvider } from './useProviderAlert';
+export type { IAlert, IAlertAttributesProvider, IAlertButton, IAlertProvider } from './alert.type';
 export { GAlert };
