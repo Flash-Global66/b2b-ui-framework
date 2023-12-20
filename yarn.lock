@@ -1237,12 +1237,22 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@flash-global66/b2b-ui-button@^0.0.12":
+  version "0.0.12"
+  resolved "https://npm.pkg.github.com/download/@Flash-Global66/b2b-ui-button/0.0.12/4b31ba142f9ba16fcb8211ecb189567d8675c01c#4b31ba142f9ba16fcb8211ecb189567d8675c01c"
+  integrity sha512-pB3iCIxPGYzATLOvi6FMmouqWqSmhGcClATETGAfSRj8keSFiE+Vj2CfihSWqXWMRtN3kCt9yKqee7jkNE1SUg==
+
 "@flash-global66/b2b-ui-config-element@^0.0.14":
   version "0.0.14"
   resolved "https://npm.pkg.github.com/download/@Flash-Global66/b2b-ui-config-element/0.0.14/cb572f2caefb2b72bdb9142d3f41bedc1c751091#cb572f2caefb2b72bdb9142d3f41bedc1c751091"
   integrity sha512-tpEPsQo6DvmggBxgbB0/5eoZxgEkQ7sF63xIks1eqpHsZQsFFFTMepwyfR1lC7rSsk1ICfQhNDNBpRYCJ77JDA==
   dependencies:
     element-plus "^2.2.26"
+
+"@flash-global66/b2b-ui-dialog@^0.0.6":
+  version "0.0.6"
+  resolved "https://npm.pkg.github.com/download/@flash-global66/b2b-ui-dialog/0.0.6/2a18492a3c7cf3b3ff6ab27289e1164299352b41#2a18492a3c7cf3b3ff6ab27289e1164299352b41"
+  integrity sha512-EFgQbBJLOK3fNzXxmIHy296gzl53NMe3qPyWpEzyNV3qsM63PSsOEFDYi5T6LDgd1MAF0xZM9Pq8FS0zHhNA8g==
 
 "@floating-ui/core@^1.0.1":
   version "1.0.1"

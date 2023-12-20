@@ -48,7 +48,9 @@
     "registry": "https://npm.pkg.github.com/@flash-global"
   },
   "dependencies": {
+    "@flash-global66/b2b-ui-button": "^0.0.12",
     "@flash-global66/b2b-ui-config-element": "^0.0.14",
+    "@flash-global66/b2b-ui-dialog": "^0.0.6",
     "@fortawesome/fontawesome-common-types": "^6.2.1",
     "element-plus": "^2.2.26",
     "vue-router": "^4.2.2"
