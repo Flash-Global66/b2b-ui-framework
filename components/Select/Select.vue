@@ -24,6 +24,7 @@
     <el-select
       ref="refSelect"
       popper-class="!z-100"
+      autocomplete="off"
       v-bind="{ ...attrsCustom, ...propsCustom }"
       :suffix-icon="IconArrow"
       :clear-icon="IconTimes"
