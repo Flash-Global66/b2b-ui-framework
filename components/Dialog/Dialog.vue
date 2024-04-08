@@ -43,6 +43,7 @@
         -->
         <slot name="head-close" v-bind="propsSlot">
           <div
+            :data-test="dataTestCloseModal"
             v-if="!hideClose"
             class="gui-dialog__head-close"
             @click="propsSlot.close">
@@ -163,6 +164,10 @@ export default defineComponent({
     trapFocus: {
       type: Boolean,
       default: false,
+    },
+    dataTestCloseModal: {
+      type: String,
+      default: 'close-modal',
     },
   },
   setup(props, { emit }) {
