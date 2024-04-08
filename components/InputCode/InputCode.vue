@@ -241,11 +241,11 @@ onBeforeUpdate(() => {
 });
 
 onMounted(() => {
-  const firstInput = document.querySelector(
+  const firstInputElement = document.querySelector(
     '[data-id="0"]'
   ) as HTMLInputElement;
-  if (firstInput) {
-    firstInput.focus();
+  if (firstInputElement) {
+    firstInputElement.focus();
   }
 });
 </script>
