@@ -234,6 +234,10 @@ const setInputs = (el, index) => {
   if (el) inputs.value[index] = el as HTMLInputElement;
 };
 
+const clearValues = () => {
+  values.value = values.value.map(() => "");
+};
+
 initVals();
 
 onBeforeUpdate(() => {
@@ -247,6 +251,10 @@ onMounted(() => {
   if (firstInputElement) {
     firstInputElement.focus();
   }
+});
+
+defineExpose({
+  clearValues,
 });
 </script>
 
