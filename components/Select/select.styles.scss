@@ -71,55 +71,21 @@
 
     .gui-select__wrapper {
       @apply shadow-none border-none px-3;
-      &:hover {
-        @apply shadow-none;
-      }
-    }
-
-    .gui-input {
-      .gui-input__inner {
-        @apply h-auto relative duration-200 transition-all text-gray-2 leading-none;
-      }
-    
-      &.gui-input {
-        .gui-input__inner {
-          --gui-input-inner-height: auto;
-        }
-      }
-
       &.is-disabled {
-        .gui-input__wrapper {
-          @apply bg-gray-11 cursor-not-allowed shadow-input;
-        }
+        @apply bg-gray-11 cursor-not-allowed;
       }
     }
   }
 
   &.gui-select-wrapper--shadow {
-    .gui-select {
-      .gui-input__wrapper {
-        @apply shadow-input;
-      }
-      
-      &:hover {
-        &:not(.gui-select-disabled) {
-          .gui-input__wrapper {
-            @apply shadow-input;
-          }
-        }
-      }
+    .gui-select__wrapper {
+      @apply shadow-input;
     }
   }
 
   &.gui-select-wrapper--transparent {
-    .gui-select {
-      .gui-input__wrapper {
-        @apply bg-transparent;
-      }
-      .gui-input.is-focus .gui-input__wrapper,
-      .gui-input .gui-input__wrapper.is-focus {
-        box-shadow: none !important;
-      }
+    .gui-select__wrapper {
+      @apply bg-transparent;
     }
   }
 
@@ -132,11 +98,9 @@
   }
 
   &.gui-select-border-bg {
-    .gui-select {
-      .gui-input__wrapper {
-        --color-border: theme(colors.blue.13);
-        box-shadow: var(--color-border) 0px 0px 0px 1px;
-      }
+    .gui-select__wrapper {
+      --color-border: theme(colors.gray.1);
+      box-shadow: var(--color-border) 0px 0px 0px 1px;
     }
   }
 }

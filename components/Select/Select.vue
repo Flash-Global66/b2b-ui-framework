@@ -286,7 +286,7 @@ export default defineComponent({
     const prefixWidth = ref(0);
 
     const styleInputInner = computed(() => {
-      return props.label && (isVisible.value || isValue.value) ? '-15%' : '-50%';
+      return props.label && (isVisible.value || isValue.value) ? '8px' : '0px';
     });
 
     const inputRounded = computed(() => {
@@ -406,16 +406,11 @@ export default defineComponent({
 <style lang="scss">
 .gui-select-wrapper {
   .gui-select {
-    .gui-select__placeholder {
-      transform: translateY(v-bind(styleInputInner));
+    .gui-select__selection {
+      top: v-bind(styleInputInner);
     }
-    .gui-input__wrapper {
+    .gui-select__wrapper {
       border-radius: v-bind(inputRounded);
-    }
-    &.is-disabled {
-      .gui-input__wrapper {
-        @apply bg-gray-11 cursor-not-allowed shadow-sm;
-      }
     }
   }
   .gui-input-label {
