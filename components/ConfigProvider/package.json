@@ -5,6 +5,7 @@
   "license": "MIT",
   "exports": {
     ".": "./index.ts",
+    "./style": "./config.styles.scss",
     "./*": "./*"
   },
   "publishConfig": {
