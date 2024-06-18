@@ -339,11 +339,11 @@ export default defineComponent({
       if (!refEl) return
 
       if (slots.prefix) {
-        const prefix = refEl.querySelector('.gui-input__prefix');
+        const prefix = refEl.querySelector('.gui-select__prefix');
         useResizeObserver(prefix, (entries) => {
           const entry = entries[0]
           const { width } = entry.contentRect
-          prefixWidth.value = width;
+          prefixWidth.value = width + 5;
         })
       }
     }
