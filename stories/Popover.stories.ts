@@ -2,6 +2,7 @@ import { Meta, StoryFn } from '@storybook/vue3';
 import { ref, unref } from 'vue';
 import { ClickOutside } from 'element-plus'
 import { action } from '@storybook/addon-actions';
+import { fn } from "@storybook/test";
 
 // COMPONENTS
 import { GPopover } from '../components/Popover';
@@ -9,18 +10,15 @@ import { GButton } from '../components/Button';
 import { GSelect } from '../components/Select';
 import { GSelectOption } from '../components/SelectOption';
 
-// CONSTANTS
-import { Grouping } from '../constants/grouping';
-
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';
 
 export default {
-  title: `${Grouping.FEEDBACK}/Popover`,
+  title: 'Feedback/Popover',
   component: GPopover,
   argTypes: {
     placement: {
-      options: ['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end','right', 'right-start', 'right-end'],
+      options: ['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end'],
       defaultValue: 'top-start',
     },
     trigger: {
@@ -51,7 +49,7 @@ const Template: StoryFn<typeof GPopover> = (args) => {
 
       return {
         args,
-        onChange: action('change'),
+        onChange: fn(action('change')),
       };
     },
     template: `

@@ -3,11 +3,8 @@ import { ref } from "vue";
 import { GCollapse, GCollapseItem } from '../components/Collapse';
 import { GConfigProvider } from '../components/ConfigProvider';
 
-// CONSTANTS
-import { Grouping } from '../constants/grouping';
-
 export default {
-  title: `${Grouping.Data}/Collapse`,
+  title: 'Data/Collapse',
   component: GCollapse,
   subcomponents: { GCollapseItem },
   argTypes: {
@@ -65,7 +62,7 @@ const Template: StoryFn<typeof GCollapse> = (args) => ({
       console.log(item)
     }
 
-    function toggleDisabled () {
+    function toggleDisabled() {
       disabled.value = !disabled.value;
     }
 

@@ -4,11 +4,8 @@ import { GTable } from '../components/Table';
 import { GTableColumn } from '../components/Table/';
 import { GConfigProvider } from '../components/ConfigProvider';
 
-// CONSTANTS
-import { Grouping } from '../constants/grouping';
-
 export default {
-  title: `${Grouping.Data}/Table`,
+  title: 'Data/Table',
   component: GTable,
 } as Meta<typeof GTable>;
 
@@ -51,16 +48,16 @@ const Template: StoryFn<typeof GTable> = (args) => ({
     }
     const tableData = ref<Person[]>([])
 
-    function setData () {
-      
+    function setData() {
+
       for (let i = 0; i < 10; i++) {
         const dateStart = new Date('1994-11-01').getTime();
         const dateEnd = new Date().getTime();
         let currentDate = new Date(dateStart + Math.random() * (dateEnd - dateStart));
         let date = currentDate.toLocaleDateString(
-          'en-EN', 
-          { 
-            year: 'numeric', 
+          'en-EN',
+          {
+            year: 'numeric',
             day: '2-digit',
             month: 'short',
             hour: 'numeric',
@@ -78,7 +75,7 @@ const Template: StoryFn<typeof GTable> = (args) => ({
           cellphone: "123-456-789" + i,
           country: "país" + i
         };
-  
+
         tableData.value.push(obj);
       }
     }

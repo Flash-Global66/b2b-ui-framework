@@ -1,14 +1,11 @@
 import { Meta, StoryFn } from '@storybook/vue3';
 import { GTag } from '../components/Tag';
 
-// CONSTANTS
-import { Grouping } from '../constants/grouping';
-
 // COMPONENTS
 import { GConfigProvider } from '../components/ConfigProvider';
 
 export default {
-  title: `${Grouping.Data}/Tag`,
+  title: 'Data/Tag',
   component: GTag,
 } as Meta<typeof GTag>;
 

@@ -1,11 +1,8 @@
 import { StoryFn, Meta } from "@storybook/vue3";
 import { Button, ButtonType, ButtonColor, ButtonSize } from '../components/Button-old';
 
-// CONSTANTS
-import { Grouping } from '../constants/grouping';
-
 export default {
-  title: `${Grouping.Data}/Button`,
+  title: 'Data/Button',
   component: Button,
   argTypes: {
     type: {

@@ -1,15 +1,18 @@
 import * as jest from "jest-mock";
 window.jest = jest;
-import { app } from '@storybook/vue3';
+import { setup } from '@storybook/vue3';
 
 import '../assets/scss/index.scss';
 import '../stories/assets/styles/tailwind.css';
 
 import { vueFontawesome } from '../libs/vue-fontawesome/index';
-vueFontawesome(app);
+
+// Configurar la aplicación de Vue dentro de la función setup
+setup((app) => {
+  vueFontawesome(app);
+});
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
     matchers: {
       color: /(background|color)$/i,
@@ -30,4 +33,6 @@ export const parameters = {
     ],
     default: "Gray",
   },
-}
+};
+
+export const tags = ['autodocs'];

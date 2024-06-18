@@ -2,11 +2,11 @@ import { StoryFn, Meta } from "@storybook/vue3";
 import { GButtonCard } from '../components/ButtonCard';
 
 // CONSTANTS
-import { Grouping } from '../constants/grouping';
 import { action } from "@storybook/addon-actions";
+import { fn } from "@storybook/test";
 
 export default {
-  title: `${Grouping.BASIC}/Button Card`,
+  title: 'Basic/Button Card',
   component: GButtonCard,
   argTypes: {},
   args: {
@@ -29,7 +29,7 @@ const Template: StoryFn<typeof GButtonCard> = (args) => ({
   setup() {
     return {
       args,
-      onClick: action('click'),
+      onClick: fn(action('click')),
     };
   },
 });

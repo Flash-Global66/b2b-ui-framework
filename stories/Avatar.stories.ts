@@ -1,11 +1,8 @@
 import { StoryFn, Meta } from "@storybook/vue3";
 import Avatar from '../components/Avatar';
 
-// CONSTANTS
-import { Grouping } from '../constants/grouping';
-
 export default {
-  title: `${Grouping.Data}/Avatar`,
+  title: 'Data/Avatar',
   component: Avatar,
 } as Meta<typeof Avatar>;
 

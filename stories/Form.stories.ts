@@ -10,9 +10,6 @@ import { GInput } from '../components/Input';
 import { GSelect } from '../components/Select';
 import { GSelectOption } from '../components/SelectOption';
 
-// HELPERS
-import { Grouping } from '../constants/grouping';
-
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';
 
@@ -20,28 +17,28 @@ import { GConfigProvider } from '../components/ConfigProvider';
 import { EnumRadioSize } from '../components/Radio/radio.type';
 
 export default {
-  title: `${Grouping.FORM}/Form`,
+  title: 'Form/Form',
   component: GForm,
   subcomponents: { GFormItem },
   argTypes: {
     'v-model': {
       description: 'binding value.',
       table: {
-        type: { summary: 'Number, String, Boolean, Object' } 
+        type: { summary: 'Number, String, Boolean, Object' }
       }
     },
     // slots
     default: {
       control: { type: null },
       table: {
-        type: { summary: 'Components' } 
+        type: { summary: 'Components' }
       }
     },
     // events
     change: {
       control: { type: null },
       table: {
-        type: { summary: 'String, Number, Boolean' } 
+        type: { summary: 'String, Number, Boolean' }
       }
     },
   },
@@ -145,11 +142,11 @@ const Template: StoryFn<typeof GForm> = (args, selected) => {
         action('change');
       }
 
-      function setFormat (value) {
+      function setFormat(value) {
         return `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       }
 
-      function setParser (value) {
+      function setParser(value) {
         return value.replace(/\$\s?|(,*)/g, '');
       }
 
