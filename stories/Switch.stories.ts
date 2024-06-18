@@ -1,16 +1,14 @@
 import { Meta, StoryFn } from '@storybook/vue3';
 import { GSwitch } from '../components/Switch';
 
-// CONSTANTS
-import { Grouping } from '../constants/grouping';
-
 // COMPONENTS
 import { GConfigProvider } from '../components/ConfigProvider';
 import { ref } from 'vue';
 import { action } from '@storybook/addon-actions';
+import { fn } from "@storybook/test";
 
 export default {
-  title: `${Grouping.Data}/Switch`,
+  title: 'Data/Switch',
   component: GSwitch,
 } as Meta<typeof GSwitch>;
 
@@ -23,15 +21,15 @@ const Template: StoryFn<typeof GSwitch> = (args) => ({
       </div>
     </g-config-provider>
   `,
-    setup() {
-      const value = ref(false)
+  setup() {
+    const value = ref(false)
 
-      return {
-        args,
-        value,
-        onChange: action('change'),
-      };
-    },
+    return {
+      args,
+      value,
+      onChange: fn(action('change')),
+    };
+  },
 });
 
 export const Default = Template.bind({});

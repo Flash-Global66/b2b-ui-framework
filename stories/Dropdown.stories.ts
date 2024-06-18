@@ -2,11 +2,8 @@ import { StoryFn, Meta } from "@storybook/vue3";
 import { GDropdown, GDropdownItem, GDropdownMenu } from '../components/Dropdown';
 import { GConfigProvider } from '../components/ConfigProvider';
 
-// CONSTANTS
-import { Grouping } from '../constants/grouping';
-
 export default {
-  title: `${Grouping.Data}/Dropdown`,
+  title: 'Data/Dropdown',
   component: GDropdown,
   subcomponents: { GDropdownItem, GDropdownMenu },
   argTypes: {},

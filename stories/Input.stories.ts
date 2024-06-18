@@ -1,13 +1,11 @@
 import { Meta, StoryFn } from '@storybook/vue3';
 import { ref } from 'vue';
 import { action } from '@storybook/addon-actions';
+import { fn } from "@storybook/test";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 // COMPONENTS
 import { GInput } from '../components/Input';
-
-// HELPERS
-import { Grouping } from '../constants/grouping';
 
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';
@@ -16,22 +14,22 @@ import { GConfigProvider } from '../components/ConfigProvider';
 import { EnumRadioSize } from '../components/Radio/radio.type';
 
 export default {
-  title: `${Grouping.FORM}/Input`,
+  title: 'Form/Input',
   component: GInput,
   argTypes: {
     'v-model': {
       description: 'binding value.',
       table: {
-        type: { summary: 'Number, String' } 
+        type: { summary: 'Number, String' }
       }
     },
-    size: { 
-      control: { 
+    size: {
+      control: {
         type: 'select',
       },
       options: Object.values(EnumRadioSize),
       table: {
-        type: { summary: 'String' } 
+        type: { summary: 'String' }
       }
     },
   },
@@ -49,7 +47,7 @@ const Template: StoryFn<typeof GInput> = (args, selected) => {
       return {
         args,
         name,
-        onKeydown: action('keydown'),
+        onKeydown: fn(action('keydown')),
       };
     },
     template: `

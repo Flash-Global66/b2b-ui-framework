@@ -1,13 +1,13 @@
 import { StoryFn, Meta } from "@storybook/vue3";
+import { fn } from "@storybook/test";
 import { GButton } from '../components/Button';
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 // CONSTANTS
-import { Grouping } from '../constants/grouping';
 import { action } from "@storybook/addon-actions";
 
 export default {
-  title: `${Grouping.BASIC}/Button`,
+  title: 'Basic/Button',
   component: GButton,
   argTypes: {
     typeNative: {
@@ -42,8 +42,8 @@ const Template: StoryFn<typeof GButton> = (args) => ({
   setup() {
     return {
       args,
-      onClick: action('click'),
-      onMousedown: action('mousedown'),
+      onClick: fn(action('click')),
+      onMousedown: fn(action('mousedown')),
     };
   },
 });

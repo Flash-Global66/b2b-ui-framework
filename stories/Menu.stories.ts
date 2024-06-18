@@ -1,20 +1,16 @@
 import { Meta, StoryFn } from '@storybook/vue3';
 import { ref } from 'vue';
-import { action } from '@storybook/addon-actions';
 
 // COMPONENTS
 import { GMenu, GMenuItem, GMenuItemGroup, GSubMenu } from '../components/Menu';
 import { GButton } from '../components/Button';
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-// CONSTANTS
-import { Grouping } from '../constants/grouping';
-
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';
 
 export default {
-  title: `${Grouping.FEEDBACK}/Menu`,
+  title: 'Feedback/Menu',
   component: GMenu,
   argTypes: {},
   args: {},

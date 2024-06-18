@@ -2,19 +2,17 @@ import { Meta, StoryFn } from '@storybook/vue3';
 import { ref, unref } from 'vue';
 import { ClickOutside } from 'element-plus'
 import { action } from '@storybook/addon-actions';
+import { fn } from "@storybook/test";
 
 // COMPONENTS
 import { GDrawer } from '../components/Drawer';
 import { GButton } from '../components/Button';
 
-// CONSTANTS
-import { Grouping } from '../constants/grouping';
-
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';
 
 export default {
-  title: `${Grouping.FEEDBACK}/Drawer`,
+  title: 'Feedback/Drawer',
   component: GDrawer,
   argTypes: {
     direction: {
@@ -41,12 +39,12 @@ const Template: StoryFn<typeof GDrawer> = (args) => {
       const drawer = ref(false);
 
       function handleClose() {
-        action('cerrar')
+        fn(action('cerrar'))
         drawer.value = false;
       }
       return {
         args,
-        onChange: action('change'),
+        onChange: fn(action('change')),
         drawer,
         handleClose,
       };

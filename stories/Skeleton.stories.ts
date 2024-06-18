@@ -4,11 +4,8 @@ import { GButton } from '../components/Button';
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { GConfigProvider } from '../components/ConfigProvider';
 
-// CONSTANTS
-import { Grouping } from '../constants/grouping';
-
 export default {
-  title: `${Grouping.Data}/Skeleton`,
+  title: 'Data/Skeleton',
   component: GSkeleton,
   subcomponents: { GSkeletonItem },
   argTypes: {

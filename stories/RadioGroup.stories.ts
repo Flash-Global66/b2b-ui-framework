@@ -1,13 +1,11 @@
 import { Meta, StoryFn } from '@storybook/vue3';
 import { ref } from 'vue';
 import { action } from '@storybook/addon-actions';
+import { fn } from "@storybook/test";
 
 // COMPONENTS
 import { GRadio } from '../components/Radio';
 import { GRadioGroup } from '../components/RadioGroup';
-
-// HELPERS
-import { Grouping } from '../constants/grouping';
 
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';
@@ -16,43 +14,43 @@ import { GConfigProvider } from '../components/ConfigProvider';
 import { EnumRadioSize } from '../components/Radio/radio.type';
 
 export default {
-  title: `${Grouping.FORM}/${Grouping.RADIO}/Group`,
+  title: 'Form/Radio/Group',
   component: GRadioGroup,
   subcomponents: { GRadio },
   argTypes: {
     'v-model': {
       description: 'binding value.',
       table: {
-        type: { summary: 'Number, String, Boolean' } 
+        type: { summary: 'Number, String, Boolean' }
       }
     },
     // slots
     default: {
       control: { type: null },
       table: {
-        type: { summary: 'Components' } 
+        type: { summary: 'Components' }
       }
     },
     // events
     change: {
       control: { type: null },
       table: {
-        type: { summary: 'String, Number, Boolean' } 
+        type: { summary: 'String, Number, Boolean' }
       }
     },
     // props
-    disabled: { 
-      control: { 
-        type: 'boolean' 
+    disabled: {
+      control: {
+        type: 'boolean'
       }
     },
-    size: { 
-      control: { 
+    size: {
+      control: {
         type: 'select',
       },
       options: Object.values(EnumRadioSize),
       table: {
-        type: { summary: 'String' } 
+        type: { summary: 'String' }
       }
     },
   },
@@ -77,7 +75,7 @@ const Template: StoryFn<typeof GRadio> = (args, selected) => {
       return {
         args,
         selected,
-        onChange: action('change'),
+        onChange: fn(action('change')),
       };
     },
     template: `

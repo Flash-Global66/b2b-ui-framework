@@ -1,25 +1,21 @@
 import { Meta, StoryFn } from '@storybook/vue3';
 import { ref } from 'vue';
-import { action } from '@storybook/addon-actions';
 
 // COMPONENTS
 import { GPagination } from '../components/Pagination';
 import { GButton } from '../components/Button';
 
-// HELPERS
-import { Grouping } from '../constants/grouping';
-
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';
 
 export default {
-  title: `${Grouping.Data}/Pagination`,
+  title: 'Data/Pagination',
   component: GPagination,
   argTypes: {
     'v-model': {
       description: 'binding value.',
       table: {
-        type: { summary: 'Number, String' } 
+        type: { summary: 'Number, String' }
       }
     },
   },

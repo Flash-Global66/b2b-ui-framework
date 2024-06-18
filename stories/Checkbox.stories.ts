@@ -1,6 +1,7 @@
 import { Meta, StoryFn } from '@storybook/vue3';
 import { ref } from 'vue';
 import { action } from '@storybook/addon-actions';
+import { fn } from "@storybook/test";
 
 // COMPONENTS
 import { GCheckbox } from '../components/Checkbox';
@@ -8,57 +9,54 @@ import { GCheckbox } from '../components/Checkbox';
 // TYPES
 import { EnumRadioSize } from '../components/Radio/radio.type';
 
-// CONSTANTS
-import { Grouping } from '../constants/grouping';
-
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';
 
 export default {
-  title: `${Grouping.FORM}/${Grouping.CHECKBOX}/Single`,
+  title: 'Form/Checkbox/Single',
   component: GCheckbox,
   argTypes: {
     'v-model': {
       description: 'binding value.',
       table: {
-        type: { summary: 'Number, String, Boolean' } 
+        type: { summary: 'Number, String, Boolean' }
       }
     },
     // slots
     default: {
       control: { type: 'text' },
       table: {
-        type: { summary: 'String, Components' } 
+        type: { summary: 'String, Components' }
       }
     },
     // events
     change: {
       control: { type: null },
       table: {
-        type: { summary: 'String, Number, Boolean' } 
+        type: { summary: 'String, Number, Boolean' }
       }
     },
     // props
-    label: { 
+    label: {
       control: {
-         type: null
+        type: null
       },
       table: {
         defaultValue: { summary: 'Option A' },
       }
     },
-    disabled: { 
-      control: { 
-        type: 'boolean' 
+    disabled: {
+      control: {
+        type: 'boolean'
       }
     },
-    size: { 
-      control: { 
+    size: {
+      control: {
         type: 'select',
       },
       options: Object.values(EnumRadioSize),
       table: {
-        type: { summary: 'String' } 
+        type: { summary: 'String' }
       }
     },
   },
@@ -88,7 +86,7 @@ const Template: StoryFn<typeof GCheckbox> = (args) => {
       return {
         args,
         selected,
-        onChange: action('change'),
+        onChange: fn(action('change')),
       };
     },
     template: `

@@ -1,6 +1,7 @@
 import { Meta, StoryFn } from '@storybook/vue3';
 import { ref } from 'vue';
 import { action } from '@storybook/addon-actions';
+import { fn } from "@storybook/test";
 
 // COMPONENTS
 import { GSelect } from '../components/Select';
@@ -8,14 +9,11 @@ import { GSelectOption } from '../components/SelectOption';
 import { ElSelect } from 'element-plus';
 import { ElOption } from 'element-plus';
 
-// HELPERS
-import { Grouping } from '../constants/grouping';
-
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';
 
 export default {
-  title: `${Grouping.FORM}/Select`,
+  title: 'Form/Select',
   component: GSelect,
   subcomponents: { GSelectOption },
   parameters: {
@@ -92,12 +90,12 @@ const Template: StoryFn<typeof GSelect> = (args, selected) => {
         args,
         selected,
         options,
-        onChange: action('change'),
-        onFocus: action('focus'),
-        onBlur: action('blur'),
-        onVisible: action('visible-change'),
-        onRemoteTag: action('remove-tag'),
-        onClear: action('clear'),
+        onChange: fn(action('change')),
+        onFocus: fn(action('focus')),
+        onBlur: fn(action('blur')),
+        onVisible: fn(action('visible-change')),
+        onRemoteTag: fn(action('remove-tag')),
+        onClear: fn(action('clear')),
       };
     },
     template: `

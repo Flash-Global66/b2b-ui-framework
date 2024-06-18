@@ -1,13 +1,9 @@
 import { Meta, StoryFn } from '@storybook/vue3';
 import { ref } from 'vue';
-import { action } from '@storybook/addon-actions';
 
 // COMPONENTS
 import { GDialog } from '../components/Dialog';
 import { GButton } from '../components/Button';
-
-// HELPERS
-import { Grouping } from '../constants/grouping';
 
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';
@@ -16,22 +12,22 @@ import { GConfigProvider } from '../components/ConfigProvider';
 import { EnumRadioSize } from '../components/Radio/radio.type';
 
 export default {
-  title: `${Grouping.Data}/Dialog`,
+  title: 'Data/Dialog',
   component: GDialog,
   argTypes: {
     'v-model': {
       description: 'binding value.',
       table: {
-        type: { summary: 'Number, String' } 
+        type: { summary: 'Number, String' }
       }
     },
-    size: { 
-      control: { 
+    size: {
+      control: {
         type: 'select',
       },
       options: Object.values(EnumRadioSize),
       table: {
-        type: { summary: 'String' } 
+        type: { summary: 'String' }
       }
     },
   },

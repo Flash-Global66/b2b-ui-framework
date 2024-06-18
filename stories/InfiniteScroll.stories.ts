@@ -2,14 +2,11 @@ import { Meta, StoryFn } from '@storybook/vue3';
 import { computed, ref } from 'vue';
 import { GInfiniteScroll } from './../components/InfiniteScroll';
 
-// HELPERS
-import { Grouping } from '../constants/grouping';
-
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';
 
 export default {
-  title: `${Grouping.Data}/Infinite Scroll`,
+  title: 'Data/Infinite Scroll',
   argTypes: {
     'v-g-infinite-scroll': {
       description: 'Load more data while reach bottom of the page',
@@ -18,25 +15,25 @@ export default {
     'infinite-scroll-disabled': {
       description: 'is disabled. \`Default: false\`',
       table: {
-        type: { summary: 'Boolean' } 
+        type: { summary: 'Boolean' }
       }
     },
     'infinite-scroll-delay': {
       description: 'throttle delay (ms). \`Default: 200\`',
       table: {
-        type: { summary: 'Number' } 
+        type: { summary: 'Number' }
       }
     },
-    'infinite-scroll-distance': { 
+    'infinite-scroll-distance': {
       description: 'trigger distance (px). \`Default 0\`',
       table: {
-        type: { summary: 'Number' } 
+        type: { summary: 'Number' }
       }
     },
     'infinite-scroll-immediate': {
       description: 'Whether to execute the loading method immediately, in case the content cannot be filled up in the initial state. \`Default: true\`',
       table: {
-        type: { summary: 'Boolean' } 
+        type: { summary: 'Boolean' }
       }
     },
   },

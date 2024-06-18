@@ -5,17 +5,14 @@ import { action } from '@storybook/addon-actions';
 // COMPONENTS
 import { GInputCode } from '../components/InputCode';
 
-// HELPERS
-import { Grouping } from '../constants/grouping';
-
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';
 
 export default {
-  title: `${Grouping.FORM}/Input Code`,
+  title: 'Form/Input Code',
   component: GInputCode,
   argTypes: {
-    password: { 
+    password: {
       control: {
         type: 'boolean',
       },
@@ -41,12 +38,12 @@ const Template: StoryFn<typeof GInputCode> = (args, selected) => {
         codeOTP.value = code;
         action('change');
       }
-      
+
       function onComplete(e: boolean) {
         codeCompleted.value = e;
         action('complete');
       }
-      
+
 
       return {
         codeCompleted,

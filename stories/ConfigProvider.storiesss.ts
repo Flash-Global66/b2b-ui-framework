@@ -1,16 +1,12 @@
 import { Meta, StoryFn } from '@storybook/vue3';
-import { PropType } from 'vue';
 
 import { GConfigProvider } from '../components/ConfigProvider';
 // import { TypeLanguage } from '../components/ConfigProvider/types/locale';
 import es from 'element-plus/dist/locale/es.mjs'
 import pt from 'element-plus/dist/locale/pt-br.mjs'
 
-// CONSTANTS
-import { Grouping } from '../constants/grouping';
-
 export default {
-  title: `${Grouping.CONFIG}/Config Provider`,
+  title: 'Configuration/Config Provider',
   component: GConfigProvider,
 } as Meta<typeof GConfigProvider>;
 
