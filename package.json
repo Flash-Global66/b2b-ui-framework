@@ -58,7 +58,8 @@
     "@fortawesome/fontawesome-common-types": "^6.2.1",
     "@storybook/manager-api": "^8.1.6",
     "autoprefixer": "^10.4.19",
-    "element-plus": "^2.2.26",
+    "cleave-zen": "^0.0.17",
+    "element-plus": "^2.7.5",
     "vue-router": "^4.2.2"
   }
 }
