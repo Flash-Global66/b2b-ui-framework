@@ -26,6 +26,7 @@
       popper-class="!z-100"
       autocomplete="off"
       v-bind="{ ...attrsCustom, ...propsCustom }"
+      :id="inputId"
       :suffix-icon="IconArrow"
       :clear-icon="IconTimes"
       :placeholder="label ? ' ' : placeholder"
@@ -52,21 +53,29 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, onMounted, PropType, ref, watch, computed, onUpdated } from 'vue';
-import { ElSelect } from 'element-plus';
+import {
+  defineComponent,
+  nextTick,
+  onMounted,
+  PropType,
+  ref,
+  watch,
+  computed,
+  onUpdated,
+} from "vue";
+import { ElSelect } from "element-plus";
 
-import { useResizeObserver } from '@vueuse/core'
+import { useResizeObserver } from "@vueuse/core";
 
 // ICONS
-import IconArrow from './components/IconArrow.vue';
-import IconTimes from './components/IconTimes.vue';
+import IconArrow from "./components/IconArrow.vue";
+import IconTimes from "./components/IconTimes.vue";
 
 // TYPES
-import { SelectSize } from './select.type';
-
+import { SelectSize } from "./select.type";
 
 export default defineComponent({
-  name: 'GSelect',
+  name: "GSelect",
   components: {
     ElSelect,
   },
@@ -81,148 +90,148 @@ export default defineComponent({
     /**
      * unique identity key name for value, required when value is an object
      */
-     valueKey: {
+    valueKey: {
       type: String,
-      default: ''
+      default: "",
     },
     /**
      * @description size of Input
-    */
+     */
     size: {
       type: String as PropType<SelectSize>,
-      default: 'medium',
+      default: "medium",
     },
     /**
      * whether select can be cleared
      */
     clearable: {
       type: Boolean,
-      default: false
+      default: false,
     },
     /**
      *  the name attribute of select input
      */
     name: {
       type: String,
-      default: '',
+      default: "",
     },
     /**
      *  the autocomplete attribute of select input
      */
     autocomplete: {
       type: String,
-      default: 'off',
+      default: "off",
     },
     /**
      *  whether Select is filterable
-    */
+     */
     filterable: {
       type: Boolean,
       default: false,
     },
     /**
      *  whether creating new items is allowed. To use this, filterable must be true
-    */
+     */
     allowCreate: {
       type: Boolean,
       default: false,
     },
     /**
      *  custom filter method
-    */
+     */
     filterMethod: {
-      type: Function
+      type: Function,
     },
     /**
      * whether Select is loading data from server
-    */
+     */
     loading: {
       type: Boolean,
       default: false,
     },
     /**
      * displayed text while loading data from server
-    */
+     */
     loadingText: {
       type: String,
-      default: '',
-     },
+      default: "",
+    },
     /**
-      * displayed text when no data matches the filtering query, you can also use slot empty
-    */
+     * displayed text when no data matches the filtering query, you can also use slot empty
+     */
     noMatchText: {
       type: String,
-      default: 'Sin datos coincidentes',
+      default: "Sin datos coincidentes",
     },
     /**
-      * displayed text when there is no options, you can also use slot empty
-    */
+     * displayed text when there is no options, you can also use slot empty
+     */
     noDataText: {
       type: String,
-      default: 'Sin datos',
+      default: "Sin datos",
     },
     /**
-      * select first matching option on enter key. Use with filterable or remote
-    */
+     * select first matching option on enter key. Use with filterable or remote
+     */
     defaultFirstOption: {
       type: Boolean,
       default: false,
     },
     /**
-      * whether select dropdown is teleported to the body
-    */
+     * whether select dropdown is teleported to the body
+     */
     teleported: {
       type: Boolean,
       default: false,
     },
     /**
-      * when select dropdown is inactive and persistent is false, select dropdown will be destroyed
-    */
+     * when select dropdown is inactive and persistent is false, select dropdown will be destroyed
+     */
     // persistent: {
     //   type: Boolean,
     //   default: false,
     // },
     /**
-      * for non-filterable Select, this prop decides if the option menu pops up when the input is focused
-    */
+     * for non-filterable Select, this prop decides if the option menu pops up when the input is focused
+     */
     automaticDropdown: {
       type: Boolean,
       default: false,
     },
     /**
-      * whether the width of the dropdown is the same as the input
-    */
+     * whether the width of the dropdown is the same as the input
+     */
     fitInputWidth: {
       type: Boolean,
       default: false,
     },
     /**
-      * whether to trigger form validation
-    */
+     * whether to trigger form validation
+     */
     validateEvent: {
       type: Boolean,
       default: true,
     },
     /**
      *  the label
-    */
+     */
     label: {
       type: String,
-      default: '',
+      default: "",
     },
     /**
      *  As a requirement you must not declare the label
      */
     placeholder: {
       type: String,
-      default: ' ',
+      default: " ",
     },
     /**
      * whether Select is disabled
      */
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     /**
      * same as readonly in native input
@@ -271,12 +280,12 @@ export default defineComponent({
     /**
      * triggers when the bound value changes
      */
-    'change',
-    'visible-change',
-    'remove-tag',
-    'clear',
-    'blur',
-    'focus',
+    "change",
+    "visible-change",
+    "remove-tag",
+    "clear",
+    "blur",
+    "focus",
   ],
   setup(props, { emit, slots, attrs }) {
     const refSelect = ref();
@@ -285,8 +294,12 @@ export default defineComponent({
     const isValue = ref(false);
     const prefixWidth = ref(0);
 
+    const inputId = computed(
+      () => `select-${Math.random().toString(36).substring(2, 9)}`
+    );
+
     const styleInputInner = computed(() => {
-      return props.label && (isVisible.value || isValue.value) ? '8px' : '0px';
+      return props.label && (isVisible.value || isValue.value) ? "8px" : "0px";
     });
 
     const inputRounded = computed(() => {
@@ -303,48 +316,65 @@ export default defineComponent({
     });
 
     const attrsCustom = computed(() => {
-      const excludeKeys = ['class', 'persistent'];
-      return Object.fromEntries(Object.entries(attrs).filter(([key]) => !excludeKeys.includes(key)));
+      const excludeKeys = ["class", "persistent"];
+      return Object.fromEntries(
+        Object.entries(attrs).filter(([key]) => !excludeKeys.includes(key))
+      );
     });
 
     const propsCustom = computed(() => {
-      const excludeKeys = ['joinRight', 'joinLeft', 'persistent'];
-      return Object.fromEntries(Object.entries(props).filter(([key]) => !excludeKeys.includes(key)));
+      const excludeKeys = ["joinRight", "joinLeft", "persistent"];
+      return Object.fromEntries(
+        Object.entries(props).filter(([key]) => !excludeKeys.includes(key))
+      );
     });
 
     const labelStyleWidth = computed(() => {
       return `${prefixWidth.value}px`;
     });
 
-    function yieldToMain () {
-      return new Promise(resolve => {
-        setTimeout(resolve, 0)
-      })
-    };
+    function yieldToMain() {
+      return new Promise((resolve) => {
+        setTimeout(resolve, 0);
+      });
+    }
 
-    watch(() => attrs.modelValue, (val) => { 
-      isValue.value = !!val;
-    })
+    watch(
+      () => attrs.modelValue,
+      (val) => {
+        isValue.value = !!val;
+      }
+    );
 
     onMounted(() => {
       nextTick(() => {
+        console.log(refSelect.value.$el);
+
+        const inputSelect = refSelect.value.$el.children[0];
+
+        if (inputSelect) {
+          console.log(inputSelect);
+
+          inputSelect.style.borderRadius = "99999px";
+        }
+
         isValue.value = !!attrs.modelValue;
         yieldToMain();
         updateWidthPrefix();
-      })
+      });
     });
 
-    function updateWidthPrefix () {
-      const refEl = refSelect.value && refSelect.value.$el
-      if (!refEl) return
+    function updateWidthPrefix() {
+      const refEl = refSelect.value && refSelect.value.$el;
+      if (!refEl) return;
 
       if (slots.prefix) {
-        const prefix = refEl.querySelector('.gui-select__prefix');
+        const prefix = refEl.querySelector(".gui-select__prefix");
         useResizeObserver(prefix, (entries) => {
-          const entry = entries[0]
-          const { width } = entry.contentRect
+          const entry = entries[0];
+          const { width } = entry.contentRect;
           prefixWidth.value = width + 5;
-        })
+        });
       }
     }
 
@@ -352,30 +382,29 @@ export default defineComponent({
       if (props.disabled || props.readonly) return;
       // isValue.value = true;
       refSelect.value.toggleMenu();
-    };
+    }
 
     function onFocus(event: Event) {
-      emit('focus', event);
+      emit("focus", event);
     }
 
     function onBlur(event: Event) {
-      emit('blur', event);
+      emit("blur", event);
     }
 
     function onChange(event) {
-      emit('change', event);
-      const valuesFalse = ['', ``, null, undefined, NaN]
+      emit("change", event);
+      const valuesFalse = ["", ``, null, undefined, NaN];
 
       if (valuesFalse.includes(event)) {
         isValue.value = false;
       } else {
         isValue.value = true;
       }
-
     }
 
     function onVisibleChange(event: boolean) {
-      emit('visible-change', event)
+      emit("visible-change", event);
       isVisible.value = event;
     }
 
@@ -398,20 +427,21 @@ export default defineComponent({
 
       IconArrow,
       IconTimes,
-    }
-  }
+      inputId,
+    };
+  },
 });
 </script>
 
-<style lang="scss" scoped>
-.gui-select-wrapper {
-  .gui-select {
-    .gui-select__wrapper {
-      @apply rounded-full
-    }
-  }
-  .gui-input-label {
-    width: calc(100% - v-bind(labelStyleWidth));
-  }
-}
+<style lang="scss">
+// .gui-select-wrapper {
+//   .gui-select {
+//     .gui-select__wrapper {
+//       @apply rounded-full;
+//     }
+//   }
+//   .gui-input-label {
+//     width: calc(100% - v-bind(labelStyleWidth));
+//   }
+// }
 </style>
