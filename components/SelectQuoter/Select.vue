@@ -403,14 +403,10 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .gui-select-wrapper {
   .gui-select {
-    .gui-select__selection {
-      // top: v-bind(styleInputInner);
-    }
     .gui-select__wrapper {
-      // border-radius: v-bind(inputRounded);
       @apply rounded-full
     }
   }
