@@ -20,7 +20,7 @@
   &:hover {
     @apply bg-gray-9;
   }
-  &.selected {
+  &.is-selected {
     @apply bg-blue-1 text-white font-medium;
   }
 }
