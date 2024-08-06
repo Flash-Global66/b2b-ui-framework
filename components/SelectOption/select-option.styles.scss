@@ -6,6 +6,7 @@
     &.gui-select__popper {
       @apply shadow-md rounded-md;
       border-style: solid !important;
+      @apply border border-gray-8;
     }
   }
 }
