@@ -2,8 +2,10 @@
 
 .gui-popper {
   &.is-light {
+    
     &.gui-select__popper {
-      @apply shadow-md border-none rounded-md;
+      @apply shadow-md rounded-md;
+      border-style: solid !important;
     }
   }
 }
