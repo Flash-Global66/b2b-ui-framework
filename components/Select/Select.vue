@@ -43,6 +43,18 @@
       <template v-if="$slots.prefix" #prefix>
         <slot name="prefix" :value="$attrs.modelValue" />
       </template>
+      <template v-if="$slots.header" #header>
+        <slot name="header" :value="$attrs.modelValue" />
+      </template>
+      <template v-if="$slots.footer" #footer>
+        <slot name="footer" :value="$attrs.modelValue" />
+      </template>
+      <template v-if="$slots.tag" #tag>
+        <slot name="tag" :value="$attrs.modelValue" />
+      </template>
+      <template v-if="$slots.loading" #loading>
+        <slot name="loading" :value="$attrs.modelValue" />
+      </template>
       <!--
         @slot customize default content
       -->
