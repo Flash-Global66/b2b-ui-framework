@@ -8,14 +8,11 @@ import { GSelectOption } from '../components/SelectOption';
 import { ElSelect } from 'element-plus';
 import { ElOption } from 'element-plus';
 
-// HELPERS
-import { Grouping } from '../constants/grouping';
-
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';
 
 export default {
-  title: `${Grouping.FORM}/SelectQuoter`,
+  title: "Form/SelectQuoter",
   component: GSelect,
   subcomponents: { GSelectOption },
   parameters: {
