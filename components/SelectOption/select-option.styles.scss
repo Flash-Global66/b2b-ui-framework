@@ -2,8 +2,11 @@
 
 .gui-popper {
   &.is-light {
+    
     &.gui-select__popper {
-      @apply shadow-md border-none rounded-md;
+      @apply shadow-md rounded-md;
+      border-style: solid !important;
+      @apply border border-gray-8;
     }
   }
 }
@@ -17,7 +20,7 @@
   &:hover {
     @apply bg-gray-9;
   }
-  &.selected {
+  &.is-selected {
     @apply bg-blue-1 text-white font-medium;
   }
 }
