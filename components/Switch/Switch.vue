@@ -185,4 +185,3 @@ export default defineComponent({
   },
 });
 </script>
-./switch.type
