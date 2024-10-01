@@ -5,6 +5,11 @@
   "repository": {
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
   },
+  "private": true,
+  "workspaces": [
+    "components/*",
+    "common/*"
+  ],
   "author": "Global66",
   "license": "MIT",
   "devDependencies": {
@@ -26,7 +31,7 @@
     "@storybook/builder-vite": "^0.2.2",
     "@storybook/testing-library": "^0.0.13",
     "@storybook/vue3": "^6.5.10",
-    "@vitejs/plugin-vue": "^2.3.3",
+    "@vitejs/plugin-vue": "^5.1.4",
     "babel-loader": "^8.2.5",
     "jest-mock": "^28.1.0",
     "lerna": "^6.0.3",
@@ -39,7 +44,9 @@
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "build": "npx lerna run build --stream --verbose",
+    "publish": "npx lerna publish"
   },
   "resolutions": {
     "jest-mock": "^28.1.0"
