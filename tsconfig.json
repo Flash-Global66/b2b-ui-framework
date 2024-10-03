@@ -17,11 +17,6 @@
       "assets/*": ["./src/assets/*"],
     }
   },
-  "include": [
-    "components/**/*.ts",
-    "components/**/*.d.ts",
-    "components/**/*.tsx",
-    "components/**/*.vue",
-    "common/**/*.ts",
-  ]
+  "include": ["common/**/*.ts"],
+  "exclude": ["node_modules"]
 }
