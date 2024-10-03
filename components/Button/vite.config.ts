@@ -7,8 +7,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'index.ts'),
-      name: 'GButton',
-      fileName: (format) => `index.${format === 'es' ? 'mjs' : 'js'}`,
+      name: 'B2bUiButton',
+      fileName: (format) => `b2b-ui-button.${format}.js`
     },
     outDir: 'dist',
     rollupOptions: {

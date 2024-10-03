@@ -3,10 +3,16 @@
   "author": "Global66",
   "version": "0.0.13",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "main": "./dist/b2b-ui-button.umd.js",
+  "module": "./dist/b2b-ui-button.es.js",
   "types": "dist/index.d.ts",
   "style": "input.styles.scss",
+  "exports": {
+    ".": {
+      "import": "./dist/b2b-ui-button.es.js",
+      "require": "./dist/b2b-ui-button.umd.js"
+    }
+  },
   "files": [
     "dist",
     "button.styles.scss",
