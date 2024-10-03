@@ -37,10 +37,12 @@
     "lerna": "^6.0.3",
     "sass": "^1.52.1",
     "tailwindcss": "^3.0.24",
+    "typescript": "^5.6.2",
     "vite": "^3.0.4",
     "vite-dts": "^1.0.4",
     "vue": "^3.2.35",
-    "vue-loader": "^16.8.3"
+    "vue-loader": "^16.8.3",
+    "vue-tsc": "^2.1.6"
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
@@ -60,7 +62,7 @@
     "@flash-global66/b2b-ui-dialog": "^0.0.6",
     "@fortawesome/fontawesome-common-types": "^6.2.1",
     "cleave-zen": "^0.0.17",
-    "element-plus": "^2.7.5",
+    "element-plus": "^2.8.4",
     "vue-router": "^4.2.2"
   }
 }
