@@ -6,7 +6,7 @@
   "main": "./dist/b2b-ui-button.umd.js",
   "module": "./dist/b2b-ui-button.es.js",
   "types": "./dist/index.d.ts",
-  "style": "input.styles.scss",
+  "style": "button.styles.scss",
   "exports": {
     ".": {
       "import": "./dist/b2b-ui-button.es.js",
