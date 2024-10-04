@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 // COMPONENTS
-import { GInput } from '../components/Input';
+import { GInput } from '../components/Input/src';
 
 // HELPERS
 import { Grouping } from '../constants/grouping';
