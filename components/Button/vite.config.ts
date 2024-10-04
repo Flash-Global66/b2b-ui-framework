@@ -1,9 +1,17 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { resolve } from 'path';
+import copy from 'rollup-plugin-copy';
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    copy({
+      targets: [
+        { src: './button.styles.scss', dest: 'dist' }
+      ]
+    })
+  ],
   build: {
     lib: {
       entry: resolve(__dirname, 'index.ts'),
