@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-button",
   "author": "Global66",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "license": "MIT",
   "main": "./dist/b2b-ui-button.umd.js",
   "module": "./dist/b2b-ui-button.es.js",
@@ -15,7 +15,9 @@
     },
     "./button.styles.scss": "./dist/button.styles.scss"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "vite build && vue-tsc --emitDeclarationOnly -p tsconfig.json --skipLibCheck"
   },
