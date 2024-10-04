@@ -13,7 +13,8 @@
       "require": "./dist/b2b-ui-input.umd.js",
       "types": "./dist/types/index.d.ts"
     },
-    "./input.styles.scss": "./dist/input.styles.scss"
+    "./input.styles.scss": "./dist/input.styles.scss",
+    "./styles.css": "./dist/style.scss"
   },
   "files": [
     "dist"
