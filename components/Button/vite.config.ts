@@ -8,14 +8,14 @@ export default defineConfig({
     vue(),
     copy({
       targets: [
-        { src: 'button.styles.scss', dest: 'dist' }
+        { src: './src/button.styles.scss', dest: 'dist' }
       ],
       hook: 'writeBundle'
     })
   ],
   build: {
     lib: {
-      entry: resolve(__dirname, 'index.ts'),
+      entry: resolve(__dirname, './src/index.ts'),
       name: 'B2bUiButton',
       fileName: (format) => `b2b-ui-button.${format}.js`
     },
