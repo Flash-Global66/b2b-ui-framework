@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-button",
   "author": "Global66",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "license": "MIT",
   "main": "./dist/b2b-ui-button.umd.js",
   "module": "./dist/b2b-ui-button.es.js",
@@ -27,6 +27,5 @@
   },
   "repository": {
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
-  },
-  "devDependencies": {}
+  }
 }
