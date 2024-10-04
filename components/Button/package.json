@@ -12,7 +12,8 @@
       "import": "./dist/b2b-ui-button.es.js",
       "require": "./dist/b2b-ui-button.umd.js",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./button.styles.scss": "./dist/button.styles.scss"
   },
   "files": [
     "dist"
