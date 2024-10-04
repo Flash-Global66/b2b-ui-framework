@@ -17,7 +17,6 @@
       {{ label }}
     </label>
 
-    //@ts-ignore
     <el-input
       ref="refInput"
       v-bind="{ ...attrsCustom, ...$props as any }"
