@@ -15,9 +15,7 @@
     }
   },
   "files": [
-    "dist",
-    "*.scss",
-    "*.ts"
+    "dist"
   ],
   "scripts": {
     "build": "vite build && vue-tsc --emitDeclarationOnly -p tsconfig.json --skipLibCheck"
