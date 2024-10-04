@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-input",
   "author": "Global66",
-  "version": "0.0.39",
+  "version": "0.0.40",
   "license": "MIT",
   "main": "./dist/b2b-ui-input.umd.js",
   "module": "./dist/b2b-ui-input.es.js",
