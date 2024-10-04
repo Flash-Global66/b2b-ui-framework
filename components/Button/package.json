@@ -6,7 +6,7 @@
   "main": "./dist/b2b-ui-button.umd.js",
   "module": "./dist/b2b-ui-button.es.js",
   "types": "./dist/index.d.ts",
-  "style": "button.styles.scss",
+  "style": "./dist/button.styles.scss",
   "exports": {
     ".": {
       "import": "./dist/b2b-ui-button.es.js",
@@ -15,9 +15,7 @@
     },
     "./button.styles.scss": "./dist/button.styles.scss"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "vite build && vue-tsc --emitDeclarationOnly -p tsconfig.json --skipLibCheck"
   },
