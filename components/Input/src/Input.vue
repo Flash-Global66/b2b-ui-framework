@@ -17,10 +17,11 @@
       {{ label }}
     </label>
 
+    //@ts-ignore
     <el-input
       ref="refInput"
-      v-bind="{ ...attrsCustom, ...$props }"
-      @change="onChange"
+      v-bind="{ ...attrsCustom, ...$props as any }"
+      @change="(value) => onChange(value)"
       @focus="onFocus"
       @blur="onBlur"
       @compositionstart="onCompositionStart"
@@ -45,7 +46,12 @@
 
 <script lang="ts">
 import { defineComponent, ref, watch, computed, PropType, onMounted, nextTick, useAttrs } from 'vue';
-import { ElInput } from 'element-plus';
+import { ElInput, InputProps } from 'element-plus';
+
+interface CustomInputProps extends InputProps {
+  [key: string]: any;
+}
+
 
 export default defineComponent({
   name: 'GInput',
@@ -300,8 +306,8 @@ export default defineComponent({
       isValue.value = true;
     };
 
-    function onChange(event: Event) {
-      emit('change', event);
+    function onChange(value: string | number) {
+      emit('change', value);
     }
 
     function onFocus(event: Event) {
@@ -327,7 +333,7 @@ export default defineComponent({
       emit('compositionend', event);
     }
 
-    function onKeydown (event: KeyboardEvent) {
+    function onKeydown (event: Event | KeyboardEvent) {
       emit('keydown', event)
     }
 

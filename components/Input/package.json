@@ -3,9 +3,23 @@
   "author": "Global66",
   "version": "0.0.38",
   "license": "MIT",
+  "main": "./dist/b2b-ui-input.umd.js",
+  "module": "./dist/b2b-ui-input.es.js",
+  "types": "./dist/index.d.ts",
+  "style": "./dist/input.styles.scss",
   "exports": {
-    ".": "./index.ts",
-    "./*": "./*"
+    ".": {
+      "import": "./dist/b2b-ui-input.es.js",
+      "require": "./dist/b2b-ui-input.umd.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./input.styles.scss": "./dist/input.styles.scss"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build && vue-tsc --emitDeclarationOnly -p tsconfig.json --skipLibCheck"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"

@@ -8,7 +8,7 @@ export default defineConfig({
     vue(),
     copy({
       targets: [
-        { src: './src/button.styles.scss', dest: 'dist' }
+        { src: './src/input.styles.scss', dest: 'dist' }
       ],
       hook: 'writeBundle'
     })
@@ -16,8 +16,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, './src/index.ts'),
-      name: 'B2bUiButton',
-      fileName: (format) => `b2b-ui-button.${format}.js`
+      name: 'B2bUiInput',
+      fileName: (format) => `b2b-ui-input.${format}.js`
     },
     outDir: 'dist',
     rollupOptions: {
