@@ -8,8 +8,9 @@ export default defineConfig({
     vue(),
     copy({
       targets: [
-        { src: './button.styles.scss', dest: 'dist' }
-      ]
+        { src: 'button.styles.scss', dest: 'dist' }
+      ],
+      hook: 'writeBundle'
     })
   ],
   build: {
