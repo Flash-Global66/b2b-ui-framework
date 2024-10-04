@@ -16,8 +16,8 @@
   },
   "files": [
     "dist",
-    "button.styles.scss",
-    "button.type.ts"
+    "*.scss",
+    "*.ts"
   ],
   "scripts": {
     "build": "vite build && vue-tsc --emitDeclarationOnly -p tsconfig.json --skipLibCheck"
@@ -27,5 +27,6 @@
   },
   "repository": {
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
-  }
+  },
+  "devDependencies": {}
 }
