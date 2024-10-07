@@ -98,8 +98,16 @@ export default defineComponent({
     },
     /**
      *  the label
+     * @deprecated use aria label
     */
     label: {
+      type: String,
+      default: '',
+    },
+    /**
+     * whether to show clear button
+    */
+    ariaLabel: {
       type: String,
       default: '',
     },
@@ -231,6 +239,11 @@ export default defineComponent({
 
       if (props.size === 'custom' || props.size === 'medium') {
         result.size = '';
+      }
+
+      if (props.label) {
+        result.ariaLabel = props.label;
+        delete result.label;
       }
 
       return result;
