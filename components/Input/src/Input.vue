@@ -19,7 +19,7 @@
 
     <el-input
       ref="refInput"
-      v-bind="{ ...attrsCustom, ...$props as any }"
+      v-bind="filteredAttrs"
       @change="(value) => onChange(value)"
       @focus="onFocus"
       @blur="onBlur"
@@ -45,11 +45,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, watch, computed, PropType, onMounted, nextTick, useAttrs } from 'vue';
-import { ElInput, InputProps } from 'element-plus';
-
-interface CustomInputProps extends InputProps {
-  [key: string]: any;
-}
+import { ElInput } from 'element-plus';
 
 
 export default defineComponent({
@@ -223,7 +219,23 @@ export default defineComponent({
     'input',
     'keypress',
   ],
-  setup(props, { emit, slots, attrs }) {
+  setup(props, { emit, slots }) {
+    const attrs = useAttrs();
+
+    const filteredAttrs = computed(() => {
+
+      const result = { ...props, ...attrs } as Record<string, unknown>;
+      const excludeKeys = ['class', 'joinLeft', 'joinRight', 'shadow', 'transparent'];
+
+      excludeKeys.forEach(key => delete result[key]);
+
+      if (props.size === 'custom' || props.size === 'medium') {
+        result.size = '';
+      }
+
+      return result;
+    });
+
     const refInput = ref();
     const isValue = ref(false);
     const prefixWidth = ref(0);
@@ -365,8 +377,10 @@ export default defineComponent({
       onKeydown,
       onInput,
       onKeypress,
+      filteredAttrs,
     }
   }
+
 });
 </script>
 
