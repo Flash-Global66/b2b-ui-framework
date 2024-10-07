@@ -8,7 +8,7 @@
     "./input.styles.scss": "./src/input.styles.scss"
   },
   "files": [
-    "dist"
+    "src"
   ],
   "scripts": {
     "build": "vite build && vue-tsc --emitDeclarationOnly -p tsconfig.json --skipLibCheck"
@@ -19,5 +19,5 @@
   "repository": {
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
   },
-  "gitHead": "aa38ddd35f2da4ec61150c31a0f2372b25c85763"
+  "gitHead": "2e74f613ed7eae27d905ba63460f766c6e0a103b"
 }
