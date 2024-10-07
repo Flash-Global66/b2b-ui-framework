@@ -4,13 +4,8 @@
   "version": "0.0.43",
   "license": "MIT",
   "exports": {
-    ".": {
-      "import": "./dist/b2b-ui-input.es.js",
-      "require": "./dist/b2b-ui-input.umd.js",
-      "types": "./dist/types/index.d.ts"
-    },
-    "./input.styles.scss": "./dist/input.styles.scss",
-    "./style.css": "./dist/style.css"
+    ".": "./src/index.ts",
+    "./input.styles.scss": "./src/input.styles.scss"
   },
   "files": [
     "dist"
