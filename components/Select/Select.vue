@@ -373,8 +373,8 @@ export default defineComponent({
     function onClick() {
       if (props.disabled || props.readonly) return;
       // isValue.value = true;
-      refSelect.value.toggleMenu();
       refSelect.value.focus();
+      refSelect.value.toggleMenu();
     };
 
     function onFocus(event: Event) {
