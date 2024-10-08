@@ -318,14 +318,13 @@ export default defineComponent({
     const filteredAttrs = computed(() => {
 
       const result = { ...props, ...attrs } as Record<string, unknown>;
-      console.log(result)
       const excludeKeys = ['class', 'persistent', 'joinRight', 'joinLeft'];
 
       excludeKeys.forEach(key => delete result[key]);
 
-      // if (props.size === 'medium' || props.size === 'tiny' || props.size === 'auto') {
-      //   result.size = '';
-      // }
+      if (props.size === 'tiny' || props.size === 'auto') {
+        result.size = '';
+      }
 
       if (props.label) {
         result.ariaLabel = props.label;
@@ -375,6 +374,7 @@ export default defineComponent({
       if (props.disabled || props.readonly) return;
       // isValue.value = true;
       refSelect.value.toggleMenu();
+      refSelect.value.focus();
     };
 
     function onFocus(event: Event) {

@@ -25,6 +25,9 @@ export default {
       },
     },
   },
+  args: {
+    filterable: true,
+  }
 } as Meta<typeof GSelect>;
 
 const Template: StoryFn<typeof GSelect> = (args, selected) => {
