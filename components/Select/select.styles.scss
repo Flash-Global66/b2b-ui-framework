@@ -11,19 +11,51 @@
     @apply top-1/2 -translate-y-1/2 text-base;
   }
 
-  &.size--tiny .label--active {
-    top: 14%;
-    @apply text-[11px];
+  &.size--tiny {
+    .label--active {
+      top: 14%;
+      @apply text-[11px];
+    }
+    .gui-select {
+      .gui-select__wrapper {
+        @apply h-10 text-sm;
+      }
+    }
   }
 
-  &.size--small .label--active {
-    top: 15%;
+  &.size--small {
+    .label--active {
+      top: 15%;
+    }
+    .gui-select {
+      .gui-select__wrapper {
+        @apply h-12 text-sm;
+      }
+    }
   }
 
-  &.size--medium .label--active,
-  &.size--large .label--active {
-    top: 16%;
-    @apply text-[14px];
+  &.size--default {
+    .label--active {
+      top: 16%;
+      @apply text-[14px];
+    }
+    .gui-select {
+      .gui-select__wrapper {
+        @apply h-14 text-base;
+      }
+    }
+  }
+
+  &.size--large {
+    .label--active {
+      top: 16%;
+      @apply text-[14px];
+    }
+    .gui-select {
+      .gui-select__wrapper {
+        @apply h-16 text-lg;
+      }
+    }
   }
 
   .gui-input-label {
@@ -31,21 +63,6 @@
   }
 
   .gui-select {
-    &--tiny .gui-select__wrapper {
-      @apply h-10 text-sm;
-    }
-
-    &--small .gui-select__wrapper {
-      @apply h-12 text-sm;
-    }
-
-    &--medium .gui-select__wrapper {
-      @apply h-14 text-base;
-    }
-
-    &--large .gui-select__wrapper {
-      @apply h-16 text-lg;
-    }
 
     &:hover .gui-select__wrapper {
       @apply border-none;

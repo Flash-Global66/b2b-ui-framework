@@ -36,6 +36,7 @@
       @clear="(event) => $emit('clear', event)"
       @blur="onBlur"
       @focus="onFocus"
+      @click="onClick"
     >
       <!--
         @slot customize prefix
@@ -102,7 +103,7 @@ export default defineComponent({
     */
     size: {
       type: String as PropType<SelectSize>,
-      default: 'medium',
+      default: 'default',
     },
     /**
      * whether select can be cleared
@@ -317,13 +318,14 @@ export default defineComponent({
     const filteredAttrs = computed(() => {
 
       const result = { ...props, ...attrs } as Record<string, unknown>;
+      console.log(result)
       const excludeKeys = ['class', 'persistent', 'joinRight', 'joinLeft'];
 
       excludeKeys.forEach(key => delete result[key]);
 
-      if (props.size === 'medium' || props.size === 'tiny' || props.size === 'auto') {
-        result.size = '';
-      }
+      // if (props.size === 'medium' || props.size === 'tiny' || props.size === 'auto') {
+      //   result.size = '';
+      // }
 
       if (props.label) {
         result.ariaLabel = props.label;
