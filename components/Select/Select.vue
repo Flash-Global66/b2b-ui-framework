@@ -318,7 +318,7 @@ export default defineComponent({
     const filteredAttrs = computed(() => {
 
       const result = { ...props, ...attrs } as Record<string, unknown>;
-      const excludeKeys = ['class', 'persistent', 'joinRight', 'joinLeft'];
+      const excludeKeys = ['class', 'persistent', 'joinRight', 'joinLeft', 'shadow'];
 
       excludeKeys.forEach(key => delete result[key]);
 
