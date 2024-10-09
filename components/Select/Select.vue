@@ -36,7 +36,6 @@
       @clear="(event) => $emit('clear', event)"
       @blur="onBlur"
       @focus="onFocus"
-      @click="onClick"
     >
       <!--
         @slot customize prefix
@@ -372,9 +371,7 @@ export default defineComponent({
 
     function onClick() {
       if (props.disabled || props.readonly) return;
-      // isValue.value = true;
       refSelect.value.focus();
-      refSelect.value.toggleMenu();
     };
 
     function onFocus(event: Event) {
