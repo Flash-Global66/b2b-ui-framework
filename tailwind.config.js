@@ -15,7 +15,7 @@ module.exports = {
         '13px': '13px',
       },
       zIndex: {
-        100: 100,
+        100: '100',
       },
       borderRadius: {
         xl: '10px',
@@ -36,6 +36,13 @@ module.exports = {
           11: '#4F5694',
           12: '#6F75B8',
           13: '#8386C2',
+          14: '#41477B',
+          15: '#203478',
+          16: '#D9E7F6',
+          17: '#3651C3',
+          18: '#1A275E',
+          19: '#343E68',
+          20: '#5F6881'
         },
         gray: {
           1: '#343E68',
@@ -57,6 +64,10 @@ module.exports = {
           17: '#EBEBEB',
           18: '#E4E8F6',
           19: '#475694',
+          20: '#D5DCF8',
+          21: '#828AA4',
+          22: '#E1E4F0',
+          23: '#7F869A',
         },
         green: {
           1: '#00B682',
@@ -66,6 +77,11 @@ module.exports = {
           5: '#DDF2F3',
           6: '#E8F3E6',
           7: '#178406',
+          8: '#018B62',
+          9: '#BAF0D6',
+          10: '#00966B',
+          11: '#CCF5B6',
+          12: '#22600C',
         },
         red: {
           1: '#FF647C',
@@ -74,6 +90,7 @@ module.exports = {
           4: '#F6E6E6',
           5: '#A30101',
           6: '#EA596F',
+          7: '#59010E',
         },
         yellow: {
           1: '#FFD153',
@@ -84,18 +101,17 @@ module.exports = {
           6: '#B08A01',
           7: '#E9B72D',
           8: '#FCBB0A',
+          9: '#5C4401',
         },
       },
-      minHeight: (theme) => ({
+      minHeight: ({ theme }) => ({
         ...theme('spacing'),
-      }),
-      minWidth: {
-        '250px': '250px',
-      },
-      minHeight: {
         '3/4': '75vh',
         '1/2': '50vh',
         '1/4': '25vh',
+      }),
+      minWidth: {
+        '250px': '250px',
       },
       width: {
         fit: 'fit-content',
@@ -119,11 +135,14 @@ module.exports = {
       boxShadow: {
         content: '0px 2px 10px rgba(0, 0, 0, 0.04)',
         input: '0px 2px 10px rgba(0, 0, 0, 0.04)',
-        input2: 'rgb(0 0 0 / 0.05) 0px 0px 0px 1px, 0 1px 2px 0 rgb(0 0 0 / 0.05)',
+        input2:
+          'rgb(0 0 0 / 0.05) 0px 0px 0px 1px, 0 1px 2px 0 rgb(0 0 0 / 0.05)',
         button: '0px 2px 10px rgba(0, 0, 0, 0.1)',
         menu: '0px 4px 4px rgba(0, 0, 0, 0.22);',
         radio: '0px 2px 4px rgba(0, 0, 0, 0.05)',
         customDiverter: '0px 3px 10px rgba(0, 0, 0, 0.14)',
+        base: '3px 3px 5px 0px rgba(0, 28, 131, 0.15)',
+        base2: '1px 1px 5px 0px rgba(0, 28, 131, 0.15)',
       },
     },
   },
