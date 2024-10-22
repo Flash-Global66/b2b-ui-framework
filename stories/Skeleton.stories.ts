@@ -1,6 +1,6 @@
 import { StoryFn, Meta } from "@storybook/vue3";
 import { GSkeleton, GSkeletonItem } from '../components/Skeleton';
-import { GButton } from '../components/Button';
+import { GButton } from '../components/Button/src';
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { GConfigProvider } from '../components/ConfigProvider';
 

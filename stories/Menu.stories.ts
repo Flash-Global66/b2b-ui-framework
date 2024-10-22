@@ -3,7 +3,7 @@ import { ref } from 'vue';
 
 // COMPONENTS
 import { GMenu, GMenuItem, GMenuItemGroup, GSubMenu } from '../components/Menu';
-import { GButton } from '../components/Button';
+import { GButton } from '../components/Button/src';
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 // CONFIG

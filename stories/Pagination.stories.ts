@@ -3,7 +3,7 @@ import { ref } from 'vue';
 
 // COMPONENTS
 import { GPagination } from '../components/Pagination';
-import { GButton } from '../components/Button';
+import { GButton } from '../components/Button/src';
 
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';
