@@ -3,11 +3,8 @@ import { StoryFn, Meta } from "@storybook/vue3";
 import { GBadge } from '../components/Badge';
 import { GConfigProvider } from '../components/ConfigProvider';
 
-// CONSTANTS
-import { Grouping } from '../constants/grouping';
-
 export default {
-  title: `${Grouping.Data}/Badge`,
+  title: 'Data/Badge',
   component: GBadge,
 } as Meta<typeof GBadge>;
 
