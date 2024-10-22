@@ -3,7 +3,7 @@ import { ref } from 'vue';
 
 // COMPONENTS
 import { GDialog } from '../components/Dialog';
-import { GButton } from '../components/Button';
+import { GButton } from '../components/Button/src';
 
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';

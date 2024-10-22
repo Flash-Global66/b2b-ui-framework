@@ -6,7 +6,7 @@ import { fn } from "@storybook/test";
 
 // COMPONENTS
 import { GPopover } from '../components/Popover';
-import { GButton } from '../components/Button';
+import { GButton } from '../components/Button/src';
 import { GSelect } from '../components/Select';
 import { GSelectOption } from '../components/SelectOption';
 

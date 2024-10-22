@@ -6,7 +6,7 @@ import { fn } from "@storybook/test";
 
 // COMPONENTS
 import { GDrawer } from '../components/Drawer';
-import { GButton } from '../components/Button';
+import { GButton } from '../components/Button/src';
 
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';
