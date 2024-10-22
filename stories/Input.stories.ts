@@ -5,7 +5,7 @@ import { fn } from "@storybook/test";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 // COMPONENTS
-import { GInput } from '../components/Input';
+import { GInput } from '../components/Input/src';
 
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';

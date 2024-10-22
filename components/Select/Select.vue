@@ -25,7 +25,7 @@
       ref="refSelect"
       popper-class="!z-100"
       autocomplete="off"
-      v-bind="{ ...attrsCustom, ...propsCustom }"
+      v-bind="filteredAttrs"
       :suffix-icon="IconArrow"
       :clear-icon="IconTimes"
       :placeholder="label ? ' ' : placeholder"
@@ -102,7 +102,7 @@ export default defineComponent({
     */
     size: {
       type: String as PropType<SelectSize>,
-      default: 'medium',
+      default: 'default',
     },
     /**
      * whether select can be cleared
@@ -314,14 +314,23 @@ export default defineComponent({
       return `${rounded}rem ${rounded}rem ${rounded}rem ${rounded}rem`;
     });
 
-    const attrsCustom = computed(() => {
-      const excludeKeys = ['class', 'persistent'];
-      return Object.fromEntries(Object.entries(attrs).filter(([key]) => !excludeKeys.includes(key)));
-    });
+    const filteredAttrs = computed(() => {
 
-    const propsCustom = computed(() => {
-      const excludeKeys = ['joinRight', 'joinLeft', 'persistent'];
-      return Object.fromEntries(Object.entries(props).filter(([key]) => !excludeKeys.includes(key)));
+      const result = { ...props, ...attrs } as Record<string, unknown>;
+      const excludeKeys = ['class', 'persistent', 'joinRight', 'joinLeft', 'shadow'];
+
+      excludeKeys.forEach(key => delete result[key]);
+
+      if (props.size === 'tiny' || props.size === 'auto') {
+        result.size = '';
+      }
+
+      if (props.label) {
+        result.ariaLabel = props.label;
+        delete result.label;
+      }
+
+      return result;
     });
 
     const labelStyleWidth = computed(() => {
@@ -362,8 +371,7 @@ export default defineComponent({
 
     function onClick() {
       if (props.disabled || props.readonly) return;
-      // isValue.value = true;
-      refSelect.value.toggleMenu();
+      refSelect.value.focus();
     };
 
     function onFocus(event: Event) {
@@ -397,10 +405,9 @@ export default defineComponent({
       isVisible,
       isValue,
       styleInputInner,
-      propsCustom,
       prefixWidth,
       labelStyleWidth,
-      attrsCustom,
+      filteredAttrs,
 
       onVisibleChange,
       onClick,
