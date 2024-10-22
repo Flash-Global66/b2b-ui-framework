@@ -19,8 +19,8 @@
 
     <el-input
       ref="refInput"
-      v-bind="{ ...attrsCustom, ...$props }"
-      @change="onChange"
+      v-bind="filteredAttrs"
+      @change="(value) => onChange(value)"
       @focus="onFocus"
       @blur="onBlur"
       @compositionstart="onCompositionStart"
@@ -46,6 +46,7 @@
 <script lang="ts">
 import { defineComponent, ref, watch, computed, PropType, onMounted, nextTick, useAttrs } from 'vue';
 import { ElInput } from 'element-plus';
+
 
 export default defineComponent({
   name: 'GInput',
@@ -97,8 +98,16 @@ export default defineComponent({
     },
     /**
      *  the label
+     * @deprecated use aria label
     */
     label: {
+      type: String,
+      default: '',
+    },
+    /**
+     * whether to show clear button
+    */
+    ariaLabel: {
       type: String,
       default: '',
     },
@@ -218,7 +227,28 @@ export default defineComponent({
     'input',
     'keypress',
   ],
-  setup(props, { emit, slots, attrs }) {
+  setup(props, { emit, slots }) {
+    const attrs = useAttrs();
+
+    const filteredAttrs = computed(() => {
+
+      const result = { ...props, ...attrs } as Record<string, unknown>;
+      const excludeKeys = ['class', 'joinLeft', 'joinRight', 'shadow', 'transparent'];
+
+      excludeKeys.forEach(key => delete result[key]);
+
+      if (props.size === 'custom' || props.size === 'medium') {
+        result.size = '';
+      }
+
+      if (props.label) {
+        result.ariaLabel = props.label;
+        delete result.label;
+      }
+
+      return result;
+    });
+
     const refInput = ref();
     const isValue = ref(false);
     const prefixWidth = ref(0);
@@ -300,8 +330,8 @@ export default defineComponent({
       isValue.value = true;
     };
 
-    function onChange(event: Event) {
-      emit('change', event);
+    function onChange(value: string | number) {
+      emit('change', value);
     }
 
     function onFocus(event: Event) {
@@ -327,7 +357,7 @@ export default defineComponent({
       emit('compositionend', event);
     }
 
-    function onKeydown (event: KeyboardEvent) {
+    function onKeydown (event: Event | KeyboardEvent) {
       emit('keydown', event)
     }
 
@@ -360,8 +390,10 @@ export default defineComponent({
       onKeydown,
       onInput,
       onKeypress,
+      filteredAttrs,
     }
   }
+
 });
 </script>
 

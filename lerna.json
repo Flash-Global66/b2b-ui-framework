@@ -4,5 +4,17 @@
     "config/*",
     "common/*"
   ],
-  "version": "independent"
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "*.md",
+        "*.test.js",
+        "*.spec.js"
+      ],
+      "message": "chore(release): publish"
+    }
+  }
 }

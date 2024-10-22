@@ -19,10 +19,10 @@
       .gui-menu-item,
       .gui-sub-menu__title {
         &.is-active {
-          @apply text-gray-3;
+          @apply text-blue-1;
           &::before {
             content: '';
-            @apply absolute right-6 w-2 h-2 rounded-full bg-gray-3;
+            @apply absolute right-5 w-2 h-2 rounded-full bg-gray-1;
           }
         }
       }
@@ -90,7 +90,7 @@
 
 .gui-menu-item,
 .gui-sub-menu__title {
-  @apply h-11 rounded-3xl text-base text-gray-2 font-medium pr-12;
+  @apply h-11 rounded-3xl text-base text-blue-20 font-medium pr-12;
   &.is-active,
   &:hover {
     @apply bg-gray-4/10;

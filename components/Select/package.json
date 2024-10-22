@@ -1,11 +1,11 @@
 {
   "name": "@flash-global66/b2b-ui-select",
   "author": "Global66",
-  "version": "0.0.38",
+  "version": "0.0.44",
   "license": "MIT",
   "exports": {
     ".": "./index.ts",
-    "./*": "./*"
+    "./select.styles.scss": "./select.styles.scss"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
