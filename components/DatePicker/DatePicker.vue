@@ -16,14 +16,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, computed, Component } from 'vue';
+import { defineComponent, Component } from 'vue';
 import { ElDatePicker, useSizeProp } from 'element-plus';
-import type { FormInstance, FormRules, ModelValueType, Options, SingleOrRange } from 'element-plus';
+import type { ModelValueType, Options, SingleOrRange } from 'element-plus';
 import { definePropType } from 'element-plus/es/utils';
 import { disabledTimeListsProps } from 'element-plus/es/components/time-picker/src/props/shared';
 
 export default defineComponent({
-  name: 'GForm',
+  name: 'GDatePicker',
   components: {
     ElDatePicker,
   },
@@ -221,12 +221,6 @@ export default defineComponent({
      */
     unlinkPanels: Boolean,
   },
-  setup() {
-    const form = ref<FormInstance>();
-    return {
-      form,
-    }
-  }
 });
 </script>
 
