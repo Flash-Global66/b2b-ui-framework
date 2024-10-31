@@ -1,4 +1,4 @@
-import GDatePicker from "./DatePicker.vue.vue";
+import GDatePicker from "./DatePicker.vue";
 
 
 export { GDatePicker };
