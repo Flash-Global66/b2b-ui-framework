@@ -3,10 +3,6 @@
   "author": "Global66",
   "version": "0.0.26",
   "license": "MIT",
-  "main": "./b2b-ui-button.umd.js",
-  "module": "./b2b-ui-button.es.js",
-  "types": "./types/index.d.ts",
-  "style": "./dist/button.styles.scss",
   "exports": {
     ".": "./src/index.ts",
     "./button.styles.scss": "./src/button.styles.scss"
