@@ -14,9 +14,9 @@
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.2.0",
-    "@fortawesome/pro-regular-svg-icons": "^6.2.0",
-    "@fortawesome/vue-fontawesome": "^3.0.1"
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/pro-regular-svg-icons": "^5.15.3",
+    "@fortawesome/vue-fontawesome": "^3.0.0-4"
   },
   "gitHead": "3d2df5880e22d2bc7293ff916ef163410f9682d4"
 }
