@@ -1,12 +1,4 @@
-import { App } from 'vue'
-import GButton from './Button.vue'
+import GButton from "./Button.vue";
+export type { ButtonSize, ButtonColor, ButtonType, ButtonNativeType } from './button.type';
 
-export { GButton }
-
-export default {
-  install: (app: App) => {
-    app.component('GButton', GButton)
-  }
-}
-
-export * from './button.type'
+export { GButton };
