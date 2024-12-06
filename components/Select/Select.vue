@@ -18,9 +18,9 @@
         isVisible || isValue ? 'label--active' : 'label--no-active',
         disabled ? 'cursor-not-allowed' : 'cursor-pointer',
       ]"
-      :style="{ marginLeft: `${prefixWidth}px` }"
+      :style="{ marginLeft: `${prefixWidth}px`}"
       @click.stop="refSelect.toggleMenu()"
-    >
+      >
       {{ label }}
     </label>
     <el-select

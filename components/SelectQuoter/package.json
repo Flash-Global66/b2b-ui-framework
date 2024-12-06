@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-select-quoter",
   "author": "Global66",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "license": "MIT",
   "exports": {
     ".": "./index.ts",
@@ -12,11 +12,6 @@
   },
   "repository": {
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.2.0",
-    "@fortawesome/pro-regular-svg-icons": "^6.2.0",
-    "@fortawesome/vue-fontawesome": "^3.0.1"
   },
   "gitHead": "c5731c823a74f226ad099714eaef57b84d5601f3"
 }
