@@ -1,7 +1,7 @@
 <template>
   <div class="gui-radio-wrapper">
     <el-radio
-      v-bind="{ ...$attrs, ...$props }"
+      v-bind="filteredAttrs"
       @change="(event) => $emit('change', event)"
     >
       <!--
@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { computed, defineComponent, PropType } from 'vue';
 import { ElRadio } from "element-plus";
 
 // TYPES
@@ -60,5 +60,19 @@ export default defineComponent({
       default: '',
     },
   },
+  setup(props, { attrs }) {
+    const filteredAttrs = computed(() => {
+
+      const result = { ...props, ...attrs } as Record<string, unknown>;
+      const excludeKeys = ['class'];
+
+      excludeKeys.forEach(key => delete result[key]);
+
+      return result;
+    });
+    return {
+      filteredAttrs,
+    };
+  }
 });
 </script>

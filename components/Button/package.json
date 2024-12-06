@@ -1,23 +1,12 @@
 {
   "name": "@flash-global66/b2b-ui-button",
   "author": "Global66",
-  "version": "0.0.22",
+  "version": "0.0.28",
   "license": "MIT",
-  "main": "./dist/b2b-ui-button.umd.js",
-  "module": "./dist/b2b-ui-button.es.js",
-  "types": "./dist/types/index.d.ts",
-  "style": "./dist/button.styles.scss",
   "exports": {
-    ".": {
-      "import": "./dist/b2b-ui-button.es.js",
-      "require": "./dist/b2b-ui-button.umd.js",
-      "types": "./dist/types/index.d.ts"
-    },
-    "./button.styles.scss": "./dist/button.styles.scss"
+    ".": "./src/index.ts",
+    "./button.styles.scss": "./src/button.styles.scss"
   },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "vite build && vue-tsc --emitDeclarationOnly -p tsconfig.json --skipLibCheck"
   },
