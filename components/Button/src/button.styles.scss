@@ -45,42 +45,42 @@
   }
 
   &#{$root}--primary {
-    @apply bg-blue-1 border-blue-1 text-white active:bg-cyan-400;
+    @apply bg-nightBlue-500 border-nightBlue-500 text-white;
     &:hover {
-      @apply bg-blue-1/80;
+      @apply bg-nightBlue-600;
     }
     @at-root &#{$root}--disabled {
-      @apply bg-blue-10 border-blue-10 cursor-not-allowed;
+      @apply bg-gray-50 border-gray-50 cursor-not-allowed;
     }
 
     @at-root &#{$root}--outlined {
-      @apply border-blue-1 text-blue-1 bg-transparent;
+      @apply border-nightBlue-500 text-nightBlue-500 bg-transparent;
       &:hover {
-        @apply opacity-75;
+        @apply border-nightBlue-600;
       }
       @at-root &#{$root}--disabled {
-        @apply opacity-50 cursor-not-allowed;
+        @apply border-gray-50 cursor-not-allowed;
       }
     }
 
     @at-root &#{$root}--ghost {
-      @apply border-transparent text-blue-1 bg-transparent;
+      @apply border-transparent text-nightBlue-500 bg-transparent;
       &:hover {
-        @apply text-blue-7;
+        @apply text-nightBlue-600;
       }
       @at-root &#{$root}--disabled {
-        @apply opacity-50 cursor-not-allowed;
+        @apply text-gray-50 cursor-not-allowed;
       }
     }
   }
 
   &#{$root}--secondary {
-    @apply bg-green-2 border-green-2 text-white;
+    @apply bg-green-700 border-green-700 text-white;
     &:hover {
-      @apply bg-green-3;
+      @apply bg-green-800;
     }
     @at-root &#{$root}--disabled {
-      @apply bg-green-4 border-green-4 cursor-not-allowed;
+      @apply bg-green-50 border-green-50 text-green-200 cursor-not-allowed;
     }
 
     @at-root &#{$root}--outlined {
@@ -105,18 +105,18 @@
   }
 
   &#{$root}--danger {
-    @apply bg-red-1 border-red-1 text-white;
+    @apply bg-red-700 border-red-700 text-white;
     &:hover {
       @apply opacity-75;
     }
     @at-root &#{$root}--disabled {
-      @apply bg-red-1/60 border-red-1/60 cursor-not-allowed;
+      @apply bg-red-700/60 border-red-700/60 cursor-not-allowed;
     }
 
     @at-root &#{$root}--outlined {
-      @apply border-red-1 text-red-1 bg-transparent;
+      @apply border-red-700 text-red-700 bg-transparent;
       &:hover {
-        @apply border-red-6 text-red-6;
+        @apply border-red-800 text-red-800;
       }
       @at-root &#{$root}--disabled {
         @apply opacity-50 cursor-not-allowed;
@@ -124,9 +124,9 @@
     }
 
     @at-root &#{$root}--ghost {
-      @apply border-transparent text-red-1 bg-transparent;
+      @apply border-transparent text-red-700 bg-transparent;
       &:hover {
-        @apply text-red-2;
+        @apply text-red-800;
       }
       @at-root &#{$root}--disabled {
         @apply opacity-50 cursor-not-allowed;
@@ -135,18 +135,18 @@
   }
 
   &#{$root}--warning {
-    @apply bg-yellow-8 border-yellow-8 text-white;
+    @apply bg-yellow-700 border-yellow-700 text-white;
     &:hover {
       @apply opacity-75;
     }
     @at-root &#{$root}--disabled {
-      @apply bg-yellow-8/60 border-yellow-8/60 cursor-not-allowed;
+      @apply bg-yellow-700/60 border-yellow-700/60 cursor-not-allowed;
     }
 
     @at-root &#{$root}--outlined {
-      @apply border-yellow-8 text-yellow-8 bg-transparent;
+      @apply border-yellow-700 text-yellow-700 bg-transparent;
       &:hover {
-        @apply border-y-yellow-7 text-yellow-7;
+        @apply border-yellow-800 text-yellow-800;
       }
       @at-root &#{$root}--disabled {
         @apply opacity-50 cursor-not-allowed;
@@ -154,9 +154,9 @@
     }
 
     @at-root &#{$root}--ghost {
-      @apply border-transparent text-yellow-8 bg-transparent;
+      @apply border-transparent text-yellow-700 bg-transparent;
       &:hover {
-        @apply text-yellow-2;
+        @apply text-yellow-800;
       }
       @at-root &#{$root}--disabled {
         @apply opacity-50 cursor-not-allowed;
@@ -183,7 +183,7 @@
   &--medium {
     @apply h-14;
     @at-root &#{$root}--icon {
-      @apply w-14  text-2xl;
+      @apply w-14 text-2xl;
     }
   }
   &--large {
