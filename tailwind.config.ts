@@ -16,6 +16,19 @@ module.exports = {
         montserrat: ["Montserrat", "sans-serif"],
       },
       fontSize: {
+        1: ["0.62rem", "1rem"], // 10px, 16px
+        2: ["0.75rem", "1.125rem"], // 12px, 18px
+        3: ["0.87rem", "1.375rem"], // 14px, 22px
+        4: ["1rem", "1.5rem"], // 16px, 24px
+        5: ["1.12rem", "1.75rem"], // 18px, 28px
+        6: ["1.25rem", "1.875rem"], // 20px, 30px
+        7: ["1.37rem", "2rem"], // 22px, 32px
+        8: ["1.50rem", "2.25rem"], // 24px, 36px
+        9: ["1.75rem", "2.625rem"], // 28px, 42px
+        10: ["2rem", "3rem"], // 32px, 48px
+        11: ["2.52rem", "3.75rem"], // 40px, 60px
+        12: ["3rem", "4.5rem"], // 48px, 72px
+        // Valores personalizados a eliminar
         "8px": "8px",
         "13px": "13px",
       },
@@ -23,10 +36,18 @@ module.exports = {
         100: "100",
       },
       borderRadius: {
+        // Valores nuevos
+        // none: '0rem',      // 0px
+        // xs: '0.13rem',     // 2px
+        // sm: '0.25rem',     // 4px
+        // md: '0.50rem',     // 8px
+        // lg: '1rem',        // 16px
+        // xl: '1.50rem',     // 24px
+        // '2xl': '6.25rem',  // 100px
+        // Valor antiguo a reemplazar
         xl: "10px",
       },
       colors: {
-        // Nuevo tema
         white: "#FFFFFF",
         black: "#0B0B0B",
         grey: {
@@ -66,7 +87,8 @@ module.exports = {
           800: "#121d42",
           900: "#0d1632",
         },
-        success: {
+        green: {
+          // Valores nuevos
           50: "#e6faf5",
           100: "#b0f1de",
           200: "#8aeacf",
@@ -77,8 +99,22 @@ module.exports = {
           700: "#01946b",
           800: "#017353",
           900: "#00583f",
+          // Valores antiguos a reemplazar
+          1: "#00B682",
+          2: "#00C48C",
+          3: "#01D196", // duplicado con success-500 (nuevo)
+          4: "#7CDFC5",
+          5: "#DDF2F3",
+          6: "#E8F3E6", // Utilizado como bg de toast de success
+          7: "#178406", // Utilizado como text y loading bar de toast de success
+          8: "#018B62",
+          9: "#BAF0D6",
+          10: "#00966B", // Utilizado como texto de G-Pill
+          11: "#CCF5B6", // Uilizado como bg de la pill de documento cargado en vista de summary de multitransaction
+          12: "#22600C", // Uilizado como text de la pill de documento cargado en vista de summary de multitransaction
         },
-        error: {
+        red: {
+          // Valores nuevos
           50: "#FDF1F4",
           100: "#F8CBD2",
           200: "#F5B2BD",
@@ -89,8 +125,18 @@ module.exports = {
           700: "#A63E4F",
           800: "#81303D",
           900: "#62252F",
+          // Valores antiguos a reemplazar
+          1: "#FF647C",
+          2: "#FFB1BD",
+          3: "#FFEFF2",
+          4: "#F6E6E6", // Utilizado como bg de toast de error
+          5: "#A30101", // Utilizado como text y loading bar de toast de error y en el modal de migracion a Global Card (activo solo para usuarios Chile No GLobal Card)
+          6: "#EA596F",
+          7: "#59010E", // Utilizado como bg en G-Pill de error
+          8: "#9F2336", // Utilizado como color de la pill de status en la vista de descarga de movimientos
         },
-        warning: {
+        yellow: {
+          // Valores nuevos
           50: "#FFFAEE",
           100: "#FEEECB",
           200: "#FEE6B1",
@@ -101,8 +147,19 @@ module.exports = {
           700: "#B38F3D",
           800: "#8B6F2F",
           900: "#6A5424",
+          // Valores antiguos a reemplazar
+          1: "#FFD153",
+          2: "#FCE5A9",
+          3: "#FFFAEE", // duplicado con warning-50 (nuevo) / Utilizado en el modal de alert de solicitud de datos
+          4: "#F7F3E6", // Utilizado como bg del toast de warning
+          5: "#CA9400", // Utilizado como text y loading bar de toast de warning y en el componente (deprecado) de GButtonOutlined
+          7: "#E9B72D",
+          6: "#B08A01",
+          8: "#FCBB0A",
+          9: "#5C4401", // Utilizado en el GPill de Warning
         },
-        info: {
+        blue: {
+          // Valores nuevos
           50: "#ecf0f9",
           100: "#c5d0ec",
           200: "#a9b9e3",
@@ -113,9 +170,7 @@ module.exports = {
           700: "#30488a",
           800: "#25386b",
           900: "#1c2b51",
-        },
-        // Tema antiguo
-        blue: {
+          // Valores a reemplazar
           1: "#2C4398",
           2: "#1433B4",
           3: "#2746C7",
@@ -130,15 +185,19 @@ module.exports = {
           12: "#6F75B8",
           13: "#8386C2",
           14: "#41477B",
-          15: "#203478",
+          15: "#203478", // duplicado
           16: "#D9E7F6",
           17: "#3651C3",
           18: "#1A275E",
-          19: "#343E68",
-          20: "#5F6881",
+          19: "#343E68", // duplicado con gray-1 (deprecado)
+          20: "#5F6881", // duplicado
+          21: "#282C36", // duplicado
+          22: "#343947", // duplicado con grey-800 (nuevo)
+          23: "#ECEFFC",
         },
+        // Todo el color debajo debe ser reemplazado y eliminado
         gray: {
-          1: "#343E68",
+          1: "#343E68", // duplicado con blue-19 (deprecado)
           2: "#4F5A95",
           3: "#5D6EB5",
           4: "#8B97CB",
@@ -148,10 +207,9 @@ module.exports = {
           8: "#E1E5F5",
           9: "#F4F6FE",
           10: "#F5F7FF",
-          11: "#FAFBFF",
+          11: "#FAFBFF", // duplicado con grey-25 (nuevo)
           12: "#ADADAD",
-          13: "#9194A1",
-          14: "#EAEDF8",
+          13: "#9194A1", // probablemente se use en un componente inutilizado
           15: "#BFBFBF",
           16: "#9C9C9C",
           17: "#EBEBEB",
@@ -160,51 +218,18 @@ module.exports = {
           20: "#D5DCF8",
           21: "#828AA4",
           22: "#E1E4F0",
-          23: "#7F869A",
-        },
-        green: {
-          1: "#00B682",
-          2: "#00C48C",
-          3: "#01D196",
-          4: "#7CDFC5",
-          5: "#DDF2F3",
-          6: "#E8F3E6",
-          7: "#178406",
-          8: "#018B62",
-          9: "#BAF0D6",
-          10: "#00966B",
-          11: "#CCF5B6",
-          12: "#22600C",
-        },
-        red: {
-          1: "#FF647C",
-          2: "#FFB1BD",
-          3: "#FFEFF2",
-          4: "#F6E6E6",
-          5: "#A30101",
-          6: "#EA596F",
-          7: "#59010E",
-        },
-        yellow: {
-          1: "#FFD153",
-          2: "#FCE5A9",
-          3: "#FFFAEE",
-          4: "#F7F3E6",
-          5: "#CA9400",
-          6: "#B08A01",
-          7: "#E9B72D",
-          8: "#FCBB0A",
-          9: "#5C4401",
+          23: "#7F869A", // duplicado con grey-400 (nuevo)
+          24: "#CDD0D8", // duplicado con grey-100 (nuevo)
         },
       },
       spacing: {
-        'none': "0rem",
-        'xxs': "0.75rem",
-        'xs': "0.87rem",
-        'sm': "1rem",
-        'md': "1.12rem",
-        'lg': "1.25rem",
-        'xl': "1.37rem",
+        none: "0rem",
+        xxs: "0.75rem",
+        xs: "0.87rem",
+        sm: "1rem",
+        md: "1.12rem",
+        lg: "1.25rem",
+        xl: "1.37rem",
         "2xl": "1.5rem",
         "3xl": "1.75rem",
         "4xl": "2rem",
@@ -242,16 +267,21 @@ module.exports = {
         3: "3px",
       },
       boxShadow: {
+        // Nuevos
+        sm: "0px 1px 6px 0px rgba(0, 0, 0, 0.12)",
+        md: "0px 3px 6px 0px rgba(0, 0, 0, 0.16)",
+        lg: "0px 5px 24px 0px rgba(0, 0, 0, 0.16)",
+        xl: "0px 10px 30px 0px rgba(0, 0, 0, 0.30)",
+        // Viejos
         content: "0px 2px 10px rgba(0, 0, 0, 0.04)",
         input: "0px 2px 10px rgba(0, 0, 0, 0.04)",
         input2:
           "rgb(0 0 0 / 0.05) 0px 0px 0px 1px, 0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        button: "0px 2px 10px rgba(0, 0, 0, 0.1)",
-        menu: "0px 4px 4px rgba(0, 0, 0, 0.22);",
+        button: "0px 2px 10px rgba(0, 0, 0, 0.1)", // En uso en GButtonMain (posiblemente deprecado) y modalDestinataryInvite
         radio: "0px 2px 4px rgba(0, 0, 0, 0.05)",
         customDiverter: "0px 3px 10px rgba(0, 0, 0, 0.14)",
         base: "3px 3px 5px 0px rgba(0, 28, 131, 0.15)",
-        base2: "1px 1px 5px 0px rgba(0, 28, 131, 0.15)",
+        border: "0px 0px 2px 0px rgba(0, 0, 0, 0.10)",
       },
     },
   },
