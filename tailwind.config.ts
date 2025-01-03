@@ -223,17 +223,17 @@ module.exports = {
         },
       },
       spacing: {
-        none: "0rem",
-        xxs: "0.75rem",
-        xs: "0.87rem",
-        sm: "1rem",
-        md: "1.12rem",
-        lg: "1.25rem",
-        xl: "1.37rem",
-        "2xl": "1.5rem",
-        "3xl": "1.75rem",
-        "4xl": "2rem",
-        "5xl": "2.52rem",
+        none: '0rem',
+        xxs: '0.25rem', // 4px
+        xs: '0.5rem', // 8px
+        sm: '0.75rem', // 12px
+        md: '1rem', // 16px
+        lg: '1.5rem', // 24px
+        xl: '2rem', // 32px
+        '2xl': '2.5rem', // 40px
+        '3xl': '3rem', // 48px
+        '4xl': '3.5rem', // 56px
+        '5xl': '4rem', // 64px
       },
       gap: ({ theme }) => ({ ...theme("spacing") }),
       margin: ({ theme }) => ({ ...theme("spacing") }),
