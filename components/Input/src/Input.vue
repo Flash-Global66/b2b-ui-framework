@@ -209,6 +209,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    classInput: {
+      type: String,
+      default: '',
+    },
   },
   emits: [
     /**
@@ -231,14 +235,19 @@ export default defineComponent({
     const attrs = useAttrs();
 
     const filteredAttrs = computed(() => {
-
-      const result = { ...props, ...attrs } as Record<string, unknown>;
       const excludeKeys = ['class', 'joinLeft', 'joinRight', 'shadow', 'transparent'];
-
-      excludeKeys.forEach(key => delete result[key]);
+      
+      // Creamos un nuevo objeto omitiendo las keys que no queremos
+      const result = Object.fromEntries(
+        Object.entries({ ...props, ...attrs }).filter(([key]) => !excludeKeys.includes(key))
+      );
 
       if (props.size === 'custom' || props.size === 'medium') {
         result.size = '';
+      }
+
+      if (result.classInput) {
+        result.class = props.classInput;
       }
 
       if (props.label) {
