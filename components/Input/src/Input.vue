@@ -98,7 +98,6 @@ export default defineComponent({
     },
     /**
      *  the label
-     * @deprecated use aria label
     */
     label: {
       type: String,
@@ -236,7 +235,7 @@ export default defineComponent({
 
     const filteredAttrs = computed(() => {
       const excludeKeys = ['class', 'joinLeft', 'joinRight', 'shadow', 'transparent'];
-      
+
       // Creamos un nuevo objeto omitiendo las keys que no queremos
       const result = Object.fromEntries(
         Object.entries({ ...props, ...attrs }).filter(([key]) => !excludeKeys.includes(key))
