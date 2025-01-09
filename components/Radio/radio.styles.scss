@@ -1,41 +1,39 @@
 @use "element-plus/theme-chalk/src/radio.scss" as *;
 
-.gui-radio-wrapper {
-  .gui-radio {
-    @apply mr-0 h-auto flex;
-    --radio-input-size: 18px;
-    &.gui-radio--small {
-      --radio-input-size: 14px;
-      .gui-radio__label {
-        font-size: inherit;
+.gui-radio {
+  @apply mr-0 h-auto flex bg-red-1 p-5;
+  --radio-input-size: 18px;
+  &.gui-radio--small {
+    --radio-input-size: 14px;
+    .gui-radio__label {
+      font-size: inherit;
+    }
+  }
+  &.gui-radio--large {
+    --radio-input-size: 24px;
+    .gui-radio__label {
+      font-size: inherit;
+    }
+  }
+  &.gui-radio--default {
+    .gui-radio__label {
+      font-size: inherit;
+    }
+  }
+  .gui-radio__input {
+    @apply shadow-input rounded-full;
+    .gui-radio__inner {
+      @apply border bg-transparent border-solid bg-white;
+      width: var(--radio-input-size);
+      height: var(--radio-input-size);
+      &::after {
+        @apply bg-blue-3;
+        width: calc(var(--radio-input-size) - 45%);
+        height: calc(var(--radio-input-size) - 45%);
       }
     }
-    &.gui-radio--large {
-      --radio-input-size: 24px;
-      .gui-radio__label {
-        font-size: inherit;
-      }
-    }
-    &.gui-radio--default {
-      .gui-radio__label {
-        font-size: inherit;
-      }
-    }
-    .gui-radio__input {
-      @apply shadow-input rounded-full;
-      .gui-radio__inner {
-        @apply border bg-transparent border-solid bg-white;
-        width: var(--radio-input-size);
-        height: var(--radio-input-size);
-        &::after {
-          @apply bg-blue-3;
-          width: calc(var(--radio-input-size) - 45%);
-          height: calc(var(--radio-input-size) - 45%);
-        }
-      }
-      &.is-checked {
-        @apply border-blue-3;
-      }
+    &.is-checked {
+      @apply border-blue-3;
     }
   }
 }
