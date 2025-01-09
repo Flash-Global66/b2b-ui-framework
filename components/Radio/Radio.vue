@@ -1,15 +1,13 @@
 <template>
-  <div class="gui-radio-wrapper">
-    <el-radio
-      v-bind="filteredAttrs"
-      @change="(event) => $emit('change', event)"
-    >
-      <!--
-        @slot customize default content
-      -->
-      <slot />
-    </el-radio>
-  </div>
+  <el-radio
+    v-bind="filteredAttrs"
+    @change="(event) => $emit('change', event)"
+  >
+    <!--
+      @slot customize default content
+    -->
+    <slot />
+  </el-radio>
 </template>
 
 <script lang="ts">
