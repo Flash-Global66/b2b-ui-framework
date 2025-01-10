@@ -1,7 +1,7 @@
 @use "element-plus/theme-chalk/src/radio.scss" as *;
 
 .gui-radio {
-  @apply mr-0 h-auto flex bg-red-1 p-5;
+  @apply mr-0 h-auto flex;
   --radio-input-size: 18px;
   &.gui-radio--small {
     --radio-input-size: 14px;
