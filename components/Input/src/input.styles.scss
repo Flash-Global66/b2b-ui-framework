@@ -8,11 +8,11 @@
   }
 
   .label--active {
-    @apply text-xs translate-y-0;
+    @apply text-2 translate-y-0;
   }
 
   .label--no-active {
-    @apply top-1/2 -translate-y-1/2 text-base;
+    @apply top-1/2 -translate-y-1/2 text-4;
   }
 
   .label--active {
@@ -29,7 +29,7 @@
   &.size--small {
     .label--active {
       top: 15%;
-      @apply text-xs;
+      @apply text-2;
     }
   }
   &.size--large {
@@ -40,23 +40,23 @@
   }
 
   .label__textarea--active {
-    @apply text-xs translate-y-0 top-2;
+    @apply text-2 translate-y-0 top-2;
   }
 
   .label__textarea--no-active {
-    @apply top-5 -translate-y-1/2 text-base;
+    @apply top-5 -translate-y-1/2 text-4;
   }
 
   .gui-input {
     @apply h-14;
     &--tiny {
-      @apply h-10 text-sm;
+      @apply h-10 text-3;
     }
     &--small {
-      @apply h-12 text-sm;
+      @apply h-12 text-3;
     }
     &--large {
-      @apply h-16 text-lg;
+      @apply h-16 text-5;
     }
 
     .gui-input__wrapper {
@@ -75,7 +75,7 @@
 
     .gui-input__clear,
     .gui-input__password {
-      @apply select-none text-lg;
+      @apply select-none text-5;
     }
   }
 

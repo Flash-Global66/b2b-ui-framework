@@ -14,7 +14,7 @@
 }
 
 .gui-dialog__title {
-  @apply text-gray-2 text-xl font-semibold pt-5 pb-4 pl-5 pr-14;
+  @apply text-gray-2 text-6 font-semibold pt-5 pb-4 pl-5 pr-14;
 }
 
 .gui-dialog__head-close {
@@ -24,6 +24,6 @@
 .gui-dialog__headerbtn[type=button] {
   @apply bg-gray-7 w-9 h-9 rounded-full flex justify-center items-center duration-200 hover:opacity-70;
   .gui-dialog__close {
-    @apply text-gray-6 text-2xl;
+    @apply text-gray-6 text-8;
   }
 }

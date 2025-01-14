@@ -5,7 +5,7 @@
         rounded-md
         leading-none
         duration-200
-        text-base
+        text-4
         border
         border-solid
         inline-flex
@@ -174,25 +174,25 @@
   &--tiny {
     @apply h-10;
     @at-root &#{$root}--icon {
-      @apply w-10 text-base;
+      @apply w-10 text-4;
     }
   }
   &--small {
     @apply h-12;
     @at-root &#{$root}--icon {
-      @apply w-12 text-xl;
+      @apply w-12 text-6;
     }
   }
   &--medium {
     @apply h-14;
     @at-root &#{$root}--icon {
-      @apply w-14  text-2xl;
+      @apply w-14  text-8;
     }
   }
   &--large {
     @apply h-16;
     @at-root &#{$root}--icon {
-      @apply w-16 text-3xl;
+      @apply w-16 text-9;
     }
   }
 }

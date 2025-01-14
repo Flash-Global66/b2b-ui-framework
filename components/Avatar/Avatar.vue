@@ -75,7 +75,7 @@ export default defineComponent({
       @apply h-3 w-3 left-5 bottom-0;
     }
     span {
-      @apply text-sm;
+      @apply text-3;
     }
   }
   &--default {
@@ -84,7 +84,7 @@ export default defineComponent({
       @apply h-4 w-4 left-6 bottom-0;
     }
     span {
-      @apply text-lg;
+      @apply text-5;
     }
   }
   &--large {
@@ -93,7 +93,7 @@ export default defineComponent({
       @apply h-6 w-6 left-7 -bottom-1;
     }
     span {
-      @apply text-xl;
+      @apply text-6;
     }
   }
 }

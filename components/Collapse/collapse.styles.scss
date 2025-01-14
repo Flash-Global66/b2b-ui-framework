@@ -9,11 +9,11 @@
 
   .label--active {
     top: 16%;
-    @apply text-xs translate-y-0;
+    @apply text-2 translate-y-0;
   }
 
   .label--no-active {
-    @apply top-1/2 -translate-y-1/2 text-base;
+    @apply top-1/2 -translate-y-1/2 text-4;
   }
 
   .gui-select {

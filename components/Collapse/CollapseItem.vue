@@ -66,7 +66,7 @@ const stylesHeadCustom = computed(() => {
 
 const stylesIconCustom = computed(() => {
   return [
-    props.classIcon.length ? props.classIcon : 'flex items-center text-xl',
+    props.classIcon.length ? props.classIcon : 'flex items-center text-6',
     isDisabled.value ? 'text-gray-5' : 'text-gray-3',
     { 'active-icon': visible.value },
   ]

@@ -45,7 +45,7 @@ const Template: StoryFn<typeof GMenu> = (args) => {
         <div class="w-full max-w-xs">
           <g-menu :collapse="isCollapse" class="px-4 py-5 bg-white">
             <g-menu-item index="5">
-              <font-awesome-icon class="text-xl" :icon="['fal', 'home-lg-alt']" />
+              <font-awesome-icon class="text-6" :icon="['fal', 'home-lg-alt']" />
               <template #title>
                 <h4 class="ml-3">Home</h4>
               </template>
