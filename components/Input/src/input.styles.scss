@@ -80,7 +80,7 @@
   }
 
   .gui-textarea {
-    @apply shadow-input border-none px-3 bg-white pb-4 pt-7 rounded-md;
+    @apply shadow-input border-none px-3 bg-white pb-4 pt-7 rounded-sm;
   
     .gui-textarea__inner {
       @apply relative duration-200 transition-all text-gray-2 leading-5 shadow-none p-0;

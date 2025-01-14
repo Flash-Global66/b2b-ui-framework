@@ -41,12 +41,12 @@ const Template: StoryFn<typeof GCollapse> = (args) => ({
         prevent-default
         @click-item="onClickItem"
         class="grid grid-cols-1 gap-y-6 mt-6">
-          <g-collapse-item title="Titulo 01" class="bg-gray-18 rounded-lg">
+          <g-collapse-item title="Titulo 01" class="bg-gray-18 rounded-md">
             <template #content>
               que paso
             </template>
           </g-collapse-item>
-          <g-collapse-item title="Titulo 02" class="bg-gray-18 rounded-lg">
+          <g-collapse-item title="Titulo 02" class="bg-gray-18 rounded-md">
             <template #content>
               que paso
             </template>
@@ -87,12 +87,12 @@ const TemplateSkeletonCustom: StoryFn<typeof GCollapse> = () => ({
         v-model="accordionIndex"
         @click-item="onClickItem"
         class="grid grid-cols-1 gap-y-6 mt-6">
-          <g-collapse-item title="Titulo 01" class="bg-gray-18 rounded-lg">
+          <g-collapse-item title="Titulo 01" class="bg-gray-18 rounded-md">
             <template #content>
               que paso
             </template>
           </g-collapse-item>
-          <g-collapse-item title="Titulo 02" class="bg-gray-18 rounded-lg">
+          <g-collapse-item title="Titulo 02" class="bg-gray-18 rounded-md">
             <template #content>
               que paso
             </template>

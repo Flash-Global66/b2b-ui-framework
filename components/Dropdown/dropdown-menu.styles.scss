@@ -1,5 +1,5 @@
 @use "element-plus/theme-chalk/src/dropdown-menu.scss" as *;
 
 .gui-dropdown-menu {
-  @apply shadow-md border-none rounded-md p-0;
+  @apply shadow-md border-none rounded-sm p-0;
 }
