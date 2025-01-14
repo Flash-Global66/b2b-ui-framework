@@ -31,7 +31,7 @@
       }
       &:not(.gui-select-disabled) {
         .gui-input__wrapper {
-          @apply shadow-input;
+          @apply shadow-sm;
         }
       }
     }
@@ -59,7 +59,7 @@
   &.gui-select-border-bg {
     .gui-select {
       .gui-input__wrapper {
-        @apply shadow-input2;
+        @apply shadow-sm;
       }
     }
   }

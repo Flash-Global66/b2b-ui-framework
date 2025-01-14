@@ -21,7 +21,7 @@
     }
   }
   .gui-radio__input {
-    @apply shadow-input rounded-full;
+    @apply shadow-sm rounded-full;
     .gui-radio__inner {
       @apply border bg-transparent border-solid bg-white;
       width: var(--radio-input-size);

@@ -70,7 +70,7 @@
 
 .gui-menu--popup-container {
   .gui-menu--popup {
-    @apply shadow-input;
+    @apply shadow-sm;
   }
   .gui-menu {
     @apply p-3 grid grid-cols-1 gap-3;
