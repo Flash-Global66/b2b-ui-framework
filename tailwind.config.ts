@@ -267,21 +267,10 @@ module.exports = {
         3: "3px",
       },
       boxShadow: {
-        // Nuevos
-        sm: "0px 1px 6px 0px rgba(0, 0, 0, 0.12)",
+        sm: "0px 1px 3px 0px rgba(0, 0, 0, 0.12)",
         md: "0px 3px 6px 0px rgba(0, 0, 0, 0.16)",
         lg: "0px 5px 24px 0px rgba(0, 0, 0, 0.16)",
         xl: "0px 10px 30px 0px rgba(0, 0, 0, 0.30)",
-        // Viejos
-        content: "0px 2px 10px rgba(0, 0, 0, 0.04)",
-        input: "0px 2px 10px rgba(0, 0, 0, 0.04)",
-        input2:
-          "rgb(0 0 0 / 0.05) 0px 0px 0px 1px, 0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        button: "0px 2px 10px rgba(0, 0, 0, 0.1)", // En uso en GButtonMain (posiblemente deprecado) y modalDestinataryInvite
-        radio: "0px 2px 4px rgba(0, 0, 0, 0.05)",
-        customDiverter: "0px 3px 10px rgba(0, 0, 0, 0.14)",
-        base: "3px 3px 5px 0px rgba(0, 28, 131, 0.15)",
-        border: "0px 0px 2px 0px rgba(0, 0, 0, 0.10)",
       },
     },
   },

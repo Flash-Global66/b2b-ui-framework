@@ -44,7 +44,7 @@
       }
     }
     .gui-checkbox__input {
-      @apply shadow-input;
+      @apply shadow-sm;
       .gui-checkbox__inner {
         @apply flex items-center justify-center;
         width: var(--checkbox-input-width);

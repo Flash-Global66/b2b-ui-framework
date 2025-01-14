@@ -78,7 +78,7 @@
   }
 
   &.gui-select-wrapper--shadow .gui-select__wrapper {
-    @apply shadow-input;
+    @apply shadow-sm;
   }
 
   &.gui-select-wrapper--transparent .gui-select__wrapper {
@@ -87,7 +87,7 @@
 
   &.gui-select-border-bg {
     .gui-select .gui-input__wrapper {
-      @apply shadow-input2;
+      @apply shadow-sm;
     }
 
     .gui-select__wrapper {
