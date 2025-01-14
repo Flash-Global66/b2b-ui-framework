@@ -133,7 +133,7 @@ const TemplateDisabled: StoryFn = (args, selected) => {
               {{ i }}
             </li>
           </ul>
-          <div class="text-center text-lg py-5">
+          <div class="text-center text-5 py-5">
             <p v-if="loading">Loading...</p>
             <p v-if="noMore">No more</p>
           </div>

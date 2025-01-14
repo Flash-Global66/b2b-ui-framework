@@ -16,7 +16,7 @@
 }
 
 .gui-select-dropdown__item {
-  @apply text-base h-auto py-3 font-montserrat;
+  @apply text-4 h-auto py-3 font-montserrat;
   &:hover {
     @apply bg-gray-9;
   }

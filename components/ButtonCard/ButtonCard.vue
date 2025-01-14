@@ -55,14 +55,14 @@ function onClick (event: Event) {
     >
       <slot name="image">
         <div :class="{ 'w-20 h-20 bg-gray-9 rounded-full flex justify-center items-center': iconRounded }">
-          <fa-icon class="text-blue-1 text-5xl duration-200 group-hover:text-gray-3" :icon="icon" />
+          <fa-icon class="text-blue-1 text-12 duration-200 group-hover:text-gray-3" :icon="icon" />
         </div>
       </slot>
   
       <slot name="title">
         <h4
           :class="disabled ? 'text-gray-5' : 'text-gray-2'"
-          class=" font-semibold text-xl leading-6 mb-2 text mt-5"
+          class=" font-semibold text-6 leading-6 mb-2 text mt-5"
           v-html="title"
         />
       </slot>
@@ -77,7 +77,7 @@ function onClick (event: Event) {
     <slot name="note">
       <p
         v-if="note.length"
-        class="text-center font-normal text-sm mt-4"
+        class="text-center font-normal text-3 mt-4"
         :class="disabled ? 'text-gray-4' : 'text-gray-2'"
         v-html="note"
       />
