@@ -1,7 +1,7 @@
 @use "element-plus/theme-chalk/src/drawer.scss" as *;
 
 .gui-drawer {
-  @apply shadow-content;
+  @apply shadow-sm;
 }
 
 .gui-drawer__header {

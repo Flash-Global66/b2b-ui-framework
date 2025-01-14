@@ -83,7 +83,7 @@
   }
 
   .gui-input {
-    @apply border-2 border-solid border-white h-14 w-14 md:w-16 md:h-16 rounded-lg text-center shadow-input text-8 md:text-10 font-semibold appearance-none;
+    @apply border-2 border-solid border-white h-14 w-14 md:w-16 md:h-16 rounded-lg text-center shadow-sm text-8 md:text-10 font-semibold appearance-none;
   }
 
   .gui-input-code-text-error {

@@ -4,9 +4,9 @@
 // }
 .gui-popper.is-light {
  &.is-light {
-   @apply bg-white rounded-md border-none shadow-content;
+   @apply bg-white rounded-md border-none shadow-sm;
   .gui-popper__arrow {
-    @apply shadow-content border-none;
+    @apply shadow-sm border-none;
   }
  }
 }
