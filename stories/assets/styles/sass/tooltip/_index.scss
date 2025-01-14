@@ -21,7 +21,7 @@
     --gui-color-tooltip: theme('colors.gray.15');
   }
 
-  @apply relative text-white rounded-md text-sm outline-none;
+  @apply relative text-white rounded-md text-3 outline-none;
 
   background-color: var(--gui-color-tooltip);
   transition-property: transform, visibility, opacity;

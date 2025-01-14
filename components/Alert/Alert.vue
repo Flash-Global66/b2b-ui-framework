@@ -28,13 +28,13 @@
         <h2
           v-if="alertState.title"
           v-html="alertState.title "
-          class="text-xl md:text-2xl font-semibold mb-4 text-blue-14 text-center hyphens-manual"
+          class="text-6 md:text-8 font-semibold mb-4 text-blue-14 text-center hyphens-manual"
         />
       </div>
     </template>
 
     <div
-      class="w-content text-center text-base font-medium text-blue-12 hyphens-manual"
+      class="w-content text-center text-4 font-medium text-blue-12 hyphens-manual"
       v-html="alertState.description" />
 
     <template #footer>

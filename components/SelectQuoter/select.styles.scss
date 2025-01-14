@@ -4,11 +4,11 @@
   @apply relative font-montserrat w-full;
 
   .label--active {
-    @apply text-xs translate-y-0;
+    @apply text-2 translate-y-0;
   }
 
   .label--no-active {
-    @apply top-1/2 -translate-y-1/2 text-base;
+    @apply top-1/2 -translate-y-1/2 text-4;
   }
 
   &.size--tiny .label--active {
@@ -32,19 +32,19 @@
 
   .gui-select {
     &--tiny .gui-select__wrapper {
-      @apply h-10 text-sm;
+      @apply h-10 text-3;
     }
 
     &--small .gui-select__wrapper {
-      @apply h-12 text-sm;
+      @apply h-12 text-3;
     }
 
     &--medium .gui-select__wrapper {
-      @apply h-14 text-base;
+      @apply h-14 text-4;
     }
 
     &--large .gui-select__wrapper {
-      @apply h-16 text-lg;
+      @apply h-16 text-5;
     }
 
     &:hover .gui-select__wrapper {

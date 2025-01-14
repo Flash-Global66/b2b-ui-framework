@@ -31,7 +31,7 @@
 }
 
 .gui-menu-item-group__title {
-  @apply text-sm;
+  @apply text-3;
 }
 
 .gui-menu-item-group {
@@ -90,7 +90,7 @@
 
 .gui-menu-item,
 .gui-sub-menu__title {
-  @apply h-11 rounded-xl text-base text-blue-20 font-medium pr-12;
+  @apply h-11 rounded-xl text-4 text-blue-20 font-medium pr-12;
   &.is-active,
   &:hover {
     @apply bg-gray-4/10;
@@ -105,7 +105,7 @@
     @apply h-11;
   }
   .gui-sub-menu__icon-arrow {
-    @apply text-xl -mt-2 right-3;
+    @apply text-6 -mt-2 right-3;
   }
   &.is-active {
     & > .gui-sub-menu__title {

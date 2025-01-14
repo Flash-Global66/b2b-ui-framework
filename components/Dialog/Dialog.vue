@@ -47,7 +47,7 @@
             v-if="!hideClose"
             class="gui-dialog__head-close"
             @click="propsSlot.close">
-            <fa-icon :icon="['far', 'times']" class="text-gray-4 text-xl" />
+            <fa-icon :icon="['far', 'times']" class="text-gray-4 text-6" />
           </div>
         </slot>
       </slot>
