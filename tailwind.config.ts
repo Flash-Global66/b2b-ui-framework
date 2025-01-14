@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const plugin = require("tailwindcss/plugin");
+import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 module.exports = {
   purge: {
@@ -30,6 +31,7 @@ module.exports = {
         12: ["3rem", "4.5rem"], // 48px, 72px
         // Valores personalizados a eliminar
         "8px": "8px",
+        "2xs": "10px",
         "13px": "13px",
       },
       zIndex: {
@@ -37,13 +39,13 @@ module.exports = {
       },
       borderRadius: {
         // Valores nuevos
-        none: '0rem',      // 0px
-        xs: '0.13rem',     // 2px 001
-        sm: '0.25rem',     // 4px 002
-        md: '0.50rem',     // 8px 003
-        lg: '1rem',        // 16px 004
-        xl: '1.50rem',     // 24px 005
-        '2xl': '6.25rem',  // 100px 006,
+        none: "0rem", // 0px
+        xs: "0.125rem", // 2px
+        sm: "0.25rem", // 4px
+        md: "0.50rem", // 8px
+        lg: "1rem", // 16px
+        xl: "1.50rem", // 24px
+        "2xl": "6.25rem", // 100px
       },
       colors: {
         white: "#FFFFFF",
@@ -221,17 +223,17 @@ module.exports = {
         },
       },
       spacing: {
-        none: '0rem',
-        xxs: '0.25rem', // 4px
-        xs: '0.5rem', // 8px
-        sm: '0.75rem', // 12px
-        md: '1rem', // 16px
-        lg: '1.5rem', // 24px
-        xl: '2rem', // 32px
-        '2xl': '2.5rem', // 40px
-        '3xl': '3rem', // 48px
-        '4xl': '3.5rem', // 56px
-        '5xl': '4rem', // 64px
+        none: "0rem",
+        xxs: "0.25rem", // 4px
+        xs: "0.5rem", // 8px
+        sm: "0.75rem", // 12px
+        md: "1rem", // 16px
+        lg: "1.5rem", // 24px
+        xl: "2rem", // 32px
+        "2xl": "2.5rem", // 40px
+        "3xl": "3rem", // 48px
+        "4xl": "3.5rem", // 56px
+        "5xl": "4rem", // 64px
       },
       gap: ({ theme }) => ({ ...theme("spacing") }),
       margin: ({ theme }) => ({ ...theme("spacing") }),
@@ -310,4 +312,4 @@ module.exports = {
       });
     }),
   ],
-};
+} satisfies Config;
