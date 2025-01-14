@@ -90,7 +90,7 @@
 
 .gui-menu-item,
 .gui-sub-menu__title {
-  @apply h-11 rounded-3xl text-base text-blue-20 font-medium pr-12;
+  @apply h-11 rounded-xl text-base text-blue-20 font-medium pr-12;
   &.is-active,
   &:hover {
     @apply bg-gray-4/10;

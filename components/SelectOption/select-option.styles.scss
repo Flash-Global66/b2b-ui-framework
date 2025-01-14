@@ -4,7 +4,7 @@
   &.is-light {
     
     &.gui-select__popper {
-      @apply shadow-md rounded-md;
+      @apply shadow-md rounded-sm;
       border-style: solid !important;
       @apply border border-gray-8;
     }

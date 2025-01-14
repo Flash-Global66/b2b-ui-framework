@@ -37,15 +37,13 @@ module.exports = {
       },
       borderRadius: {
         // Valores nuevos
-        // none: '0rem',      // 0px
-        // xs: '0.13rem',     // 2px
-        // sm: '0.25rem',     // 4px
-        // md: '0.50rem',     // 8px
-        // lg: '1rem',        // 16px
-        // xl: '1.50rem',     // 24px
-        // '2xl': '6.25rem',  // 100px
-        // Valor antiguo a reemplazar
-        xl: "10px",
+        none: '0rem',      // 0px
+        xs: '0.13rem',     // 2px 001
+        sm: '0.25rem',     // 4px 002
+        md: '0.50rem',     // 8px 003
+        lg: '1rem',        // 16px 004
+        xl: '1.50rem',     // 24px 005
+        '2xl': '6.25rem',  // 100px 006,
       },
       colors: {
         white: "#FFFFFF",

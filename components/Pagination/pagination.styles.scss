@@ -15,7 +15,7 @@
   .gui-pager {
     @apply gap-4;
     li {
-      @apply rounded-md border-gray-7 border-solid bg-transparent text-gray-7;
+      @apply rounded-sm border-gray-7 border-solid bg-transparent text-gray-7;
       &.is-active {
         @apply border-blue-1 text-blue-1;
       }
@@ -27,7 +27,7 @@
     }
     .gui-pager {
       li {
-        @apply rounded-md border-gray-7 border-solid bg-white text-gray-7;
+        @apply rounded-sm border-gray-7 border-solid bg-white text-gray-7;
         &.is-active {
           @apply border-blue-1 bg-blue-1;
         }

@@ -58,7 +58,7 @@ const isHideIcon = computed(() => hideIcon.value || props.hideIcon)
 
 const stylesHeadCustom = computed(() => {
   return [
-    props.classHead.length ? props.classHead : 'flex w-full justify-between border-solid border-2 border-gray-18 px-4 sm:px-6 py-3 rounded-xl flex-1 items-center',
+    props.classHead.length ? props.classHead : 'flex w-full justify-between border-solid border-2 border-gray-18 px-4 sm:px-6 py-3 rounded-md flex-1 items-center',
     !props.classHead.length && isDisabled.value ? 'bg-gray-18 text-gray-4' : 'bg-white text-gray-1 font-medium',
     isDisabled.value ? 'cursor-not-allowed select-none' : 'cursor-pointer',
   ]
