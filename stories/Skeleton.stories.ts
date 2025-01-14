@@ -56,7 +56,7 @@ const TemplateSkeletonCustom: StoryFn<typeof GSkeleton> = () => ({
     <g-config-provider>
       <g-skeleton style="width: 240px" animated>
         <template #template>
-          <g-skeleton-item variant="image" class="w-60 h-60 rounded-md" />
+          <g-skeleton-item variant="image" class="w-60 h-60 rounded-sm" />
           <g-skeleton-item class="mt-3 w-7/12" variant="p" />
           <div class="w-full flex items-center justify-between">
             <g-skeleton-item variant="text" class="mr-5" />

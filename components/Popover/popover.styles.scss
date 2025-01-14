@@ -4,7 +4,7 @@
 // }
 .gui-popper.is-light {
  &.is-light {
-   @apply bg-white rounded-lg border-none shadow-content;
+   @apply bg-white rounded-md border-none shadow-content;
   .gui-popper__arrow {
     @apply shadow-content border-none;
   }

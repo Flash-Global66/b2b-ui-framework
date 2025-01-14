@@ -62,7 +62,7 @@ const Template: StoryFn = (args, selected) => {
     },
     template: `
       <g-config-provider>
-        <div class="h-80 overflow-y-auto border-blue-3 border-solid border rounded-md py-4 px-4">
+        <div class="h-80 overflow-y-auto border-blue-3 border-solid border rounded-sm py-4 px-4">
           <ul
             v-g-infinite-scroll="load"
             class="grid grid-cols-1 gap-3"
@@ -71,7 +71,7 @@ const Template: StoryFn = (args, selected) => {
             <li
               v-for="i in count"
               :key="i"
-              class="h-12 flex justify-center items-center text-white font-semibold even:bg-gray-5 odd:bg-gray-6 rounded-md">
+              class="h-12 flex justify-center items-center text-white font-semibold even:bg-gray-5 odd:bg-gray-6 rounded-sm">
               {{ i }}
             </li>
           </ul>
@@ -120,7 +120,7 @@ const TemplateDisabled: StoryFn = (args, selected) => {
     },
     template: `
       <g-config-provider>
-        <div class="h-80 overflow-y-auto border-blue-3 border-solid border rounded-md py-4 px-4">
+        <div class="h-80 overflow-y-auto border-blue-3 border-solid border rounded-sm py-4 px-4">
           <ul
             v-g-infinite-scroll="load"
             class="grid grid-cols-1 gap-3"
@@ -129,7 +129,7 @@ const TemplateDisabled: StoryFn = (args, selected) => {
             <li
               v-for="i in count"
               :key="i"
-              class="h-12 flex justify-center items-center text-white font-semibold even:bg-gray-5 odd:bg-gray-6 rounded-md">
+              class="h-12 flex justify-center items-center text-white font-semibold even:bg-gray-5 odd:bg-gray-6 rounded-sm">
               {{ i }}
             </li>
           </ul>

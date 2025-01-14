@@ -7,7 +7,7 @@
 <template>
   <g-dialog
     :model-value="alertState.showAlert"
-    class="max-w-[504px] w-full rounded-2xl flex flex-col items-center pt-14 pb-8"
+    class="max-w-[504px] w-full rounded-lg flex flex-col items-center pt-14 pb-8"
     @close="closeAlert"
   >
     <template #head-title class="">

@@ -91,7 +91,7 @@ function onClick (event: Event) {
 }
 
 .card {
-  @apply rounded-xl flex flex-col justify-center items-center border-[1px] duration-200;
+  @apply rounded-md flex flex-col justify-center items-center border-[1px] duration-200;
 }
 
 .card-disabled {
