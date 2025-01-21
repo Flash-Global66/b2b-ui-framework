@@ -51,6 +51,7 @@ module.exports = {
         white: "#FFFFFF",
         black: "#0B0B0B",
         grey: {
+          // Nuevos
           25: "#FAFBFF",
           50: "#EFF0F2",
           100: "#CDD0D8",
@@ -64,6 +65,7 @@ module.exports = {
           900: "#282C36",
         },
         everBlue: {
+          // Nuevos
           50: "#e9edf8",
           100: "#bac7e8",
           200: "#98abdd",
@@ -76,6 +78,7 @@ module.exports = {
           900: "#0d1f4c",
         },
         nightBlue: {
+          // Nuevos
           50: "#e9ebf2",
           100: "#bac0d5",
           200: "#98a2c1",
@@ -88,7 +91,7 @@ module.exports = {
           900: "#0d1632",
         },
         green: {
-          // Valores nuevos
+          // Nuevos
           50: "#e6faf5",
           100: "#b0f1de",
           200: "#8aeacf",
@@ -99,7 +102,7 @@ module.exports = {
           700: "#01946b",
           800: "#017353",
           900: "#00583f",
-          // Valores antiguos a reemplazar
+          // Viejos
           1: "#00B682",
           2: "#00C48C",
           3: "#01D196", // duplicado con success-500 (nuevo)
@@ -114,7 +117,7 @@ module.exports = {
           12: "#22600C", // Uilizado como text de la pill de documento cargado en vista de summary de multitransaction
         },
         red: {
-          // Valores nuevos
+          // Nuevos
           50: "#FDF1F4",
           100: "#F8CBD2",
           200: "#F5B2BD",
@@ -125,7 +128,7 @@ module.exports = {
           700: "#A63E4F",
           800: "#81303D",
           900: "#62252F",
-          // Valores antiguos a reemplazar
+          // Viejos
           1: "#FF647C",
           2: "#FFB1BD",
           3: "#FFEFF2",
@@ -136,7 +139,7 @@ module.exports = {
           8: "#9F2336", // Utilizado como color de la pill de status en la vista de descarga de movimientos
         },
         yellow: {
-          // Valores nuevos
+          // Nuevos
           50: "#FFFAEE",
           100: "#FEEECB",
           200: "#FEE6B1",
@@ -147,7 +150,7 @@ module.exports = {
           700: "#B38F3D",
           800: "#8B6F2F",
           900: "#6A5424",
-          // Valores antiguos a reemplazar
+          // Viejos
           1: "#FFD153",
           2: "#FCE5A9",
           3: "#FFFAEE", // duplicado con warning-50 (nuevo) / Utilizado en el modal de alert de solicitud de datos
@@ -159,7 +162,7 @@ module.exports = {
           9: "#5C4401", // Utilizado en el GPill de Warning
         },
         blue: {
-          // Valores nuevos
+          // Nuevos
           50: "#ecf0f9",
           100: "#c5d0ec",
           200: "#a9b9e3",
@@ -170,7 +173,7 @@ module.exports = {
           700: "#30488a",
           800: "#25386b",
           900: "#1c2b51",
-          // Valores a reemplazar
+          // Viejos
           1: "#2C4398",
           2: "#1433B4",
           3: "#2746C7",
@@ -197,6 +200,7 @@ module.exports = {
         },
         // Todo el color debajo debe ser reemplazado y eliminado
         gray: {
+          // Viejos
           1: "#343E68", // duplicado con blue-19 (deprecado)
           2: "#4F5A95",
           3: "#5D6EB5",
