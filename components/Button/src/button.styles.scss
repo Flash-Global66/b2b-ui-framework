@@ -18,7 +18,7 @@
   }
 
   &#{$root}--info {
-    @apply text-gray-2 border-white bg-white;
+    @apply text-nightBlue-500 border-white bg-white;
     &:hover {
       @apply opacity-75;
     }
@@ -27,19 +27,19 @@
     }
 
     @at-root &#{$root}--outlined {
-      @apply border-gray-2 text-gray-2 bg-transparent;
+      @apply border-nightBlue-500 text-nightBlue-500 bg-transparent;
       &:hover {
         @apply opacity-75;
       }
       @at-root &#{$root}--disabled {
-        @apply text-gray-2/80 cursor-not-allowed;
+        @apply text-nightBlue-500/80 cursor-not-allowed;
       }
     }
 
     @at-root &#{$root}--ghost {
-      @apply border-transparent text-gray-2 bg-transparent;
+      @apply border-transparent text-nightBlue-500 bg-transparent;
       @at-root &#{$root}--disabled {
-        @apply text-gray-2/80 cursor-not-allowed;
+        @apply text-nightBlue-500/80 cursor-not-allowed;
       }
     }
   }
@@ -50,7 +50,7 @@
       @apply bg-nightBlue-600;
     }
     @at-root &#{$root}--disabled {
-      @apply bg-gray-50 border-gray-50 cursor-not-allowed text-everBlue-200;
+      @apply bg-grey-50 border-gray-50 cursor-not-allowed text-grey-500;
     }
 
     @at-root &#{$root}--outlined {
@@ -59,7 +59,7 @@
         @apply border-nightBlue-600;
       }
       @at-root &#{$root}--disabled {
-        @apply border-gray-50 cursor-not-allowed text-everBlue-100;
+        @apply border-gray-200 cursor-not-allowed text-grey-300;
       }
     }
 
@@ -69,7 +69,7 @@
         @apply text-nightBlue-600;
       }
       @at-root &#{$root}--disabled {
-        @apply text-gray-50 cursor-not-allowed text-everBlue-100;
+        @apply cursor-not-allowed text-grey-300;
       }
     }
   }
@@ -80,7 +80,7 @@
       @apply bg-green-800;
     }
     @at-root &#{$root}--disabled {
-      @apply bg-green-50 border-green-50 text-green-200 cursor-not-allowed;
+      @apply bg-grey-50 border-gray-50 cursor-not-allowed text-grey-500;
     }
 
     @at-root &#{$root}--outlined {
@@ -110,7 +110,7 @@
       @apply opacity-75;
     }
     @at-root &#{$root}--disabled {
-      @apply bg-red-700/60 border-red-700/60 cursor-not-allowed;
+      @apply bg-grey-50 border-gray-50 cursor-not-allowed text-grey-500;
     }
 
     @at-root &#{$root}--outlined {
