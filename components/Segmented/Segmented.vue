@@ -46,9 +46,9 @@ import {
 } from "element-plus";
 import { computed, defineComponent, PropType, reactive, ref, watch } from "vue";
 import { Option } from "./segmented.type";
-import { debugWarn, isObject } from "@element-plus/utils";
 import { useActiveElement, useResizeObserver } from "@vueuse/core";
 import { segmentedEmits, segmentedProps } from "./segmented";
+import { isObject } from "element-plus/es/utils/types.mjs";
 
 const props = defineProps(segmentedProps)
 const emit = defineEmits(segmentedEmits)

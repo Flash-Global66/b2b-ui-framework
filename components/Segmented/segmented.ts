@@ -2,18 +2,13 @@ import type { Option } from "./segmented.type";
 import type { ExtractPropTypes } from "vue";
 import type Segmented from "./Segmented.vue";
 import {
-  buildProps,
-  definePropType,
-  isBoolean,
-  isNumber,
-  isString,
-} from "@element-plus/utils";
-import {
   CHANGE_EVENT,
   UPDATE_MODEL_EVENT,
   useAriaProps,
   useSizeProp,
 } from "element-plus";
+import { buildProps, definePropType, isBoolean, isNumber, isString } from "element-plus/es/utils/index.mjs";
+// import { buildProps, definePropType, isBoolean, isNumber, isString } from "element-plus/lib/utils/index";
 
 export const segmentedProps = buildProps({
   direction: {
