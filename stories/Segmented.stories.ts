@@ -19,7 +19,21 @@ const meta: Meta<typeof GSegmented> = {
       description: 'Opciones del segmentado',
       control: 'object',
       table: {
-        type: { summary: 'Option[]' }
+        type: {
+          summary: 'Option[]',
+          detail: `
+            type Option =
+              | {
+                  label: string
+                  value: string | number | boolean
+                  disabled?: boolean
+                  [key: string]: any
+                }
+              | string
+              | number
+              | boolean
+          ` 
+        },
       }
     },
     modelValue: {
@@ -106,8 +120,8 @@ const meta: Meta<typeof GSegmented> = {
   },
   args: {
     options: [
-      { label: 'Persona', value: 'person' },
-      { label: 'Empresa', value: 'company' },
+      { label: 'Persona', value: 'person', disabled: false },
+      { label: 'Empresa', value: 'company', disabled: false },
     ],
     block: false,
     size: 'default',
@@ -139,4 +153,101 @@ export const Primary: Story = {
     `,
   }),
   args: {},
+};
+
+export const Disabled: Story = {
+  render: (args) => ({
+    components: { GSegmented, GConfigProvider },
+    setup() {
+      const value = ref('person')
+      return { 
+        value,
+        options: [
+          { label: 'Persona', value: 'person' },
+          { label: 'Empresa', value: 'company', disabled: true },
+          { label: 'Grupo', value: 'group' },
+          { label: 'Global66', value: 'global66' },
+          { label: 'Transferencias', value: 'transfers' },
+        ]
+      };
+    },
+    template: `
+      <div class="space-y-4">
+        <g-config-provider>
+          <g-segmented
+            v-model="value"
+            :options="options"
+            disabled
+          />
+          <div class="my-4" />
+          <g-segmented
+            v-model="value"
+            :options="options"
+          />
+        </g-config-provider>
+      </div>
+    `,
+  }),
+};
+
+
+export const Block: Story = {
+  render: (args) => ({
+    components: { GSegmented, GConfigProvider },
+    setup() {
+      const value = ref('person')
+      return { 
+        value,
+        options: [
+          { label: 'Persona', value: 'person' },
+          { label: 'Empresa', value: 'company' },
+          { label: 'Grupo', value: 'group' },
+        ]
+      };
+    },
+    template: `
+      <g-config-provider>
+        <div class="w-full">
+          <g-segmented
+            v-model="value"
+            :options="options"
+            block
+          />
+        </div>
+      </g-config-provider>
+    `,
+  }),
+};
+
+export const CustomContent: Story = {
+  render: (args) => ({
+    components: { GSegmented, GConfigProvider },
+    setup() {
+      const value = ref('fruits')
+      return { 
+        value,
+        options: [
+          { label: 'Frutas', value: 'fruits', emoji: '🍎' },
+          { label: 'Vegetales', value: 'vegetables', emoji: '🥕' },
+          { label: 'Postres', value: 'desserts', emoji: '🍰' },
+          { label: 'Bebidas', value: 'drinks', emoji: '🍹' },
+        ]
+      };
+    },
+    template: `
+      <g-config-provider>
+        <g-segmented
+          v-model="value"
+          :options="options"
+        >
+          <template #default="{ item }">
+            <div class="flex flex-col items-center gap-2 p-2">
+              <span style="font-size: 24px">{{ item.emoji }}</span>
+              <div>{{ item.label }}</div>
+            </div>
+          </template>
+        </g-segmented>
+      </g-config-provider>
+    `,
+  }),
 };
