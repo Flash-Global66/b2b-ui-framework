@@ -17,6 +17,21 @@
       .gui-segmented__item-label {
         @apply font-medium text-everBlue-900;
       }
+      &.is-disabled {
+        .gui-segmented__item-label {
+          @apply text-grey-200;
+        }
+      }
+    }
+
+    &.is-disabled {
+      @apply text-grey-200;
+    }
+
+    &-selected {
+      &.is-disabled {
+        @apply bg-grey-50 border-grey-50;
+      }
     }
   }
 
@@ -26,5 +41,26 @@
 
   &__item-selected {
     @apply bg-white border-everBlue-100 border rounded-md;
+  }
+
+  &--large {
+    .gui-segmented {
+      &__item {
+        @apply px-4 py-5;
+      }
+      &__item-selected {
+        @apply rounded-md;
+      }
+    }
+  }
+  &--small {
+    .gui-segmented {
+      &__item {
+        @apply px-4 py-2;
+      }
+      &__item-selected {
+        @apply rounded-md;
+      }
+    }
   }
 }
