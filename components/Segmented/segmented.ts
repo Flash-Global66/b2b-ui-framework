@@ -10,10 +10,6 @@ import {
 import { buildProps, definePropType, isBoolean, isNumber, isString } from "element-plus/es/utils/index.mjs";
 
 export const segmentedProps = buildProps({
-  direction: {
-    type: definePropType<"vertical" | "horizontal">(String),
-    default: "horizontal",
-  },
   /**
    * @description options of segmented
    */
