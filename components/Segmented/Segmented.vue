@@ -8,7 +8,7 @@
     :aria-label="!isLabeledByFormItem ? ariaLabel || 'segmented' : undefined"
     :aria-labelledby="isLabeledByFormItem ? formItem!.labelId : undefined"
   >
-    <div :class="[ns.e('group'), ns.m(props.direction)]">
+    <div :class="[ns.e('group')]">
       <div :style="selectedStyle" :class="selectedCls" />
       <label
         v-for="(item, index) in options"
@@ -50,6 +50,7 @@ import { Option } from "./segmented.type";
 import { useActiveElement, useResizeObserver } from "@vueuse/core";
 import { segmentedEmits, segmentedProps } from "./segmented";
 import { isObject } from "element-plus/es/utils/types.mjs";
+import { debugWarn } from "element-plus/es/utils/index.mjs";;
 
 const props = defineProps(segmentedProps)
 const emit = defineEmits(segmentedEmits)
@@ -127,13 +128,8 @@ const updateSelect = () => {
   }
   const rect = selectedItem.getBoundingClientRect()
   state.isInit = true
-  if (props.direction === 'vertical') {
-    state.height = rect.height
-    state.translateY = selectedItem.offsetTop
-  } else {
-    state.width = rect.width
-    state.translateX = selectedItem.offsetLeft
-  }
+  state.width = rect.width
+  state.translateX = selectedItem.offsetLeft
   try {
     // This will failed in test
     state.focusVisible = selectedItemInput.matches(':focus-visible')
@@ -147,12 +143,9 @@ const segmentedCls = computed(() => [
 ])
 
 const selectedStyle = computed(() => ({
-  width: props.direction === 'vertical' ? '100%' : `${state.width}px`,
-  height: props.direction === 'vertical' ? `${state.height}px` : '100%',
-  transform:
-    props.direction === 'vertical'
-      ? `translateY(${state.translateY}px)`
-      : `translateX(${state.translateX}px)`,
+  width: `${state.width}px`,
+  height: '100%',
+  transform: `translateX(${state.translateX}px)`,
   display: state.isInit ? 'block' : 'none',
 }))
 

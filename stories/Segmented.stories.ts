@@ -15,15 +15,6 @@ const meta: Meta<typeof GSegmented> = {
     }
   },
   argTypes: {
-    direction: {
-      description: 'Dirección del componente segmentado',
-      control: 'select',
-      options: ['vertical', 'horizontal'],
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'horizontal' }
-      }
-    },
     options: {
       description: 'Opciones del segmentado',
       control: 'object',
