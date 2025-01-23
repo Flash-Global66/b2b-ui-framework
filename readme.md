@@ -91,6 +91,20 @@ yarn install
 yarn storybook
 ```
 
+## 🚧 Posibles Errores de Instalación y Soluciones
+Si encuentras problemas durante la instalación, no te preocupes, aquí tienes una lista de los errores más comunes y cómo solucionarlos:
+
+#### 🛑 Error 1: "Error de addon controls con storybook" (Error de instalación)
+Este error ocurre porque se encuentran problemas con el yarn.lock
+
+<p align="center">
+  <img src="https://i.imgur.com/xXiiq6d.png" alt="Descripción de la imagen" />
+</p>
+
+#### Solución:
+
+La solución es borrar el archivo yarn.lock del proyecto y volver a correr los pasos de las sección de Instalación y Uso del Proyecto.
+
 ## 🚀 Contribuidores
 
 Agradecemos enormemente el esfuerzo y dedicación de todas las personas que han contribuido a este proyecto. 💖 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
