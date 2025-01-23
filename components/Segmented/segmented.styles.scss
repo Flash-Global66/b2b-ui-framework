@@ -1,1 +1,30 @@
 @use "element-plus/theme-chalk/src/segmented.scss" as *;
+
+.gui-segmented {
+  @apply bg-blue-50 p-2 rounded-md;
+
+  &__item {
+    @apply text-nightBlue-900 p-4 font-normal transition-all duration-200 rounded-md;
+
+    &:not(.is-disabled):not(.is-selected):hover {
+      @apply bg-transparent;
+      .gui-segmented__item-label {
+        @apply font-medium;
+      }
+    }
+    
+    &.is-selected {
+      .gui-segmented__item-label {
+        @apply font-medium text-everBlue-900;
+      }
+    }
+  }
+
+  &__item-label {
+    @apply text-4;
+  }
+
+  &__item-selected {
+    @apply bg-white border-everBlue-100 border rounded-md;
+  }
+}
