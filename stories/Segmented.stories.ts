@@ -156,6 +156,13 @@ export const Primary: Story = {
 };
 
 export const Disabled: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Permite deshabilitar el componente completo o opciones individuales cuando ciertas selecciones no deben estar disponibles.'
+      }
+    }
+  },
   render: (args) => ({
     components: { GSegmented, GConfigProvider },
     setup() {
@@ -192,6 +199,13 @@ export const Disabled: Story = {
 
 
 export const Block: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Extiende el componente para ocupar el ancho completo del contenedor padre, útil para mantener alineación con otros elementos.'
+      }
+    }
+  },
   render: (args) => ({
     components: { GSegmented, GConfigProvider },
     setup() {
@@ -220,6 +234,13 @@ export const Block: Story = {
 };
 
 export const CustomContent: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Permite personalizar el contenido de cada opción usando el slot default. El slot recibe un scope con la propiedad item que contiene toda la información de la opción actual.'
+      }
+    }
+  },
   render: (args) => ({
     components: { GSegmented, GConfigProvider },
     setup() {
