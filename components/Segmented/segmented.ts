@@ -10,6 +10,10 @@ import {
 import { buildProps, definePropType, isBoolean, isNumber, isString } from "element-plus/es/utils/index.mjs";
 
 export const segmentedProps = buildProps({
+  classItem: {
+    type: String,
+    default: "",
+  },
   /**
    * @description options of segmented
    */
