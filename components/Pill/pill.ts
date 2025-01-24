@@ -2,13 +2,7 @@ import type { ExtractPropTypes } from 'vue'
 
 import type Pill from './Pill.vue'
 
-import {
-  buildProps,
-  definePropType,
-  isBoolean,
-  isNumber,
-  isString
-} from "element-plus/es/utils/index.mjs";
+import { buildProps } from "element-plus/es/utils/index.mjs";
 import { componentSizes } from 'element-plus';
 
 
