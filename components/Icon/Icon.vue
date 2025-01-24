@@ -6,29 +6,17 @@ export default { name: 'IconCustom' };
 import { Icomoon } from "vue-icomoon";
 import iconSet from "./selection.json";
 import { PropType } from "vue";
+import { iconProps } from "./icon";
 
-const props = defineProps({
-  name: {
-    type: String,
-    required: true,
-  },
-  size: {
-    type: String as PropType<string | number>,
-    default: "1em",
-  },
-  color: String,
-  style: Object,
-  title: String,
-  class: {
-    type: [String, Object, Array] as PropType<string | Record<string, boolean> | Array<string | Record<string, boolean>>>,
-    default: "",
-  },
-  disableFill: Boolean,
-  removeInitialStyle: Boolean,
-});
+const props = defineProps(iconProps);
 
 </script>
 
 <template>
-  <icomoon v-if="name" :iconSet="iconSet" v-bind="{ ...props }" />
+  <icomoon
+    v-if="name && iconSet.preferences"
+    :iconSet="iconSet"
+    :aria-label="`icono ${name}`"
+    v-bind="{ ...props }"
+  />
 </template>
