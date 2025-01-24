@@ -1,18 +1,18 @@
 import type { ExtractPropTypes } from 'vue'
 
-import type Pill from './Pill.vue'
+import type Tag from './Tag.vue'
 
 import { buildProps } from "element-plus/es/utils/index.mjs";
 import { componentSizes } from 'element-plus';
 
 
-export const pillProps = buildProps({
+export const tagProps = buildProps({
   text: {
     type: String,
     default: '',
   },
   /**
-   * @description type of Pill
+   * @description type of Tag
    */
   type: {
     type: String,
@@ -20,7 +20,7 @@ export const pillProps = buildProps({
     default: 'primary',
   },
   /**
-   * @description whether Pill can be removed
+   * @description whether Tag can be removed
    */
   closable: Boolean,
   /**
@@ -28,22 +28,22 @@ export const pillProps = buildProps({
    */
   disableTransitions: Boolean,
   /**
-   * @description whether Pill has a highlighted border
+   * @description whether Tag has a highlighted border
    */
   hit: Boolean,
   /**
-   * @description background color of the Pill
+   * @description background color of the Tag
    */
   color: String,
   /**
-   * @description size of Pill
+   * @description size of Tag
    */
   size: {
     type: String,
     values: componentSizes,
   },
   /**
-   * @description theme of Pill
+   * @description theme of Tag
    */
   effect: {
     type: String,
@@ -51,19 +51,19 @@ export const pillProps = buildProps({
     default: 'light',
   },
   /**
-   * @description whether Pill is rounded
+   * @description whether Tag is rounded
    */
   round: {
     type: Boolean,
     default: true,
   },
 } as const)
-export type PillProps = ExtractPropTypes<typeof pillProps>
+export type TagProps = ExtractPropTypes<typeof tagProps>
 
-export const pillEmits = {
+export const tagEmits = {
   close: (evt: MouseEvent) => evt instanceof MouseEvent,
   click: (evt: MouseEvent) => evt instanceof MouseEvent,
 }
-export type PillEmits = typeof pillEmits
+export type TagEmits = typeof tagEmits
 
-export type PillInstance = InstanceType<typeof Pill>
+export type TagInstance = InstanceType<typeof Tag>
