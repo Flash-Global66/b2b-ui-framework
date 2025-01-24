@@ -4,13 +4,17 @@
   "version": "0.0.17",
   "license": "MIT",
   "exports": {
-    ".": "./index.ts",
-    "./*": "./*"
+    "./tag.styles.scss": "./tag.styles.scss",
+    "./*": "./*",
+    ".": "./index.ts"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
+  },
+  "dependencies": {
+    "@flash-global66/b2b-ui-icon": "^0.0.2"
   }
 }

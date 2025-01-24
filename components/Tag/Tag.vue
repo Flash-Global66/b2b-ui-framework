@@ -1,69 +1,85 @@
 <template>
-  <el-tag
-    v-bind="{ ...$attrs, ...$props }"
-    @click="$emit('click')"
-    @close="$emit('close')"
+  <span
+    v-if="disableTransitions"
+    :class="containerKls"
+    :style="{ backgroundColor: color }"
+    @click="handleClick"
   >
-    <!--
-      @slot customize default content
-    -->
-    <slot />
-  </el-tag>
+    <span :class="ns.e('content')">
+      <slot>
+        {{ text }}
+      </slot>
+    </span>
+    <div v-if="closable" :class="ns.e('close')" @click.stop="handleClose">
+      <icon name="cross" />
+    </div>
+  </span>
+  <transition
+    v-else
+    :name="`${ns.namespace.value}-zoom-in-center`"
+    appear
+    @vue:mounted="handleVNodeMounted"
+  >
+    <span
+      :class="containerKls"
+      :style="{ backgroundColor: color }"
+      @click="handleClick"
+    >
+      <span :class="ns.e('content')">
+        <slot>
+          {{ text }}
+        </slot>
+      </span>
+      <div v-if="closable" :class="ns.e('close')" @click.stop="handleClose">
+        <icon name="cross" />
+      </div>
+    </span>
+  </transition>
 </template>
 
-<script lang='ts'>
-import { defineComponent } from 'vue';
-import { ElTag, componentSizes } from 'element-plus';
+<script lang="ts" setup>
+import { computed } from 'vue'
 
-export default defineComponent({
-  name: 'GTag',
-  components: {
-    ElTag,
-  },
-  props: {
-  /**
-   * @description type of Tag
-   */
-   type: {
-    type: String,
-    values: ['success', 'info', 'warning', 'danger', ''],
-    default: '',
-  },
-  /**
-   * @description whether Tag can be removed
-   */
-  closable: Boolean,
-  /**
-   * @description whether to disable animations
-   */
-  disableTransitions: Boolean,
-  /**
-   * @description whether Tag has a highlighted border
-   */
-  hit: Boolean,
-  /**
-   * @description background color of the Tag
-   */
-  color: {
-    type: String,
-    default: '',
-  },
-  /**
-   * @description size of Tag
-   */
-  size: {
-    type: String,
-    values: componentSizes,
-    default: '',
-  },
-  /**
-   * @description whether Tag is rounded
-   */
-  round: Boolean,
-  },
-  setup: () => {
-    
-    return;
-  },
-});
+import { tagEmits, tagProps } from './tag'
+import type { VNode } from 'vue'
+import { useFormSize, useNamespace } from 'element-plus'
+import { Icon } from '@flash-global66/b2b-ui-icon'
+
+defineOptions({
+  name: 'Tag',
+})
+const props = defineProps(tagProps)
+const emit = defineEmits(tagEmits)
+
+const tagSize = useFormSize()
+const ns = useNamespace('tag')
+const containerKls = computed(() => {
+  const { type, hit, effect, closable, round } = props
+  return [
+    ns.b(),
+    ns.is('closable', closable),
+    ns.m(type || 'primary'),
+    ns.m(tagSize.value),
+    ns.m(effect),
+    ns.is('hit', hit),
+    ns.is('round', round),
+  ]
+})
+
+// methods
+const handleClose = (event: MouseEvent) => {
+  emit('close', event)
+}
+
+const handleClick = (event: MouseEvent) => {
+  emit('click', event)
+}
+
+const handleVNodeMounted = (vnode: VNode) => {
+  // @ts-ignore
+  if (vnode?.component?.subTree?.component?.bum) {
+    // @ts-ignore
+    vnode.component.subTree.component.bum = null
+  }
+}
 </script>
