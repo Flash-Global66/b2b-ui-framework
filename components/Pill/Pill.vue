@@ -43,6 +43,7 @@ import { computed } from 'vue'
 import { pillEmits, pillProps } from './pill'
 import type { VNode } from 'vue'
 import { useFormSize, useNamespace } from 'element-plus'
+import { Icon } from '@flash-global66/b2b-ui-icon'
 
 defineOptions({
   name: 'Pill',
