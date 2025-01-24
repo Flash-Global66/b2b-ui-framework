@@ -420,23 +420,6 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.24.2.tgz#34aa0b52d0fbb1a654b596acfa595f0c7b77a77b"
   integrity sha512-7VTgWzgMGvup6aSqDPLiW5zHaxYJGTO4OokMjIlrCtf+VpEL+cXKtCvg723iguPYI5oaUNdS+/V7OU2gvXVWEg==
 
-"@flash-global66/b2b-ui-button@^0.0.12":
-  version "0.0.12"
-  resolved "https://npm.pkg.github.com/download/@Flash-Global66/b2b-ui-button/0.0.12/4b31ba142f9ba16fcb8211ecb189567d8675c01c#4b31ba142f9ba16fcb8211ecb189567d8675c01c"
-  integrity sha512-pB3iCIxPGYzATLOvi6FMmouqWqSmhGcClATETGAfSRj8keSFiE+Vj2CfihSWqXWMRtN3kCt9yKqee7jkNE1SUg==
-
-"@flash-global66/b2b-ui-config-element@^0.0.14":
-  version "0.0.14"
-  resolved "https://npm.pkg.github.com/download/@Flash-Global66/b2b-ui-config-element/0.0.14/cb572f2caefb2b72bdb9142d3f41bedc1c751091#cb572f2caefb2b72bdb9142d3f41bedc1c751091"
-  integrity sha512-tpEPsQo6DvmggBxgbB0/5eoZxgEkQ7sF63xIks1eqpHsZQsFFFTMepwyfR1lC7rSsk1ICfQhNDNBpRYCJ77JDA==
-  dependencies:
-    element-plus "^2.2.26"
-
-"@flash-global66/b2b-ui-dialog@^0.0.6":
-  version "0.0.6"
-  resolved "https://npm.pkg.github.com/download/@flash-global66/b2b-ui-dialog/0.0.6/2a18492a3c7cf3b3ff6ab27289e1164299352b41#2a18492a3c7cf3b3ff6ab27289e1164299352b41"
-  integrity sha512-EFgQbBJLOK3fNzXxmIHy296gzl53NMe3qPyWpEzyNV3qsM63PSsOEFDYi5T6LDgd1MAF0xZM9Pq8FS0zHhNA8g==
-
 "@floating-ui/core@^1.6.0":
   version "1.6.9"
   resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.6.9.tgz#64d1da251433019dafa091de9b2886ff35ec14e6"
@@ -3235,7 +3218,7 @@ electron-to-chromium@^1.5.73:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.87.tgz#3a89bec85e43a8b32445ec938228e4ec982e0f79"
   integrity sha512-mPFwmEWmRivw2F8x3w3l2m6htAUN97Gy0kwpO++2m9iT1Gt8RCFVUfv9U/sIbHJ6rY4P6/ooqFL/eL7ock+pPg==
 
-element-plus@^2.2.26, element-plus@^2.8.4:
+element-plus@^2.8.4:
   version "2.9.3"
   resolved "https://registry.yarnpkg.com/element-plus/-/element-plus-2.9.3.tgz#9d44f9aa5a810009490ecb814052aed560d77bb0"
   integrity sha512-6tSLp5XytDS4TMZ0P3aGZnr7MXTagfNycepNfIDitd9IgwM9y01+Ssu6mglNi8RiXYhek6LBWNOd/cvpIO12+w==
@@ -7444,6 +7427,11 @@ vue-docgen-api@^4.75.1:
     recast "^0.23.1"
     ts-map "^1.0.3"
     vue-inbrowser-compiler-independent-utils "^4.69.0"
+
+vue-icomoon@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/vue-icomoon/-/vue-icomoon-0.6.1.tgz#b3d117b91ac32fa731ca347ec41eefa76da0abf1"
+  integrity sha512-yuLGsIm0WaKb7LO997xn93zX1NtNk4TRVhyBqd4MwchlrP7l3MUIYIBuD9ykYjBdN4AAHQ4I6sq5DPdlEttIxA==
 
 vue-inbrowser-compiler-independent-utils@^4.69.0:
   version "4.71.1"
