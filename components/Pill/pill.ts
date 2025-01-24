@@ -53,7 +53,10 @@ export const pillProps = buildProps({
   /**
    * @description whether Pill is rounded
    */
-  round: Boolean,
+  round: {
+    type: Boolean,
+    default: true,
+  },
 } as const)
 export type PillProps = ExtractPropTypes<typeof pillProps>
 

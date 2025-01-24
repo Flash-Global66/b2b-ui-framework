@@ -55,7 +55,7 @@ const meta: Meta<typeof GPill> = {
       control: "boolean",
       table: {
         type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
+        defaultValue: { summary: "true" },
       },
     },
     color: {
@@ -96,6 +96,9 @@ const meta: Meta<typeof GPill> = {
       },
     },
   },
+  args: {
+    round: true,
+  }
 };
 
 export default meta;
