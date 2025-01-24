@@ -11,7 +11,7 @@
       </slot>
     </span>
     <div v-if="closable" :class="ns.e('close')" @click.stop="handleClose">
-      <icon name="icon-cross" />
+      <icon name="cross" />
     </div>
   </span>
   <transition
@@ -31,7 +31,7 @@
         </slot>
       </span>
       <div v-if="closable" :class="ns.e('close')" @click.stop="handleClose">
-        <icon name="icon-cross" />
+        <icon name="cross" />
       </div>
     </span>
   </transition>
