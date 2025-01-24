@@ -1,6 +1,5 @@
 import type { StorybookConfig } from '@storybook/vue3-vite';
 import { mergeConfig } from 'vite';
-import { resolve } from 'path';
 
 const config: StorybookConfig = {
   framework: {
