@@ -5,7 +5,8 @@
   "license": "MIT",
   "exports": {
     "./pill.styles.scss": "./pill.styles.scss",
-    "./*": "./*"
+    "./*": "./*",
+    ".": "./index.ts"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
