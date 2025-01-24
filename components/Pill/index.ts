@@ -1,4 +1,4 @@
-import Pill from "./Pill.vue";
-import { PillType } from "./types/pill.types";
+import GPill from "./Pill.vue";
+export * from './pill';
 
-export {Pill, PillType};
+export { GPill};
