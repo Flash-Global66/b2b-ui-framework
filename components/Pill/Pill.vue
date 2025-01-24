@@ -1,38 +1,83 @@
 <template>
-  <div
-    class="text-[11px] text-white text-center rounded-full px-4"
-    :class="backgroundClass"
+  <span
+    v-if="disableTransitions"
+    :class="containerKls"
+    :style="{ backgroundColor: color }"
+    @click="handleClick"
   >
-    {{text}}
-  </div>
+    <span :class="ns.e('content')">
+      <slot>
+        {{ text }}
+      </slot>
+    </span>
+    X
+  </span>
+  <transition
+    v-else
+    :name="`${ns.namespace.value}-zoom-in-center`"
+    appear
+    @vue:mounted="handleVNodeMounted"
+  >
+    <span
+      :class="containerKls"
+      :style="{ backgroundColor: color }"
+      @click="handleClick"
+    >
+      <span :class="ns.e('content')">
+        <slot>
+          {{ text }}
+        </slot>
+      </span>
+      <el-icon v-if="closable" :class="ns.e('close')" @click.stop="handleClose">
+        <Close />
+      </el-icon>
+    </span>
+  </transition>
 </template>
-<script lang="ts">
-import { computed, defineComponent } from 'vue';
-import { PillType } from './types/pill.types';
-export default defineComponent({
+
+<script lang="ts" setup>
+import { computed } from 'vue'
+import { Close } from '@element-plus/icons-vue'
+
+import { pillEmits, pillProps } from './pill'
+import type { VNode } from 'vue'
+import { useFormSize, useNamespace } from 'element-plus'
+
+defineOptions({
   name: 'Pill',
-  props: {
-    type: {
-      default: PillType.Normal
-    },
-    text: {
-      type: String,
-      default: ''
-    },
-    custom: {
-      type: String,
-      default: ''
-    }
-  },
-  setup(props) {
-    const backgroundClass = computed(() => ({
-      'bg-blue-3': props.type == PillType.Normal,
-      'bg-green-1': props.type == PillType.Success,
-      'bg-red-6': props.type == PillType.Error,
-    }));
-    return {
-      backgroundClass,
-    };
-  },
-});
+})
+const props = defineProps(pillProps)
+const emit = defineEmits(pillEmits)
+
+const pillSize = useFormSize()
+const ns = useNamespace('tag')
+const containerKls = computed(() => {
+  const { type, hit, effect, closable, round } = props
+  return [
+    ns.b(),
+    ns.is('closable', closable),
+    ns.m(type || 'primary'),
+    ns.m(pillSize.value),
+    ns.m(effect),
+    ns.is('hit', hit),
+    ns.is('round', round),
+  ]
+})
+
+// methods
+const handleClose = (event: MouseEvent) => {
+  emit('close', event)
+}
+
+const handleClick = (event: MouseEvent) => {
+  emit('click', event)
+}
+
+const handleVNodeMounted = (vnode: VNode) => {
+  // @ts-ignore
+  if (vnode?.component?.subTree?.component?.bum) {
+    // @ts-ignore
+    vnode.component.subTree.component.bum = null
+  }
+}
 </script>
