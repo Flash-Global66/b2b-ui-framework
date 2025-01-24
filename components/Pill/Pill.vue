@@ -10,7 +10,9 @@
         {{ text }}
       </slot>
     </span>
-    X
+    <div v-if="closable" :class="ns.e('close')" @click.stop="handleClose">
+      <icon name="icon-cross" />
+    </div>
   </span>
   <transition
     v-else
@@ -28,16 +30,15 @@
           {{ text }}
         </slot>
       </span>
-      <el-icon v-if="closable" :class="ns.e('close')" @click.stop="handleClose">
-        <Close />
-      </el-icon>
+      <div v-if="closable" :class="ns.e('close')" @click.stop="handleClose">
+        <icon name="icon-cross" />
+      </div>
     </span>
   </transition>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { Close } from '@element-plus/icons-vue'
 
 import { pillEmits, pillProps } from './pill'
 import type { VNode } from 'vue'

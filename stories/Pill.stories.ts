@@ -1,7 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
+import { nextTick, ref } from "vue";
+
 import { GPill } from "../components/Pill";
+import { GInput } from "../components/Input/src/index";
 import { GConfigProvider } from "../components/ConfigProvider";
-import { ref } from "vue";
+import { GButton } from "../components/Button/src/index";
 
 const meta: Meta<typeof GPill> = {
   title: "Data/Pill",
@@ -103,25 +106,25 @@ export const Primary: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Uso básico de la píldora con diferentes tipos y colores.",
-      },
-    },
+        story: 'El componente Pill puede mostrar texto de dos formas: usando la prop `text` o mediante el slot default. Si se proporciona contenido en el slot, este tendrá prioridad sobre la prop text.'
+      }
+    }
   },
-  render: () => ({
+  render: (args) => ({
     components: { GPill, GConfigProvider },
+    setup() {
+      return { args };
+    },
     template: `
       <g-config-provider>
-        <div class="space-x-2">
-          <g-pill text="Primary" />
-          <g-pill type="success" text="Success" />
-          <g-pill type="info" text="Info" />
-          <g-pill type="warning" text="Warning" />
-          <g-pill type="danger" text="Danger" />
-          <g-pill color="#6366f1" text="Custom" />
-        </div>
+        <g-pill v-bind="args" />
       </g-config-provider>
     `,
   }),
+  args: {
+    text: 'Píldora básica',
+    type: 'primary'
+  }
 };
 
 // Píldoras eliminables
@@ -129,78 +132,130 @@ export const Removable: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          "Píldoras que pueden ser eliminadas mediante un botón de cierre.",
-      },
-    },
+        story: 'Las píldoras pueden ser eliminables añadiendo la prop `closable`. Al hacer clic en el botón de cierre se mostrará una confirmación antes de eliminar la píldora.'
+      }
+    }
   },
-  render: () => ({
+  render: (args) => ({
     components: { GPill, GConfigProvider },
     setup() {
-      const handleClose = () => {
-        console.log("Píldora cerrada");
-      };
-      return { handleClose };
+      interface PillItem {
+        name: string
+        type: 'primary' | 'success' | 'info' | 'warning' | 'danger'
+      }
+
+      const pills = ref<PillItem[]>([
+        { name: 'Píldora 1', type: 'primary' },
+        { name: 'Píldora 2', type: 'success' },
+        { name: 'Píldora 3', type: 'info' },
+        { name: 'Píldora 4', type: 'warning' },
+        { name: 'Píldora 5', type: 'danger' }
+      ])
+
+      const handleClose = (index: number) => {
+        if (confirm('¿Desea eliminar esta píldora?')) {
+          pills.value.splice(index, 1)
+        }
+      }
+
+      return { args, pills, handleClose }
     },
     template: `
       <g-config-provider>
-        <div class="space-x-2">
-          <g-pill 
+        <div class="flex gap-2">
+          <g-pill
+            v-for="(pill, index) in pills"
+            :key="pill.name"
+            :text="pill.name"
+            :type="pill.type"
             closable
-            text="Removible"
-            @close="handleClose"
-          />
-          <g-pill 
-            closable
-            type="success"
-            text="Removible"
-            @close="handleClose"
+            @close="handleClose(index)"
           />
         </div>
       </g-config-provider>
-    `,
+    `
   }),
-};
-
+  args: {
+    closable: true
+  }
+}
 // Píldoras dinámicas
 export const Dynamic: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Ejemplo de manejo dinámico de píldoras.",
-      },
-    },
+        story: 'Ejemplo de manejo dinámico de píldoras con la capacidad de agregar nuevas mediante un input.'
+      }
+    }
   },
   render: () => ({
-    components: { GPill, GConfigProvider },
+    components: { GPill, GConfigProvider, GInput, GButton },
     setup() {
-      const pills = ref(["Tag 1", "Tag 2", "Tag 3"]);
-      const handleClose = (index: number) => {
-        pills.value.splice(index, 1);
-      };
-      const addPill = () => {
-        pills.value.push(`Tag ${pills.value.length + 1}`);
-      };
-      return { pills, handleClose, addPill };
+      const inputValue = ref('')
+      const dynamicPills = ref(['Píldora 1', 'Píldora 2', 'Píldora 3'])
+      const inputVisible = ref(false)
+      const inputRef = ref()
+
+      const handleClose = (tag: string) => {
+        dynamicPills.value.splice(dynamicPills.value.indexOf(tag), 1)
+      }
+
+      const showInput = () => {
+        inputVisible.value = true
+        nextTick(() => {
+          inputRef.value?.focus()
+        })
+      }
+
+      const handleInputConfirm = () => {
+        if (inputValue.value) {
+          dynamicPills.value.push(inputValue.value)
+        }
+        inputVisible.value = false
+        inputValue.value = ''
+      }
+
+      return { 
+        inputValue,
+        dynamicPills,
+        inputVisible,
+        inputRef,
+        handleClose,
+        showInput,
+        handleInputConfirm
+      }
     },
     template: `
       <g-config-provider>
-        <div class="space-y-4">
-          <div class="space-x-2">
-            <g-pill
-              v-for="(pill, index) in pills"
-              :key="index"
-              :text="pill"
-              closable
-              @close="handleClose(index)"
-            />
-          </div>
-          <button @click="addPill">Añadir píldora</button>
+        <div class="flex gap-2 items-center">
+          <g-pill
+            v-for="pill in dynamicPills"
+            :key="pill"
+            :text="pill"
+            closable
+            @close="handleClose(pill)"
+          />
+          <g-input
+            v-if="inputVisible"
+            ref="inputRef"
+            v-model="inputValue"
+            class="w-40"
+            size="small"
+            @keyup.enter="handleInputConfirm"
+            @blur="handleInputConfirm"
+          />
+          <g-button 
+            v-else
+            size="tiny"
+            @click="showInput"
+          >
+            + Nueva píldora
+          </g-button>
         </div>
       </g-config-provider>
-    `,
-  }),
-};
+    `
+  })
+}
 
 // Tamaños
 export const Sizes: Story = {
