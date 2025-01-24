@@ -96,6 +96,13 @@ const meta: Meta<typeof GSegmented> = {
         type: { summary: 'string' }
       }
     },
+    classItem: {
+      description: 'Clase personalizada para cada opción',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
     'onUpdate:modelValue': {
       description: 'Se emite cuando cambia el valor seleccionado',
       table: {
