@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-tag",
   "author": "Global66",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "license": "MIT",
   "exports": {
     "./tag.styles.scss": "./tag.styles.scss",
@@ -15,6 +15,6 @@
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
   },
   "dependencies": {
-    "@flash-global66/b2b-ui-icon": "^0.0.2"
+    "@flash-global66/b2b-ui-icon": "^0.0.3"
   }
 }
