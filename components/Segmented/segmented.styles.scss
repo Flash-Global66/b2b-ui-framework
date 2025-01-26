@@ -1,7 +1,7 @@
 @use "element-plus/theme-chalk/src/segmented.scss" as *;
 
 .gui-segmented {
-  @apply bg-blue-50 p-2 rounded-md;
+  @apply bg-blue-50 p-2 rounded-lg;
 
   &__item {
     @apply text-nightBlue-900 p-4 font-normal transition-all duration-200 rounded-md cursor-pointer;
