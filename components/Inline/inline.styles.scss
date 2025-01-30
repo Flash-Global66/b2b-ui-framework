@@ -1,0 +1,66 @@
+@use 'sass:map';
+
+@use 'element-plus/theme-chalk/src/mixins/mixins' as *;
+@use 'element-plus/theme-chalk/src/mixins/utils' as *;
+@use 'element-plus/theme-chalk/src/mixins/var' as *;
+@use 'element-plus/theme-chalk/src/common/var' as *;
+
+@include b('inline') {
+ @apply border rounded-md p-xs pr-sm flex gap-xs items-center;
+
+ @include e('title') {
+  @apply text-3 font-semibold line-clamp-2 text-primary;
+ }
+
+ @include e('description') {
+  @apply text-2 text-secondary;
+ }
+
+ @include e('links') {
+  @apply flex items-center gap-xs mt-xs;
+ }
+
+ @include e('link') {
+  @apply text-2 underline;
+ }
+
+ @include e('icon') {
+  @apply text-4;
+ }
+
+ @include m('md') {
+  @apply p-sm;
+  @include e('title') {
+    @apply text-4;
+   }
+  
+   @include e('description') {
+    @apply text-3;
+   }
+ }
+
+ @include m('success') {
+  @apply border-success bg-success-bg;
+  @include e('icon') {
+    @apply text-success;
+  }
+ }
+ @include m('info') {
+  @apply border-info bg-info-bg;
+  @include e('icon') {
+    @apply text-info;
+  }
+ }
+ @include m('warning') {
+  @apply border-warning bg-warning-bg;
+  @include e('icon') {
+    @apply text-warning;
+  }
+ }
+ @include m('error') {
+  @apply border-error bg-error-bg;
+  @include e('icon') {
+    @apply text-error;
+  }
+ }
+}

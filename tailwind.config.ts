@@ -35,17 +35,6 @@ module.exports = {
       zIndex: {
         100: '100'
       },
-      backgroundColor: {
-        primary: 'var(--color-bg-primary)',
-        secDefault: 'var(--color-bg-sec-default)',
-        secHover: 'var(--color-bg-sec-default-hover)',
-        secPress: 'var(--color-bg-sec-press)',
-        inverse: 'var(--color-bg-inverse)',
-        success: 'var(--color-bg-success)',
-        error: 'var(--color-bg-error',
-        warning: 'var(--color-bg-warning)',
-        info: 'var(--color-bg-info)',
-      },
       textColor: {
         primary: 'var(--color-txt-primary)',
         secondary: 'var(--color-txt-secondary)',
@@ -96,6 +85,15 @@ module.exports = {
         iconError: 'var(--color-icon-error)',
         iconWarning: 'var(--color-icon-warning)',
         iconInfo: 'var(--color-icon-info)',
+        'primary-bg': 'var(--color-bg-primary)',
+        'secDefault-bg': 'var(--color-bg-sec-default)',
+        'secHover-bg': 'var(--color-bg-sec-default-hover)',
+        'secPress-bg': 'var(--color-bg-sec-default-press)',
+        'inverse-bg': 'var(--color-bg-inverse)',
+        'success-bg': 'var(--color-bg-success)',
+        'error-bg': 'var(--color-bg-error)',
+        'warning-bg': 'var(--color-bg-warning)',
+        'info-bg': 'var(--color-bg-info)',
         white: '#FFFFFF',
         black: '#0B0B0B',
         grey: {
