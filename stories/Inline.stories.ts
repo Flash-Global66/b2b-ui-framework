@@ -25,6 +25,12 @@ const meta: Meta<typeof GInline> = {
       description: "Texto de descripción principal del componente `Inline`.",
       control: "text",
     },
+    size: {
+      description: "Tamaño del componente `Inline`.",
+      control: "select",
+      options: ["md", "sm"],
+      defaultValue: "md",
+    },
     showClose: {
       description: "Controla si se muestra el botón de cerrar.",
       control: "boolean",
@@ -53,6 +59,7 @@ const meta: Meta<typeof GInline> = {
     title: "Título",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.",
+    size: "md",
     showClose: true,
     type: "success",
     links: [
