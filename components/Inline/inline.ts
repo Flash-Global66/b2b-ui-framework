@@ -3,7 +3,7 @@ import type Inline from "./Inline.vue";
 import { useAriaProps} from "element-plus";
 import { buildProps, definePropType, isBoolean, isNumber, isString } from "element-plus/es/utils/index.mjs";
 
-import { InlineEnum, InlineLinks } from "./inline.type";
+import { InlineEnum, InlineLinks, InlineSize } from "./inline.type";
 
 export const inlineProps = buildProps({
   /**
@@ -35,9 +35,19 @@ export const inlineProps = buildProps({
     type: String,
     default: "",
   },
+  /**
+   * @description type of inline
+   */
   type: {
     type: definePropType<InlineEnum>(String),
     default: 'success',
+  },
+  /**
+   * @description size of inline
+  */
+  size: {
+    type: definePropType<InlineSize>(String),
+    default: 'md',
   },
   /**
    * @description inline links
