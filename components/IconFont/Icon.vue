@@ -1,10 +1,13 @@
 <template>
-  <font-awesome-icon v-if="selectedIcon" :icon="selectedIcon" />
+  <font-awesome-icon
+    v-if="selectedIcon"
+    :icon="selectedIcon"
+  />
 </template>
 
 <script lang="ts" setup>
 import { computed, PropType } from 'vue';
-import { debugWarn } from "element-plus/es/utils/index.mjs";;
+import { debugWarn, isString } from "element-plus/es/utils/index.mjs";;
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -14,6 +17,7 @@ import * as SolidFree from './src/fas-solid-free';
 import * as RegularPro from './src/far-regular-pro';
 import * as LightPro from './src/fal-light-pro';
 import * as BrandsFree from './src/fab-free';
+import { iconProps } from './icon';
 
 // Registro de iconos
 library.add(
@@ -24,21 +28,23 @@ library.add(
   BrandsFree
 );
 
-const props = defineProps({
-  name: {
-    type: String as PropType<IconString>,
-    required: true
-  }
-});
+const props = defineProps(iconProps);
 
 const selectedIcon = computed(() => {
-  const [weight, iconName] = props.name.split(' ');
-  if (!iconName) {
-    console.error('Icon name is invalid');
-    debugWarn('IconFont', 'Icon name is invalid')
-    return;
+  if(!isString(props.name)) {
+    return debugWarn('IconFont', 'Icon name is invalid');
   };
+  const [weight, iconName] = props.name.split(' ');
+  if (!iconName) return debugWarn('IconFont', 'Icon name has to be in the format: "weight icon-name"');
 
-  return `fa-${weight} fa-${iconName}`;
+  const prefix = {
+    solid: 'fas',
+    regular: 'far',
+    light: 'fal',
+    brands: 'fab',
+    duotone: 'fad'
+  }[weight];
+
+  return [prefix, iconName];
 });
 </script>
