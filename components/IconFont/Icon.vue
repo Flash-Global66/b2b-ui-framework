@@ -8,7 +8,7 @@ import { debugWarn } from "element-plus/es/utils/index.mjs";;
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import type { IconName, IconString } from './types';
+import type { IconString } from './types';
 import * as SolidPro from './src/fas-solid-pro';
 import * as SolidFree from './src/fas-solid-free';
 import * as RegularPro from './src/far-regular-pro';
