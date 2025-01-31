@@ -31,7 +31,7 @@ export default {
     },
     // events
     change: {
-      control: { type: null },
+      control: { type: 'text' },
       table: {
         type: { summary: 'String, Number, Boolean' }
       }
@@ -39,7 +39,7 @@ export default {
     // props
     label: {
       control: {
-        type: null
+        type: 'text'
       },
       table: {
         defaultValue: { summary: 'Option A' },
@@ -62,7 +62,7 @@ export default {
   },
   // values for the default
   args: {
-    size: '',
+    size: 'default',
     label: 'Términos y condiciones',
     default: 'Términos y condiciones',
     disabled: false,
