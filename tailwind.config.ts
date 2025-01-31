@@ -3,9 +3,10 @@ import type { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
 
 module.exports = {
-  purge: {
-    content: ['./components/**/*.{vue,js,ts,jsx,tsx}', './stories/**/*.{vue,js,ts,jsx,tsx}']
-  },
+  content: [ 
+    './components/**/*.{vue,js,ts,jsx,tsx}',
+    './stories/**/*.{vue,js,ts,jsx,tsx}'
+  ],
   darkMode: 'media', // or 'media' or 'class'
   mode: 'jit',
   theme: {
@@ -18,7 +19,7 @@ module.exports = {
         2: ['0.75rem', '1.125rem'], // 12px, 18px
         3: ['0.875rem', '1.375rem'], // 14px, 22px
         4: ['1rem', '1.5rem'], // 16px, 24px
-        5: ['1.125', '1.75rem'], // 18px, 28px
+        5: ['1.125rem', '1.75rem'], // 18px, 28px
         6: ['1.25rem', '1.875rem'], // 20px, 30px
         7: ['1.37rem', '2rem'], // 22px, 32px
         8: ['1.50rem', '2.25rem'], // 24px, 36px
@@ -35,36 +36,36 @@ module.exports = {
         100: '100'
       },
       backgroundColor: {
-        primary: 'var(--color-primary)',
-        default: 'var(--color-bg-default)',
-        hover: 'var(--color-bg-hover)',
-        press: 'var(--color-bg-press)',
-        inverse: 'var(--color-bg-inverse)',
-        success: 'var(--color-success-bg)',
-        error: 'var(--color-error-bg)',
-        warning: 'var(--color-warning-bg)',
-        info: 'var(--color-info-bg)'
+        'primary-bg': 'var(--color-bg-primary)',
+        'sec-def-bg': 'var(--color-bg-sec-default)',
+        'sec-hover-bg': 'var(--color-bg-sec-default-hover)',
+        'sec-press-bg': 'var(--color-bg-sec-default-press)',
+        'inverse-bg': 'var(--color-bg-inverse)',
+        'success-bg': 'var(--color-bg-success)',
+        'error-bg': 'var(--color-bg-error)',
+        'warning-bg': 'var(--color-bg-warning)',
+        'info-bg': 'var(--color-bg-info)',
       },
       textColor: {
-        primary: 'red',
-        secondary: 'var(--color-txt-secondary)',
-        terciary: 'var(--color-txt-terciary)',
-        disabled: 'var(--color-txt-disabled)',
-        inverse: 'var(--color-txt-inverse)',
-        success: 'var(--color-success-txt)',
-        error: 'var(--color-error-txt)',
-        warning: 'var(--color-warning-txt)',
-        info: 'var(--color-info-txt)',
+        'primary-txt': 'var(--color-txt-primary)',
+        'secondary-txt': 'var(--color-txt-secondary)',
+        'terciary-txt': 'var(--color-txt-terciary)',
+        'disabled-txt': 'var(--color-txt-disabled)',
+        'inverse-txt': 'var(--color-txt-inverse)',
+        'success-txt': 'var(--color-txt-success)',
+        'error-txt': 'var(--color-txt-error)',
+        'warning-txt': 'var(--color-txt-warning)',
+        'info-txt': 'var(--color-txt-info)',
       },
       borderColor: {
-        primary: '#000000',
-        secondary: 'var(--color-border-secondary)',
-        disabled: 'var(--color-border-disabled)',
-        inverse: 'var(--color-border-inverse)',
-        success: 'var(--color-success-border)',
-        error: 'var(--color-error-border)',
-        warning: 'var(--color-warning-border)',
-        info: 'var(--color-info-border)',
+        'primary-bd': 'var(--color-border-primary)',
+        'secondary-bd': 'var(--color-border-secondary)',
+        'disabled-bd': 'var(--color-border-disabled)',
+        'inverse-bd': 'var(--color-border-inverse)',
+        'success-bd': 'var(--color-border-success)',
+        'error-bd': 'var(--color-border-error)',
+        'warning-bd': 'var(--color-border-warning)',
+        'info-bd': 'var(--color-border-info)',
       },
       borderRadius: {
         // Valores nuevos
@@ -77,27 +78,29 @@ module.exports = {
         '2xl': '6.25rem' // 100px
       },
       colors: {
-        primary: 'var(--color-primary)',
-        primaryHover: 'var(--color-primary-hover)',
-        primaryPress: 'var(--color-primary-press)',
-        primaryDisabled: 'var(--color-primary-disabled)',
-        success: 'var(--color-success)',
-        error: 'var(--color-error)',
-        warning: 'var(--color-warning)',
-        info: 'var(--color-info)',
-        iconPrimary: 'var(--color-icon-primary)',
-        iconSecondary: 'var(--color-icon-secondary)',
-        iconTerciary: 'var(--color-icon-terciary)',
-        iconDisabled: 'var(--color-icon-disabled)',
-        iconInverse: 'var(--color-icon-inverse)',
-        iconSuccess: 'var(--color-success-icon)',
-        iconError: 'var(--color-error-icon)',
-        iconWarning: 'var(--color-warning-icon)',
-        iconInfo: 'var(--color-info-icon)',
+        // semantic tokens
+        'primary-def': 'var(--color-primary)',
+        'primary-def-hover': 'var(--color-primary-hover)',
+        'primary-def-press': 'var(--color-primary-press)',
+        'primary-def-disabled': 'var(--color-primary-disabled)',
+        'success-def': 'var(--color-success)',
+        'error-def': 'var(--color-error)',
+        'warning-def': 'var(--color-warning)',
+        'info-def': 'var(--color-info)',
+        'icon-primary': 'var(--color-icon-primary)',
+        'icon-secondary': 'var(--color-icon-secondary)',
+        'icon-terciary': 'var(--color-icon-terciary)',
+        'icon-disabled': 'var(--color-icon-disabled)',
+        'icon-inverse': 'var(--color-icon-inverse)',
+        'icon-success': 'var(--color-icon-success)',
+        'icon-error': 'var(--color-icon-error)',
+        'icon-warning': 'var(--color-icon-warning)',
+        'icon-info': 'var(--color-icon-info)',
         white: '#FFFFFF',
         black: '#0B0B0B',
         grey: {
           // Nuevos
+          20: '#E9EBF8',
           25: '#FAFBFF',
           50: '#EFF0F2',
           100: '#CDD0D8',
@@ -269,7 +272,7 @@ module.exports = {
           21: '#828AA4',
           22: '#E1E4F0',
           23: '#7F869A', // duplicado con grey-400 (nuevo)
-          24: '#CDD0D8' // duplicado con grey-100 (nuevo)
+          24: '#CDD0D8', // duplicado con grey-100 (nuevo)
         }
       },
       spacing: {
@@ -339,9 +342,48 @@ module.exports = {
       addBase({
         ':root': {
           '--color-primary': theme('colors.nightBlue.500'),
-          '--color-success': theme('colors.green.500'), // #01d196
-          '--color-error': theme('colors.red.500'), // #ea586f
-          '--color-warning': theme('colors.yellow.500') // #fcc956
+          '--color-primary-hover': theme('colors.nightBlue.600'),
+          '--color-primary-press': theme('colors.nightBlue.700'),
+          '--color-primary-disabled': theme('colors.grey.50'),
+          '--color-success': theme('colors.green.700'),
+          '--color-warning': theme('colors.yellow.700'),
+          '--color-error': theme('colors.red.700'),
+          '--color-info': theme('colors.blue.500'),
+          '--color-bg-primary': theme('colors.grey.20'),
+          '--color-bg-sec-default': theme('colors.white'),
+          '--color-bg-sec-default-hover': theme('colors.grey.50'),
+          '--color-bg-sec-default-press': theme('colors.grey.100'),
+          '--color-bg-inverse': theme('colors.nightBlue.900'),
+          '--color-bg-success': theme('colors.green.50'),
+          '--color-bg-error': theme('colors.red.50'),
+          '--color-bg-warning': theme('colors.yellow.50'),
+          '--color-bg-info': theme('colors.blue.50'),
+          '--color-icon-primary': theme('colors.nightBlue.900'),
+          '--color-icon-secondary': theme('colors.grey.700'),
+          '--color-icon-terciary': theme('colors.grey.500'),
+          '--color-icon-disabled': theme('colors.grey.400'),
+          '--color-icon-inverse': theme('colors.white'),
+          '--color-icon-success': theme('colors.green.700'),
+          '--color-icon-error': theme('colors.red.700'),
+          '--color-icon-warning': theme('colors.yellow.700'),
+          '--color-icon-info': theme('colors.blue.500'),
+          '--color-txt-primary': theme('colors.nightBlue.900'),
+          '--color-txt-secondary': theme('colors.grey.700'),
+          '--color-txt-terciary': theme('colors.grey.500'),
+          '--color-txt-disabled': theme('colors.grey.400'),
+          '--color-txt-inverse': theme('colors.white'),
+          '--color-txt-success': theme('colors.green.700'),
+          '--color-txt-error': theme('colors.red.700'),
+          '--color-txt-warning': theme('colors.yellow.700'),
+          '--color-txt-info': theme('colors.blue.500'),
+          '--color-border-primary': theme('colors.nightBlue.500'),
+          '--color-border-secondary': theme('colors.nightBlue.900'),
+          '--color-border-disabled': theme('colors.grey.500'),
+          '--color-border-inverse': theme('colors.white'),
+          '--color-border-success': theme('colors.green.700'),
+          '--color-border-error': theme('colors.red.700'),
+          '--color-border-warning': theme('colors.yellow.700'),
+          '--color-border-info': theme('colors.blue.500'),
         }
       })
     }),

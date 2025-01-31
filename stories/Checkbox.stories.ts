@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { fn } from "@storybook/test";
 
 // COMPONENTS
-import { GCheckbox } from '../components/Checkbox';
+import { GCheckbox, GCheckbox2 } from '../components/Checkbox';
 
 // TYPES
 import { EnumRadioSize } from '../components/Radio/radio.type';
@@ -14,7 +14,7 @@ import { GConfigProvider } from '../components/ConfigProvider';
 
 export default {
   title: 'Form/Checkbox/Single',
-  component: GCheckbox,
+  component: GCheckbox2,
   argTypes: {
     'v-model': {
       description: 'binding value.',
@@ -31,7 +31,7 @@ export default {
     },
     // events
     change: {
-      control: { type: null },
+      control: { type: 'text' },
       table: {
         type: { summary: 'String, Number, Boolean' }
       }
@@ -39,7 +39,7 @@ export default {
     // props
     label: {
       control: {
-        type: null
+        type: 'text'
       },
       table: {
         defaultValue: { summary: 'Option A' },
@@ -62,7 +62,7 @@ export default {
   },
   // values for the default
   args: {
-    size: '',
+    size: 'default',
     label: 'Términos y condiciones',
     default: 'Términos y condiciones',
     disabled: false,
