@@ -1,15 +1,8 @@
-import {
-  buildProps,
-  definePropType,
-  isBoolean,
-  isNumber,
-  isString
-} from "element-plus/es/utils/index.mjs";
+import { buildProps } from "element-plus/es/utils/index.mjs";
 
 import Icon from "./Icon.vue";
 import { ExtractPropTypes, PropType } from "vue";
 import { IconString } from "./types";
-import { useAriaProps } from "element-plus";
 
 export const iconProps = buildProps({
   name: {
@@ -18,5 +11,5 @@ export const iconProps = buildProps({
   },
 })
 
-export type IconProps = ExtractPropTypes<typeof iconProps>
+export type IconFontProps = ExtractPropTypes<typeof iconProps>
 export type IconInstance = InstanceType<typeof Icon>
