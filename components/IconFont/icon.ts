@@ -8,26 +8,14 @@ import {
 
 import Icon from "./Icon.vue";
 import { ExtractPropTypes, PropType } from "vue";
+import { IconString } from "./types";
+import { useAriaProps } from "element-plus";
 
 export const iconProps = buildProps({
   name: {
-    type: String,
-    required: true,
+    type: String as PropType<IconString>,
+    required: true
   },
-  size: {
-    type: String as PropType<string | number>,
-    default: "1em",
-  },
-  color: String,
-  style: Object,
-  title: String,
-  class: {
-    type: [String, Object, Array] as PropType<string | Record<string, boolean> | Array<string | Record<string, boolean>>>,
-    default: "",
-  },
-  disableFill: Boolean,
-  removeInitialStyle: Boolean,
-  
 })
 
 export type IconProps = ExtractPropTypes<typeof iconProps>
