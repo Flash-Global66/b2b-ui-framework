@@ -2,7 +2,7 @@ import { UPDATE_MODEL_EVENT, useAriaProps, useSizeProp } from 'element-plus'
 import { isBoolean, isNumber, isString } from 'element-plus/es/utils/index.mjs'
 
 import type { ExtractPropTypes } from 'vue'
-import type Checkbox from './checkbox2.vue'
+import Checkbox2 from './Checkbox2.vue'
 
 export type CheckboxValueType = string | number | boolean
 
@@ -99,4 +99,4 @@ export const checkboxEmits = {
 
 export type CheckboxProps = ExtractPropTypes<typeof checkboxProps>
 export type CheckboxEmits = typeof checkboxEmits
-export type CheckboxInstance = InstanceType<typeof Checkbox>
+export type CheckboxInstance = InstanceType<typeof Checkbox2>

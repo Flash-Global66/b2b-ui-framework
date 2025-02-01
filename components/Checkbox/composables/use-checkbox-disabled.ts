@@ -1,5 +1,5 @@
 import { computed, inject } from 'vue'
-import { useFormDisabled } from 'element-plus/es/components/form'
+import { useFormDisabled } from 'element-plus/es/components/form/index.mjs'
 import { isUndefined } from 'element-plus/es/utils/index.mjs'
 import { checkboxGroupContextKey } from '../constants'
 
