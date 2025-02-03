@@ -19,16 +19,10 @@
 
     <!-- Ripple Elements -->
     <transition-group name="ripple">
-      <div
-        v-for="ripple in ripples"
-        :key="ripple.id"
-        :class="ns.e('ripple')"
-        :style="{
-          left: ripple.x + 'px',
-          top: ripple.y + 'px',
-        }"
-        @animationend="removeRipple(ripple.id)"
-      />
+      <div v-for="ripple in ripples" :key="ripple.id" :class="ns.e('ripple')" :style="{
+        left: ripple.x + 'px',
+        top: ripple.y + 'px',
+      }" @animationend="removeRipple(ripple.id)" />
     </transition-group>
   </component>
 </template>

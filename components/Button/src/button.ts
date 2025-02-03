@@ -9,7 +9,6 @@ import type {
   ButtonIconName,
 } from "./button.type";
 
-
 export const buttonProps = buildProps({
   /**
    * same as native button's type
@@ -165,9 +164,9 @@ export function validateButtonProps(props: ButtonProps) {
     );
   }
 
-   if (props.title && !isString(props.title)) {
-     debugWarn("Button", `Invalid prop "title": expected a string, but received "${typeof props.title}".`);
-   }
+  if (props.title && !isString(props.title)) {
+    debugWarn("Button", `Invalid prop "title": expected a string, but received "${typeof props.title}".`);
+  }
 
   if (!isBoolean(props.disabled)) {
     debugWarn("Button", `Invalid prop "disabled": expected a boolean, but received "${typeof props.disabled}".`);
@@ -182,7 +181,10 @@ export function validateButtonProps(props: ButtonProps) {
   }
 
   if (props.iconLeft && !isString(props.iconLeft)) {
-    debugWarn("Button", `Invalid prop "iconLeft": expected a string for icon name, but received "${typeof props.iconLeft}".`);
+    debugWarn(
+      "Button",
+      `Invalid prop "iconLeft": expected a string for icon name, but received "${typeof props.iconLeft}".`
+    );
   }
 
   if (props.iconRight && !isString(props.iconRight)) {
@@ -192,15 +194,4 @@ export function validateButtonProps(props: ButtonProps) {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
 
