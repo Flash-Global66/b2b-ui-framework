@@ -128,36 +128,6 @@ Ejemplo de uso básico:
         type: { summary: "string" },
       },
     },
-
-    // Deprecated Props
-    size: {
-      control: "select",
-      options: ["large", "medium", "small", "tiny"],
-      description: "⚠️ **Deprecado:** El botón ahora tiene un tamaño estándar único",
-      table: {
-        type: { summary: "string" },
-        defaultValue: { summary: "small" },
-        category: "Deprecado",
-      },
-    },
-    type: {
-      control: "select",
-      options: ["default", "outlined", "ghost", "icon"],
-      description: "⚠️ **Deprecado:** Use `variant` en su lugar",
-      table: {
-        category: "Deprecado",
-        type: { summary: "string" },
-      },
-    },
-    color: {
-      control: "select",
-      options: ["primary", "secondary", "danger", "info", "warning", "custom"],
-      description: "⚠️ **Deprecado:** Use `variant` en su lugar",
-      table: {
-        category: "Deprecado",
-        type: { summary: "string" },
-      },
-    },
     full: {
       control: "boolean",
       description: "Botón de ancho completo",
@@ -198,6 +168,15 @@ Ejemplo de uso básico:
         category: "Slots",
         type: { summary: "string | Component" },
       },
+    },
+    // Se añade información de deprecated al final de la tabla:
+    "Deprecated Info": {
+      table: {
+        category: "Deprecated",
+        // El order mayor coloca la fila al final
+        order: 999,
+      },
+      description: "⚠️ Las props 'size', 'type' y 'color' estan deprecadas . Utilizar prop 'variant'.",
     },
   },
 } as Meta<typeof GButton>;
@@ -304,71 +283,4 @@ export const WithIcons = () => ({
       </div>
   `,
 });
-
-// Deprecated API Stories (with warnings)
-export const DeprecatedAPI = () => ({
-  components: { GButton, FontAwesomeIcon },
-  template: `
-    <div class="space-y-8">
-      <div class="p-4 bg-yellow-100 text-yellow-800 rounded">
-        ⚠️ Los siguientes ejemplos usan props deprecadas. Usar la nueva prop 'variant' en su lugar.
-      </div>
-      
-      <div class="space-y-2">
-        <h3 class="text-lg font-bold">Propiedad 'color' Deprecada</h3>
-        <div class="flex gap-4">
-          <g-button color="primary">Primario</g-button>
-          <g-button color="secondary">Secundario</g-button>
-          <g-button color="danger">Peligro</g-button>
-          <g-button color="info">Información</g-button>
-          <g-button color="warning">Advertencia</g-button>
-        </div>
-      </div>
-
-      <div class="space-y-2">
-        <h3 class="text-lg font-bold">Propiedad 'type' Deprecada</h3>
-        <div class="flex gap-4">
-          <g-button type="default">Default</g-button>
-          <g-button type="outlined">Outlined</g-button>
-          <g-button type="ghost">Ghost</g-button>
-          <g-button type="icon" class="p-4">
-            <FontAwesomeIcon :icon="['fas', 'arrow-right']" />
-          </g-button>
-        </div>
-      </div>
-    </div>
-  `,
-});
-
-// Update size examples in stories
-export const Sizes = () => ({
-  components: { GButton },
-  template: `
-    <div class="space-y-4">
-      <div class="p-4 bg-yellow-100 text-yellow-800 rounded">
-        ⚠️ Las variantes de tamaño están deprecadas. Los botones ahora tienen un tamaño estándar único.
-      </div>
-      <div class="flex gap-4 items-center">
-        <g-button variant="primary">Tamaño Estándar</g-button>
-        <g-button variant="primary" size="tiny">Tiny (Deprecado)</g-button>
-        <g-button variant="primary" size="medium">Medium (Deprecado)</g-button>
-        <g-button variant="primary" size="large">Large (Deprecado)</g-button>
-      </div>
-    </div>
-  `,
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
