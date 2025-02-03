@@ -8,32 +8,30 @@ import type { ComponentInternalInstance } from 'vue'
 
 import type { CheckboxProps } from '../checkbox'
 
-export const useCheckbox = (
-  props: CheckboxProps,
-  slots: ComponentInternalInstance['slots']
-) => {
+export const useCheckbox = (props: CheckboxProps, slots: ComponentInternalInstance['slots']) => {
   const { formItem: elFormItem } = useFormItem()
   const { model, isGroup, isLimitExceeded } = useCheckboxModel(props)
   const {
-    isFocused,
-    isChecked,
+    actualValue,
     checkboxButtonSize,
     checkboxSize,
     hasOwnLabel,
-    actualValue,
+    isChecked,
+    isError,
+    isFocused
   } = useCheckboxStatus(props, slots, { model })
   const { isDisabled } = useCheckboxDisabled({ model, isChecked })
   const { inputId, isLabeledByFormItem } = useFormItemInputId(props, {
     formItemContext: elFormItem,
     disableIdGeneration: hasOwnLabel,
-    disableIdManagement: isGroup,
+    disableIdManagement: isGroup
   })
   const { handleChange, onClickRoot } = useCheckboxEvent(props, {
     model,
     isLimitExceeded,
     hasOwnLabel,
     isDisabled,
-    isLabeledByFormItem,
+    isLabeledByFormItem
   })
 
   const setStoreValue = () => {
@@ -50,17 +48,18 @@ export const useCheckbox = (
   setStoreValue()
 
   return {
-    inputId,
-    isLabeledByFormItem,
-    isChecked,
-    isDisabled,
-    isFocused,
+    actualValue,
     checkboxButtonSize,
     checkboxSize,
-    hasOwnLabel,
-    model,
-    actualValue,
     handleChange,
-    onClickRoot,
+    hasOwnLabel,
+    inputId,
+    isChecked,
+    isDisabled,
+    isError,
+    isFocused,
+    isLabeledByFormItem,
+    model,
+    onClickRoot
   }
 }

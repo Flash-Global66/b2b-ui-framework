@@ -15,6 +15,10 @@ export const useCheckboxStatus = (
 ) => {
   const checkboxGroup = inject(checkboxGroupContextKey, undefined)
   const isFocused = ref(false)
+  const isError = computed<boolean>(() => {
+    if (props.errorMessage && !props.checked) return true
+    return false
+  })
   const actualValue = computed(() => {
     // In version 2.x, if there's no props.value, props.label will act as props.value
     // In version 3.x, remove this computed value, use props.value instead.
@@ -24,41 +28,25 @@ export const useCheckboxStatus = (
     return props.label
   })
   // const isChecked = computed<boolean>(() => {
-  //   const value = model.value
-  //   if (isBoolean(value)) {
-  //     return value
-  //   } else if (isArray(value)) {
-  //     if (isObject(actualValue.value)) {
-  //       return value.map(toRaw).some((o) => isEqual(o, actualValue.value))
-  //     } else {
-  //       return value.map(toRaw).includes(actualValue.value)
-  //     }
-  //   } else if (value !== null && value !== undefined) {
-  //     return value === props.trueValue
-  //   } else {
-  //     return !!value
-  //   }
-  // })
-
   const isChecked = computed<boolean>(() => {
-    const value = model.value;
-    
-    if (isBoolean(value)) return value;
-    if (isArray(value)) return checkArrayContainsValue(value, actualValue.value);
-    if (value != null) return value === props.trueValue;
-    
-    return Boolean(value);
-  });
-  
+    const value = model.value
+
+    if (isBoolean(value)) return value
+    if (isArray(value)) return checkArrayContainsValue(value, actualValue.value)
+    if (value != null) return value === props.trueValue
+
+    return Boolean(value)
+  })
+
   // Función helper para manejar lógica de arrays
   const checkArrayContainsValue = (array: unknown[], targetValue: unknown): boolean => {
-    const rawArray = array.map(toRaw);
-    const rawTarget = isRef(targetValue) ? toRaw(targetValue.value) : targetValue;
-  
+    const rawArray = array.map(toRaw)
+    const rawTarget = isRef(targetValue) ? toRaw(targetValue.value) : targetValue
+
     return isObject(rawTarget)
-      ? rawArray.some(item => isEqual(item, toRaw(rawTarget)))
-      : rawArray.includes(rawTarget);
-  };
+      ? rawArray.some((item) => isEqual(item, toRaw(rawTarget)))
+      : rawArray.includes(rawTarget)
+  }
 
   const checkboxButtonSize = useFormSize(
     computed(() => checkboxGroup?.size?.value),
@@ -73,12 +61,13 @@ export const useCheckboxStatus = (
   })
 
   return {
+    actualValue,
     checkboxButtonSize,
-    isChecked,
-    isFocused,
     checkboxSize,
     hasOwnLabel,
-    actualValue
+    isChecked,
+    isError,
+    isFocused
   }
 }
 

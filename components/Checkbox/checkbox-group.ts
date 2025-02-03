@@ -1,11 +1,15 @@
 import { UPDATE_MODEL_EVENT, useAriaProps, useSizeProp } from 'element-plus'
 import { buildProps, definePropType, isArray } from 'element-plus/es/utils/index.mjs'
 
-import type { ExtractPropTypes } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 import type checkboxGroup from './checkbox-group.vue'
 import type { CheckboxValueType } from './checkbox'
 
 export type CheckboxGroupValueType = Exclude<CheckboxValueType, boolean>[]
+export type layoutType = 'horizontal' | 'vertical'
+export type klsByType = {
+  [key in layoutType]: string
+}
 
 export const checkboxGroupProps = buildProps({
   /**
@@ -32,13 +36,12 @@ export const checkboxGroupProps = buildProps({
    */
   size: useSizeProp,
   /**
-   * @description border and background color when button is active
+   * @description type of layout
    */
-  fill: String,
-  /**
-   * @description font color when button is active
-   */
-  textColor: String,
+  layout: {
+    type: String as PropType<layoutType>,
+    default: 'horizontal',
+  },
   /**
    * @description element tag of the checkbox group
    */

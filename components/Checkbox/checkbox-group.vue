@@ -2,7 +2,7 @@
   <component
     :is="tag"
     :id="groupId"
-    :class="ns.b('group')"
+    :class="compKls"
     role="group"
     :aria-label="!isLabeledByFormItem ? ariaLabel || 'checkbox-group' : undefined"
     :aria-labelledby="isLabeledByFormItem ? formItem?.labelId : undefined"
@@ -16,14 +16,14 @@ import { computed, nextTick, provide, toRefs, watch } from 'vue'
 import { pick } from 'lodash-unified'
 import { UPDATE_MODEL_EVENT, useNamespace } from 'element-plus'
 import { debugWarn } from 'element-plus/es/utils/index.mjs'
-import { useFormItem, useFormItemInputId } from 'element-plus/es/components/form'
-import { checkboxGroupEmits, checkboxGroupProps } from './checkbox-group'
+import { useFormItem, useFormItemInputId } from 'element-plus/es/components/form/index'
+import { checkboxGroupEmits, checkboxGroupProps, klsByType } from './checkbox-group'
 import { checkboxGroupContextKey } from './constants'
 
 import type { CheckboxGroupValueType } from './checkbox-group'
 
 defineOptions({
-  name: 'ElCheckboxGroup'
+  name: 'GuiCheckboxGroup'
 })
 
 const props = defineProps(checkboxGroupProps)
@@ -36,8 +36,10 @@ const { inputId: groupId, isLabeledByFormItem } = useFormItemInputId(props, {
 })
 
 const changeEvent = async (value: CheckboxGroupValueType) => {
+  console.log('props', props)
   emit(UPDATE_MODEL_EVENT, value)
   await nextTick()
+  console.log('value', value)
   emit('change', value)
 }
 
@@ -50,8 +52,17 @@ const modelValue = computed({
   }
 })
 
+const klsByLayout: klsByType = {
+  horizontal: 'flex flex-row gap-4',
+  vertical: 'flex flex-col gap-4'
+}
+
+const compKls = computed(() => {
+  return [ns.b('group'), klsByLayout[props.layout]]
+})
+
 provide(checkboxGroupContextKey, {
-  ...pick(toRefs(props), ['size', 'min', 'max', 'disabled', 'validateEvent', 'fill', 'textColor']),
+  ...pick(toRefs(props), ['size', 'min', 'max', 'disabled', 'validateEvent']),
   modelValue,
   changeEvent
 })
