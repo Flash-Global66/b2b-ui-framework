@@ -1,4 +1,46 @@
-@use "element-plus/theme-chalk/src/checkbox.scss" as *;
+@use 'element-plus/theme-chalk/src/checkbox.scss' as *;
+
+.gui-checkbox {
+  @apply text-3 gap-xxs m-0;
+
+  &__label {
+    @apply p-0 text-secondary-txt;
+  }
+
+  &__input {
+    &.is-error {
+      & .gui-checkbox__inner {
+        @apply border-error-bd;
+        &:hover {
+          @apply border-error-bd;
+        }
+      }
+    }
+
+    &:not(.is-error):not(.is-disabled) .gui-checkbox__inner:hover {
+      @apply border-primary-bd;
+    }
+
+    // Checkbox visual
+    .gui-checkbox__inner {
+      @apply w-[18px] h-[18px] border-disabled-bd border rounded;
+
+      &::after {
+        @apply w-[3px] h-2 top-0.5 left-1.5 absolute;
+      }
+    }
+  }
+
+  // Estados
+  &.is-checked:not(.is-disabled) {
+    & .gui-checkbox__label {
+      @apply text-secondary-txt;
+    }
+    .gui-checkbox__inner {
+      @apply border-primary-bd;
+    }
+  }
+}
 
 .gui-checkbox-wrapper {
   .gui-checkbox {

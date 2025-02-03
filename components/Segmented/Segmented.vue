@@ -33,24 +33,21 @@
 
 <script lang="ts" setup>
 import {
-  ButtonNativeType,
   CHANGE_EVENT,
   UPDATE_MODEL_EVENT,
-  useAriaProps,
   useFormDisabled,
   useFormItem,
   useFormItemInputId,
   useFormSize,
   useId,
   useNamespace,
-  useSizeProp,
 } from "element-plus";
-import { computed, defineComponent, PropType, reactive, ref, watch } from "vue";
+import { computed, reactive, ref, watch } from "vue";
 import { Option } from "./segmented.type";
 import { useActiveElement, useResizeObserver } from "@vueuse/core";
 import { segmentedEmits, segmentedProps } from "./segmented";
 import { isObject } from "element-plus/es/utils/types.mjs";
-import { debugWarn } from "element-plus/es/utils/index.mjs";;
+import { debugWarn } from "element-plus/es/utils/index.mjs";
 
 const props = defineProps(segmentedProps)
 const emit = defineEmits(segmentedEmits)
