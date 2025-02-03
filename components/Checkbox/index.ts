@@ -1,3 +1,4 @@
 import GCheckbox from "./Checkbox.vue";
+import GCheckboxGroup from './checkbox-group.vue';
 
-export { GCheckbox };
+export { GCheckbox, GCheckboxGroup };

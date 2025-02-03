@@ -1,123 +1,114 @@
 <template>
-  <div class="gui-checkbox-wrapper">
-    <el-checkbox
-      v-bind="{ ...$attrs, ...$props }"
-      :class="{ 'gui-checkbox-rounded': rounded }"
-      @change="(event) => $emit('change', event)"
-    >
-      <!--
-        @slot customize default content
-      -->
+  <component
+    :is="!hasOwnLabel && isLabeledByFormItem ? 'span' : 'label'"
+    :class="compKls"
+    :aria-controls="indeterminate ? ariaControls : null"
+    @click="onClickRoot"
+  >
+    <span :class="spanKls">
+      <input
+        v-if="trueValue || falseValue"
+        class="bg-primary"
+        :id="inputId"
+        v-model="model"
+        :class="ns.e('original')"
+        type="checkbox"
+        :indeterminate="indeterminate"
+        :name="name"
+        :tabindex="tabindex"
+        :disabled="isDisabled"
+        :true-value="trueValue ?? true"
+        :false-value="falseValue ?? false"
+        @change="handleChange"
+        @focus="isFocused = true"
+        @blur="isFocused = false"
+        @click.stop
+      />
+      <input
+        v-else
+        :id="inputId"
+        v-model="model"
+        :class="ns.e('original')"
+        type="checkbox"
+        :indeterminate="indeterminate"
+        :disabled="isDisabled"
+        :value="actualValue"
+        :name="name"
+        :tabindex="tabindex"
+        @change="handleChange"
+        @focus="isFocused = true"
+        @blur="isFocused = false"
+        @click.stop
+      />
+      <span :class="ns.e('inner')" />
+    </span>
+    <span v-if="isError && errorMessage" class="absolute -bottom-2.5">
+      <p class="text-1 text-error-txt font-medium">{{ errorMessage }}</p>
+    </span>
+    <span v-if="hasOwnLabel" :class="ns.e('label')">
       <slot />
-    </el-checkbox>
-  </div>
+      <template v-if="!$slots.default">{{ label }}</template>
+    </span>
+  </component>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { ElCheckbox } from "element-plus";
+<script lang="ts" setup>
+import { computed, useSlots } from 'vue'
+import { useNamespace } from 'element-plus'
+import { checkboxEmits, checkboxProps } from './checkbox'
+import { useCheckbox } from './composables'
 
-// TYPES
-import { TypeCheckboxSize } from './checkbox.type';
+defineOptions({
+  name: 'GuiCheckbox'
+})
 
-export default defineComponent({
-  name: 'Checkbox',
-  components: {
-    ElCheckbox,
-  },
-  emits: [
-    /**
-     * triggers when the bound value changes
-     */
-    'change'
-  ],
-  props: {
-    /**
-     * whether checkbox is rounded
-     */
-    rounded: {
-      type: Boolean,
-      default: false
-    },
-    /**
-     * whether checkbox is disabled
-     */
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    /**
-     * size of the checkbox
-    */
-    size: {
-      type: String as PropType<TypeCheckboxSize>,
-      default: '',
-    },
-    /**
-     *  the value of checkbox
-    */
-    label: {
-      type: [String, Number, Boolean],
-      default: '',
-    },
-    /**
-     *  native 'name' attribute
-     */
-    name: {
-      type: String,
-      default: '',
-    },
-    /**
-     * Set indeterminate state, only responsible for style control
-     */
-    indeterminate: Boolean,
-    /**
-     * if the Checkbox is checked
-     */
-    checked: Boolean,
-    /**
-     * value of the Checkbox if it's checked
-     */
-    trueLabel: {
-      type: [String, Number],
-      default: undefined,
-    },
-    /**
-     * value of the Checkbox if it's not checked
-     */
-    falseLabel: {
-      type: [String, Number],
-      default: undefined,
-    },
-    /**
-     * input id
-     */
-    id: {
-      type: String,
-      default: undefined,
-    },
-    /**
-     * same as [aria-controls](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-controls), takes effect when `indeterminate` is `true`
-     */
-    controls: {
-      type: String,
-      default: undefined,
-    },
-    /**
-     * whether to add a border around Checkbox
-     */
-    border: Boolean,
-    /**
-     * input tabindex
-     */
-    tabindex: [String, Number],
-    /**
-     * whether to trigger form validation
-     */
-    validateEvent: {
-      type: Boolean,
-      default: true,
-    },
-  },
-});
+const props = defineProps(checkboxProps)
+defineEmits(checkboxEmits)
+const slots = useSlots()
+
+const {
+  actualValue,
+  checkboxSize,
+  handleChange,
+  hasOwnLabel,
+  inputId,
+  isChecked,
+  isDisabled,
+  isError,
+  isFocused,
+  isLabeledByFormItem,
+  model,
+  onClickRoot
+} = useCheckbox(props, slots)
+
+const ns = useNamespace('checkbox')
+
+const compKls = computed(() => {
+  return [
+    ns.b(),
+    ns.m(checkboxSize.value),
+    ns.is('disabled', isDisabled.value),
+    ns.is('bordered', props.border),
+    ns.is('checked', isChecked.value),
+    checkKlsError(isError.value)
+  ]
+})
+
+const spanKls = computed(() => {
+  return [
+    ns.e('input'),
+    ns.is('disabled', isDisabled.value),
+    ns.is('checked', isChecked.value),
+    ns.is('indeterminate', props.indeterminate),
+    ns.is('focus', isFocused.value),
+    checkKlsError(isError.value)
+  ]
+})
+
+const checkKlsError = (isError: boolean) => {
+  if (isError) {
+    return 'is-error'
+  }
+  return ''
+}
 </script>
