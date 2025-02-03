@@ -75,7 +75,7 @@ Ejemplo de uso básico:
     iconLeft: {
       control: "text",
       description:
-        "Icono izquierdo de Font Awesome.\n\nVer [Font Awesome Icons](https://fontawesome.com/icons) Iconos disponibles.\n\nEjemplo 'fa-solid fa-check', 'fa-regular fa-user'",
+        "Icono izquierdo renderizado utilizando el componente IconFont.\n\nVer [IconFont](/?path=/docs/basic-iconfont--docs) para los iconos disponibles.\n\nEjemplo 'solid check', 'regular user'",
       table: {
         category: "Iconos",
         type: { summary: "string" },
@@ -93,7 +93,7 @@ Ejemplo de uso básico:
     iconRight: {
       control: "text",
       description:
-        "Icono derecho de Font Awesome.\n\nVer [Font Awesome Icons](https://fontawesome.com/icons) Iconos disponibles.\n\nEjemplo 'fa-solid fa-arrow-right', 'fa-regular fa-star'",
+        "Icono derecho renderizado utilizando el componente IconFont.\n\nVer [IconFont](/?path=/docs/basic-iconfont--docs) para los iconos disponibles.\n\nEjemplo 'solid arrow-right', 'regular star'",
       table: {
         category: "Iconos",
         type: { summary: "string" },
@@ -215,8 +215,7 @@ Ejemplo de uso básico:
         category: "Slots",
         type: { summary: "string | Component" },
       },
-    }
-
+    },
   },
 } as Meta<typeof GButton>;
 
@@ -379,6 +378,10 @@ export const Sizes = () => ({
     </div>
   `,
 });
+
+
+
+
 
 
 
