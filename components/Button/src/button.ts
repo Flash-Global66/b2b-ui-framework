@@ -105,13 +105,6 @@ export const buttonProps = buildProps({
     default: "",
   },
   /**
-   * Show left icon
-   */
-  showIconLeft: {
-    type: Boolean as PropType<boolean>,
-    default: false,
-  },
-  /**
    * Right icon rendered using the IconFont component.
    *
    * The icon should be specified using the format "<weight> <icon-name>".
@@ -124,13 +117,6 @@ export const buttonProps = buildProps({
   iconRight: {
     type: String as PropType<ButtonIconName>,
     default: "",
-  },
-  /**
-   * Show right icon
-   */
-  showIconRight: {
-    type: Boolean as PropType<boolean>,
-    default: false,
   },
   /**
    * @deprecated use `variant` instead
@@ -199,19 +185,11 @@ export function validateButtonProps(props: ButtonProps) {
     debugWarn("Button", `Invalid prop "iconLeft": expected a string for icon name, but received "${typeof props.iconLeft}".`);
   }
 
-  if (!isBoolean(props.showIconLeft)) {
-    debugWarn("Button", `Invalid prop "showIconLeft": expected a boolean, but received "${typeof props.showIconLeft}".`);
-  }
-
   if (props.iconRight && !isString(props.iconRight)) {
     debugWarn(
       "Button",
       `Invalid prop "iconLeft": expected a string for icon name, but received "${typeof props.iconLeft}".`
     );
-  }
-
-  if (!isBoolean(props.showIconRight)) {
-    debugWarn("Button", `Invalid prop "showIconRight": expected a boolean, but received "${typeof props.showIconRight}".`);
   }
 }
 
