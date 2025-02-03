@@ -1,5 +1,5 @@
-import { ref } from 'vue';
-import type { Ripple } from './button.type';
+import { ref } from "vue";
+import type { Ripple } from "./button.type";
 
 export const useRipple = (isDisabled: () => boolean) => {
   const ripples = ref<Ripple[]>([]);

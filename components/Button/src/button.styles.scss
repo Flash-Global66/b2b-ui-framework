@@ -26,9 +26,11 @@
   @include when(full) {
     @apply w-full;
   }
+
   @include when(disabled) {
     @apply cursor-not-allowed;
   }
+
   @include when(loading) {
     @apply cursor-wait;
   }
@@ -42,15 +44,18 @@
     &:hover:not(.is-disabled):not(.is-loading) {
       @apply bg-primary-def-hover border-primary-def-hover;
     }
+
     &:active:not(.is-disabled):not(.is-loading) {
       @apply bg-primary-def-press border-primary-def-press;
     }
+
     &.is-disabled:not(.is-loading) {
       @apply bg-primary-def-disabled border-primary-def-disabled text-disabled-txt;
     }
 
-    
+
   }
+
   @include m('variant-secondary') {
     @apply bg-sec-def-bg text-secondary-txt border border-secondary-bd;
     @include hover-animation;
@@ -59,37 +64,43 @@
     &:hover:not(.is-disabled) {
       @apply bg-sec-hover-bg text-secondary-txt;
     }
+
     &:active:not(.is-disabled) {
       @apply bg-sec-press-bg text-secondary-txt;
     }
+
     &.is-disabled {
       @apply bg-sec-def-bg border-secondary-bd text-disabled-txt;
     }
 
-   
+
   }
+
   @include m('variant-tertiary') {
     @apply bg-transparent text-terciary-txt border border-transparent;
     @include hover-animation;
     @include ripple-effect('nightBlue-50');
-    
+
     &:hover:not(.is-disabled) {
       @apply bg-nightBlue-50 opacity-50 text-primary-def;
     }
+
     &:active:not(.is-disabled) {
       @apply text-primary-def-press;
     }
+
     &.is-disabled {
       @apply bg-transparent text-disabled-txt border-transparent;
     }
 
-    
+
   }
 
   // Estructura de contenido
   @include e('content') {
     @apply relative flex items-center justify-center gap-xs z-10;
-    > div {
+
+    >div {
       @apply flex items-center justify-center gap-xs w-full;
     }
   }
@@ -98,6 +109,7 @@
   @include e(icon-left) {
     @apply mr-xs;
   }
+
   @include e(icon-right) {
     @apply ml-xs;
   }
@@ -111,9 +123,14 @@
     @apply w-xs h-xs rounded-full;
     background-color: currentColor;
     animation: dot-bounce 1s ease-in-out infinite;
-    
-    &:nth-child(2) { animation-delay: 0.33s; }
-    &:nth-child(3) { animation-delay: 0.66s; }
+
+    &:nth-child(2) {
+      animation-delay: 0.33s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.66s;
+    }
   }
 
   // Ripple effect
@@ -129,7 +146,7 @@
   // sizes deprecated
   @include m('tiny') {
     @apply h-10;
-    
+
     &.gui-button--icon {
       @apply w-10 text-4;
     }
@@ -137,7 +154,7 @@
 
   @include m('medium') {
     @apply h-14;
-    
+
     &.gui-button--icon {
       @apply w-14 text-8;
     }
@@ -145,7 +162,7 @@
 
   @include m('large') {
     @apply h-16;
-    
+
     &.gui-button--icon {
       @apply w-16 text-9;
     }
@@ -154,11 +171,11 @@
   // deprecated
   @include m('info') {
     @apply text-nightBlue-500 border-white bg-white;
-    
+
     &:hover {
       @apply opacity-75;
     }
-    
+
     &.is-disabled {
       @apply opacity-70 cursor-not-allowed;
     }
@@ -167,11 +184,11 @@
   // deprecated
   @include m('warning') {
     @apply bg-yellow-700 border-yellow-700 text-white;
-    
+
     &:hover {
       @apply opacity-75;
     }
-    
+
     &.is-disabled {
       @apply bg-yellow-700/60 border-yellow-700/60 cursor-not-allowed;
     }
@@ -180,11 +197,11 @@
   // deprecated
   @include m('danger') {
     @apply bg-red-700 border-red-700 text-white;
-    
+
     &:hover {
       @apply opacity-75;
     }
-    
+
     &.is-disabled {
       @apply bg-grey-50 border-gray-50 cursor-not-allowed text-grey-500;
     }
@@ -198,11 +215,11 @@
   // deprecated
   @include m('primary') {
     @apply bg-nightBlue-500 border-nightBlue-500 text-white;
-    
+
     &:hover {
       @apply bg-nightBlue-600;
     }
-    
+
     &.is-disabled {
       @apply bg-grey-50 border-gray-50 cursor-not-allowed text-grey-500;
     }
@@ -211,11 +228,11 @@
   // Legacy support for secondary (sin outlined/ghost)
   @include m('secondary') {
     @apply bg-green-700 border-green-700 text-white;
-    
+
     &:hover {
       @apply bg-green-800;
     }
-    
+
     &.is-disabled {
       @apply bg-grey-50 border-gray-50 cursor-not-allowed text-grey-500;
     }
@@ -226,11 +243,11 @@
 @at-root {
   .gui-button--primary.gui-button--outlined {
     @apply border-nightBlue-500 text-nightBlue-500 bg-transparent;
-    
+
     &:hover {
       @apply border-nightBlue-600;
     }
-    
+
     &.is-disabled {
       @apply border-gray-200 cursor-not-allowed text-grey-300;
     }
@@ -238,11 +255,11 @@
 
   .gui-button--primary.gui-button--ghost {
     @apply border-transparent text-nightBlue-500 bg-transparent;
-    
+
     &:hover {
       @apply text-nightBlue-600;
     }
-    
+
     &.is-disabled {
       @apply cursor-not-allowed text-grey-300;
     }
@@ -251,18 +268,19 @@
   // info
   .gui-button--info.gui-button--outlined {
     @apply border-white bg-transparent;
-    
+
     &:hover {
       @apply opacity-75;
     }
-    
+
     &.is-disabled {
       @apply text-nightBlue-500/80 cursor-not-allowed;
     }
   }
+
   .gui-button--info.gui-button--ghost {
     @apply border-transparent bg-transparent;
-    
+
     &.is-disabled {
       @apply text-nightBlue-500/80 cursor-not-allowed;
     }
@@ -271,22 +289,23 @@
   // warning deprecrated
   .gui-button--warning.gui-button--outlined {
     @apply border-yellow-700 text-yellow-700 bg-transparent;
-    
+
     &:hover {
       @apply border-yellow-800 text-yellow-800;
     }
-    
+
     &.is-disabled {
       @apply opacity-50 cursor-not-allowed;
     }
   }
+
   .gui-button--warning.gui-button--ghost {
     @apply border-transparent text-yellow-700 bg-transparent;
-    
+
     &:hover {
       @apply text-yellow-800;
     }
-    
+
     &.is-disabled {
       @apply opacity-50 cursor-not-allowed;
     }
@@ -295,22 +314,23 @@
   // danger deprecrated
   .gui-button--danger.gui-button--outlined {
     @apply border-red-700 text-red-700 bg-transparent;
-    
+
     &:hover {
       @apply border-red-800 text-red-800;
     }
-    
+
     &.is-disabled {
       @apply opacity-50 cursor-not-allowed text-red-100;
     }
   }
+
   .gui-button--danger.gui-button--ghost {
     @apply border-transparent text-red-700 bg-transparent;
-    
+
     &:hover {
       @apply text-red-800;
     }
-    
+
     &.is-disabled {
       @apply opacity-50 cursor-not-allowed text-red-100;
     }
@@ -319,22 +339,23 @@
   // secondary
   .gui-button--secondary.gui-button--outlined {
     @apply border-green-2 text-green-2 bg-transparent;
-    
+
     &:hover {
       @apply opacity-75;
     }
-    
+
     &.is-disabled {
       @apply opacity-50 cursor-not-allowed text-green-100;
     }
   }
+
   .gui-button--secondary.gui-button--ghost {
     @apply border-transparent text-green-2 bg-transparent;
-    
+
     &:hover {
       @apply text-green-4;
     }
-    
+
     &.is-disabled {
       @apply opacity-50 cursor-not-allowed text-green-100;
     }
@@ -347,14 +368,17 @@
     transform: translateY(0);
     opacity: 0.4;
   }
+
   20% {
     transform: translateY(-100%);
     opacity: 1;
   }
+
   40% {
     transform: translateY(0);
     opacity: 0.4;
   }
+
   100% {
     transform: translateY(0);
     opacity: 0.4;
@@ -366,6 +390,7 @@
     transform: scale(0);
     opacity: 0.35;
   }
+
   100% {
     transform: scale(2);
     opacity: 0;
@@ -376,5 +401,3 @@
 .ripple-leave-active {
   @include ripple-animation;
 }
-
-

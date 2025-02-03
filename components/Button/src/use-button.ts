@@ -1,19 +1,18 @@
-import { computed, ref  } from "vue";
+import { computed, ref } from "vue";
 import type { SetupContext } from "vue";
 import { useFormItem } from "element-plus";
 import { ButtonEmits, ButtonProps } from "./button";
-import { useRipple } from './use-ripple';
-
+import { useRipple } from "./use-ripple";
 
 export const useButton = (props: ButtonProps, emit: SetupContext<ButtonEmits>["emit"]) => {
   const _disabled = computed(() => props.disabled);
   const _ref = ref<HTMLElement>();
   const { form } = useFormItem();
 
-  const componentId = computed(() => !props.href ? 'button' : 'a');
+  const componentId = computed(() => (!props.href ? "button" : "a"));
 
   const _props = computed(() => {
-    if (!props.href) { 
+    if (!props.href) {
       return {
         disabled: _disabled.value || props.loading,
         autofocus: props.autofocus,
@@ -36,9 +35,9 @@ export const useButton = (props: ButtonProps, emit: SetupContext<ButtonEmits>["e
     onMousedown: handleMouseDown,
     onPointerdown: handleRipple,
     onKeydown: [
-      (e: KeyboardEvent) => e.key === ' ' && (e.preventDefault(), handleClick(e as any)),
-      (e: KeyboardEvent) => e.key === 'Enter' && (e.preventDefault(), handleClick(e as any))
-    ]
+      (e: KeyboardEvent) => e.key === " " && (e.preventDefault(), handleClick(e as any)),
+      (e: KeyboardEvent) => e.key === "Enter" && (e.preventDefault(), handleClick(e as any)),
+    ],
   }));
 
   const handleClick = (evt: MouseEvent) => {
@@ -47,9 +46,9 @@ export const useButton = (props: ButtonProps, emit: SetupContext<ButtonEmits>["e
       evt.stopPropagation();
       return;
     }
-     if (props.typeNative === "reset") {
-       form?.resetFields();
-     }
+    if (props.typeNative === "reset") {
+      form?.resetFields();
+    }
     emit("click", evt);
   };
 
@@ -81,7 +80,4 @@ export const useButton = (props: ButtonProps, emit: SetupContext<ButtonEmits>["e
     allAttrs,
   };
 };
-
-
-
 
