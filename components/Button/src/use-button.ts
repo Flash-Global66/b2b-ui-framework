@@ -61,8 +61,8 @@ export const useButton = (props: ButtonProps, emit: SetupContext<ButtonEmits>["e
     emit("mousedown", evt);
   };
 
-  const shouldShowLeftIcon = computed(() => Boolean(props.iconLeft && props.showIconLeft));
-  const shouldShowRightIcon = computed(() => Boolean(props.iconRight && props.showIconRight));
+  const shouldShowLeftIcon = computed(() => Boolean(props.iconLeft));
+  const shouldShowRightIcon = computed(() => Boolean(props.iconRight));
 
   const { ripples, handleRipple, removeRipple } = useRipple(() => _disabled.value || props.loading);
 

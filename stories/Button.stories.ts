@@ -81,15 +81,6 @@ Ejemplo de uso básico:
         type: { summary: "string" },
       },
     },
-    showIconLeft: {
-      control: "boolean",
-      description: "Mostrar icono izquierdo",
-      table: {
-        category: "Iconos",
-        defaultValue: { summary: "false" },
-        type: { summary: "boolean" },
-      },
-    },
     iconRight: {
       control: "text",
       description:
@@ -97,14 +88,6 @@ Ejemplo de uso básico:
       table: {
         category: "Iconos",
         type: { summary: "string" },
-      },
-    },
-    showIconRight: {
-      control: "boolean",
-      description: "Mostrar icono derecho",
-      table: {
-        category: "Iconos",
-        defaultValue: { summary: "false" },
       },
     },
 
@@ -297,27 +280,23 @@ export const WithIcons = () => ({
   components: { GButton },
   template: `
       <div class="space-y-2">
-        <h3 class="text-lg font-bold">Botones con Iconos de Font Awesome</h3>
+        <h3 class="text-lg font-bold">Botones con Iconos</h3>
         <div class="flex gap-4">
           <g-button 
             variant="primary"
             title="Icono Izquierdo"
-            show-icon-left
             icon-left="solid chevron-left"
           />
           
           <g-button 
             variant="primary"
             title="Icono Derecho"
-            show-icon-right
             icon-right="solid chevron-right"
           />
 
           <g-button 
             variant="primary"
             title="Ambos Iconos"
-            show-icon-left
-            show-icon-right
             icon-left="solid chevron-left"
             icon-right="solid chevron-right"
           />
@@ -352,7 +331,7 @@ export const DeprecatedAPI = () => ({
           <g-button type="default">Default</g-button>
           <g-button type="outlined">Outlined</g-button>
           <g-button type="ghost">Ghost</g-button>
-          <g-button type="icon">
+          <g-button type="icon" class="p-4">
             <FontAwesomeIcon :icon="['fas', 'arrow-right']" />
           </g-button>
         </div>
