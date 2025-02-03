@@ -91,11 +91,14 @@ export const buttonProps = buildProps({
     default: "",
   },
   /**
-   * Left icon from Font Awesome
+   * Left icon rendered using the IconFont component.
    *
-   * @see {@link https://fontawesome.com/icons} Available icons.
+   * The icon should be specified using the format "<weight> <icon-name>".
+   * Acceptable weights are: "solid", "regular", "light", "brands", or "duotone".
    *
-   * @example 'fa-solid fa-check', 'fa-regular fa-user'
+   * @see IconFont documentation for available icons.
+   *
+   * @example 'solid check', 'regular user'
    */
   iconLeft: {
     type: String as PropType<ButtonIconName>,
@@ -109,9 +112,14 @@ export const buttonProps = buildProps({
     default: false,
   },
   /**
-   * Right icon from Font Awesome
-   * @see {@link https://fontawesome.com/icons} Available icons
-   * @example 'fa-solid fa-arrow-right', 'fa-regular fa-star'
+   * Right icon rendered using the IconFont component.
+   *
+   * The icon should be specified using the format "<weight> <icon-name>".
+   * Acceptable weights are: "solid", "regular", "light", "brands", or "duotone".
+   *
+   * @see IconFont documentation for available icons.
+   *
+   * @example 'solid check', 'regular user'
    */
   iconRight: {
     type: String as PropType<ButtonIconName>,
@@ -206,6 +214,9 @@ export function validateButtonProps(props: ButtonProps) {
     debugWarn("Button", `Invalid prop "showIconRight": expected a boolean, but received "${typeof props.showIconRight}".`);
   }
 }
+
+
+
 
 
 
