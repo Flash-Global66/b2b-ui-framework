@@ -1,9 +1,47 @@
+type ButtonVariant = 'primary' | 'secondary' | 'tertiary';
+
+type ButtonState = 'default' | 'loading' | 'disabled';
+
+type ButtonIconName = string;
+
+type Ripple = {
+  id: number;
+  x: number;
+  y: number;
+}
+
+type ButtonNativeType = 'button' | 'submit' | 'reset';
+
+/**
+ * @deprecated The button now has a single standard size
+ */
 type ButtonSize = 'large' | 'medium' | 'small' | 'tiny' | 'auto';
 
-type ButtonColor = 'primary' | 'secondary' | 'danger' | 'info' | 'warning' | 'custom';
-
+/**
+ * @deprecated Use ButtonVariant instead.
+ */
 type ButtonType = 'default' | 'outlined' | 'ghost' | 'icon';
 
-type ButtonNativeType = 'submit' | 'button' | 'reset';
+/**
+ * @deprecated Use ButtonVariant instead.
+ */
+type ButtonColor = 'primary' | 'secondary' | 'danger' | 'info' | 'warning' | 'custom';
 
-export { ButtonColor, ButtonSize, ButtonType, ButtonNativeType };
+export { 
+  ButtonSize, 
+  ButtonColor,
+  ButtonType, 
+  ButtonVariant, 
+  ButtonIconName,
+  ButtonState, 
+  Ripple,
+  ButtonNativeType
+};
+
+
+
+
+
+
+
+
