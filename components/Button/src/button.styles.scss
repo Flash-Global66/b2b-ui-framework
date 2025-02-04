@@ -45,7 +45,6 @@
       @apply bg-primary-def-disabled border-primary-def-disabled text-disabled-txt;
     }
 
-
   }
 
   @include m('variant-secondary') {
@@ -53,33 +52,32 @@
     @include hover-animation;
 
     &:hover:not(.is-disabled):not(.is-loading) {
-      @apply bg-nightBlue-100 text-primary-def-hover;
+      @apply bg-blue-100 bg-opacity-80 text-primary-def-hover;
     }
 
     &:active:not(.is-disabled):not(.is-loading) {
-      @apply bg-nightBlue-50 text-primary-def-press;
+      @apply bg-blue-100 bg-opacity-40 text-primary-def-press;
     }
 
     &.is-disabled:not(.is-loading) {
       @apply bg-transparent border-disabled-bd text-disabled-txt;
     }
 
-
   }
 
   @include m('variant-tertiary') {
-    @apply bg-transparent text-terciary-txt border border-transparent;
+    @apply bg-transparent text-primary-def border border-transparent;
     @include hover-animation;
 
-    &:hover:not(.is-disabled) {
-      @apply bg-nightBlue-50 opacity-50 text-primary-def;
+    &:hover:not(.is-disabled):not(.is-loading) {
+      @apply bg-blue-100 bg-opacity-80  text-primary-def-hover;
     }
 
-    &:active:not(.is-disabled) {
-      @apply text-primary-def-press;
+    &:active:not(.is-disabled):not(.is-loading) {
+      @apply bg-blue-100 bg-opacity-40 text-primary-def-press;
     }
 
-    &.is-disabled {
+    &.is-disabled:not(.is-loading) {
       @apply bg-transparent text-disabled-txt border-transparent;
     }
   }
