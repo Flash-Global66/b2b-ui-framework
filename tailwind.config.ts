@@ -342,8 +342,8 @@ module.exports = {
       addBase({
         ':root': {
           '--color-primary': theme('colors.nightBlue.500'),
-          '--color-primary-hover': theme('colors.nightBlue.400'),
-          '--color-primary-press': theme('colors.nightBlue.700'),
+          '--color-primary-hover': theme('colors.nightBlue.700'),
+          '--color-primary-press': theme('colors.nightBlue.400'),
           '--color-primary-disabled': theme('colors.grey.50'),
           '--color-success': theme('colors.green.700'),
           '--color-warning': theme('colors.yellow.700'),

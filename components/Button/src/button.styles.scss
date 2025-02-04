@@ -7,7 +7,7 @@
 @mixin ripple-effect($color) {
   .gui-button__ripple {
     @apply bg-#{$color};
-    opacity: 0.5;
+    opacity: 1;
   }
 }
 
@@ -39,7 +39,7 @@
   @include m('variant-primary') {
     @apply bg-primary-def border border-primary-bd text-inverse-txt;
     @include hover-animation;
-    @include ripple-effect('primary-def-hover');
+    @include ripple-effect('white');
 
     &:hover:not(.is-disabled):not(.is-loading) {
       @apply bg-primary-def-hover border-primary-def-hover;
@@ -57,20 +57,20 @@
   }
 
   @include m('variant-secondary') {
-    @apply bg-sec-def-bg text-secondary-txt border border-secondary-bd;
+    @apply bg-transparent text-primary-def border border-primary-bd;
     @include hover-animation;
-    @include ripple-effect('sec-hover-bg');
+    @include ripple-effect('white');
 
-    &:hover:not(.is-disabled) {
-      @apply bg-sec-hover-bg text-secondary-txt;
+    &:hover:not(.is-disabled):not(.is-loading) {
+      @apply bg-nightBlue-100 text-primary-def-hover;
     }
 
-    &:active:not(.is-disabled) {
-      @apply bg-sec-press-bg text-secondary-txt;
+    &:active:not(.is-disabled):not(.is-loading) {
+      @apply bg-nightBlue-50 text-primary-def-press;
     }
 
-    &.is-disabled {
-      @apply bg-sec-def-bg border-secondary-bd text-disabled-txt;
+    &.is-disabled:not(.is-loading) {
+      @apply bg-transparent border-disabled-bd text-disabled-txt;
     }
 
 
