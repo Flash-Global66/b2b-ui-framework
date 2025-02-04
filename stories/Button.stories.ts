@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 // CONSTANTS
 import { action } from '@storybook/addon-actions'
-import { ref } from 'vue'
 
 export default {
   title: 'Basic/Button',
