@@ -1,4 +1,5 @@
 import { ref } from "vue";
+import { useTimeoutFn } from "@vueuse/core";
 import type { Ripple } from "./button.type";
 
 export const useRipple = (isDisabled: () => boolean) => {
@@ -14,11 +15,9 @@ export const useRipple = (isDisabled: () => boolean) => {
     const y = event.clientY - rect.top;
 
     rippleCount++;
-    ripples.value.push({
-      id: rippleCount,
-      x,
-      y,
-    });
+    const newRipple = { id: rippleCount, x, y };
+    ripples.value.push(newRipple);
+    useTimeoutFn(() => removeRipple(newRipple.id), 700);
   };
 
   const removeRipple = (id: number) => {
@@ -31,3 +30,4 @@ export const useRipple = (isDisabled: () => boolean) => {
     removeRipple,
   };
 };
+
