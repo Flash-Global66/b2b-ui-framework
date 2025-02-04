@@ -4,13 +4,6 @@
 @use 'element-plus/theme-chalk/src/mixins/var' as *;
 @use 'element-plus/theme-chalk/src/common/var' as *;
 
-@mixin ripple-effect($color) {
-  .gui-button__ripple {
-    @apply bg-#{$color};
-    opacity: 1;
-  }
-}
-
 @mixin ripple-animation($duration: 0.6s, $ease: ease-out, $fill-mode: forwards) {
   animation: ripple-effect $duration $ease $fill-mode;
 }
@@ -39,7 +32,6 @@
   @include m('variant-primary') {
     @apply bg-primary-def border border-primary-bd text-inverse-txt;
     @include hover-animation;
-    @include ripple-effect('white');
 
     &:hover:not(.is-disabled):not(.is-loading) {
       @apply bg-primary-def-hover border-primary-def-hover;
@@ -59,7 +51,6 @@
   @include m('variant-secondary') {
     @apply bg-transparent text-primary-def border border-primary-bd;
     @include hover-animation;
-    @include ripple-effect('white');
 
     &:hover:not(.is-disabled):not(.is-loading) {
       @apply bg-nightBlue-100 text-primary-def-hover;
@@ -79,7 +70,6 @@
   @include m('variant-tertiary') {
     @apply bg-transparent text-terciary-txt border border-transparent;
     @include hover-animation;
-    @include ripple-effect('nightBlue-50');
 
     &:hover:not(.is-disabled) {
       @apply bg-nightBlue-50 opacity-50 text-primary-def;
@@ -92,8 +82,6 @@
     &.is-disabled {
       @apply bg-transparent text-disabled-txt border-transparent;
     }
-
-
   }
 
   // Estructura de contenido
@@ -135,7 +123,7 @@
 
   // Ripple effect
   @include e(ripple) {
-    @apply absolute rounded-full pointer-events-none z-10;
+    @apply absolute rounded-full pointer-events-none z-10 bg-white;
     width: 100px;
     height: 100px;
     margin-left: -50px;
