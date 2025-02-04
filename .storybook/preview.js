@@ -28,7 +28,7 @@ export const parameters = {
   },
   backgrounds: {
     values: [
-      { name: 'Gray', value: '#F5F7FF' },
+      { name: 'Gray', value: '#FAFBFF' },
       { name: 'White', value: '#FFF' },
     ],
     default: "Gray",
