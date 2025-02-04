@@ -1,152 +1,288 @@
-import { StoryFn, Meta } from "@storybook/vue3";
-import { fn } from "@storybook/test";
-import { GButton } from '../components/Button/src';
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { StoryFn, Meta } from '@storybook/vue3'
+import { fn } from '@storybook/test'
+import { GButton } from '../components/Button/src'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 // CONSTANTS
-import { action } from "@storybook/addon-actions";
+import { action } from '@storybook/addon-actions'
 
 export default {
   title: 'Basic/Button',
   component: GButton,
-  argTypes: {
-    typeNative: {
-      options: ['reset', 'submit', 'button'],
-      defaultValue: 'button',
-    },
-    type: {
-      options: ['default', 'outlined', 'ghost', 'icon'],
-      defaultValue: 'default',
-    },
-    color: {
-      options: ['primary', 'secondary', 'danger', 'info', 'warning', 'custom'],
-      defaultValue: 'primary',
-    },
-    size: {
-      options: ['large', 'medium', 'small', 'tiny', 'custom'],
-      defaultValue: 'medium',
-    },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+### Uso básico
+Ejemplo de uso básico:
+\`\`\` vue
+<g-button variant="primary" title="Primary Button"/>
+\`\`\`
+        `
+      }
+    }
   },
-  args: {
-    default: 'texto de un botón',
-  }
-} as Meta<typeof GButton>;
+  argTypes: {
+    // Current Props - Variant & Style
+    variant: {
+      control: 'select',
+      options: ['primary', 'secondary', 'tertiary'],
+      description: 'Variante visual del botón',
+      table: {
+        type: { summary: 'string' },
+        category: 'Principales'
+      }
+    },
+    title: {
+      control: 'text',
+      description: 'Texto del botón (preferencia sobre el slot)',
+      table: {
+        category: 'Principales',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'Button Text' }
+      }
+    },
 
+    // Behavior Props
+    typeNative: {
+      control: 'select',
+      options: ['button', 'submit', 'reset'],
+      description: 'Tipo nativo del botón HTML',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'button' },
+        category: 'Comportamiento'
+      }
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Deshabilita el botón',
+      table: {
+        category: 'Comportamiento',
+        type: { summary: 'boolean' }
+      }
+    },
+    loading: {
+      control: 'boolean',
+      description: 'Muestra estado de carga',
+      table: {
+        category: 'Comportamiento',
+        type: { summary: 'boolean' }
+      }
+    },
+
+    // Iconos
+    iconLeft: {
+      control: 'text',
+      description:
+        "Icono izquierdo renderizado utilizando el componente IconFont.\n\nVer [IconFont](/?path=/docs/basic-iconfont--docs) para los iconos disponibles.\n\nEjemplo 'solid check', 'regular user'",
+      table: {
+        category: 'Iconos',
+        type: { summary: 'string' }
+      }
+    },
+    iconRight: {
+      control: 'text',
+      description:
+        "Icono derecho renderizado utilizando el componente IconFont.\n\nVer [IconFont](/?path=/docs/basic-iconfont--docs) para los iconos disponibles.\n\nEjemplo 'solid arrow-right', 'regular star'",
+      table: {
+        category: 'Iconos',
+        type: { summary: 'string' }
+      }
+    },
+
+    autofocus: {
+      control: 'boolean',
+      description:
+        'El botón obtiene el foco automáticamente al cargar la página (HTML autofocus) \n\n⚠️ **Nota:** No se puede usar con el atributo `href`',
+      table: {
+        category: 'Comportamiento',
+        type: { summary: 'boolean' }
+      }
+    },
+    download: {
+      control: 'text',
+      description:
+        'Especifica que el elemento se descargará cuando el usuario haga clic en el enlace.\n\n ⚠️ **Nota:**  Solo funciona si la propiedad href está definida.',
+      table: {
+        defaultValue: { summary: 'undefined' },
+        category: 'Enlaces',
+        type: { summary: 'string' }
+      }
+    },
+
+    // Link Props
+    href: {
+      control: 'text',
+      description: 'Convierte el botón en un enlace',
+      table: {
+        category: 'Enlaces',
+        type: { summary: 'string' }
+      }
+    },
+    target: {
+      control: 'text',
+      description: 'Atributo target del enlace',
+      table: {
+        category: 'Enlaces',
+        type: { summary: 'string' }
+      }
+    },
+    full: {
+      control: 'boolean',
+      description: 'Botón de ancho completo',
+      table: {
+        category: 'Layout',
+        type: { summary: 'boolean' }
+      }
+    },
+
+    // Accesibilidad
+    ariaLabel: {
+      control: 'text',
+      description: 'Etiqueta accesible para el botón',
+      table: {
+        category: 'Accesibilidad',
+        type: { summary: 'string' }
+      }
+    },
+    // Events
+    onClick: {
+      description:
+        'Se dispara al hacer clic en el botón. No se dispara si el botón está deshabilitado.',
+      table: {
+        category: 'Events',
+        type: { summary: '(event: Event) => void' }
+      }
+    },
+    onMousedown: {
+      description:
+        'Se dispara cuando se presiona el botón del mouse. No se dispara si el botón está deshabilitado.',
+      table: {
+        category: 'Events',
+        type: { summary: '(event: Event) => void' }
+      }
+    },
+    default: {
+      constrol: 'text',
+      description: 'Slot por defecto del botón',
+      table: {
+        category: 'Slots',
+        type: { summary: 'string | Component' }
+      }
+    },
+    // Se añade información de deprecated al final de la tabla:
+    'Deprecated Info': {
+      table: {
+        category: 'Deprecated',
+        // El order mayor coloca la fila al final
+        order: 999
+      },
+      description:
+        "⚠️ Las props 'size', 'type' y 'color' estan deprecadas . Utilizar prop 'variant'."
+    }
+  }
+} as Meta<typeof GButton>
+
+// Base template
 const Template: StoryFn<typeof GButton> = (args) => ({
   components: { GButton },
-  template: `
-    <g-button v-bind="args" @click="onClick" @mousedown="onMousedown">
-      {{ args.default }}
-    </g-button>
-  `,
   setup() {
     return {
       args,
       onClick: fn(action('click')),
-      onMousedown: fn(action('mousedown')),
-    };
+      onMousedown: fn(action('mousedown'))
+    }
   },
-});
+  template: `
+    <g-button 
+      v-bind="args" 
+      @click="onClick" 
+      @mousedown="onMousedown"
+    />
+  `
+})
 
-export const Primary = Template.bind({});
-Primary.parameters = {
-  docs: {
-    description: {
-      component: `Commonly used button.`,
-    },
-  },
-};
+// Current API Stories
+export const Primary = Template.bind({})
+Primary.args = {
+  variant: 'primary',
+  title: 'Primary Button'
+}
 
-const TemplateColor: StoryFn<typeof GButton> = (args) => ({
+export const Secondary = Template.bind({})
+Secondary.args = {
+  variant: 'secondary',
+  title: 'Secondary Button'
+}
+
+export const Tertiary = Template.bind({})
+Tertiary.args = {
+  variant: 'tertiary',
+  title: 'Tertiary Button'
+}
+
+// States Stories
+export const States = () => ({
   components: { GButton },
   template: `
-    <div class="flex gap-6 items-center">
-      <g-button v-bind="args" size="large">
-        Primary
-      </g-button>
-      <g-button v-bind="args" color="secondary" size="medium">
-        Secondary
-      </g-button>
-      <g-button v-bind="args" color="danger" size="small">
-        Danger
-      </g-button>
-      <g-button v-bind="args" color="info" size="tiny">
-        Info
-      </g-button>
-      <g-button v-bind="args" color="custom" class="border-purple-600 bg-purple-600 text-white">
-        Custom
-      </g-button>
+    <div class="space-y-8">
+      <div class="space-y-2">
+        <h3 class="text-lg font-bold">Primary Variant States</h3>
+        <div class="flex gap-4">
+          <g-button variant="primary" title="Enabled"/>
+          <g-button variant="primary" disabled title="Disabled"/>
+          <g-button variant="primary" loading title="Loading"/>
+        </div>
+      </div>
+      
+      <div class="space-y-2">
+        <h3 class="text-lg font-bold">Secondary Variant States</h3>
+        <div class="flex gap-4">
+          <g-button variant="secondary" title="Enabled"/>
+          <g-button variant="secondary" disabled title="Disabled"/>
+          <g-button variant="secondary" loading title="Loading"/>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <h3 class="text-lg font-bold">Tertiary Variant States</h3>
+        <div class="flex gap-4">
+          <g-button variant="tertiary" title="Enabled"/>
+          <g-button variant="tertiary" disabled title="Disabled"/>
+          <g-button variant="tertiary" loading title="Loading"/>
+        </div>
+      </div>
     </div>
-  `,
-  setup() {
-    return { args };
-  },
-});
+  `
+})
 
-export const Outlined = TemplateColor.bind({});
-Outlined.args = {
-  type: 'outlined',
-};
-
-export const Ghost = TemplateColor.bind({});
-Ghost.args = {
-  type: 'ghost',
-};
-
-
-const TemplateIcon: StoryFn<typeof GButton> = (args) => ({
-  components: { GButton, FontAwesomeIcon },
+// Add new story for icons
+export const WithIcons = () => ({
+  components: { GButton },
   template: `
-    <div class="flex gap-6 items-center">
-      <g-button v-bind="args" size="large">
-        <FontAwesomeIcon
-          :icon="['fas', 'arrow-right']"
-        />
-      </g-button>
-      <g-button v-bind="args" color="secondary" size="medium">
-        <FontAwesomeIcon
-          :icon="['far', 'search']"
-        />
-      </g-button>
-      <g-button v-bind="args" color="danger" size="small">
-        <FontAwesomeIcon
-          :icon="['fas', 'home']"
-        />
-      </g-button>
-      <g-button v-bind="args" color="info" size="tiny">
-        <FontAwesomeIcon
-          :icon="['fas', 'lock']"
-        />
-      </g-button>
-      <g-button v-bind="args" color="custom" size="custom" class="border-purple-600 bg-purple-600 text-white w-20 h-20">
-        <FontAwesomeIcon
-          :icon="['fas', 'arrow-right']"
-        />
-      </g-button>
-    </div>
-  `,
-  setup() {
-    const args = {
-      type: 'icon',
-    }
+      <div class="space-y-2">
+        <h3 class="text-lg font-bold">Botones con Iconos</h3>
+        <div class="flex gap-4">
+          <g-button 
+            variant="primary"
+            title="Icono Izquierdo"
+            icon-left="solid chevron-left"
+          />
+          
+          <g-button 
+            variant="primary"
+            title="Icono Derecho"
+            icon-right="solid chevron-right"
+          />
 
-    return { args };
-  },
-});
-
-export const Icon = TemplateIcon.bind({});
-
-const TemplateCustom: StoryFn<typeof GButton> = (args) => ({
-  components: { GButton, FontAwesomeIcon },
-  template: `
-    <g-button class="justify-between" full>
-      Lorem ipsum
-      <FontAwesomeIcon
-        class="ml-4"
-        :icon="['fas', 'arrow-right']"
-      />
-    </g-button>
-  `,
-});
-
-export const CustomContent = TemplateCustom.bind({});
+          <g-button 
+            variant="primary"
+            title="Ambos Iconos"
+            icon-left="solid chevron-left"
+            icon-right="solid chevron-right"
+          />
+        </div>
+      </div>
+  `
+})

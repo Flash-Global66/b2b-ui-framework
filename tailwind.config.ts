@@ -342,8 +342,8 @@ module.exports = {
       addBase({
         ':root': {
           '--color-primary': theme('colors.nightBlue.500'),
-          '--color-primary-hover': theme('colors.nightBlue.600'),
-          '--color-primary-press': theme('colors.nightBlue.700'),
+          '--color-primary-hover': theme('colors.nightBlue.700'),
+          '--color-primary-press': theme('colors.nightBlue.400'),
           '--color-primary-disabled': theme('colors.grey.50'),
           '--color-success': theme('colors.green.700'),
           '--color-warning': theme('colors.yellow.700'),
@@ -369,8 +369,8 @@ module.exports = {
           '--color-icon-info': theme('colors.blue.500'),
           '--color-txt-primary': theme('colors.nightBlue.900'),
           '--color-txt-secondary': theme('colors.grey.700'),
-          '--color-txt-terciary': theme('colors.grey.500'),
-          '--color-txt-disabled': theme('colors.grey.400'),
+          '--color-txt-terciary': theme('colors.grey.400'),
+          '--color-txt-disabled': theme('colors.grey.500'),
           '--color-txt-inverse': theme('colors.white'),
           '--color-txt-success': theme('colors.green.700'),
           '--color-txt-error': theme('colors.red.700'),
