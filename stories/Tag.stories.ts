@@ -1,141 +1,146 @@
-import type { Meta, StoryObj } from "@storybook/vue3";
-import { nextTick, ref } from "vue";
+import type { Meta, StoryObj } from '@storybook/vue3'
+import { nextTick, ref } from 'vue'
 
-import { GTag } from "../components/Tag";
-import { GInput } from "../components/Input/src/index";
-import { GConfigProvider } from "../components/ConfigProvider";
-import { GButton } from "../components/Button/src/index";
+import { GTag } from '../components/Tag'
+import { GInput } from '../components/Input/src/index'
+import { GConfigProvider } from '../components/ConfigProvider'
+import { GButton } from '../components/Button/src/index'
 
 const meta: Meta<typeof GTag> = {
-  title: "Data/Tag",
+  title: 'Data/Tag',
   component: GTag,
   parameters: {
     docs: {
       description: {
         component:
-          "Componente tipo etiqueta que permite mostrar información de estado o categorización.",
-      },
-    },
+          'Componente tipo etiqueta que permite mostrar información de estado o categorización.'
+      }
+    }
   },
   argTypes: {
     text: {
-      description: "Texto a mostrar en la píldora",
-      control: "text",
+      description: 'Texto a mostrar en la píldora',
+      control: 'text',
       table: {
-        type: { summary: "string" },
-      },
+        type: { summary: 'string' }
+      }
     },
     type: {
-      description: "Tipo de píldora",
-      control: "select",
-      options: ["primary", "success", "info", "warning", "danger"],
+      description: 'Tipo de píldora',
+      control: 'select',
+      options: ['primary', 'success', 'info', 'warning', 'danger'],
       table: {
-        type: { summary: "string" },
-        defaultValue: { summary: "primary" },
-      },
+        type: { summary: 'string' },
+        defaultValue: { summary: 'primary' }
+      }
     },
     size: {
-      description: "Tamaño de la píldora",
-      control: "select",
-      options: ["small", "default", "large"],
+      description: 'Tamaño de la píldora',
+      control: 'select',
+      options: ['small', 'default', 'large'],
       table: {
-        type: { summary: "string" },
-      },
+        type: { summary: 'string' }
+      }
     },
     closable: {
-      description: "Habilita la opción de cerrar la píldora",
-      control: "boolean",
+      description: 'Habilita la opción de cerrar la píldora',
+      control: 'boolean',
       table: {
-        type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
-      },
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' }
+      }
     },
     round: {
-      description: "Hace que la píldora tenga bordes redondeados",
-      control: "boolean",
+      description: 'Hace que la píldora tenga bordes redondeados',
+      control: 'boolean',
       table: {
-        type: { summary: "boolean" },
-        defaultValue: { summary: "true" },
-      },
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' }
+      }
     },
     color: {
-      description: "Color de fondo personalizado",
-      control: "color",
+      description: 'Color de fondo personalizado',
+      control: 'color',
       table: {
-        type: { summary: "string" },
-      },
+        type: { summary: 'string' }
+      }
     },
     effect: {
-      description: "Efecto visual de la píldora",
-      control: "select",
-      options: ["dark", "light", "plain"],
+      description: 'Efecto visual de la píldora',
+      control: 'select',
+      options: ['dark', 'light', 'plain'],
       table: {
-        type: { summary: "string" },
-        defaultValue: { summary: "light" },
-      },
+        type: { summary: 'string' },
+        defaultValue: { summary: 'light' }
+      }
     },
     onClose: {
-      description: "Se emite al hacer clic en el botón de cerrar",
+      description: 'Se emite al hacer clic en el botón de cerrar',
       table: {
-        type: { summary: "function" },
-        category: "events",
-      },
+        type: { summary: 'function' },
+        category: 'events'
+      }
     },
     onClick: {
-      description: "Se emite al hacer clic en la píldora",
+      description: 'Se emite al hacer clic en la píldora',
       table: {
-        type: { summary: "function" },
-        category: "events",
-      },
+        type: { summary: 'function' },
+        category: 'events'
+      }
     },
     default: {
-      description: "Contenido personalizado de la píldora",
+      description: 'Contenido personalizado de la píldora',
       table: {
-        type: { summary: "slot" },
-        category: "slots",
-      },
-    },
+        type: { summary: 'slot' },
+        category: 'slots'
+      }
+    }
   },
   args: {
-    round: true,
+    round: true
   }
-};
+}
 
-export default meta;
-type Story = StoryObj<typeof GTag>;
+export default meta
+type Story = StoryObj<typeof GTag>
 
 // Uso básico
 export const Primary: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'El componente Tag puede mostrar texto de dos formas: usando la prop `text` o mediante el slot default. Si se proporciona contenido en el slot, este tendrá prioridad sobre la prop text.'
+        story:
+          'El componente Tag puede mostrar texto de dos formas: usando la prop `text` o mediante el slot default. Si se proporciona contenido en el slot, este tendrá prioridad sobre la prop text.'
       }
     }
   },
   render: (args) => ({
     components: { GTag, GConfigProvider },
     setup() {
-      return { args };
+      return { args }
     },
     template: `
       <g-config-provider>
         <g-tag v-bind="args" />
+        <p class="bg-primary text-primary border border-primary">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
       </g-config-provider>
-    `,
+    `
   }),
   args: {
     text: 'Píldora básica',
     type: 'primary'
   }
-};
+}
 
 // Píldoras eliminables
 export const Removable: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Las píldoras pueden ser eliminables añadiendo la prop `closable`. Al hacer clic en el botón de cierre se mostrará una confirmación antes de eliminar la píldora.'
+        story:
+          'Las píldoras pueden ser eliminables añadiendo la prop `closable`. Al hacer clic en el botón de cierre se mostrará una confirmación antes de eliminar la píldora.'
       }
     }
   },
@@ -187,7 +192,8 @@ export const Dynamic: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Ejemplo de manejo dinámico de píldoras con la capacidad de agregar nuevas mediante un input.'
+        story:
+          'Ejemplo de manejo dinámico de píldoras con la capacidad de agregar nuevas mediante un input.'
       }
     }
   },
@@ -218,7 +224,7 @@ export const Dynamic: Story = {
         inputValue.value = ''
       }
 
-      return { 
+      return {
         inputValue,
         dynamicTags,
         inputVisible,
@@ -265,9 +271,9 @@ export const Sizes: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Diferentes tamaños disponibles para las píldoras.",
-      },
-    },
+        story: 'Diferentes tamaños disponibles para las píldoras.'
+      }
+    }
   },
   render: () => ({
     components: { GTag, GConfigProvider },
@@ -279,18 +285,18 @@ export const Sizes: Story = {
           <g-tag size="large" text="Grande" />
         </div>
       </g-config-provider>
-    `,
-  }),
-};
+    `
+  })
+}
 
 // Redondeadas
 export const Rounded: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Píldoras con bordes completamente redondeados.",
-      },
-    },
+        story: 'Píldoras con bordes completamente redondeados.'
+      }
+    }
   },
   render: () => ({
     components: { GTag, GConfigProvider },
@@ -302,6 +308,6 @@ export const Rounded: Story = {
           <g-tag round type="info" text="Redondeada" />
         </div>
       </g-config-provider>
-    `,
-  }),
-};
+    `
+  })
+}
