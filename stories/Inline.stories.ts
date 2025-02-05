@@ -24,7 +24,7 @@ const meta: Meta<typeof GInline> = {
       options: ['', ...generateIconOptions()],
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'solid user' },
+        defaultValue: { summary: '' },
       }
     },
     title: {
