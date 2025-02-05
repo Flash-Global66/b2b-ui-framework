@@ -7,7 +7,7 @@ import { GSegmented } from '../components/Segmented';
 import { GInput } from '../components/Input/src';
 import { GButton } from '../components/Button/src';
 
-const generateIconOptions = () => {
+export const generateIconOptions = () => {
   const options: string[] = [];
   
   Object.entries(ICON_SETS).forEach(([weight, icons]) => {
