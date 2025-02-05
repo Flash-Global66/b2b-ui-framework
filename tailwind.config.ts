@@ -387,11 +387,11 @@ module.exports = {
         }
       })
     }),
-    plugin(({ addVariant }) => {
-      addVariant('label-checked', () => {
-        const yourSelector = 'input[type="radio"]'
-        return `${yourSelector}:checked ~ .label-checked`
-      })
-    })
+    // plugin(({ addVariant }) => {
+    //   addVariant('label-checked', () => {
+    //     const yourSelector = 'input[type="radio"]'
+    //     return `${yourSelector}:checked ~ .label-checked`
+    //   })
+    // })
   ]
 } satisfies Config

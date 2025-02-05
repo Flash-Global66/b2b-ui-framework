@@ -31,10 +31,10 @@ const meta: Meta<typeof GInline> = {
       options: ["md", "sm"],
       defaultValue: "md",
     },
-    showClose: {
-      description: "Controla si se muestra el botón de cerrar.",
+    hideClose: {
+      description: "Indica si se debe ocultar el botón de cierre.",
       control: "boolean",
-      defaultValue: true,
+      defaultValue: false,
     },
     icon: {
       description: "Ícono de FontAwesome que se muestra en el componente.",
@@ -56,11 +56,12 @@ const meta: Meta<typeof GInline> = {
     },
   },
   args: {
+    icon: "solid info-circle",
     title: "Título",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.",
     size: "md",
-    showClose: true,
+    hideClose: false,
     type: "success",
     links: [
       {
