@@ -35,11 +35,11 @@
   }
 
   @include m("fade-enter-active") {
-    transition: all 0.4s $transition-bezier-inline;
+    transition: all 0.4s $transition-bezier;
   }
 
   @include m("fade-leave-active") {
-    transition: all 0.4s $transition-bezier-inline;
+    transition: all 0.4s $transition-bezier;
   }
 
   @include m("fade-enter-from") {
