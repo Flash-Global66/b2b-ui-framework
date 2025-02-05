@@ -31,10 +31,13 @@ const inlineRef = ref<HTMLElement | null>(null)
 const inlineClass = computed(() => [
   ns.b(),
   ns.m(inlineSize.value),
-  ns.m(props.type)
+  ns.m(props.type),
+  ns.m('transition'),
 ])
 
-function onClose() {
+async function onClose() {
+  inlineRef.value?.classList.add('gui-inline--transition-leave-active');
+  await new Promise(resolve => setTimeout(resolve, 400));
   visible.value = false;
 }
 
@@ -48,7 +51,10 @@ function onClose() {
     ref="inlineRef"
     :aria-label="ariaLabel || 'inline'"
   >
-    <g-icon-font :class="[ns.e('icon')]" :name="icon" />
+    <g-icon-font
+      aria-label="icon informative"
+      :class="[ns.e('icon')]" :name="icon"
+    />
     <div class="">
       <h3 :class="[ns.e('title')]"> {{ title }} </h3>
       <p v-if="description" :class="[ns.e('description')]">
@@ -75,6 +81,8 @@ function onClose() {
     </div>
     <g-icon-font
       v-if="!hideClose"
+      role="button"
+      aria-label="close inline"
       @click="onClose"
       :class="ns.e('close')"
       name="regular times"
