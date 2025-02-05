@@ -151,9 +151,6 @@ export const WithCustomIcon: Story = {
       </g-config-provider>
     `,
   }),
-  args: {
-    icon: "star",
-  },
 };
 
 export const WithoutCloseButton: Story = {
@@ -180,7 +177,4 @@ export const WithoutCloseButton: Story = {
       </g-config-provider>
     `,
   }),
-  args: {
-    showClose: false,
-  },
 };
