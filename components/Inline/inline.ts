@@ -4,6 +4,8 @@ import { useAriaProps} from "element-plus";
 import { buildProps, definePropType, isBoolean, isNumber, isString } from "element-plus/es/utils/index.mjs";
 
 import { InlineEnum, InlineLinks, InlineSize } from "./inline.type";
+import { de } from "element-plus/es/locales.mjs";
+import { IconString } from "@flash-global66/b2b-ui-icon-font";
 
 export const inlineProps = buildProps({
   /**
@@ -24,16 +26,16 @@ export const inlineProps = buildProps({
   /**
    * @description show close button
    */
-  showClose: {
+  hideClose: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   /**
    * @description fontawesome icon
    * */
   icon: {
-    type: String,
-    default: "",
+    type: definePropType<IconString>(String),
+    default: "solid info-circle",
   },
   /**
    * @description type of inline
