@@ -4,6 +4,7 @@ import { ref } from "vue";
 import { GInline } from "../components/Inline";
 import { GConfigProvider } from "../components/ConfigProvider";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { generateIconOptions } from "./IconFont.stories";
 
 const meta: Meta<typeof GInline> = {
   title: "Data/Inline",
@@ -17,16 +18,25 @@ const meta: Meta<typeof GInline> = {
     },
   },
   argTypes: {
+    icon: {
+      description: 'Icono a mostrar en el componente `Inline`.',
+      control: 'select',
+      options: ['', ...generateIconOptions()],
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'solid user' },
+      }
+    },
     title: {
-      description: "Título del componente `Inline`.",
+      description: "Título de la información que queremos transmitir.",
       control: "text",
     },
     description: {
-      description: "Texto de descripción principal del componente `Inline`.",
+      description: "Descripción adicional de la información.",
       control: "text",
     },
     size: {
-      description: "Tamaño del componente `Inline`.",
+      description: "Tamaño del componente",
       control: "select",
       options: ["md", "sm"],
       defaultValue: "md",
@@ -36,12 +46,8 @@ const meta: Meta<typeof GInline> = {
       control: "boolean",
       defaultValue: false,
     },
-    icon: {
-      description: "Ícono de FontAwesome que se muestra en el componente.",
-      control: "text",
-    },
     type: {
-      description: "Tipo de estilo del componente `Inline`.",
+      description: "Tipo de mensaje a mostrar. Colores de fondo y estilo de texto.",
       control: "select",
       options: ["success", "info", "warning", "error"],
       defaultValue: "success",
@@ -56,7 +62,7 @@ const meta: Meta<typeof GInline> = {
     },
   },
   args: {
-    icon: "solid info-circle",
+    icon: "solid undo-alt",
     title: "Título",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.",
@@ -80,88 +86,8 @@ const meta: Meta<typeof GInline> = {
 export default meta;
 type Story = StoryObj<typeof GInline>;
 
-// Uso básico
 export const Primary: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: "Ejemplo básico del componente `Inline` con título, descripción y enlaces.",
-      },
-    },
-  },
-  render: (args) => ({
-    components: { GInline, GConfigProvider, FontAwesomeIcon },
-    setup() {
-      function onClick() {
-        console.log("onClick");
-      }
-      return { args, onClick };
-    },
-    template: `
-      <g-config-provider>
-        <g-inline
-          title="Título"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris."
-          :links="[
-            {
-              label: 'Link 1',
-              action: onClick
-            },
-            {
-              label: 'Link 2',
-              action: onClick
-            }
-          ]"
-          v-bind="args">
-          <template #icon>
-            <font-awesome-icon :icon="['fas', 'user']" />
-          </template>
-        </g-inline>
-      </g-config-provider>
-    `,
-  }),
-  args: {},
-};
-
-
-export const WithCustomIcon: Story = {
-  name: "Con ícono personalizado",
-  parameters: {
-    docs: {
-      description: {
-        story: "Ejemplo del componente `Inline` con un ícono personalizado.",
-      },
-    },
-  },
-  render: (args) => ({
-    components: { GInline, GConfigProvider, FontAwesomeIcon },
-    setup() {
-      return { args };
-    },
-    template: `
-      <g-config-provider>
-        <g-inline
-          title="Título"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris."
-          v-bind="args">
-          <template #icon>
-            <font-awesome-icon :icon="['fas', 'star']" />
-          </template>
-        </g-inline>
-      </g-config-provider>
-    `,
-  }),
-};
-
-export const WithoutCloseButton: Story = {
-  name: "Sin botón de cerrar",
-  parameters: {
-    docs: {
-      description: {
-        story: "Ejemplo del componente `Inline` sin el botón de cerrar.",
-      },
-    },
-  },
+  name: 'Básico',
   render: (args) => ({
     components: { GInline, GConfigProvider },
     setup() {
@@ -169,12 +95,99 @@ export const WithoutCloseButton: Story = {
     },
     template: `
       <g-config-provider>
+        <g-inline v-bind="args" />
+      </g-config-provider>
+    `
+  })
+};
+
+// Todos los tipos
+export const AllTypes: Story = {
+  name: 'Tipos',
+  render: () => ({
+    components: { GInline, GConfigProvider },
+    template: `
+      <g-config-provider>
+        <div class="space-y-4">
+          <g-inline 
+            type="success"
+            title="Éxito"
+            description="Mensaje de éxito"
+            icon="solid circle-check"
+          />
+          <g-inline 
+            type="info"
+            title="Información"
+            description="Mensaje informativo"
+            icon="solid info-circle"
+          />
+          <g-inline 
+            type="warning"
+            title="Advertencia"
+            description="Mensaje de advertencia"
+            icon="solid triangle-exclamation"
+          />
+          <g-inline 
+            type="error"
+            title="Error"
+            description="Mensaje de error"
+            icon="solid circle-xmark"
+          />
+        </div>
+      </g-config-provider>
+    `
+  })
+};
+
+// Sin botón de cerrar
+export const WithoutClose: Story = {
+  name: 'Sin botón cerrar',
+  render: () => ({
+    components: { GInline, GConfigProvider },
+    template: `
+      <g-config-provider>
         <g-inline
-          title="Título"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris."
-          v-bind="args"
+          hideClose
+          title="Sin botón de cerrar"
+          description="Este mensaje no tiene botón de cerrar"
+          icon="solid info-circle"
         />
       </g-config-provider>
-    `,
-  }),
+    `
+  })
+};
+
+// Sin ícono
+export const WithoutIcon: Story = {
+  name: 'Sin ícono',
+  render: () => ({
+    components: { GInline, GConfigProvider },
+    template: `
+      <g-config-provider>
+        <g-inline
+          icon=""
+          title="Sin ícono"
+          description="Este mensaje no tiene ícono"
+        />
+      </g-config-provider>
+    `
+  })
+};
+
+// Sin enlaces
+export const WithoutLinks: Story = {
+  name: 'Sin enlaces',
+  render: () => ({
+    components: { GInline, GConfigProvider },
+    template: `
+      <g-config-provider>
+        <g-inline
+          title="Sin enlaces"
+          description="Este mensaje no tiene enlaces"
+          icon="solid info-circle"
+          :links="[]"
+        />
+      </g-config-provider>
+    `
+  })
 };
