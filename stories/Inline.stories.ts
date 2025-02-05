@@ -85,9 +85,15 @@ const meta: Meta<typeof GInline> = {
 
 export default meta;
 type Story = StoryObj<typeof GInline>;
-
 export const Primary: Story = {
   name: 'Básico',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Ejemplo básico del componente Inline. Desde los controles puedes probar todas las propiedades disponibles.'
+      }
+    }
+  },
   render: (args) => ({
     components: { GInline, GConfigProvider },
     setup() {
@@ -104,6 +110,13 @@ export const Primary: Story = {
 // Todos los tipos
 export const AllTypes: Story = {
   name: 'Tipos',
+  parameters: {
+    docs: {
+      description: {
+        story: 'El componente tiene 4 tipos diferentes que ayudan a transmitir el contexto del mensaje: success, info, warning y error.'
+      }
+    }
+  },
   render: () => ({
     components: { GInline, GConfigProvider },
     template: `
@@ -139,9 +152,49 @@ export const AllTypes: Story = {
   })
 };
 
+// Tamaños disponibles
+export const Sizes: Story = {
+  name: 'Tamaños',
+  parameters: {
+    docs: {
+      description: {
+        story: 'El componente tiene dos tamaños disponibles: md (mediano) y sm (pequeño). Útil para adaptarse a diferentes contextos de UI.'
+      }
+    }
+  },
+  render: () => ({
+    components: { GInline, GConfigProvider },
+    template: `
+      <g-config-provider>
+        <div class="space-y-4">
+          <g-inline 
+            size="md"
+            title="Tamaño mediano (md)"
+            description="Este es el tamaño por defecto del componente"
+            icon="solid info-circle"
+          />
+          <g-inline 
+            size="sm"
+            title="Tamaño pequeño (sm)"
+            description="Versión más compacta del componente"
+            icon="solid info-circle"
+          />
+        </div>
+      </g-config-provider>
+    `
+  })
+};
+
 // Sin botón de cerrar
 export const WithoutClose: Story = {
   name: 'Sin botón cerrar',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Cuando no necesitas que el usuario pueda cerrar el mensaje, puedes ocultar el botón de cierre con la propiedad hideClose.'
+      }
+    }
+  },
   render: () => ({
     components: { GInline, GConfigProvider },
     template: `
@@ -160,6 +213,13 @@ export const WithoutClose: Story = {
 // Sin ícono
 export const WithoutIcon: Story = {
   name: 'Sin ícono',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Si no necesitas un ícono, puedes omitirlo dejando la propiedad icon vacía.'
+      }
+    }
+  },
   render: () => ({
     components: { GInline, GConfigProvider },
     template: `
@@ -177,6 +237,13 @@ export const WithoutIcon: Story = {
 // Sin enlaces
 export const WithoutLinks: Story = {
   name: 'Sin enlaces',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Si no quieres que el mensaje tenga enlaces, puedes omitir la propiedad links.'
+      }
+    }
+  },
   render: () => ({
     components: { GInline, GConfigProvider },
     template: `
