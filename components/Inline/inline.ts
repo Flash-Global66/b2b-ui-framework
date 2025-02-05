@@ -35,7 +35,7 @@ export const inlineProps = buildProps({
    * */
   icon: {
     type: definePropType<IconString>(String),
-    default: "solid info-circle",
+    default: "",
   },
   /**
    * @description type of inline
