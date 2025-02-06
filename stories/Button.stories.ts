@@ -3,6 +3,9 @@ import { fn } from '@storybook/test'
 import { GButton } from '../components/Button/src'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+// TYPES
+import { generateIconOptions } from './IconFont.stories'
+
 // CONSTANTS
 import { action } from '@storybook/addon-actions'
 
@@ -73,21 +76,24 @@ Ejemplo de uso básico:
 
     // Iconos
     iconLeft: {
-      control: 'text',
+      control: 'select',
+      options: generateIconOptions(),
       description:
-        "Icono izquierdo renderizado utilizando el componente IconFont.\n\nVer [IconFont](/?path=/docs/basic-iconfont--docs) para los iconos disponibles.\n\nEjemplo 'solid check', 'regular user'",
+        "Icono izquierdo renderizado utilizando el componente IconFont.\n\nVer [IconFont](/?path=/docs/basic-iconfont--docs) para los iconos disponibles.\n\nEjemplo 'solid check''",
       table: {
-        category: 'Iconos',
-        type: { summary: 'string' }
+        type: { summary: 'Iconos' },
+        defaultValue: { summary: '' },
       }
     },
+
     iconRight: {
-      control: 'text',
+      control: 'select',
+      options: generateIconOptions(),
       description:
-        "Icono derecho renderizado utilizando el componente IconFont.\n\nVer [IconFont](/?path=/docs/basic-iconfont--docs) para los iconos disponibles.\n\nEjemplo 'solid arrow-right', 'regular star'",
+        "Icono derecho renderizado utilizando el componente IconFont.\n\nVer [IconFont](/?path=/docs/basic-iconfont--docs) para los iconos disponibles.\n\nEjemplo 'solid arrow-right'",
       table: {
-        category: 'Iconos',
-        type: { summary: 'string' }
+        type: { summary: 'Iconos' },
+        defaultValue: { summary: '' },
       }
     },
 
