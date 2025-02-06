@@ -31,7 +31,7 @@
 import { computed, ref } from "vue";
 import { useNamespace } from "element-plus";
 import { buttonEmits, buttonProps, validateButtonProps } from "./button";
-import { GIconFont } from "../../IconFont/index";
+import { GIconFont } from "@flash-global66/b2b-ui-icon-font";
 import { useButton } from "./use-button";
 
 const props = defineProps(buttonProps);
