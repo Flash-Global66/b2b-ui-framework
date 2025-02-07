@@ -92,7 +92,7 @@ const Template: StoryFn = () => ({
   template: `
   <g-config-provider>
     <div class="flex flex-row w-full flex-wrap justify-center items-center gap-8">
-      <div class="w-[90%] w- rounded-md bg-transparent border-2 border-primary p-4 h-32 relative">
+      <div class="w-[90%] w- rounded-md bg-transparent border-2 border-primary-bd p-4 h-32 relative">
         <div class="space-y-2">
           <div class="text-primary-txt flex flex-col gap-3">
             <h3 class="text-lg font-medium">Colores Primary</h3>
@@ -100,7 +100,7 @@ const Template: StoryFn = () => ({
           <div class="flex gap-0 absolute inset-x-0 bottom-0">
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
               <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">primary-def</span>
-              <div class="w-full h-full rounded-bl-md bg-[var(--color-primary)] cursor-pointer" @click="() => handleColorClick('bg-primary-def text-primary-def')"></div>
+              <div class="w-full h-full rounded-bl-md bg-[var(--color-primary)] cursor-pointer" @click="() => handleColorClick('bg-primary-def text-primary-txt')"></div>
             </div>
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
               <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">primary-def-hover</span>
@@ -118,7 +118,7 @@ const Template: StoryFn = () => ({
         </div>
       </div>
 
-      <div class="w-[90%] w- rounded-md bg-transparent border-2 border-primary p-4 h-32 relative">
+      <div class="w-[90%] w- rounded-md bg-transparent border-2 border-primary-bd p-4 h-32 relative">
         <div class="space-y-2">
           <div class="text-primary-txt flex flex-col gap-3">
             <h3 class="text-lg font-medium">Colores Feedback</h3>
@@ -126,7 +126,7 @@ const Template: StoryFn = () => ({
           <div class="flex gap-0 absolute inset-x-0 bottom-0">
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
               <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">success</span>
-              <div class="w-full h-full rounded-bl-md bg-[var(--color-success)] cursor-pointer" @click="() => handleColorClick('bg-success-def text-success-def')"></div>
+              <div class="w-full h-full rounded-bl-md bg-[var(--color-success)] cursor-pointer" @click="() => handleColorClick('bg-success-def text-success-txt')"></div>
             </div>
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
               <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">warning</span>
@@ -144,7 +144,7 @@ const Template: StoryFn = () => ({
         </div>
       </div>
 
-      <div class="w-[90%] w- rounded-md bg-transparent border-2 border-primary p-4 h-32 relative">
+      <div class="w-[90%] w- rounded-md bg-transparent border-2 border-primary-bd p-4 h-32 relative">
         <div class="space-y-2">
           <div class="text-primary-txt flex flex-col gap-3">
             <h3 class="text-lg font-medium">Colores Background</h3>
@@ -190,7 +190,7 @@ const Template: StoryFn = () => ({
         </div>
       </div>
 
-      <div class="w-[90%] w- rounded-md bg-transparent border-2 border-primary p-4 h-32 relative">
+      <div class="w-[90%] w- rounded-md bg-transparent border-2 border-primary-bd p-4 h-32 relative">
         <div class="space-y-2">
           <div class="text-primary-txt flex flex-col gap-3">
             <h3 class="text-lg font-medium">Colores Text</h3>
@@ -236,7 +236,7 @@ const Template: StoryFn = () => ({
         </div>
       </div>
 
-      <div class="w-[90%] w- rounded-md bg-transparent border-2 border-primary p-4 h-32 relative">
+      <div class="w-[90%] w- rounded-md bg-transparent border-2 border-primary-bd p-4 h-32 relative">
         <div class="space-y-2">
           <div class="text-primary-txt flex flex-col gap-3">
             <h3 class="text-lg font-medium">Colores Icon</h3>
@@ -282,7 +282,7 @@ const Template: StoryFn = () => ({
         </div>
       </div>
 
-      <div class="w-[90%] w- rounded-md bg-transparent border-2 border-primary p-4 h-32 relative">
+      <div class="w-[90%] w- rounded-md bg-transparent border-2 border-primary-bd p-4 h-32 relative">
         <div class="space-y-2">
           <div class="text-primary-txt flex flex-col gap-3">
             <h3 class="text-lg font-medium">Colores Border</h3>
@@ -290,7 +290,7 @@ const Template: StoryFn = () => ({
           <div class="flex gap-0 absolute inset-x-0 bottom-0">
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
               <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">primary-bd</span>
-              <div class="w-full h-full rounded-bl-md bg-[var(--color-border-primary)] cursor-pointer" @click="() => handleColorClick('border-primary-bd')"></div>
+              <div class="w-full h-full rounded-bl-md bg-[var(--color-border-primary-bd)] cursor-pointer" @click="() => handleColorClick('border-primary-bd')"></div>
             </div>
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
               <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">secondary-bd</span>
