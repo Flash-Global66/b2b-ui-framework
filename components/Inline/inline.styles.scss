@@ -8,14 +8,14 @@
 @include b("inline") {
   $transition-bezier: cubic-bezier(0.42, 0, 0.58, 1);
 
-  @apply border rounded-md p-xs pr-sm flex gap-xs items-center relative;
+  @apply border rounded-md p-sm flex gap-xs items-center relative;
 
   @include e("title") {
-    @apply text-3 font-semibold line-clamp-2 text-primary-txt;
+    @apply text-3 font-semibold line-clamp-2 text-primary-txt mb-xxs;
   }
 
   @include e("description") {
-    @apply text-2 text-secondary-txt;
+    @apply text-2 text-secondary-txt font-medium;
   }
 
   @include e("links") {
@@ -23,11 +23,11 @@
   }
 
   @include e("link") {
-    @apply text-2 underline;
+    @apply text-2 underline text-grey-700 font-medium;
   }
 
   @include e("icon") {
-    @apply text-7;
+    @apply text-6;
   }
 
   @include e("close") {
@@ -51,7 +51,6 @@
   }
 
   @include m("md") {
-    @apply p-sm;
     @include e("title") {
       @apply text-4;
     }
