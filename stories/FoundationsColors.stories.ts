@@ -39,7 +39,7 @@ const Template: StoryFn = () => ({
     <div>
       <div class="not-prose grid grid-cols-[auto_minmax(0,_1fr)] items-center gap-4">
         <div
-          class="col-start-2 grid grid-cols-11 justify-items-center gap-1.5 font-medium text-primary text-3 *:rotate-180 *:[writing-mode:vertical-lr] sm:gap-4 sm:*:rotate-0 sm:*:[writing-mode:horizontal-tb]"
+          class="col-start-2 grid grid-cols-11 justify-items-center gap-1.5 font-medium text-primary-txt text-3 *:rotate-180 *:[writing-mode:vertical-lr] sm:gap-4 sm:*:rotate-0 sm:*:[writing-mode:horizontal-tb]"
         >
           <div>25</div>
           <div>50</div>
@@ -53,7 +53,7 @@ const Template: StoryFn = () => ({
           <div>800</div>
           <div>900</div>
         </div>
-        <p class="font-medium text-3 text-primary capitalize sm:pr-1">Paleta Neutral - Grey</p>
+        <p class="font-medium text-3 text-primary-txt capitalize sm:pr-1">Paleta Neutral - Grey</p>
         <div class="grid grid-cols-11 gap-1.5 sm:gap-4">
           <div
             class="bg-grey-25 aspect-square rounded-sm outline -outline-offset-1 outline-black/10 sm:rounded-md dark:outline-white/10 cursor-pointer"
@@ -100,7 +100,7 @@ const Template: StoryFn = () => ({
             @click="handleColorClick"
           ></div>
         </div>
-        <p class="font-medium text-3 text-primary capitalize sm:pr-1">Paleta Primaria - Ever Blue</p>
+        <p class="font-medium text-3 text-primary-txt capitalize sm:pr-1">Paleta Primaria - Ever Blue</p>
         <div class="grid grid-cols-11 gap-1.5 sm:gap-4">
           <div
             class="bg-[#F5F7FF] aspect-square rounded-sm outline -outline-offset-1 outline-black/10 sm:rounded-md dark:outline-white/10"
@@ -146,7 +146,7 @@ const Template: StoryFn = () => ({
             @click="handleColorClick"
           ></div>
         </div>
-        <p class="font-medium text-3 text-primary capitalize sm:pr-1">Paleta Secundaria - Night Blue</p>
+        <p class="font-medium text-3 text-primary-txt capitalize sm:pr-1">Paleta Secundaria - Night Blue</p>
         <div class="grid grid-cols-11 gap-1.5 sm:gap-4">
           <div
             class="bg-[#F5F7FF] aspect-square rounded-sm outline -outline-offset-1 outline-black/10 sm:rounded-md dark:outline-white/10"
@@ -192,7 +192,7 @@ const Template: StoryFn = () => ({
             @click="handleColorClick"
           ></div>
         </div>
-        <p class="font-medium text-3 text-primary capitalize sm:pr-1">Paleta Success - Green</p>
+        <p class="font-medium text-3 text-primary-txt capitalize sm:pr-1">Paleta Success - Green</p>
         <div class="grid grid-cols-11 gap-1.5 sm:gap-4">
           <div
             class="bg-[#F5F7FF] aspect-square rounded-sm outline -outline-offset-1 outline-black/10 sm:rounded-md dark:outline-white/10"
@@ -238,7 +238,7 @@ const Template: StoryFn = () => ({
             @click="handleColorClick"
           ></div>
         </div>
-        <p class="font-medium text-3 text-primary capitalize sm:pr-1">Paleta Error - Red</p>
+        <p class="font-medium text-3 text-primary-txt capitalize sm:pr-1">Paleta Error - Red</p>
         <div class="grid grid-cols-11 gap-1.5 sm:gap-4">
           <div
             class="bg-[#F5F7FF] aspect-square rounded-sm outline -outline-offset-1 outline-black/10 sm:rounded-md dark:outline-white/10"
@@ -284,7 +284,7 @@ const Template: StoryFn = () => ({
             @click="handleColorClick"
           ></div>
         </div>
-        <p class="font-medium text-3 text-primary capitalize sm:pr-1">Paleta Warning - Yellow</p>
+        <p class="font-medium text-3 text-primary-txt capitalize sm:pr-1">Paleta Warning - Yellow</p>
         <div class="grid grid-cols-11 gap-1.5 sm:gap-4">
           <div
             class="bg-[#F5F7FF] aspect-square rounded-sm outline -outline-offset-1 outline-black/10 sm:rounded-md dark:outline-white/10"
@@ -330,7 +330,7 @@ const Template: StoryFn = () => ({
             @click="handleColorClick"
           ></div>
         </div>
-        <p class="font-medium text-3 text-primary capitalize sm:pr-1">Paleta Info - blue</p>
+        <p class="font-medium text-3 text-primary-txt capitalize sm:pr-1">Paleta Info - blue</p>
         <div class="grid grid-cols-11 gap-1.5 sm:gap-4">
           <div
             class="bg-[#F5F7FF] aspect-square rounded-sm outline -outline-offset-1 outline-black/10 sm:rounded-md dark:outline-white/10"
