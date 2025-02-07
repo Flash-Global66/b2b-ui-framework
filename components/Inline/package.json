@@ -1,11 +1,11 @@
 {
-  "name": "@flash-global66/b2b-ui-segmented",
+  "name": "@flash-global66/b2b-ui-inline",
   "author": "Global66",
-  "version": "0.0.5",
+  "version": "1.0.1",
   "license": "MIT",
   "exports": {
     ".": "./index.ts",
-    "./segmented.styles.scss": "./segmented.styles.scss",
+    "./inline.styles.scss": "./inline.styles.scss",
     "./*": "./*"
   },
   "publishConfig": {
@@ -13,5 +13,8 @@
   },
   "repository": {
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
+  },
+  "dependencies": {
+    "@flash-global66/b2b-ui-icon-font": "^1.0.3"
   }
 }
