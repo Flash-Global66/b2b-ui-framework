@@ -8,9 +8,6 @@ import { GButton } from '../components/Button/src';
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';
 
-// TYPES
-import { EnumRadioSize } from '../components/Radio/radio.type';
-
 export default {
   title: 'Data/Dialog',
   component: GDialog,
@@ -19,15 +16,6 @@ export default {
       description: 'binding value.',
       table: {
         type: { summary: 'Number, String' }
-      }
-    },
-    size: {
-      control: {
-        type: 'select',
-      },
-      options: Object.values(EnumRadioSize),
-      table: {
-        type: { summary: 'String' }
       }
     },
   },
