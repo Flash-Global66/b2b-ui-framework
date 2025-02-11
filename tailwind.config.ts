@@ -3,11 +3,7 @@ import type { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
 
 module.exports = {
-  content: [
-    './components/**/*.{vue,js,ts,jsx,tsx}',
-    './stories/**/*.{vue,js,ts,jsx,tsx}',
-    './src/**/*.{vue,js,ts,jsx,tsx}' // Agrega esta línea si tienes archivos en src
-  ],
+  content: ['./components/**/*.{vue,js,ts,jsx,tsx}', './stories/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {
       fontFamily: {
@@ -39,32 +35,35 @@ module.exports = {
         'sec-def-bg': 'var(--color-bg-sec-default)',
         'sec-hover-bg': 'var(--color-bg-sec-default-hover)',
         'sec-press-bg': 'var(--color-bg-sec-default-press)',
+        'disab-lt-bg': 'var(--color-disabled-light)',
         'inverse-bg': 'var(--color-bg-inverse)',
         'success-bg': 'var(--color-bg-success)',
         'error-bg': 'var(--color-bg-error)',
         'warning-bg': 'var(--color-bg-warning)',
-        'info-bg': 'var(--color-bg-info)',
+        'info-bg': 'var(--color-bg-info)'
       },
       textColor: {
         'primary-txt': 'var(--color-txt-primary)',
         'secondary-txt': 'var(--color-txt-secondary)',
         'terciary-txt': 'var(--color-txt-terciary)',
         'disabled-txt': 'var(--color-txt-disabled)',
+        'disab-lt-txt': 'var(--color-txt-disabled-light)',
         'inverse-txt': 'var(--color-txt-inverse)',
         'success-txt': 'var(--color-txt-success)',
         'error-txt': 'var(--color-txt-error)',
         'warning-txt': 'var(--color-txt-warning)',
-        'info-txt': 'var(--color-txt-info)',
+        'info-txt': 'var(--color-txt-info)'
       },
       borderColor: {
         'primary-bd': 'var(--color-border-primary)',
         'secondary-bd': 'var(--color-border-secondary)',
         'disabled-bd': 'var(--color-border-disabled)',
+        'disab-lt-bd': 'var(--color-border-disabled-light)',
         'inverse-bd': 'var(--color-border-inverse)',
         'success-bd': 'var(--color-border-success)',
         'error-bd': 'var(--color-border-error)',
         'warning-bd': 'var(--color-border-warning)',
-        'info-bd': 'var(--color-border-info)',
+        'info-bd': 'var(--color-border-info)'
       },
       borderRadius: {
         // Valores nuevos
@@ -90,6 +89,7 @@ module.exports = {
         'icon-secondary': 'var(--color-icon-secondary)',
         'icon-terciary': 'var(--color-icon-terciary)',
         'icon-disabled': 'var(--color-icon-disabled)',
+        'icon-disab-lt': 'var(--color-icon-disabled-light)',
         'icon-inverse': 'var(--color-icon-inverse)',
         'icon-success': 'var(--color-icon-success)',
         'icon-error': 'var(--color-icon-error)',
@@ -271,7 +271,7 @@ module.exports = {
           21: '#828AA4',
           22: '#E1E4F0',
           23: '#7F869A', // duplicado con grey-400 (nuevo)
-          24: '#CDD0D8', // duplicado con grey-100 (nuevo)
+          24: '#CDD0D8' // duplicado con grey-100 (nuevo)
         }
       },
       spacing: {
@@ -324,6 +324,20 @@ module.exports = {
         lg: '0px 5px 24px 0px rgba(0, 0, 0, 0.16)',
         xl: '0px 10px 30px 0px rgba(0, 0, 0, 0.30)'
       }
+    },
+    keyframes: {
+      'ripple-expand': {
+        from: { transform: 'scale(0)', opacity: '1' },
+        to: { transform: 'scale(1.5)', opacity: '0' }
+      },
+      'ripple-contract': {
+        from: { transform: 'scale(1)', opacity: '1' },
+        to: { transform: 'scale(0)', opacity: '0' }
+      }
+    },
+    animation: {
+      'ripple-expand': 'ripple-expand 0.5s ease-out',
+      'ripple-contract': 'ripple-contract 0.5s ease-out'
     }
   },
   variants: {
@@ -344,6 +358,7 @@ module.exports = {
           '--color-primary-hover': theme('colors.nightBlue.700'),
           '--color-primary-press': theme('colors.nightBlue.400'),
           '--color-primary-disabled': theme('colors.grey.50'),
+          '--color-disabled-light': theme('colors.grey.300'),
           '--color-success': theme('colors.green.700'),
           '--color-warning': theme('colors.yellow.700'),
           '--color-error': theme('colors.red.700'),
@@ -361,6 +376,7 @@ module.exports = {
           '--color-icon-secondary': theme('colors.grey.700'),
           '--color-icon-terciary': theme('colors.grey.500'),
           '--color-icon-disabled': theme('colors.grey.400'),
+          '--color-icon-disabled-light': theme('colors.grey.300'),
           '--color-icon-inverse': theme('colors.white'),
           '--color-icon-success': theme('colors.green.700'),
           '--color-icon-error': theme('colors.red.700'),
@@ -370,6 +386,7 @@ module.exports = {
           '--color-txt-secondary': theme('colors.grey.700'),
           '--color-txt-terciary': theme('colors.grey.400'),
           '--color-txt-disabled': theme('colors.grey.500'),
+          '--color-txt-disabled-light': theme('colors.grey.300'),
           '--color-txt-inverse': theme('colors.white'),
           '--color-txt-success': theme('colors.green.700'),
           '--color-txt-error': theme('colors.red.700'),
@@ -378,11 +395,12 @@ module.exports = {
           '--color-border-primary': theme('colors.nightBlue.500'),
           '--color-border-secondary': theme('colors.nightBlue.900'),
           '--color-border-disabled': theme('colors.grey.500'),
+          '--color-border-disabled-light': theme('colors.grey.300'),
           '--color-border-inverse': theme('colors.white'),
           '--color-border-success': theme('colors.green.700'),
           '--color-border-error': theme('colors.red.700'),
           '--color-border-warning': theme('colors.yellow.700'),
-          '--color-border-info': theme('colors.blue.500'),
+          '--color-border-info': theme('colors.blue.500')
         }
       })
     }),
