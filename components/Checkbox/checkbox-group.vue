@@ -7,20 +7,29 @@
     :aria-label="!isLabeledByFormItem ? ariaLabel || 'checkbox-group' : undefined"
     :aria-labelledby="isLabeledByFormItem ? formItem?.labelId : undefined"
   >
-    <slot />
+    <g-checkbox
+      v-if="props.options.length > 0"
+      v-for="item in props.options"
+      :key="String(item.value)"
+      :value="item.value"
+      :label="item?.label ?? item.value"
+      :disabled="item?.disabled"
+      :checked="item?.checked"
+    />
+    <slot v-else />
   </component>
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, provide, toRefs, watch } from 'vue'
+import { computed, nextTick, onMounted, provide, toRefs, watch } from 'vue'
 import { pick } from 'lodash-unified'
+import { GCheckbox } from '.'
 import { UPDATE_MODEL_EVENT, useNamespace } from 'element-plus'
 import { debugWarn } from 'element-plus/es/utils/index.mjs'
 import { useFormItem, useFormItemInputId } from 'element-plus/es/components/form/index'
-import { checkboxGroupEmits, checkboxGroupProps, klsByType } from './checkbox-group'
+import { checkboxGroupEmits, checkboxGroupProps } from './checkbox-group'
 import { checkboxGroupContextKey } from './constants'
-
-import type { CheckboxGroupValueType } from './checkbox-group'
+import type { CheckboxGroupValueType, klsByType } from './checkbox-group.types'
 
 defineOptions({
   name: 'GuiCheckboxGroup'
@@ -35,11 +44,9 @@ const { inputId: groupId, isLabeledByFormItem } = useFormItemInputId(props, {
   formItemContext: formItem
 })
 
-const changeEvent = async (value: CheckboxGroupValueType) => {
-  console.log('props', props)
+const changeEvent = async (value: CheckboxGroupValueType | CheckboxGroupValueType[]) => {
   emit(UPDATE_MODEL_EVENT, value)
   await nextTick()
-  console.log('value', value)
   emit('change', value)
 }
 
@@ -47,7 +54,7 @@ const modelValue = computed({
   get() {
     return props.modelValue
   },
-  set(val: CheckboxGroupValueType) {
+  set(val: CheckboxGroupValueType | CheckboxGroupValueType[]) {
     changeEvent(val)
   }
 })
@@ -62,9 +69,19 @@ const compKls = computed(() => {
 })
 
 provide(checkboxGroupContextKey, {
-  ...pick(toRefs(props), ['size', 'min', 'max', 'disabled', 'validateEvent']),
+  ...pick(toRefs(props), ['min', 'max', 'disabled', 'validateEvent']),
   modelValue,
   changeEvent
+})
+
+onMounted(() => {
+  const checkedValues = props.options
+    .filter((item) => item.checked)
+    .map((item) => item.value)
+  
+  if (checkedValues.length > 0) {
+    modelValue.value = checkedValues
+  }
 })
 
 watch(

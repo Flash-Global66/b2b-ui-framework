@@ -1,8 +1,8 @@
-import { UPDATE_MODEL_EVENT, useAriaProps, useSizeProp } from 'element-plus'
+import { UPDATE_MODEL_EVENT, useAriaProps } from 'element-plus'
 import { isBoolean, isNumber, isString } from 'element-plus/es/utils/index.mjs'
 
 import type { ExtractPropTypes } from 'vue'
-import Checkbox from './Checkbox.vue'
+import Checkbox from './checkbox.vue'
 
 export type CheckboxValueType = string | number | boolean
 
@@ -69,14 +69,6 @@ export const checkboxProps = {
     default: undefined,
   },
   /**
-   * @description whether to add a border around Checkbox
-   */
-  border: Boolean,
-  /**
-   * @description size of the Checkbox
-   */
-  size: useSizeProp,
-  /**
    * @description input tabindex
    */
   tabindex: [String, Number],
@@ -86,13 +78,6 @@ export const checkboxProps = {
   validateEvent: {
     type: Boolean,
     default: true,
-  },
-  /**
-   * @description whether to show the error message
-   */
-  errorMessage: {
-    type: String,
-    default: undefined,
   },
   ...useAriaProps(['ariaControls']),
 }

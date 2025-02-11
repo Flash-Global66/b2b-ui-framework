@@ -1,4 +1,5 @@
 import { Meta, StoryFn, StoryObj } from '@storybook/vue3'
+import { ref } from 'vue';
 
 // COMPONENTS
 import { GCheckbox } from '../components/Checkbox'
@@ -13,40 +14,50 @@ const meta: Meta<typeof GCheckbox> = {
   parameters: {
     docs: {
       description: {
-        component: 'Componente de selección que permite activar o desactivar una opción.'
+        component: `
+### Uso básico
+Componente de selección que permite activar o desactivar una opción.
+
+Ejemplo básico:
+\`\`\`vue
+<g-checkbox v-model="checked" label="Acepto los términos" />
+\`\`\`
+        `
       }
     }
   },
   argTypes: {
-    // Valores
+    // Principales
     modelValue: {
       description: 'Valor del modelo (v-model)',
       table: {
-        type: { summary: 'number | string | boolean' }
+        type: { summary: 'number | string | boolean' },
+        category: 'Principales'
       }
     },
     label: {
       description: 'Etiqueta del checkbox cuando se usa dentro de un grupo',
       control: 'text',
       table: {
-        type: {
-          summary: 'string | boolean | number | object'
-        }
+        category: 'Principales',
+        type: { summary: 'string | boolean | number | object' }
       }
     },
     value: {
       description: 'Valor del checkbox cuando se usa dentro de un grupo',
       control: 'object',
       table: {
-        type: {
-          summary: 'string | boolean | number | object'
-        }
+        category: 'Principales',
+        type: { summary: 'string | boolean | number | object' }
       }
     },
+
+    // Valores
     trueValue: {
       description: 'Valor cuando está activado',
       control: 'text',
       table: {
+        category: 'Valores',
         type: { summary: 'string | number' }
       }
     },
@@ -54,6 +65,7 @@ const meta: Meta<typeof GCheckbox> = {
       description: 'Valor cuando está desactivado',
       control: 'text',
       table: {
+        category: 'Valores',
         type: { summary: 'string | number' }
       }
     },
@@ -63,6 +75,7 @@ const meta: Meta<typeof GCheckbox> = {
       description: 'Estado visual indeterminado',
       control: 'boolean',
       table: {
+        category: 'Estados',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' }
       }
@@ -71,6 +84,7 @@ const meta: Meta<typeof GCheckbox> = {
       description: 'Indica si el checkbox está activado',
       control: 'boolean',
       table: {
+        category: 'Estados',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' }
       }
@@ -79,34 +93,9 @@ const meta: Meta<typeof GCheckbox> = {
       description: 'Deshabilita el componente',
       control: 'boolean',
       table: {
+        category: 'Estados',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' }
-      }
-    },
-    errorMessage: {
-      description: 'Mensaje de error',
-      control: 'text',
-      table: {
-        type: { summary:'string' }
-      }
-    },
-
-    // Apariencia
-    border: {
-      description: 'Añade un borde alrededor del checkbox',
-      control: 'boolean',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' }
-      }
-    },
-    size: {
-      description: 'Tamaño del componente',
-      control: 'select',
-      options: ['small', 'default', 'large'],
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'default' }
       }
     },
 
@@ -115,6 +104,7 @@ const meta: Meta<typeof GCheckbox> = {
       description: 'Atributo name nativo',
       control: 'text',
       table: {
+        category: 'Atributos HTML',
         type: { summary: 'string' }
       }
     },
@@ -122,6 +112,7 @@ const meta: Meta<typeof GCheckbox> = {
       description: 'ID nativo del input',
       control: 'text',
       table: {
+        category: 'Atributos HTML',
         type: { summary: 'string' }
       }
     },
@@ -129,6 +120,7 @@ const meta: Meta<typeof GCheckbox> = {
       description: 'Orden de tabulación',
       control: 'number',
       table: {
+        category: 'Atributos HTML',
         type: { summary: 'string | number' }
       }
     },
@@ -138,6 +130,7 @@ const meta: Meta<typeof GCheckbox> = {
       description: 'Activa la validación del formulario',
       control: 'boolean',
       table: {
+        category: 'Validación',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'true' }
       }
@@ -148,6 +141,7 @@ const meta: Meta<typeof GCheckbox> = {
       description: 'ID de los elementos controlados (ARIA)',
       control: 'text',
       table: {
+        category: 'Accesibilidad',
         type: { summary: 'string' }
       }
     },
@@ -156,14 +150,14 @@ const meta: Meta<typeof GCheckbox> = {
     'onUpdate:modelValue': {
       description: 'Se emite al actualizar el valor',
       table: {
-        category: 'events',
+        category: 'Eventos',
         type: { summary: 'number | string | boolean' }
       }
     },
     onChange: {
       description: 'Se emite al cambiar el estado',
       table: {
-        category: 'events',
+        category: 'Eventos',
         type: { summary: 'number | string | boolean' }
       }
     },
@@ -172,23 +166,20 @@ const meta: Meta<typeof GCheckbox> = {
     default: {
       description: 'Slot personalizado para el contenido del checkbox',
       table: {
-        category: 'slots',
+        category: 'Slots',
         type: { summary: 'slot' }
       }
     }
   },
   args: {
     disabled: false,
-    border: false,
     indeterminate: false,
     checked: false,
     validateEvent: true,
-    size: 'default',
     label: 'Etiqueta del checkbox',
-    value: 'valor-checkbox',
+    value: 'Valor del checkbox',
     name: 'checkbox-name',
     id: 'checkbox-id',
-    errorMessage: ''
   } as Partial<CheckboxProps>
 }
 
@@ -199,13 +190,14 @@ const Template: StoryFn<CheckboxProps> = (args: CheckboxProps, { argTypes }) => 
   props: Object.keys(argTypes),
   components: { GCheckbox, GConfigProvider },
   setup() {
-    return { args }
+    const value = ref(args.modelValue)
+    return { args, value }
   },
   template: `
     <g-config-provider>
       <g-checkbox
         v-bind="args"
-        v-model="args.checked"
+        v-model="value"
       />
     </g-config-provider>
   `
@@ -216,14 +208,13 @@ Default.args = {
   label: 'Default Checkbox',
   disabled: false,
   indeterminate: false,
-  border: false,
-  size: 'default',
-  modelValue: false,
+  modelValue: false
 } as CheckboxProps
 Default.parameters = {
   docs: {
     description: {
-      story: 'Checkbox básico en su estado inicial no seleccionado. Muestra la funcionalidad principal con una etiqueta estándar.'
+      story:
+        'Checkbox básico en su estado inicial no seleccionado. Muestra la funcionalidad principal con una etiqueta estándar.'
     }
   }
 }
@@ -231,12 +222,13 @@ Default.parameters = {
 export const Checked: Story = Template.bind({})
 Checked.args = {
   ...Default.args,
-  modelValue: true
+  checked: true
 } as CheckboxProps
 Checked.parameters = {
   docs: {
     description: {
-      story: 'Checkbox en estado seleccionado. Ejemplo de uso con `v-model` vinculado a un valor verdadero. Ideal para mostrar opciones activadas por defecto.'
+      story:
+        'Checkbox en estado seleccionado. Ejemplo de uso con `v-model` vinculado a un valor verdadero. Ideal para mostrar opciones activadas por defecto.'
     }
   }
 }
@@ -249,7 +241,8 @@ Disabled.args = {
 Disabled.parameters = {
   docs: {
     description: {
-      story: 'Checkbox deshabilitado no interactivo. Útil para estados donde la acción no está disponible temporalmente. Se combina con otros estados como checked o indeterminate.'
+      story:
+        'Checkbox deshabilitado no interactivo. Útil para estados donde la acción no está disponible temporalmente. Se combina con otros estados como checked o indeterminate.'
     }
   }
 }
@@ -262,34 +255,8 @@ Indeterminate.args = {
 Indeterminate.parameters = {
   docs: {
     description: {
-      story: 'Estado visual indeterminado (ni chequeado ni deschequeado). Usado comúnmente en selecciones parciales o grupos con múltiples opciones. Requiere control programático.'
-    }
-  }
-}
-
-export const Bordered: Story = Template.bind({})
-Bordered.args = {
-  ...Default.args,
-  border: true,
-  size: 'default'
-} as CheckboxProps
-Bordered.parameters = {
-  docs: {
-    description: {
-      story: 'Checkbox con borde visible. Ideal para interfaces que requieren mayor énfasis visual. El tamaño se controla con la propiedad `size`.'
-    }
-  }
-}
-
-export const Error: Story = Template.bind({})
-Error.args = {
-  ...Default.args,
-  errorMessage: 'Mensaje ejemplo de error'
-} as CheckboxProps
-Error.parameters = {
-  docs: {
-    description: {
-      story: 'Checkbox en estado de error con mensaje de validación. Usado en formularios para indicar entradas inválidas. El mensaje se muestra debajo del componente.'
+      story:
+        'Estado visual indeterminado (ni chequeado ni deschequeado). Usado comúnmente en selecciones parciales o grupos con múltiples opciones. Requiere control programático.'
     }
   }
 }

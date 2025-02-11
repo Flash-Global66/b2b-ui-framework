@@ -10,13 +10,66 @@ const meta: Meta<typeof GCheckboxGroup> = {
   parameters: {
     docs: {
       description: {
-        component:
-          'Grupo de checkboxes que permite selección múltiple con validación y configuración visual.'
+        component: `
+### Uso básico
+Grupo de checkboxes que permite selección múltiple con validación y configuración visual. Existen dos maneras
+de construir el grupo: mediante la propiedad \`options\` o con los slots predeterminados.
+
+Ejemplo con slots personalizados:
+\`\`\`vue
+<g-checkbox-group 
+  v-bind="args"
+  v-model="selectedValues"
+>
+  <g-checkbox label="Importaciones" value="Value A" />
+  <g-checkbox label="Inversiones" value="Value B" />
+</g-checkbox-group>
+\`\`\`
+
+Ejemplo con opciones predefinidas:
+\`\`\`vue
+<g-checkbox-group
+  v-bind="args"
+  v-model="selectedValues"
+  :options="options"
+/>
+\`\`\`
+        `
       }
     }
   },
   argTypes: {
-    // Valores
+    // Estados
+    disabled: {
+      description: 'Deshabilita todo el grupo',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+        category: 'Estados'
+      }
+    },
+
+    // Principales
+    options: {
+      description: 'Array de opciones para construir el grupo de checkboxes',
+      control: 'object',
+      table: {
+        type: {
+          summary: 'Option[]',
+          detail: `
+            type Option = {
+  value: CheckboxGroupValueType
+  label?: CheckboxGroupValueType
+  disabled?: boolean
+  checked?: boolean
+}
+          `
+        },
+        defaultValue: { summary: '[]' },
+        category: 'Principales'
+      }
+    },
     modelValue: {
       description: 'Valores seleccionados (v-model)',
       control: 'object',
@@ -25,17 +78,8 @@ const meta: Meta<typeof GCheckboxGroup> = {
           summary: 'CheckboxGroupValueType',
           detail: 'Array<string | number | boolean>'
         },
-        defaultValue: { summary: '[]' }
-      }
-    },
-
-    // Estados
-    disabled: {
-      description: 'Deshabilita todo el grupo',
-      control: 'boolean',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' }
+        defaultValue: { summary: '[]' },
+        category: 'Principales'
       }
     },
 
@@ -44,14 +88,16 @@ const meta: Meta<typeof GCheckboxGroup> = {
       description: 'Mínimo de checkboxes seleccionados',
       control: { type: 'number', min: 0 },
       table: {
-        type: { summary: 'number' }
+        type: { summary: 'number' },
+        category: 'Validación'
       }
     },
     max: {
       description: 'Máximo de checkboxes seleccionados',
       control: { type: 'number', min: 1 },
       table: {
-        type: { summary: 'number' }
+        type: { summary: 'number' },
+        category: 'Validación'
       }
     },
     validateEvent: {
@@ -59,27 +105,20 @@ const meta: Meta<typeof GCheckboxGroup> = {
       control: 'boolean',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' }
+        defaultValue: { summary: 'true' },
+        category: 'Validación'
       }
     },
 
     // Apariencia
-    size: {
-      description: 'Tamaño de los checkboxes',
-      control: 'select',
-      options: ['small', 'default', 'large'],
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'default' }
-      }
-    },
     layout: {
       description: 'Diseño del grupo',
       control: 'select',
       options: ['horizontal', 'vertical'],
       table: {
         type: { summary: 'layoutType', detail: "'horizontal' | 'vertical'" },
-        defaultValue: { summary: 'horizontal' }
+        defaultValue: { summary: 'horizontal' },
+        category: 'Apariencia'
       }
     },
 
@@ -90,7 +129,8 @@ const meta: Meta<typeof GCheckboxGroup> = {
       options: ['div', 'span', 'fieldset'],
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'div' }
+        defaultValue: { summary: 'div' },
+        category: 'Apariencia'
       }
     },
 
@@ -99,7 +139,8 @@ const meta: Meta<typeof GCheckboxGroup> = {
       description: 'Etiqueta ARIA para el grupo',
       control: 'text',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
+        category: 'Accesibilidad'
       }
     },
 
@@ -107,20 +148,20 @@ const meta: Meta<typeof GCheckboxGroup> = {
     'onUpdate:modelValue': {
       description: 'Se emite al actualizar los valores',
       table: {
-        category: 'events',
+        category: 'Eventos',
         type: {
           summary: 'CheckboxGroupValueType',
-          detail: 'Array<string | number | boolean>'
+          detail: 'Array<string | number>'
         }
       }
     },
     onChange: {
       description: 'Se emite al cambiar la selección',
       table: {
-        category: 'events',
+        category: 'Eventos',
         type: {
           summary: 'CheckboxGroupValueType',
-          detail: 'Array<string | number | boolean>'
+          detail: 'Array<string | number>'
         }
       }
     },
@@ -129,17 +170,17 @@ const meta: Meta<typeof GCheckboxGroup> = {
     default: {
       description: 'Slot para contenido personalizado de cada checkbox',
       table: {
-        category: 'slots',
+        category: 'Slots',
         type: {
-          summary: 'scope: { item: CheckboxOption, checked: boolean }'
+          summary: 'slot',
         }
       }
     }
   },
   args: {
+    options: [],
     modelValue: [],
     disabled: false,
-    size: 'default',
     layout: 'horizontal',
     tag: 'div',
     min: undefined,
@@ -147,8 +188,7 @@ const meta: Meta<typeof GCheckboxGroup> = {
     validateEvent: true,
     ariaLabel: 'Grupo de opciones'
   } as Partial<CheckboxGroupProps>
-} // Aserción de tipo explícita
-
+}
 export default meta
 
 type Story = StoryObj<typeof GCheckboxGroup>
@@ -157,23 +197,23 @@ const Template: Story = {
   render: (args) => ({
     components: { GCheckboxGroup, GCheckbox, GConfigProvider },
     setup() {
-      console.log('args', args)
       const selectedValues = ref([])
-      console.log('selectedValues', selectedValues)
-      return { args, selectedValues }
+      const options = [
+        { value: 'Value A', label: 'Importaciones' },
+        { value: 'Value B', label: 'Inversiones'},
+        { value: 'Value C', label: 'Exportaciones', checked: true },
+        { value: 'Value D', label: 'Transferencias', disabled: true },
+        { value: 'Value E', label: 'Otros' }
+      ]
+      return { args, selectedValues, options }
     },
     template: `
     <g-config-provider>
       <g-checkbox-group 
         v-bind="args"
         v-model="selectedValues"
-      >
-        <g-checkbox label="Importaciones" value="Value A" />
-        <g-checkbox label="Inversiones" value="Value B" />
-        <g-checkbox label="Exportaciones" value="Value C" />
-        <g-checkbox label="Transferencias" value="Value D" />
-        <g-checkbox label="Otros" value="Value E" />
-      </g-checkbox-group>
+        :options="options"
+      />
       <div class="text-3 text-primary-txt font-medium mt-5">
         Valores seleccionados: {{ selectedValues }}
       </div>
@@ -188,7 +228,8 @@ export const Basic: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Grupo de checkboxes básico. Muestra la funcionalidad principal de selección múltiple con valores en array. Los checkboxes se muestran en línea por defecto.'
+        story:
+          'Grupo de checkboxes básico. Muestra la funcionalidad principal de selección múltiple con valores en array. Los checkboxes se muestran en línea por defecto.'
       }
     }
   }
@@ -203,7 +244,8 @@ export const Disabled: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Grupo completo deshabilitado. Todos los checkboxes están no interactivos. Útil para estados donde la selección no está disponible temporalmente.'
+        story:
+          'Grupo completo deshabilitado. Todos los checkboxes están no interactivos. Útil para estados donde la selección no está disponible temporalmente.'
       }
     }
   }
@@ -218,7 +260,8 @@ export const WithLimits: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Grupo con restricciones de selección. Permite definir mínimo (1) y máximo (2) de opciones seleccionables. Muestra validación automática al exceder los límites.'
+        story:
+          'Grupo con restricciones de selección. Permite definir mínimo (1) y máximo (2) de opciones seleccionables. Muestra validación automática al exceder los límites.'
       }
     }
   }
@@ -232,40 +275,9 @@ export const VerticalLayout: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Checkboxes apilados verticalmente. Controlado mediante la propiedad `layout: vertical`. Ideal para formularios con espacio vertical limitado.'
+        story:
+          'Checkboxes apilados verticalmente. Controlado mediante la propiedad `layout: vertical`. Ideal para formularios con espacio vertical limitado.'
       }
     }
   }
 }
-
-// export const DifferentSizes: Story = {
-//   render: (args) => ({
-//     components: { GCheckboxGroup, GCheckbox, GConfigProvider },
-//     setup() {
-//       const sizes = ['large', 'default', 'small'] as const
-//       const values = reactive<string[][]>([[], [], []])
-
-//       watchEffect(() => {
-//         console.log('values', values)
-//         console.log('args', args)
-//       })
-
-//       return { args, sizes, values }
-//     },
-//     template: `
-//     <GConfigProvider>
-//       <div style="display: flex; flex-direction: column; gap: 20px;">
-//         <div v-for="(size, index) in sizes" :key="size">
-//           <GCheckboxGroup
-//             v-model="values[index]"
-//             :size="size"
-//           >
-//             <GCheckbox :label="size + '1'">{{ size }} Size 1</GCheckbox>
-//             <GCheckbox :label="size + '2'">{{ size }} Size 2</GCheckbox>
-//           </GCheckboxGroup>
-//         </div>
-//       </div>
-//     </GConfigProvider>
-//     `
-//   })
-// }
