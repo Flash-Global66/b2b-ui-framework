@@ -1,114 +1,128 @@
-import { Meta, StoryFn } from '@storybook/vue3';
-import { ref } from 'vue';
-import { action } from '@storybook/addon-actions';
-import { fn } from "@storybook/test";
+import { Meta, StoryFn, StoryObj } from '@storybook/vue3'
 
 // COMPONENTS
-import { GRadio } from '../components/Radio';
-
-// TYPES
-import { EnumRadioSize } from '../components/Radio/radio.type';
+import { GRadio } from '../components/Radio'
 
 // CONFIG
-import { GConfigProvider } from '../components/ConfigProvider';
+import { GConfigProvider } from '../components/ConfigProvider'
+import { RadioProps } from '../components/Radio/radio'
 
-export default {
+const meta: Meta<typeof GRadio> = {
   title: 'Form/Radio/Single',
   component: GRadio,
-  argTypes: {
-    'v-model': {
-      description: 'binding value.',
-      table: {
-        type: { summary: 'Number, String, Boolean' }
-      }
-    },
-    // slots
-    default: {
-      control: { type: 'text' },
-      table: {
-        type: { summary: 'String, Components' }
-      }
-    },
-    // events
-    change: {
-      control: { type: null },
-      table: {
-        type: { summary: 'String, Number, Boolean' }
-      }
-    },
-    // props
-    label: {
-      control: {
-        type: null
-      },
-      table: {
-        defaultValue: { summary: 'Option A' },
-      }
-    },
-    disabled: {
-      control: {
-        type: 'boolean'
-      }
-    },
-    size: {
-      control: {
-        type: 'select',
-      },
-      options: Object.values(EnumRadioSize),
-      table: {
-        type: { summary: 'String' }
-      }
-    },
-  },
-  // values for the default
-  args: {
-    size: '',
-    label: 'Option A',
-    default: 'Option A',
-    disabled: false,
-    name: '',
-  },
   parameters: {
     docs: {
       description: {
-        component: `Radio should not have too many options. Otherwise, use the Select component instead. Creating a radio component is easy, you just need to bind a variable to Radio's \`v-model\`. It equals to the value of label of the chosen radio. The type of \`label\` is \`String, Number or Boolean\`.`,
-      },
-    },
+        component: `
+Uso básico
+Componente de selección única entre un grupo de opciones.
+
+Ejemplo básico:
+\`\`\`vue
+<g-radio v-model="selected" label="Opción 1" value="1" />
+\`\`\`
+`
+      }
+    }
   },
-} as Meta<typeof GRadio>;
-
-const Template: StoryFn<typeof GRadio> = (args) => {
-  return {
-    components: { GRadio, GConfigProvider },
-    setup() {
-      const selected = ref('')
-
-      return {
-        args,
-        selected,
-        onChange: fn(action('change')),
-      };
+  argTypes: {
+    // Principales
+    modelValue: {
+      description: 'Valor del modelo (v-model)',
+      table: {
+        type: { summary: 'string | number | boolean' },
+        category: 'Principales'
+      }
     },
-    template: `
-      <g-config-provider>
-        <div class="flex items-center gap-x-8">
-          <g-radio v-model="selected" @change="onChange" class="custom" v-bind="args">
-            {{ args.default }}
-          </g-radio>
-          <g-radio v-model="selected" @change="onChange" label="Option B">
-            Option B
-          </g-radio>
-          <g-radio v-model="selected" @change="onChange" label="Option C">
-            Option C
-          </g-radio>
-          <g-radio v-model="selected" label="Option D" disabled>
-            Option D
-          </g-radio>
-        </div>
-      </g-config-provider>
-    `,
-  }
-};
+    label: {
+      description: 'Etiqueta visible del radio',
+      control: 'text',
+      table: {
+        category: 'Principales',
+        type: { summary: 'string | number | boolean' }
+      }
+    },
+    value: {
+      description: 'Valor único del radio',
+      control: 'object',
+      table: {
+        category: 'Principales',
+        type: { summary: 'string | number | boolean' }
+      }
+    },
+    // Estados
+    disabled: {
+      description: 'Deshabilita el componente',
+      control: 'boolean',
+      table: {
+        category: 'Estados',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' }
+      }
+    },
 
+    // Atributos HTML
+    name: {
+      description: 'Atributo name nativo para agrupación',
+      control: 'text',
+      table: {
+        category: 'Atributos HTML',
+        type: { summary: 'string' }
+      }
+    },
 
-export const Default = Template.bind({});
+    // Eventos
+    'onUpdate:modelValue': {
+      description: 'Se emite al actualizar la selección',
+      table: {
+        category: 'Eventos',
+        type: { summary: 'string | number | boolean' }
+      }
+    },
+    onChange: {
+      description: 'Se emite al cambiar la selección',
+      table: {
+        category: 'Eventos',
+        type: { summary: 'string | number | boolean' }
+      }
+    },
+
+    // Slots
+    default: {
+      description: 'Slot para contenido personalizado para radio',
+      table: {
+        category: 'Slots',
+        type: { summary: 'slot' }
+      }
+    }
+  },
+  args: {
+    disabled: false,
+    label: 'Etiqueta del radio',
+    modelValue: false,
+    value: 'valor-radio',
+    name: 'radio-group'
+  } as Partial<RadioProps>
+}
+
+export default meta
+type Story = StoryObj<typeof GRadio>
+
+const Template: StoryFn<RadioProps> = (args: RadioProps, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { GRadio, GConfigProvider },
+  setup() {
+    return { args }
+  },
+  template: `
+    <g-config-provider>
+      <g-radio v-bind="args" v-model="args.modelValue" />
+    </g-config-provider>
+  `
+})
+
+export const Default: Story = Template.bind({})
+Default.args = {
+  label: 'Opción predeterminada',
+  // value: 'valor-radio'
+}
