@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-icon-font",
   "author": "Global66",
-  "version": "1.0.6",
+  "version": "1.0.9",
   "license": "MIT",
   "exports": {
     ".": "./index.ts",
