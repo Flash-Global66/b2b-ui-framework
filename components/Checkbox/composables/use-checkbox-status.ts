@@ -1,8 +1,6 @@
-import { computed, inject, isRef, ref, toRaw } from 'vue'
+import { computed, isRef, ref, toRaw, watch } from 'vue'
 import { isEqual } from 'lodash-unified'
-import { useFormSize } from 'element-plus/es/components/form/index.mjs'
 import { isArray, isBoolean, isObject, isPropAbsent } from 'element-plus/es/utils/index.mjs'
-import { checkboxGroupContextKey } from '../constants'
 
 import type { ComponentInternalInstance } from 'vue'
 import type { CheckboxProps } from '../checkbox'
@@ -13,12 +11,9 @@ export const useCheckboxStatus = (
   slots: ComponentInternalInstance['slots'],
   { model }: Pick<CheckboxModel, 'model'>
 ) => {
-  const checkboxGroup = inject(checkboxGroupContextKey, undefined)
   const isFocused = ref(false)
-  const isError = computed<boolean>(() => {
-    if (props.errorMessage && !props.checked) return true
-    return false
-  })
+  const isChecked = ref<boolean>(false)
+  const currentRipple = ref('')
   const actualValue = computed(() => {
     // In version 2.x, if there's no props.value, props.label will act as props.value
     // In version 3.x, remove this computed value, use props.value instead.
@@ -26,16 +21,6 @@ export const useCheckboxStatus = (
       return props.value
     }
     return props.label
-  })
-  // const isChecked = computed<boolean>(() => {
-  const isChecked = computed<boolean>(() => {
-    const value = model.value
-
-    if (isBoolean(value)) return value
-    if (isArray(value)) return checkArrayContainsValue(value, actualValue.value)
-    if (value != null) return value === props.trueValue
-
-    return Boolean(value)
   })
 
   // Función helper para manejar lógica de arrays
@@ -48,26 +33,36 @@ export const useCheckboxStatus = (
       : rawArray.includes(rawTarget)
   }
 
-  const checkboxButtonSize = useFormSize(
-    computed(() => checkboxGroup?.size?.value),
-    {
-      prop: true
-    }
-  )
-  const checkboxSize = useFormSize(computed(() => checkboxGroup?.size?.value))
-
   const hasOwnLabel = computed<boolean>(() => {
     return !!slots.default || !isPropAbsent(actualValue.value)
   })
 
+  watch(
+    () => {
+      const value = model.value
+
+      if (isBoolean(value)) return value
+      if (isArray(value)) return checkArrayContainsValue(value, actualValue.value)
+      if (value != null) return value === props.trueValue
+
+      return Boolean(value)
+    },
+    (newValue) => {
+      isChecked.value = newValue
+      currentRipple.value = newValue ? 'expand' : 'contract'
+
+      setTimeout(() => {
+        currentRipple.value = ''
+      }, 500)
+    }
+  )
+
   return {
     actualValue,
-    checkboxButtonSize,
-    checkboxSize,
     hasOwnLabel,
     isChecked,
-    isError,
-    isFocused
+    isFocused,
+    currentRipple
   }
 }
 

@@ -44,7 +44,6 @@
     &.is-disabled:not(.is-loading) {
       @apply bg-primary-def-disabled border-primary-def-disabled text-disabled-txt;
     }
-
   }
 
   @include m('variant-secondary') {
@@ -62,7 +61,6 @@
     &.is-disabled:not(.is-loading) {
       @apply bg-transparent border-disabled-bd text-disabled-txt;
     }
-
   }
 
   @include m('variant-tertiary') {
@@ -86,7 +84,7 @@
   @include e('content') {
     @apply relative flex items-center justify-center gap-xs z-10;
 
-    >div {
+    > div {
       @apply flex items-center justify-center gap-xs w-full;
     }
   }
@@ -235,7 +233,7 @@
     }
 
     &.is-disabled {
-      @apply border-gray-200 cursor-not-allowed text-grey-300;
+      @apply border-gray-200 cursor-not-allowed text-disab-lt-txt;
     }
   }
 
@@ -247,7 +245,7 @@
     }
 
     &.is-disabled {
-      @apply cursor-not-allowed text-grey-300;
+      @apply cursor-not-allowed text-disab-lt-txt;
     }
   }
 
