@@ -177,7 +177,7 @@ Ejemplo básico:
     checked: false,
     validateEvent: true,
     label: 'Etiqueta del checkbox',
-    value: true,
+    value: 'Valor del checkbox',
     name: 'checkbox-name',
     id: 'checkbox-id',
   } as Partial<CheckboxProps>
@@ -191,7 +191,7 @@ const Template: StoryFn<CheckboxProps> = (args: CheckboxProps, { argTypes }) => 
   components: { GCheckbox, GConfigProvider },
   setup() {
     const value = ref(args.modelValue)
-    return { args }
+    return { args, value }
   },
   template: `
     <g-config-provider>

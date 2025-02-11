@@ -2,7 +2,7 @@ import { UPDATE_MODEL_EVENT, useAriaProps } from 'element-plus'
 import { isBoolean, isNumber, isString } from 'element-plus/es/utils/index.mjs'
 
 import type { ExtractPropTypes } from 'vue'
-import Checkbox from './Checkbox.vue'
+import Checkbox from './checkbox.vue'
 
 export type CheckboxValueType = string | number | boolean
 

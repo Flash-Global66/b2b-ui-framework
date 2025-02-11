@@ -18,7 +18,7 @@
     }
     &.is-disabled {
       @include e(inner) {
-        @apply border-grey-300 bg-grey-300;
+        @apply border-disab-lt-bd bg-disab-lt-bg;
         &:after {
           @apply border-white;
         }
@@ -29,7 +29,7 @@
   @include when(disabled) {
     @apply cursor-not-allowed;
     @include e(label) {
-      @apply text-grey-300 !important;
+      @apply text-disab-lt-txt !important;
     }
   }
 
@@ -46,7 +46,7 @@
       }
       &.is-disabled {
         @include e(inner) {
-          @apply border-grey-300 bg-grey-300;
+          @apply border-disab-lt-bd bg-disab-lt-bg;
           &:before {
             @apply bg-white top-[7px];
           }
@@ -57,7 +57,7 @@
     @include when(disabled) {
       @apply cursor-not-allowed;
       @include e(inner) {
-        @apply bg-transparent border-grey-300;
+        @apply bg-transparent border-disab-lt-bd;
         & .hover-effect {
           @apply invisible;
         }

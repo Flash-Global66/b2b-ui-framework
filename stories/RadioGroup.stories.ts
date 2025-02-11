@@ -1,104 +1,224 @@
-import { Meta, StoryFn } from '@storybook/vue3';
-import { ref } from 'vue';
-import { action } from '@storybook/addon-actions';
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from '@storybook/vue3'
+import { ref } from 'vue'
+import { GRadio, GRadioGroup } from '../components/Radio'
+import { GConfigProvider } from '../components/ConfigProvider'
 
-// COMPONENTS
-import { GRadio } from '../components/Radio';
-import { GRadioGroup } from '../components/RadioGroup';
-
-// CONFIG
-import { GConfigProvider } from '../components/ConfigProvider';
-
-// TYPES
-import { EnumRadioSize } from '../components/Radio/radio.type';
-
-export default {
+const meta: Meta<typeof GRadioGroup> = {
   title: 'Form/Radio/Group',
   component: GRadioGroup,
-  subcomponents: { GRadio },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+### Uso básico
+Grupo de radios que permite selección única con validación. Los radios puedesn agregarse como hijos usando slots 
+o mediante la propiedad \`options\`.
+
+Ejemplo con slots:
+\`\`\`vue
+<g-radio-group 
+  v-bind="args"
+  v-model="selectedValue"
+>
+  <g-radio label="Importaciones" value="ValueA" />
+  <g-radio label="Inversiones" value="ValueB" />
+</g-radio-group>
+\`\`\`
+
+Ejemplo con opciones predefinidas:
+\`\`\`vue
+<g-radio-group
+  v-bind="args"
+  v-model="selectedValue"
+  :options="options"
+/>
+\`\`\`
+        `
+      }
+    }
+  },
   argTypes: {
-    'v-model': {
-      description: 'binding value.',
-      table: {
-        type: { summary: 'Number, String, Boolean' }
-      }
-    },
-    // slots
-    default: {
-      control: { type: null },
-      table: {
-        type: { summary: 'Components' }
-      }
-    },
-    // events
-    change: {
-      control: { type: null },
-      table: {
-        type: { summary: 'String, Number, Boolean' }
-      }
-    },
-    // props
+    // Estados
     disabled: {
-      control: {
-        type: 'boolean'
-      }
-    },
-    size: {
-      control: {
-        type: 'select',
-      },
-      options: Object.values(EnumRadioSize),
+      description: 'Deshabilita todo el grupo',
+      control: 'boolean',
       table: {
-        type: { summary: 'String' }
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+        category: 'Estados'
       }
     },
+
+    // Apariencia
+    layout: {
+      description: 'Diseño del grupo',
+      control: 'select',
+      options: ['horizontal', 'vertical'],
+      table: {
+        type: { summary: 'layoutType', detail: "'horizontal' | 'vertical'" },
+        defaultValue: { summary: 'horizontal' },
+        category: 'Apariencia'
+      }
+    },
+
+    // Principales
+    options: {
+      description: 'Array de opciones para construir el grupo de checkboxes',
+      control: 'object',
+      table: {
+        type: {
+          summary: 'Option[]',
+          detail: `
+          type Option = {
+value: string | number | boolean
+label?: string | number
+disabled?: boolean
+}
+        `
+        },
+        defaultValue: { summary: '[]' },
+        category: 'Principales'
+      }
+    },
+    modelValue: {
+      description: 'Valor seleccionado (v-model)',
+      control: 'text',
+      table: {
+        type: { summary: 'string | number | boolean' },
+        category: 'Principales'
+      }
+    },
+    name: {
+      description: 'Atributo name para agrupar los radios',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+        category: 'Validación'
+      }
+    },
+
+    // Validación
+    validateEvent: {
+      description: 'Activa validación de formulario',
+      control: 'boolean',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+        category: 'Validación'
+      }
+    },
+
+    // Accesibilidad
+    ariaLabel: {
+      description: 'Etiqueta ARIA para el grupo',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+        category: 'Accesibilidad'
+      }
+    },
+
+    id: {
+      description: 'ID HTML nativo',
+      control: 'text',
+      table: {
+        type: { summary: 'string' },
+        category: 'Accesibilidad'
+      }
+    },
+
+    // Slots
+    default: {
+      description: 'Slot para contenido personalizado de cada checkbox',
+      table: {
+        category: 'Slots',
+        type: { summary: 'slot' }
+      }
+    }
   },
   args: {
-    size: '',
+    options: [],
+    modelValue: '',
     disabled: false,
+    layout: 'horizontal',
+    validateEvent: true,
+    name: 'radio-group',
+    ariaLabel: 'Grupo de opciones exclusivas',
+    id: 'custom-radio-group'
+  }
+}
+export default meta
+
+type Story = StoryObj<typeof GRadioGroup>
+
+const Template: Story = {
+  render: (args) => ({
+    components: { GRadioGroup, GRadio, GConfigProvider },
+    setup() {
+      const selectedValue = ref('Value B')
+      const options = [
+        { value: 'Value A', label: 'Importaciones' },
+        { value: 'Value B', label: 'Inversiones' },
+        { value: 'Value C', label: 'Exportaciones' },
+        { value: 'Value D', label: 'Transferencias', disabled: true },
+        { value: 'Value E', label: 'Otros' }
+      ]
+      return { args, selectedValue, options }
+    },
+    template: `
+    <g-config-provider>
+      <g-radio-group 
+        v-bind="args"
+        v-model="selectedValue"
+        :options="options"
+      />
+      <div class="text-3 text-primary-txt font-medium mt-5">
+        Valor seleccionado: {{ selectedValue }}
+      </div>
+    `
+  })
+}
+
+export const Basic: Story = {
+  ...Template,
+  args: {},
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Grupo básico de radios con selección única. Muestra el funcionamiento básico del v-model con valores string.'
+      }
+    }
+  }
+}
+
+export const DisabledGroup: Story = {
+  ...Template,
+  args: {
+    disabled: true,
+    modelValue: 'ValueA'
   },
   parameters: {
     docs: {
       description: {
-        component: `Suitable for choosing from some mutually exclusive options. **Note:** Combine \`g-radio-group\` with \`g-radio\` to display a radio group. Bind a variable with \`v-model\` of \`g-radio-group\` element and set label value in \`g-radio\`. It also provides change event with the current value as its parameter.`,
-      },
-    },
-  },
-} as Meta<typeof GRadio>;
-
-const Template: StoryFn<typeof GRadio> = (args, selected) => {
-  return {
-    components: { GRadio, GRadioGroup, GConfigProvider },
-    setup() {
-      const selected = ref('')
-      return {
-        args,
-        selected,
-        onChange: fn(action('change')),
-      };
-    },
-    template: `
-      <g-config-provider>
-        <g-radioGroup
-          class="flex items-center gap-x-8"
-          v-model="selected"
-          v-bind="args"
-          @change="onChange"
-        >
-          <g-radio label="female">
-            Femenino
-          </g-radio>
-          <g-radio label="male">
-            Masculino
-          </g-radio>
-          <g-radio label="non-binary">
-            No binario
-          </g-radio>
-        </g-radioGroup>
-      </g-config-provider>
-    `,
+        story:
+          'Grupo completo deshabilitado. Todos los radios están no interactivos excepto los que tienen disabled individual.'
+      }
+    }
   }
-};
+}
 
-export const Default = Template.bind({});
+export const VerticalLayout: Story = {
+  ...Template,
+  args: {
+    layout: 'vertical'
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Radios apilados verticalmente. Controlado mediante la propiedad `layout: vertical`. Ideal para formularios con espacio vertical limitado.'
+      }
+    }
+  }
+}

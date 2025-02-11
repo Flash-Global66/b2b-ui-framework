@@ -172,7 +172,7 @@ Ejemplo con opciones predefinidas:
       table: {
         category: 'Slots',
         type: {
-          summary: 'scope: { item: CheckboxOption, checked: boolean }'
+          summary: 'slot',
         }
       }
     }
