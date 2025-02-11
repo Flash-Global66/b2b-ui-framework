@@ -40,10 +40,11 @@
         @blur="isFocused = false"
         @click.stop
       />
-      <span :class="ns.e('inner')" />
-    </span>
-    <span v-if="isError && errorMessage" class="absolute -bottom-2.5">
-      <p class="text-1 text-error-txt font-medium">{{ errorMessage }}</p>
+      <span :class="ns.e('inner')">
+        <span class="hover-effect">
+          <span class="ripple" :class="currentRipple" />
+        </span>
+      </span>
     </span>
     <span v-if="hasOwnLabel" :class="ns.e('label')">
       <slot />
@@ -68,13 +69,12 @@ const slots = useSlots()
 
 const {
   actualValue,
-  checkboxSize,
+  currentRipple,
   handleChange,
   hasOwnLabel,
   inputId,
   isChecked,
   isDisabled,
-  isError,
   isFocused,
   isLabeledByFormItem,
   model,
@@ -86,11 +86,8 @@ const ns = useNamespace('checkbox')
 const compKls = computed(() => {
   return [
     ns.b(),
-    ns.m(checkboxSize.value),
     ns.is('disabled', isDisabled.value),
-    ns.is('bordered', props.border),
     ns.is('checked', isChecked.value),
-    checkKlsError(isError.value)
   ]
 })
 
@@ -101,14 +98,6 @@ const spanKls = computed(() => {
     ns.is('checked', isChecked.value),
     ns.is('indeterminate', props.indeterminate),
     ns.is('focus', isFocused.value),
-    checkKlsError(isError.value)
   ]
 })
-
-const checkKlsError = (isError: boolean) => {
-  if (isError) {
-    return 'is-error'
-  }
-  return ''
-}
 </script>

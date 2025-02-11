@@ -3,10 +3,7 @@ import type { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
 
 module.exports = {
-  content: [ 
-    './components/**/*.{vue,js,ts,jsx,tsx}',
-    './stories/**/*.{vue,js,ts,jsx,tsx}'
-  ],
+  content: ['./components/**/*.{vue,js,ts,jsx,tsx}', './stories/**/*.{vue,js,ts,jsx,tsx}'],
   darkMode: 'media', // or 'media' or 'class'
   mode: 'jit',
   theme: {
@@ -44,7 +41,7 @@ module.exports = {
         'success-bg': 'var(--color-bg-success)',
         'error-bg': 'var(--color-bg-error)',
         'warning-bg': 'var(--color-bg-warning)',
-        'info-bg': 'var(--color-bg-info)',
+        'info-bg': 'var(--color-bg-info)'
       },
       textColor: {
         'primary-txt': 'var(--color-txt-primary)',
@@ -55,7 +52,7 @@ module.exports = {
         'success-txt': 'var(--color-txt-success)',
         'error-txt': 'var(--color-txt-error)',
         'warning-txt': 'var(--color-txt-warning)',
-        'info-txt': 'var(--color-txt-info)',
+        'info-txt': 'var(--color-txt-info)'
       },
       borderColor: {
         'primary-bd': 'var(--color-border-primary)',
@@ -65,7 +62,7 @@ module.exports = {
         'success-bd': 'var(--color-border-success)',
         'error-bd': 'var(--color-border-error)',
         'warning-bd': 'var(--color-border-warning)',
-        'info-bd': 'var(--color-border-info)',
+        'info-bd': 'var(--color-border-info)'
       },
       borderRadius: {
         // Valores nuevos
@@ -272,7 +269,7 @@ module.exports = {
           21: '#828AA4',
           22: '#E1E4F0',
           23: '#7F869A', // duplicado con grey-400 (nuevo)
-          24: '#CDD0D8', // duplicado con grey-100 (nuevo)
+          24: '#CDD0D8' // duplicado con grey-100 (nuevo)
         }
       },
       spacing: {
@@ -325,6 +322,20 @@ module.exports = {
         lg: '0px 5px 24px 0px rgba(0, 0, 0, 0.16)',
         xl: '0px 10px 30px 0px rgba(0, 0, 0, 0.30)'
       }
+    },
+    keyframes: {
+      'ripple-expand': {
+        from: { transform: 'scale(0)', opacity: '1' },
+        to: { transform: 'scale(1.5)', opacity: '0' }
+      },
+      'ripple-contract': {
+        from: { transform: 'scale(1)', opacity: '1' },
+        to: { transform: 'scale(0)', opacity: '0' }
+      }
+    },
+    animation: {
+      'ripple-expand': 'ripple-expand 0.5s ease-out',
+      'ripple-contract': 'ripple-contract 0.5s ease-out'
     }
   },
   variants: {
@@ -383,7 +394,7 @@ module.exports = {
           '--color-border-success': theme('colors.green.700'),
           '--color-border-error': theme('colors.red.700'),
           '--color-border-warning': theme('colors.yellow.700'),
-          '--color-border-info': theme('colors.blue.500'),
+          '--color-border-info': theme('colors.blue.500')
         }
       })
     }),

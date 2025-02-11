@@ -1,26 +1,26 @@
-@use 'element-plus/theme-chalk/src/checkbox.scss' as *;
+@use 'element-plus/theme-chalk/src/radio.scss' as *;
+/* @use "element-plus/theme-chalk/src/radio-group.scss" as * ; */
 @use 'element-plus/theme-chalk/src/mixins/mixins' as *;
 @use 'element-plus/theme-chalk/src/mixins/utils' as *;
 @use 'element-plus/theme-chalk/src/mixins/var' as *;
 @use 'element-plus/theme-chalk/src/common/var' as *;
 
-@include b('checkbox') {
+@include b('radio') {
   @apply text-3 gap-xxs m-0 h-fit items-center;
 
+  @include e(label) {
+    @apply p-0 text-secondary-txt text-pretty;
+  }
+
   @include when(checked) {
-    &:not(.is-disabled) {
-      @include e(label) {
-        @apply text-secondary-txt;
-      }
-      @include e(inner) {
-        @apply border-primary-bd;
-      }
+    @include e(label) {
+      @apply text-secondary-txt;
     }
     &.is-disabled {
-      @include e(inner) {
-        @apply border-grey-300 bg-grey-300;
+      @include e(inner) { 
+        @apply bg-transparent border-grey-300;
         &:after {
-          @apply border-white;
+          @apply bg-grey-300;
         }
       }
     }
@@ -33,23 +33,14 @@
     }
   }
 
-  @include e(label) {
-    @apply p-0 text-secondary-txt text-pretty;
-  }
-
   @include e(input) {
-    @apply self-start;
+    /* @apply self-start; */
 
-    @include when(indeterminate) {
+    @include when(checked) {
       @include e(inner) {
-        @apply border-primary-bd;
-      }
-      &.is-disabled {
-        @include e(inner) {
-          @apply border-grey-300 bg-grey-300;
-          &:before {
-            @apply bg-white top-[7px];
-          }
+        @apply bg-transparent;
+        &:after {
+          @apply w-3 h-3 bg-primary-def;
         }
       }
     }
@@ -63,25 +54,18 @@
         }
       }
     }
-
-    &:not(.is-error):not(.is-disabled) {
-      @include e(inner) {
-        &::before {
-          @apply top-[7px];
-        }
-      }
-    }
   }
 
   @include e(inner) {
-    @apply w-[18px] h-[18px] border-disabled-bd border rounded mr-[7px] bg-transparent;
-
-    &::after {
-      @apply w-[3px] h-2 top-0.5 left-1.5 absolute;
-    }
+    @apply w-[18px] h-[18px] border-disabled-bd border mr-[7px] bg-transparent;
+    transition: border-color 0.4s;
 
     &:active .hover-effect {
       @apply bg-primary-def-press;
+    }
+
+    &:hover .hover-effect {
+      @apply w-8 h-8;
     }
 
     & .hover-effect {
@@ -93,13 +77,7 @@
         &.expand {
           @apply animate-ripple-expand;
         }
-        &.contract {
-          @apply animate-ripple-contract;
-        }
       }
-    }
-    &:hover .hover-effect {
-      @apply w-8 h-8;
     }
   }
 }
