@@ -3,12 +3,11 @@ import type { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
 
 module.exports = {
-  content: [ 
+  content: [
     './components/**/*.{vue,js,ts,jsx,tsx}',
-    './stories/**/*.{vue,js,ts,jsx,tsx}'
+    './stories/**/*.{vue,js,ts,jsx,tsx}',
+    './src/**/*.{vue,js,ts,jsx,tsx}' // Agrega esta línea si tienes archivos en src
   ],
-  darkMode: 'media', // or 'media' or 'class'
-  mode: 'jit',
   theme: {
     extend: {
       fontFamily: {
@@ -387,11 +386,11 @@ module.exports = {
         }
       })
     }),
-    plugin(({ addVariant }) => {
-      addVariant('label-checked', () => {
-        const yourSelector = 'input[type="radio"]'
-        return `${yourSelector}:checked ~ .label-checked`
-      })
-    })
+    // plugin(({ addVariant }) => {
+    //   addVariant('label-checked', () => {
+    //     const yourSelector = 'input[type="radio"]'
+    //     return `${yourSelector}:checked ~ .label-checked`
+    //   })
+    // })
   ]
 } satisfies Config

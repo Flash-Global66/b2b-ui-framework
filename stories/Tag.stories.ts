@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { nextTick, ref } from 'vue'
 
 import { GTag } from '../components/Tag'
-import { GInput } from '../components/Input/src/index'
+import { GInput } from '../components/Input/index'
 import { GConfigProvider } from '../components/ConfigProvider'
 import { GButton } from '../components/Button/src/index'
 

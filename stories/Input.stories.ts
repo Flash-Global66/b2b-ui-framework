@@ -5,7 +5,7 @@ import { fn } from "@storybook/test";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 // COMPONENTS
-import { GInput } from '../components/Input/src';
+import { GInput } from '../components/Input';
 
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';
@@ -53,11 +53,17 @@ const Template: StoryFn<typeof GInput> = (args, selected) => {
     template: `
       <g-config-provider>
         <g-input
+          suffix-icon="solid file-image"
+          prefix-icon="solid file-image"
+          label="Nombre"
+          show-word-limit
+          help-text="Help text lorem ipsum lorem lorem lorem ad"
           v-model="name"
           v-bind="args"
           @keydown="onKeydown"
         >
         </g-input>
+        {{name}}
       </g-config-provider>
     `,
   }
