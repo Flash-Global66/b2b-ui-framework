@@ -46,4 +46,9 @@ export {
   faArrowDownToLine,
   faArrowUpFromBracket,
   faRepeat,
+  faBan,
+  faEye,
+  faEyeSlash,
+  faCircleXmark,
+
 } from '@fortawesome/pro-regular-svg-icons';
