@@ -12,30 +12,89 @@
   }
 
   @include e("label") {
-    @apply absolute text-terciary-txt text-4 transition-all duration-200 ease-in;
+    @apply absolute text-terciary-txt text-4 transition-all duration-200 ease-in font-medium;
     top: 50%;
     transform: translateY(-50%);
   }
 
-  @each $status in (focus, content) {
+  @each $status in (focus, complete) {
     @include when($status) {
       @include e('label') {
-        @apply text-2 text-everBlue-500 left-xs bg-white font-medium;
+        @apply text-2 left-xs bg-white font-medium;
         top: 0;
         transform: translateY(-50%);
         padding: 0 2px;
       }
+      @include e("inner") {
+        &::placeholder {
+          @apply opacity-100;
+        }
+      }
+    }
+  }
+
+  @include when(focus) {
+    @include e('label') {
+      // PREGUNTAR: por el semantic token
+      @apply text-everBlue-500;
+    }
+    @include e('wrapper') {
+      @apply border-everBlue-500;
+    }
+    @include e("inner") {
+      @apply caret-everBlue-500;
+    }
+  }
+
+  @include when(complete) {
+    @include e('label') {
+      @apply text-secondary-txt;
+    }
+    @include e('wrapper') {
+      @apply border-secondary-bd;
+    }
+  }
+
+  @include when(disabled) {
+    @include e('label') {
+      @apply text-disabled-txt;
+    }
+    @include e('wrapper') {
+      // PREGUNTAR: por el semantic token
+      @apply bg-primary-def-disabled border-grey-400;
+    }
+  }
+
+  @include when(error) {
+    @include e('label') {
+      @apply text-error-txt;
+    }
+    @include e('wrapper') {
+      @apply border-error-bd;
+    }
+    @include e("help") {
+      @apply text-error-txt;
+    }
+  }
+
+  @include when(exceed) {
+    @include e('help-count') {
+      @apply text-error-txt;
     }
   }
 
   @include e("inner") {
-    @apply w-full text-primary-txt font-medium text-4;
+    @apply w-full text-primary-txt font-medium text-4 appearance-none outline-none;
     &:focus {
-      outline: none;
+      @apply outline-none;
     }
     // override edge default style
     &[type='password']::-ms-reveal {
-      display: none;
+      @apply hidden;
+    }
+
+    &::placeholder {
+      @apply transition-all duration-200 ease-in text-terciary-txt opacity-0;
     }
   }
 
