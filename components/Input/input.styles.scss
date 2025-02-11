@@ -1,0 +1,61 @@
+@use "sass:map";
+
+@use "element-plus/theme-chalk/src/mixins/mixins" as *;
+@use "element-plus/theme-chalk/src/mixins/utils" as *;
+@use "element-plus/theme-chalk/src/mixins/var" as *;
+@use "element-plus/theme-chalk/src/common/var" as *;
+
+@include b("input") {
+  @apply flex flex-col gap-xxs;
+  @include e("wrapper") {
+    @apply relative flex bg-white gap-xs py-sm px-xs border border-disabled-bd rounded-md h-12;
+  }
+
+  @include e("label") {
+    @apply absolute text-grey-400 text-3 transition-all duration-200 ease-in;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  @include when(focus) {
+    @include e('label') {
+      @apply text-2 text-primary-txt;
+      top: 0;
+      transform: translateY(-50%);
+      background-color: white;
+      padding: 0 4px;
+    }
+  }
+
+  @include e("inner") {
+    @apply w-full text-primary-txt font-medium text-4;
+    &:focus {
+      outline: none;
+    }
+    // override edge default style
+    &[type='password']::-ms-reveal {
+      display: none;
+    }
+  }
+
+  @include e("prefix-icon") {
+    @apply text-7 text-grey-500;
+  }
+
+  @include e("suffix-icon") {
+    @apply text-7 text-grey-500;
+  }
+
+  @include e("help") {
+    @apply flex gap-xxs justify-between text-2 font-medium text-disabled-txt px-xs;
+  }
+
+  @include e("help-text") {
+    @apply line-clamp-2;
+  }
+
+  @include e("help-count") {
+    // @apply ;
+  }
+}

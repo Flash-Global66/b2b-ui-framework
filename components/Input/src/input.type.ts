@@ -1,1 +1,0 @@
-export type sizeInput = '' | 'default' | 'small' | 'large' | 'custom';

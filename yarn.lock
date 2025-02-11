@@ -420,6 +420,20 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.24.2.tgz#34aa0b52d0fbb1a654b596acfa595f0c7b77a77b"
   integrity sha512-7VTgWzgMGvup6aSqDPLiW5zHaxYJGTO4OokMjIlrCtf+VpEL+cXKtCvg723iguPYI5oaUNdS+/V7OU2gvXVWEg==
 
+"@flash-global66/b2b-ui-icon-font@^1.0.5":
+  version "1.0.5"
+  resolved "https://npm.pkg.github.com/download/@flash-global66/b2b-ui-icon-font/1.0.5/0d16bc62b480313ab851194c5d731df197a960fe#0d16bc62b480313ab851194c5d731df197a960fe"
+  integrity sha512-Ee/fQ+rVqHIws/D0Yc+/W+gIDhsxw3JI/oHbvHvKGpgSvcdkDT6mRIKiHqc+r27T+lus+YbXqo/eOMQ/6X3sYA==
+  dependencies:
+    "@fortawesome/fontawesome-svg-core" "^6.7.2"
+    "@fortawesome/free-brands-svg-icons" "^6.7.2"
+    "@fortawesome/free-solid-svg-icons" "^6.7.2"
+    "@fortawesome/pro-duotone-svg-icons" "^6.7.2"
+    "@fortawesome/pro-light-svg-icons" "^6.7.2"
+    "@fortawesome/pro-regular-svg-icons" "^6.7.2"
+    "@fortawesome/pro-solid-svg-icons" "^6.7.2"
+    "@fortawesome/vue-fontawesome" "^3.0.8"
+
 "@floating-ui/core@^1.6.0":
   version "1.6.9"
   resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.6.9.tgz#64d1da251433019dafa091de9b2886ff35ec14e6"
@@ -4800,7 +4814,7 @@ lodash-es@^4.17.21:
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
   integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
-lodash-unified@^1.0.2:
+lodash-unified@^1.0.2, lodash-unified@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/lodash-unified/-/lodash-unified-1.0.3.tgz#80b1eac10ed2eb02ed189f08614a29c27d07c894"
   integrity sha512-WK9qSozxXOD7ZJQlpSqOT+om2ZfcT4yO+03FuzAHD0wF6S0l0090LRPDx3vhTTLZ8cFKpBn+IOcVXK6qOcIlfQ==
