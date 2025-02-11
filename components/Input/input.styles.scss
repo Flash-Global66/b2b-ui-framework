@@ -12,19 +12,19 @@
   }
 
   @include e("label") {
-    @apply absolute text-grey-400 text-3 transition-all duration-200 ease-in;
-    left: 13px;
+    @apply absolute text-terciary-txt text-4 transition-all duration-200 ease-in;
     top: 50%;
     transform: translateY(-50%);
   }
 
-  @include when(focus) {
-    @include e('label') {
-      @apply text-2 text-primary-txt;
-      top: 0;
-      transform: translateY(-50%);
-      background-color: white;
-      padding: 0 4px;
+  @each $status in (focus, content) {
+    @include when($status) {
+      @include e('label') {
+        @apply text-2 text-everBlue-500 left-xs bg-white font-medium;
+        top: 0;
+        transform: translateY(-50%);
+        padding: 0 2px;
+      }
     }
   }
 
