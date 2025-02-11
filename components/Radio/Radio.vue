@@ -1,76 +1,67 @@
 <template>
-  <el-radio
-    v-bind="filteredAttrs"
-    @change="(event) => $emit('change', event)"
+  <label
+    :class="[
+      ns.b(),
+      ns.is('disabled', disabled),
+      ns.is('focus', focus),
+      ns.is('checked', modelValue === actualValue)
+    ]"
   >
-    <!--
-      @slot customize default content
-    -->
-    <slot />
-  </el-radio>
+    <span
+      :class="[
+        ns.e('input'),
+        ns.is('disabled', disabled),
+        ns.is('checked', modelValue === actualValue)
+      ]"
+    >
+      <input
+        ref="radioRef"
+        v-model="modelValue"
+        :class="ns.e('original')"
+        :value="actualValue"
+        :name="name || radioGroup?.name"
+        :disabled="disabled"
+        :checked="modelValue === actualValue"
+        type="radio"
+        @focus="focus = true"
+        @blur="focus = false"
+        @change="handleChange"
+        @click.stop
+      />
+      <span :class="ns.e('inner')">
+        <span class="hover-effect">
+          <span class="ripple" :class="currentRipple" />
+        </span>
+      </span>
+    </span>
+    <span :class="ns.e('label')" @keydown.stop>
+      <slot>
+        {{ label }}
+      </slot>
+    </span>
+  </label>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, PropType } from 'vue';
-import { ElRadio } from "element-plus";
+<script lang="ts" setup>
+import { nextTick } from 'vue'
+import { useNamespace } from 'element-plus'
+import { radioEmits, radioProps } from './radio'
+import { useRadio } from './use-radio'
 
-// TYPES
-import { TypeRadioSize } from './radio.type';
+defineOptions({
+  name: 'GuiRadio'
+})
 
-export default defineComponent({
-  name: 'Radio',
-  components: {
-    ElRadio,
-  },
-  emits: [
-    /**
-     * triggers when the bound value changes
-     */
-    'change'
-  ],
-  props: {
-    /**
-     * whether Radio is disabled
-     */
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    /**
-     * size of the Radio
-    */
-    size: {
-      type: String as PropType<TypeRadioSize>,
-      default: '',
-    },
-    /**
-     *  the value of Radio
-    */
-    label: {
-      type: [String, Number, Boolean],
-      default: '',
-    },
-    /**
-     *  native 'name' attribute
-     */
-    name: {
-      type: String,
-      default: '',
-    },
-  },
-  setup(props, { attrs }) {
-    const filteredAttrs = computed(() => {
+const props = defineProps(radioProps)
+const emit = defineEmits(radioEmits)
 
-      const result = { ...props, ...attrs } as Record<string, unknown>;
-      const excludeKeys = ['class'];
+const ns = useNamespace('radio')
+const { radioRef, radioGroup, focus, disabled, modelValue, actualValue, currentRipple } = useRadio(
+  props,
+  emit
+)
 
-      excludeKeys.forEach(key => delete result[key]);
-
-      return result;
-    });
-    return {
-      filteredAttrs,
-    };
-  }
-});
+function handleChange() {
+  nextTick(() => emit('change', modelValue.value))
+}
 </script>

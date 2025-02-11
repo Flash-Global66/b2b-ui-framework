@@ -92,7 +92,7 @@ const Template: StoryFn = () => ({
   template: `
   <g-config-provider>
     <div class="flex flex-row w-full flex-wrap justify-center items-center gap-8">
-      <div class="w-[90%] w- rounded-md bg-transparent border-2 border-primary-bd p-4 h-32 relative">
+      <div class="w-[100%] w- rounded-md bg-transparent border-2 border-primary-bd p-4 h-32 relative">
         <div class="space-y-2">
           <div class="text-primary-txt flex flex-col gap-3">
             <h3 class="text-lg font-medium">Colores Primary</h3>
@@ -118,7 +118,7 @@ const Template: StoryFn = () => ({
         </div>
       </div>
 
-      <div class="w-[90%] w- rounded-md bg-transparent border-2 border-primary-bd p-4 h-32 relative">
+      <div class="w-[100%] w- rounded-md bg-transparent border-2 border-primary-bd p-4 h-32 relative">
         <div class="space-y-2">
           <div class="text-primary-txt flex flex-col gap-3">
             <h3 class="text-lg font-medium">Colores Feedback</h3>
@@ -144,7 +144,7 @@ const Template: StoryFn = () => ({
         </div>
       </div>
 
-      <div class="w-[90%] w- rounded-md bg-transparent border-2 border-primary-bd p-4 h-32 relative">
+      <div class="w-[100%] w- rounded-md bg-transparent border-2 border-primary-bd p-4 h-32 relative">
         <div class="space-y-2">
           <div class="text-primary-txt flex flex-col gap-3">
             <h3 class="text-lg font-medium">Colores Background</h3>
@@ -165,6 +165,10 @@ const Template: StoryFn = () => ({
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
               <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">sec-press-bg</span>
               <div class="w-full h-full bg-sec-press-bg cursor-pointer" @click="() => handleColorClick('bg-sec-press-bg')"></div>
+            </div>
+            <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
+              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">disab-lt-bg</span>
+              <div class="w-full h-full bg-disab-lt-bg cursor-pointer" @click="() => handleColorClick('bg-disab-lt-bg')"></div>
             </div>
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
               <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">inverse-bg</span>
@@ -190,7 +194,7 @@ const Template: StoryFn = () => ({
         </div>
       </div>
 
-      <div class="w-[90%] w- rounded-md bg-transparent border-2 border-primary-bd p-4 h-32 relative">
+      <div class="w-[100%] w- rounded-md bg-transparent border-2 border-primary-bd p-4 h-32 relative">
         <div class="space-y-2">
           <div class="text-primary-txt flex flex-col gap-3">
             <h3 class="text-lg font-medium">Colores Text</h3>
@@ -211,6 +215,10 @@ const Template: StoryFn = () => ({
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
               <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">disabled-txt</span>
               <div class="w-full h-full bg-[var(--color-txt-disabled)] cursor-pointer" @click="() => handleColorClick('text-disabled-txt')"></div>
+            </div>
+            <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
+              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">disab-lt-txt</span>
+              <div class="w-full h-full bg-[var(--color-txt-disabled-light)] cursor-pointer" @click="() => handleColorClick('text-disab-lt-txt')"></div>
             </div>
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
               <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">inverse-txt</span>
@@ -236,53 +244,57 @@ const Template: StoryFn = () => ({
         </div>
       </div>
 
-      <div class="w-[90%] w- rounded-md bg-transparent border-2 border-primary-bd p-4 h-32 relative">
+      <div class="w-[100%] w- rounded-md bg-transparent border-2 border-primary-bd p-4 h-32 relative">
         <div class="space-y-2">
           <div class="text-primary-txt flex flex-col gap-3">
             <h3 class="text-lg font-medium">Colores Icon</h3>
           </div>
           <div class="flex gap-0 absolute inset-x-0 bottom-0">
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
-              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">primary-icon</span>
-              <div class="w-full h-full rounded-bl-md bg-[var(--color-icon-primary)] cursor-pointer" @click="() => handleColorClick('text-primary-icon')"></div>
+              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">icon-primary</span>
+              <div class="w-full h-full rounded-bl-md bg-[var(--color-icon-primary)] cursor-pointer" @click="() => handleColorClick('text-icon-primary')"></div>
             </div>
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
-              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">secondary-icon</span>
-              <div class="w-full h-full bg-[var(--color-icon-secondary)] cursor-pointer" @click="() => handleColorClick('text-secondary-icon')"></div>
+              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">icon-secondary</span>
+              <div class="w-full h-full bg-[var(--color-icon-secondary)] cursor-pointer" @click="() => handleColorClick('text-icon-secondary')"></div>
             </div>
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
-              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">terciary-icon</span>
-              <div class="w-full h-full bg-[var(--color-icon-terciary)] cursor-pointer" @click="() => handleColorClick('text-terciary-icon')"></div>
+              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">icon-terciary</span>
+              <div class="w-full h-full bg-[var(--color-icon-terciary)] cursor-pointer" @click="() => handleColorClick('text-icon-terciary')"></div>
             </div>
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
-              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">disabled-icon</span>
-              <div class="w-full h-full bg-[var(--color-icon-disabled)] cursor-pointer" @click="() => handleColorClick('text-disabled-icon')"></div>
+              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">icon-disabled</span>
+              <div class="w-full h-full bg-[var(--color-icon-disabled)] cursor-pointer" @click="() => handleColorClick('text-icon-disabled')"></div>
             </div>
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
-              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">inverse-icon</span>
-              <div class="w-full h-full bg-[var(--color-icon-inverse)] cursor-pointer" @click="() => handleColorClick('text-inverse-icon')"></div>
+              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">icon-disab-lt</span>
+              <div class="w-full h-full bg-[var(--color-icon-disabled-light)] cursor-pointer" @click="() => handleColorClick('text-icon-disab-lt')"></div>
             </div>
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
-              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">success-icon</span>
-              <div class="w-full h-full bg-[var(--color-icon-success)] cursor-pointer" @click="() => handleColorClick('text-success-icon')"></div>
+              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">icon-inverse</span>
+              <div class="w-full h-full bg-[var(--color-icon-inverse)] cursor-pointer" @click="() => handleColorClick('text-icon-inverse')"></div>
             </div>
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
-              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">error-icon</span>
-              <div class="w-full h-full bg-[var(--color-icon-error)] cursor-pointer" @click="() => handleColorClick('text-error-icon')"></div>
+              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">icon-success</span>
+              <div class="w-full h-full bg-[var(--color-icon-success)] cursor-pointer" @click="() => handleColorClick('text-icon-success')"></div>
             </div>
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
-              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">warning-icon</span>
-              <div class="w-full h-full bg-[var(--color-icon-warning)] cursor-pointer" @click="() => handleColorClick('text-warning-icon')"></div>
+              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">icon-error</span>
+              <div class="w-full h-full bg-[var(--color-icon-error)] cursor-pointer" @click="() => handleColorClick('text-icon-error')"></div>
             </div>
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
-              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">info-icon</span>
-              <div class="w-full h-full rounded-br-md bg-[var(--color-icon-info)] cursor-pointer" @click="() => handleColorClick('text-icon-icon')"></div>
+              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">icon-warning</span>
+              <div class="w-full h-full bg-[var(--color-icon-warning)] cursor-pointer" @click="() => handleColorClick('text-icon-warning')"></div>
+            </div>
+            <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
+              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">icon-info</span>
+              <div class="w-full h-full rounded-br-md bg-[var(--color-icon-info)] cursor-pointer" @click="() => handleColorClick('text-icon-info')"></div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="w-[90%] w- rounded-md bg-transparent border-2 border-primary-bd p-4 h-32 relative">
+      <div class="w-[100%] w- rounded-md bg-transparent border-2 border-primary-bd p-4 h-32 relative">
         <div class="space-y-2">
           <div class="text-primary-txt flex flex-col gap-3">
             <h3 class="text-lg font-medium">Colores Border</h3>
@@ -299,6 +311,10 @@ const Template: StoryFn = () => ({
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
               <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">disabled-bd</span>
               <div class="w-full h-full bg-[var(--color-border-disabled)] cursor-pointer" @click="() => handleColorClick('border-disabled-bd')"></div>
+            </div>
+            <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
+              <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">disab-lt-bd</span>
+              <div class="w-full h-full bg-[var(--color-border-disabled-light)] cursor-pointer" @click="() => handleColorClick('border-disab-lt-bd')"></div>
             </div>
             <div class="h-[70px] w-1/4 flex flex-col items-center justify-center min-w-0">
               <span class="text-primary-txt text-2 font-normal truncate pb-[5px] max-w-full inline-block">inverse-bd</span>

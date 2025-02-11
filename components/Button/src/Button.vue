@@ -2,7 +2,7 @@
   <component :is="componentId" ref="_ref" v-bind="allAttrs" :class="classes">
     <div :class="ns.e('content')">
       <!-- Main content -->
-      <div :class="{ 'invisible': loading }">
+      <div :class="{ invisible: loading }">
         <g-icon-font v-if="shouldShowLeftIcon" :name="iconLeft" :class="ns.e('icon-left')" />
         <span :class="ns.e('title')">
           <slot>{{ title }}</slot>
@@ -20,10 +20,16 @@
 
     <!-- Ripple Elements -->
     <transition-group name="ripple">
-      <div v-for="ripple in ripples" :key="ripple.id" :class="ns.e('ripple')" :style="{
-        left: ripple.x + 'px',
-        top: ripple.y + 'px',
-      }" @animationend="removeRipple(ripple.id)" />
+      <div
+        v-for="ripple in ripples"
+        :key="ripple.id"
+        :class="ns.e('ripple')"
+        :style="{
+          left: ripple.x + 'px',
+          top: ripple.y + 'px'
+        }"
+        @animationend="removeRipple(ripple.id)"
+      />
     </transition-group>
   </component>
 </template>
@@ -35,49 +41,55 @@ import { buttonEmits, buttonProps, validateButtonProps } from "./button";
 import { GIconFont } from "@flash-global66/b2b-ui-icon-font";
 import { useButton } from "./use-button";
 
-const props = defineProps(buttonProps);
-const emit = defineEmits(buttonEmits);
+const props = defineProps(buttonProps)
+const emit = defineEmits(buttonEmits)
 
-validateButtonProps(props);
+validateButtonProps(props)
 
-const { _ref, shouldShowLeftIcon, shouldShowRightIcon, componentId, ripples, removeRipple, allAttrs } = useButton(
-  props,
-  emit
-);
+const {
+  _ref,
+  shouldShowLeftIcon,
+  shouldShowRightIcon,
+  componentId,
+  ripples,
+  removeRipple,
+  allAttrs
+} = useButton(props, emit)
 
-const ns = useNamespace("button", ref("gui"));
+const ns = useNamespace('button', ref('gui'))
 
-const isStandard = computed(() => props.type === "default" && props.color === "primary" && props.size === "small");
+const isStandard = computed(
+  () => props.type === 'default' && props.color === 'primary' && props.size === 'small'
+)
 
 const deprecatedClasses = computed(() => {
   if (!isStandard.value) {
     return [
       props.size && ns.m(props.size),
-      props.type !== "default"
-        ? [ns.m(props.color), ns.m(props.type)]
-        : ns.m(props.color)
-    ];
+      props.type !== 'default' ? [ns.m(props.color), ns.m(props.type)] : ns.m(props.color)
+    ]
   }
-  return [];
-});
+  return []
+})
 
 const standardClasses = computed(() => {
   if (isStandard.value) {
-    return [
-      props.variant && ns.m(`variant-${props.variant}`)
-    ];
+    return [props.variant && ns.m(`variant-${props.variant}`)]
   }
-  return [];
-});
+  return []
+})
 
 const classes = computed(() => {
   return [
     ns.b(),
     ...deprecatedClasses.value,
     ...standardClasses.value,
-    ns.is("disabled", props.disabled || props.loading),
-    ns.is("href", Boolean(props.href)),
-    ns.is("loading", props.loading),
-    ns.is("full", props.full)
-  ].flat().filter(Boolean);
-});</script>
+    ns.is('disabled', props.disabled || props.loading),
+    ns.is('href', Boolean(props.href)),
+    ns.is('loading', props.loading),
+    ns.is('full', props.full)
+  ]
+    .flat()
+    .filter(Boolean)
+})
+</script>
