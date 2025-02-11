@@ -104,10 +104,6 @@ export const inputProps = buildProps({
    */
   readonly: Boolean,
   /**
-   * @description native input readonly
-   */
-  clearable: Boolean,
-  /**
    * @description toggleable password input
    */
   showPassword: Boolean,
