@@ -1,4 +1,5 @@
 import { Meta, StoryFn, StoryObj } from '@storybook/vue3'
+import { ref } from 'vue';
 
 // COMPONENTS
 import { GCheckbox } from '../components/Checkbox'
@@ -176,7 +177,7 @@ Ejemplo básico:
     checked: false,
     validateEvent: true,
     label: 'Etiqueta del checkbox',
-    value: 'valor-checkbox',
+    value: true,
     name: 'checkbox-name',
     id: 'checkbox-id',
   } as Partial<CheckboxProps>
@@ -189,13 +190,14 @@ const Template: StoryFn<CheckboxProps> = (args: CheckboxProps, { argTypes }) => 
   props: Object.keys(argTypes),
   components: { GCheckbox, GConfigProvider },
   setup() {
+    const value = ref(args.modelValue)
     return { args }
   },
   template: `
     <g-config-provider>
       <g-checkbox
         v-bind="args"
-        v-model="args.checked"
+        v-model="value"
       />
     </g-config-provider>
   `
