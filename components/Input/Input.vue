@@ -6,17 +6,23 @@
     @mouseleave="handleMouseLeave"
   >
     <div ref="wrapperRef" :class="ns.e('wrapper')">
-      <div :class="ns.e('label')">
+      <div ref="prefixRef" :class="ns.e('prefix')">
+        <slot name="prefix">
+          <g-icon-font
+            v-if="prefixIcon"
+            :class="ns.e('prefix-icon')"
+            :name="prefixIcon"
+          />
+        </slot>
+      </div>
+      
+      <div
+        :class="
+          [ns.e('label'),
+          { 'dynamic-label': !Boolean(nativeInputValue) || !isFocused } ]
+        ">
         {{ label }}
       </div>
-
-      <slot name="prefix">
-        <g-icon-font
-          v-if="prefixIcon"
-          :class="ns.e('prefix-icon')"
-          :name="prefixIcon"
-        />
-      </slot>
 
       <input
         :id="inputId"
@@ -146,6 +152,24 @@ const containerKls = computed(() => [
   },
   rawAttrs.class,
 ])
+
+const leftPrefix = ref<string | undefined>(undefined)
+const prefixRef = ref<HTMLElement | null>(null);
+
+const updatePrefixPosition = () => {
+  if (!props.prefixIcon) {
+    leftPrefix.value = '0';
+    return;
+  }
+  
+  requestAnimationFrame(() => {
+    const leftRef = prefixRef.value?.getBoundingClientRect().width;
+    leftPrefix.value = `${leftRef}px`;
+  });
+};
+
+useResizeObserver(prefixRef, updatePrefixPosition);
+
 
 const { form: elForm, formItem: elFormItem } = useFormItem()
 const { inputId } = useFormItemInputId(props, {
@@ -371,22 +395,8 @@ defineExpose({
 })
 </script>
 
-<!-- <style lang="scss">
-.gui-input-wrapper {
-  .gui-input {
-    .gui-input__inner {
-      bottom: v-bind(inputInnerStyleButton);
-      opacity: v-bind(inputInnerStyleOpacity);
-    }
-    .gui-input__suffix {
-      width: v-bind(passwordIconShow);
-    }
-    .gui-input__wrapper {
-      border-radius: v-bind(inputRounded);
-    }
-  }
-  .gui-input-label {
-    width: calc(100% - v-bind(labelStyleWidth));
-  }
+<style lang="scss">
+.dynamic-label {
+  left: calc(v-bind(leftPrefix) + 16px);
 }
-</style> -->
+</style>
