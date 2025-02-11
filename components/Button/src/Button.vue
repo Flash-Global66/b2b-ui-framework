@@ -4,8 +4,9 @@
       <!-- Main content -->
       <div :class="{ invisible: loading }">
         <g-icon-font v-if="shouldShowLeftIcon" :name="iconLeft" :class="ns.e('icon-left')" />
-        <span v-if="title" :class="ns.e('title')">{{ title }}</span>
-        <slot v-else />
+        <span :class="ns.e('title')">
+          <slot>{{ title }}</slot>
+        </span>
         <g-icon-font v-if="shouldShowRightIcon" :name="iconRight" :class="ns.e('icon-right')" />
       </div>
 
@@ -34,11 +35,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { useNamespace } from 'element-plus'
-import { buttonEmits, buttonProps, validateButtonProps } from './button'
-import { GIconFont } from '../../IconFont/index'
-import { useButton } from './use-button'
+import { computed, ref } from "vue";
+import { useNamespace } from "element-plus";
+import { buttonEmits, buttonProps, validateButtonProps } from "./button";
+import { GIconFont } from "@flash-global66/b2b-ui-icon-font";
+import { useButton } from "./use-button";
 
 const props = defineProps(buttonProps)
 const emit = defineEmits(buttonEmits)

@@ -8,7 +8,7 @@
     <span :class="spanKls">
       <input
         v-if="trueValue || falseValue"
-        class="bg-primary"
+        class="bg-primary-bg"
         :id="inputId"
         v-model="model"
         :class="ns.e('original')"

@@ -134,11 +134,14 @@ const updateSelect = () => {
   } catch {}
 }
 
-const segmentedCls = computed(() => [
-  ns.b(),
-  ns.m(segmentedSize.value),
-  ns.is('block', props.block),
-])
+const segmentedCls = computed(() => {
+  console.log(ns.b(), ns.m(segmentedSize.value), ns.is('block', props.block))
+  return[
+    ns.b(),
+    ns.m(segmentedSize.value),
+    ns.is('block', props.block),
+  ]
+})
 
 const selectedStyle = computed(() => ({
   width: `${state.width}px`,

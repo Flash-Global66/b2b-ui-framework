@@ -122,7 +122,7 @@ export const Primary: Story = {
     template: `
       <g-config-provider>
         <g-tag v-bind="args" />
-        <p class="bg-primary-bg text-primary-def border border-primary">
+        <p class="bg-primary-bd text-primary-txt border border-primary">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p>
       </g-config-provider>

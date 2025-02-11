@@ -48,6 +48,8 @@
 @use "../../components/Switch/switch.styles.scss" as *;
 @use "../../components/Segmented/segmented.styles.scss" as *;
 
+@use "../../components/Inline/inline.styles.scss" as *;
+
 * {
   @apply font-montserrat;
 }
