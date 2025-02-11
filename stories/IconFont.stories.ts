@@ -4,7 +4,7 @@ import { GIconFont } from '../components/IconFont';
 import { GConfigProvider } from '../components/ConfigProvider';
 import { ICON_SETS } from '../components/IconFont/iconSets';
 import { GSegmented } from '../components/Segmented';
-import { GInput } from '../components/Input/src';
+import { GInput } from '../components/Input';
 import { GButton } from '../components/Button/src';
 
 export const generateIconOptions = () => {

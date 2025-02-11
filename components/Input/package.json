@@ -19,5 +19,9 @@
   "repository": {
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
   },
-  "gitHead": "2e74f613ed7eae27d905ba63460f766c6e0a103b"
+  "gitHead": "2e74f613ed7eae27d905ba63460f766c6e0a103b",
+  "dependencies": {
+    "@flash-global66/b2b-ui-icon-font": "^1.0.5",
+    "lodash-unified": "^1.0.3"
+  }
 }
