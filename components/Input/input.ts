@@ -26,6 +26,10 @@ export const inputProps = buildProps({
     type: String,
     default: undefined,
   },
+  isLoading: {
+    type: Boolean,
+    default: false,
+  },
   /**
    * @description label text
    */

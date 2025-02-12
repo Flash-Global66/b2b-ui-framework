@@ -41,11 +41,9 @@ const Template: StoryFn<typeof GInput> = (args, selected) => {
     template: `
       <g-config-provider>
         <g-input
-          suffix-icon="solid file-image"
           prefix-icon="solid file-image"
           label="Nombre"
           show-word-limit
-          show-password
           placeholder="Ingrese su nombre"
           help-text="Help text lorem ipsum lorem lorem lorem ad"
           v-model="name"
