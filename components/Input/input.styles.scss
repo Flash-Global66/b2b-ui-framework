@@ -98,12 +98,12 @@
     }
   }
 
-  @include e("prefix-icon") {
-    @apply text-7 text-grey-500;
+  @include e("icon") {
+    @apply text-7 text-grey-500 select-none w-6;
   }
 
-  @include e("suffix-icon") {
-    @apply text-7 text-grey-500;
+  @include e("icon-password") {
+    @apply cursor-pointer;
   }
 
   @include e("help") {
