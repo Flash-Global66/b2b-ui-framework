@@ -54,9 +54,9 @@
 
       <!-- suffix slot -->
       <slot name="suffix">
-        <span v-if="suffixVisible" :class="ns.e('suffix')">
+        <span :class="ns.e('suffix')">
           <g-icon-font
-            v-if="suffixIcon && !showPassword"
+            v-if="suffixIcon && !showPassword && !isLoading"
             :class="[ns.e('icon'), ns.e('suffix-icon')]"
             :name="suffixIcon"
           />
@@ -65,6 +65,14 @@
             v-if="showPassword"
             :class="[ns.e('icon'), ns.e('icon-password')]"
             :name="passwordIcon"
+            @click="handlePasswordVisible"
+          />
+
+          <g-icon-font
+            v-if="isLoading"
+            :class="[ns.e('icon'), ns.e('icon-loading')]"
+            name="regular arrows-rotate"
+            spin
             @click="handlePasswordVisible"
           />
         </span>
