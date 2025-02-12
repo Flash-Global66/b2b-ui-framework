@@ -18,8 +18,5 @@
   },
   "peerDependencies": {
     "@flash-global66/b2b-ui-icon-font": "^1.0.2"
-  },
-  "dependencies": {
-    "@flash-global66/b2b-ui-icon-font": "^1.0.15"
   }
 }
