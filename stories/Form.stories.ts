@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import type { GFormInstance, GFormRules } from '../components/Form';
 import { GForm } from '../components/Form';
 import { GFormItem } from '../components/FormItem';
-import { GInput } from '../components/Input/src';
+import { GInput } from '../components/Input';
 import { GSelect } from '../components/Select';
 import { GSelectOption } from '../components/SelectOption';
 

@@ -10,7 +10,7 @@
         <slot name="prefix">
           <g-icon-font
             v-if="prefixIcon"
-            :class="ns.e('prefix-icon')"
+            :class="[ns.e('icon'), ns.e('prefix-icon')]"
             :name="prefixIcon"
           />
         </slot>
@@ -56,15 +56,15 @@
       <slot name="suffix">
         <span v-if="suffixVisible" :class="ns.e('suffix')">
           <g-icon-font
-            v-if="suffixIcon && !showPwdVisible"
-            :class="ns.e('suffix-icon')"
+            v-if="suffixIcon && !showPassword"
+            :class="[ns.e('icon'), ns.e('suffix-icon')]"
             :name="suffixIcon"
           />
 
           <g-icon-font
-            v-if="showPwdVisible"
-            :class="[ns.e('icon'), ns.e('password')]"
-            name="light equals"
+            v-if="showPassword"
+            :class="[ns.e('icon'), ns.e('icon-password')]"
+            :name="passwordIcon"
             @click="handlePasswordVisible"
           />
         </span>
@@ -149,7 +149,7 @@ const containerKls = computed(() => [
     [ns.m("prefix")]: props.prefixIcon || slots.prefix,
     [ns.m("suffix")]:
       slots.suffix || props.suffixIcon || props.showPassword,
-    [ns.bm("suffix", "password")]: showPwdVisible.value,
+    [ns.is("password")]: props.showPassword,
     [ns.b("hidden")]: props.type === "hidden",
   },
 
@@ -184,7 +184,7 @@ const { wrapperRef, isFocused, handleFocus, handleBlur } = useFocusController(
 );
 
 const passwordIcon = computed(() =>
-  passwordVisible.value ? "IconView" : "IconHide"
+  passwordVisible.value ? "regular eye" : "regular eye-slash"
 );
 const containerStyle = computed<StyleValue>(() => [
   rawAttrs.style as StyleValue,
@@ -193,13 +193,7 @@ const containerStyle = computed<StyleValue>(() => [
 const nativeInputValue = computed(() =>
   isNil(props.modelValue) ? "" : String(props.modelValue)
 );
-const showPwdVisible = computed(
-  () =>
-    props.showPassword &&
-    !inputDisabled.value &&
-    !!nativeInputValue.value &&
-    (!!nativeInputValue.value || isFocused.value)
-);
+
 const isWordLimitVisible = computed(
   () =>
     props.showWordLimit &&
