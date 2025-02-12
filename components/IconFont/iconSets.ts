@@ -150,7 +150,9 @@ export const ICON_SETS = {
     'ban',
     'eye',
     'eye-slash',
-    'circle-xmark'
+    'circle-xmark',
+    'arrows-rotate',
+    'calendar',
   ] as const,
 
   light: [

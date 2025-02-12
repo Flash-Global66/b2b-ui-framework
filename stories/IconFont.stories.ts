@@ -102,7 +102,7 @@ export const Galería: Story = {
   render: () => ({
     components: { GIconFont, GConfigProvider, GSegmented, GInput, GButton },
     setup() {
-      const selectedWeight = ref('solid');
+      const selectedWeight = ref('regular');
       const searchTerm = ref('');
 
       const filteredIcons = computed(() => {
