@@ -84,6 +84,8 @@
         {{ textLength }}/{{ maxlength }}
       </span>
     </div>
+
+    <!-- <pre>{{ elFormItem }}</pre> -->
   </div>
 </template>
 
@@ -102,11 +104,8 @@ import {
 import { useResizeObserver } from "@vueuse/core";
 import { GIconFont } from "@flash-global66/b2b-ui-icon-font";
 import { isNil } from "lodash-unified";
+import { useFormItem, useFormItemInputId, useFormDisabled, useFormSize } from '../Form'
 import {
-  useFormDisabled,
-  useFormItem,
-  useFormItemInputId,
-  useFormSize,
   useAttrs,
   useComposition,
   useCursor,
