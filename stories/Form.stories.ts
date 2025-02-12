@@ -3,9 +3,8 @@ import { reactive, ref } from 'vue';
 import { action } from '@storybook/addon-actions';
 
 // COMPONENTS
-import type { GFormInstance, GFormRules } from '../components/Form';
-import { GForm } from '../components/Form';
-import { GFormItem } from '../components/FormItem';
+import type { FormInstance, FormRules } from '../components/Form';
+import { GForm, GFormItem } from '../components/Form';
 import { GInput } from '../components/Input';
 import { GSelect } from '../components/Select';
 import { GSelectOption } from '../components/SelectOption';
@@ -57,25 +56,26 @@ const Template: StoryFn<typeof GForm> = (args, selected) => {
     components: { GForm, GFormItem, GInput, GConfigProvider, GSelect, GSelectOption },
     setup() {
 
-      const ruleFormRef = ref<GFormInstance>()
+      const ruleFormRef = ref<FormInstance>()
       const ruleForm = reactive({
         name: '',
       })
 
-      const rules = reactive<GFormRules>({
+      const rules = reactive<FormRules>({
         name: [
           { required: true, message: 'Campo requerido', trigger: 'blur' },
           { min: 3, max: 10, message: 'Length should be 3 to 10', trigger: 'blur' },
         ],
       });
 
-      async function onReset(formEl: GFormInstance | undefined) {
+      async function onReset(formEl: FormInstance | undefined) {
+        console.log('formEl', formEl);
         if (!formEl?.form) return
         formEl.form.resetFields();
       }
 
-      async function onSend(formEl: GFormInstance | undefined) {
-        // console.log('formEl', formEl);
+      async function onSend(formEl: FormInstance | undefined) {
+        console.log('formEl', formEl);
         console.log('ruleFormRef', ruleFormRef.value);
         // const form = ruleFormRef.value?.form
         const form = ruleFormRef.value?.form
