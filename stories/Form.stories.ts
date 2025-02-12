@@ -59,6 +59,7 @@ const Template: StoryFn<typeof GForm> = (args, selected) => {
       const ruleFormRef = ref<FormInstance>()
       const ruleForm = reactive({
         name: '',
+        lastName: '',
       })
 
       const rules = reactive<FormRules>({
@@ -66,22 +67,20 @@ const Template: StoryFn<typeof GForm> = (args, selected) => {
           { required: true, message: 'Campo requerido', trigger: 'blur' },
           { min: 3, max: 10, message: 'Length should be 3 to 10', trigger: 'blur' },
         ],
+        lastName: [
+          { required: true, message: 'Campo requerido', trigger: 'blur' },
+          { min: 3, max: 10, message: 'Length should be 3 to 10', trigger: 'blur' },
+        ],
       });
 
       async function onReset(formEl: FormInstance | undefined) {
-        console.log('formEl', formEl);
-        if (!formEl?.form) return
-        formEl.form.resetFields();
+        if (!formEl) return
+        formEl.resetFields();
       }
 
       async function onSend(formEl: FormInstance | undefined) {
-        console.log('formEl', formEl);
-        console.log('ruleFormRef', ruleFormRef.value);
-        // const form = ruleFormRef.value?.form
-        const form = ruleFormRef.value?.form
-        console.log('form', form);
-        if (!form) return
-        await form.validate((valid, fields) => {
+        if (!formEl) return
+        await formEl.validate((valid, fields) => {
           if (valid) {
             console.log('submit!')
           } else {
@@ -170,43 +169,29 @@ const Template: StoryFn<typeof GForm> = (args, selected) => {
             :rules="rules"
             v-bind="args"
           >
-            <div class="flex items-center gap-10">
-              <g-form-item prop="name">
+            <div class="grid grid-cols-2 gap-10">
+              <g-form-item prop="name" :show-message-child="false" show-message>
                 <g-input
                   label="Nombre"
+                  help-text="Ejemplo"
                   v-model="ruleForm.name">
                 </g-input>
               </g-form-item>
-
-              <g-form-item prop="name">
-                <g-select
-                  class="flex items-center gap-x-8"
-                  v-model="selected"
-                  v-bind="args"
-                  label="Seleccionar"
-                  filterable
-                  @change="onChange"
-                >
-                  <g-select-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :value="item.value"
-                  >
-                    {{ item.label }}
-                  </g-select-option>
-                </g-select>
-              </g-form-item>
-            </div>
-
-            <div>
-              <g-form-item prop="name">
+              <g-form-item prop="lastName">
                 <g-input
                   label="Mensaje"
                   type="textarea"
-                  v-model="ruleForm.name">
+                  v-model="ruleForm.lastName">
+                </g-input>
+              <g-form-item prop="lastName">
+                <g-input
+                  label="Mensaje"
+                  type="textarea"
+                  v-model="ruleForm.lastName">
                 </g-input>
               </g-form-item>
             </div>
+
           </g-form>
 
           <button @click="onSend(ruleFormRef)">Validar</button>

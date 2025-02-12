@@ -1,49 +1,30 @@
-@use "element-plus/theme-chalk/src/form.scss" as *;
+@use "sass:map";
 
-.gui-form-item {
-  &.is-error {
-    .gui-select-v2__wrapper,
-    .gui-textarea {
-      &,
-      &:hover,
-      &:focus {
-        box-shadow: 0 0 0 2px theme('colors.red.1') inset;
-      }
-    }
-    .gui-textarea__inner {
-      &,
-      &:hover,
-      &:focus {
-        @apply shadow-none;
-      }
-    }
+@use "element-plus/theme-chalk/src/mixins/mixins" as *;
+@use "element-plus/theme-chalk/src/mixins/utils" as *;
+@use "element-plus/theme-chalk/src/mixins/var" as *;
+@use "element-plus/theme-chalk/src/common/var" as *;
 
-    .gui-select-wrapper .gui-select .gui-input__wrapper,
-    .gui-input__wrapper,
-    .gui-input__validateIcon,
-    .gui-input__wrapper:hover {
-      box-shadow: 0 0 0 2px theme('colors.red.1') inset;
-    }
-
-    .gui-input-group__append,
-    .gui-input-group__prepend {
-      .gui-input__wrapper {
-        box-shadow: 0 0 0 2px transparent inset;
-      }
-    }
-
+@include b('form-item') {
+  @include e('content-error') {
+    min-height: 18px;
   }
-}
 
-.gui-form-item__error {
-  padding-top: 2px;
-}
+  @include e('error') {
+    @apply flex text-error-txt font-medium text-2 px-xs;
+  }
 
-.gui-form-item {
-  &.is-error {
-    .gui-select-wrapper .gui-select .gui-input__wrapper:hover,
-    .gui-input__wrapper {
-      
+  
+  @each $fadeActive in ("fade-enter-active", "fade-leave-active") {
+    @include e($fadeActive) {
+      // agregar despues la animación para que funcione en grupo con todos los componentes y los errores
+      @apply transition-opacity duration-0 ease-in;
+    }
+  }
+  
+  @each $fadeOut in ("fade-enter-from", "fade-leave-to") {
+    @include e($fadeOut) {
+      @apply opacity-0;
     }
   }
 }

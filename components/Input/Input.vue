@@ -79,13 +79,16 @@
       </slot>
     </div>
     <div :class="ns.e('help')">
-      <div :class="ns.e('help-text')">{{ helpText }}</div>
+      <transition :name="ns.e('fade')" mode="out-in">
+        <p :key="isError ? 'error' : 'help'" :class="helpTextKls">
+          {{ isError ? elFormItem?.validateMessage : helpText }}
+        </p>
+      </transition>
+
       <span v-if="isWordLimitVisible" :class="ns.e('help-count')">
         {{ textLength }}/{{ maxlength }}
       </span>
     </div>
-
-    <!-- <pre>{{ elFormItem }}</pre> -->
   </div>
 </template>
 
@@ -104,7 +107,7 @@ import {
 import { useResizeObserver } from "@vueuse/core";
 import { GIconFont } from "@flash-global66/b2b-ui-icon-font";
 import { isNil } from "lodash-unified";
-import { useFormItem, useFormItemInputId, useFormDisabled, useFormSize } from '../Form'
+import { useFormItem, useFormItemInputId, useFormDisabled } from '../Form'
 import {
   useAttrs,
   useComposition,
@@ -143,6 +146,8 @@ const prefixRef = ref<HTMLElement | null>(null);
 
 const { form: elForm, formItem: elFormItem } = useFormItem();
 
+const isError = computed(() => elFormItem?.shouldShowErrorChild)
+
 const containerKls = computed(() => [
   ns.b(),
 
@@ -151,6 +156,7 @@ const containerKls = computed(() => [
   ns.is("complete", !isFocused.value && Boolean(nativeInputValue.value)),
   ns.is("disabled", inputDisabled.value),
   ns.is("exceed", inputExceed.value),
+  ns.is("error", isError.value || elFormItem?.shouldShowError),
 
   {
     [ns.m("prefix")]: props.prefixIcon || slots.prefix,
@@ -162,6 +168,13 @@ const containerKls = computed(() => [
 
   rawAttrs.class,
 ]);
+
+const helpTextKls = computed(() => [
+  ns.e('help-text'),
+  {
+    [ns.e('help-error')]: isError.value
+  }
+])
 
 const { inputId } = useFormItemInputId(props, {
   formItemContext: elFormItem,

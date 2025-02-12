@@ -126,13 +126,12 @@ export type FormContext = FormProps &
 
 export interface FormItemContext extends FormItemProps {
   $el: HTMLDivElement | undefined
-  size: ComponentSize
   validateState: FormItemValidateState
-  isGroup: boolean
-  labelId: string
   inputIds: string[]
-  hasLabel: boolean
   fieldValue: any
+  shouldShowError: boolean
+  shouldShowErrorChild: boolean
+  validateMessage: string
   addInputId: (id: string) => void
   removeInputId: (id: string) => void
   validate: (

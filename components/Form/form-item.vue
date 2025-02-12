@@ -1,22 +1,15 @@
 <template>
-  <div
-    ref="formItemRef"
-    :class="formItemClasses"
-    :role="isGroup ? 'group' : undefined"
-    :aria-labelledby="isGroup ? labelId : undefined"
-  >
-  {{ shouldShowError}}
-
-    <div :class="ns.e('content')" :style="contentStyle">
-      <slot />
-      <transition-group :name="`${ns.namespace.value}-zoom-in-top`">
+  <div ref="formItemRef" :class="formItemClasses">
+    <slot />
+    <transition :name="ns.e('fade')" mode="out-in">
+      <div :class="ns.e('content-error')">
         <slot v-if="shouldShowError" name="error" :error="validateMessage">
-          <div :class="validateClasses">
+          <span :class="ns.e('error')">
             {{ validateMessage }}
-          </div>
+          </span>
         </slot>
-      </transition-group>
-    </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -38,22 +31,18 @@ import AsyncValidator from 'async-validator'
 import { clone } from 'lodash-unified'
 import { refDebounced } from '@vueuse/core'
 import {
-  addUnit,
   ensureArray,
   getProp,
   isArray,
-  isBoolean,
   isFunction,
   isString,
+  Arrayable,
 } from 'element-plus/es/utils/index.mjs'
-import { useId, useNamespace } from 'element-plus'
-import { useFormSize } from './hooks'
+import { useNamespace } from 'element-plus'
 import { formItemProps } from './form-item'
 import { formContextKey, formItemContextKey } from './constants'
 
-import type { CSSProperties } from 'vue'
 import type { RuleItem } from 'async-validator'
-import type { Arrayable } from 'element-plus/es/utils/index.mjs'
 import type {
   FormItemContext,
   FormItemRule,
@@ -65,15 +54,12 @@ defineOptions({
   name: 'FormItem',
 })
 const props = defineProps(formItemProps)
-const slots = useSlots()
 
 const formContext = inject(formContextKey, undefined)
 const parentFormItemContext = inject(formItemContextKey, undefined)
 
-const _size = useFormSize(undefined, { formItem: false })
 const ns = useNamespace('form-item')
 
-const labelId = useId().value
 const inputIds = ref<string[]>([])
 
 const validateState = ref<FormItemValidateState>('')
@@ -84,60 +70,11 @@ const formItemRef = ref<HTMLDivElement>()
 let initialValue: any = undefined
 let isResettingField = false
 
-const labelPosition = computed(
-  () => props.labelPosition || formContext?.labelPosition
-)
-
-const labelStyle = computed<CSSProperties>(() => {
-  if (labelPosition.value === 'top') {
-    return {}
-  }
-
-  const labelWidth = addUnit(props.labelWidth || formContext?.labelWidth || '')
-  if (labelWidth) return { width: labelWidth }
-  return {}
-})
-
-const contentStyle = computed<CSSProperties>(() => {
-  if (labelPosition.value === 'top' || formContext?.inline) {
-    return {}
-  }
-  if (!props.label && !props.labelWidth && isNested) {
-    return {}
-  }
-  const labelWidth = addUnit(props.labelWidth || formContext?.labelWidth || '')
-  if (!props.label) {
-    return { marginLeft: labelWidth }
-  }
-  return {}
-})
-
 const formItemClasses = computed(() => [
   ns.b(),
-  ns.m(_size.value),
   ns.is('error', validateState.value === 'error'),
   ns.is('validating', validateState.value === 'validating'),
   ns.is('success', validateState.value === 'success'),
-  ns.is('required', isRequired.value || props.required),
-  ns.is('no-asterisk', formContext?.hideRequiredAsterisk),
-  formContext?.requireAsteriskPosition === 'right'
-    ? 'asterisk-right'
-    : 'asterisk-left',
-  {
-    [ns.m('feedback')]: formContext?.statusIcon,
-    [ns.m(`label-${labelPosition.value}`)]: labelPosition.value,
-  },
-])
-
-const _inlineMessage = computed(() =>
-  isBoolean(props.inlineMessage)
-    ? props.inlineMessage
-    : formContext?.inlineMessage || false
-)
-
-const validateClasses = computed(() => [
-  ns.e('error'),
-  { [ns.em('error', 'inline')]: _inlineMessage.value },
 ])
 
 const propString = computed(() => {
@@ -145,18 +82,10 @@ const propString = computed(() => {
   return isString(props.prop) ? props.prop : props.prop.join('.')
 })
 
-const hasLabel = computed<boolean>(() => {
-  return !!(props.label)
-})
-
 const labelFor = computed<string | undefined>(() => {
   return (
     props.for || (inputIds.value.length === 1 ? inputIds.value[0] : undefined)
   )
-})
-
-const isGroup = computed<boolean>(() => {
-  return !labelFor.value && hasLabel.value
 })
 
 const isNested = !!parentFormItemContext
@@ -235,11 +164,14 @@ const shouldShowError = computed(
   () =>
     validateStateDebounced.value === 'error' &&
     props.showMessage &&
-    (formContext?.showMessage ?? true)
+    !props.showMessageChild
 )
 
-const currentLabel = computed(
-  () => `${props.label || ''}${formContext?.labelSuffix || ''}`
+const shouldShowErrorChild = computed(
+  () =>
+    validateStateDebounced.value === 'error' &&
+    props.showMessageChild &&
+    !props.showMessage
 )
 
 const setValidationState = (state: FormItemValidateState) => {
@@ -254,7 +186,7 @@ const onValidationFailed = (error: FormValidateFailure) => {
 
   setValidationState('error')
   validateMessage.value = errors
-    ? errors?.[0]?.message ?? `${props.prop} is required`
+    ? errors?.[0]?.message ?? `${props.prop} es requerido`
     : ''
 
   formContext?.emit('validate', props.prop!, false, validateMessage.value)
@@ -267,6 +199,7 @@ const onValidationSucceeded = () => {
 
 const doValidate = async (rules: RuleItem[]): Promise<true> => {
   const modelName = propString.value
+  console.log('modelName', modelName)
   const validator = new AsyncValidator({
     [modelName]: rules,
   })
@@ -364,13 +297,12 @@ watch(
 const context: FormItemContext = reactive({
   ...toRefs(props),
   $el: formItemRef,
-  size: _size,
   validateState,
-  labelId,
   inputIds,
-  isGroup,
-  hasLabel,
   fieldValue,
+  shouldShowError,
+  shouldShowErrorChild,
+  validateMessage,
   addInputId,
   removeInputId,
   resetField,
@@ -393,13 +325,17 @@ onBeforeUnmount(() => {
 
 defineExpose({
   /**
-   * @description Form item size.
-   */
-  size: _size,
-  /**
    * @description Validation message.
    */
   validateMessage,
+  /**
+   * @description Whether to show error message in form item.
+   */
+  shouldShowError,
+  /**
+   * @description Whether to show error message in the child of form item.
+   */
+  shouldShowErrorChild,
   /**
    * @description Validation state.
    */
