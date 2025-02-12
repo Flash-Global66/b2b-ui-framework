@@ -45,6 +45,7 @@ export {
   faPlusCircle,
   faArrowDownToLine,
   faArrowUpFromBracket,
+  faArrowDownToBracket,
   faRepeat,
   faBan,
   faEye,
@@ -52,4 +53,5 @@ export {
   faCircleXmark,
   faArrowsRotate,
   faCalendar,
+  faGear,
 } from '@fortawesome/pro-regular-svg-icons';
