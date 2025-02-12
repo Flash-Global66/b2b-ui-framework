@@ -50,5 +50,6 @@ export {
   faEye,
   faEyeSlash,
   faCircleXmark,
-
+  faArrowsRotate,
+  faCalendar,
 } from '@fortawesome/pro-regular-svg-icons';
