@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-button",
   "author": "Global66",
-  "version": "1.0.13",
+  "version": "1.0.18",
   "license": "MIT",
   "exports": {
     ".": "./src/index.ts",
@@ -19,7 +19,5 @@
   "peerDependencies": {
     "@flash-global66/b2b-ui-icon-font": "^1.0.2"
   },
-  "dependencies": {
-    "@flash-global66/b2b-ui-icon-font": "^1.0.12"
-  }
+  "gitHead": "dc031789714efcb4e0fadbfe785964dc376930d7"
 }

@@ -54,10 +54,7 @@
     "upgrade-storybook": "storybook storybook@latest upgrade",
     "build": "npx lerna run build --stream",
     "dev": "npx lerna run dev --parallel",
-    "clean": "npx lerna clean",
-    "bootstrap": "npx lerna bootstrap",
-    "publish": "npx lerna publish",
-    "version": "npx lerna version"
+    "clean": "npx lerna clean"
   },
   "resolutions": {
     "jest-mock": "^28.1.0"
@@ -70,7 +67,7 @@
     "@flash-global66/b2b-ui-button": "^0.0.12",
     "@flash-global66/b2b-ui-config-element": "^0.0.14",
     "@flash-global66/b2b-ui-dialog": "^0.0.6",
-    "@flash-global66/b2b-ui-icon-font": "^1.0.2",
+    "@flash-global66/b2b-ui-icon-font": "^1.0.15",
     "@fortawesome/fontawesome-common-types": "^6.2.1",
     "@storybook/manager-api": "^8.3.6",
     "@vueuse/core": "^12.4.0",
