@@ -146,6 +146,7 @@ export const ICON_SETS = {
     'plus-circle',
     'arrow-down-to-line',
     'arrow-up-from-bracket',
+    'arrow-down-to-bracket',
     'repeat',
     'ban',
     'eye',
@@ -153,6 +154,7 @@ export const ICON_SETS = {
     'circle-xmark',
     'arrows-rotate',
     'calendar',
+    'gear',
   ] as const,
 
   light: [
