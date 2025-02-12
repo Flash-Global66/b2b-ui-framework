@@ -5,23 +5,22 @@
 @use "element-plus/theme-chalk/src/mixins/var" as *;
 @use "element-plus/theme-chalk/src/common/var" as *;
 
-@include b('form-item') {
-  @include e('content-error') {
+@include b("form-item") {
+  @include e("content-error") {
     min-height: 18px;
   }
 
-  @include e('error') {
+  @include e("error") {
     @apply flex text-error-txt font-medium text-2 px-xs;
   }
 
-  
   @each $fadeActive in ("fade-enter-active", "fade-leave-active") {
     @include e($fadeActive) {
       // agregar despues la animación para que funcione en grupo con todos los componentes y los errores
       @apply transition-opacity duration-0 ease-in;
     }
   }
-  
+
   @each $fadeOut in ("fade-enter-from", "fade-leave-to") {
     @include e($fadeOut) {
       @apply opacity-0;
