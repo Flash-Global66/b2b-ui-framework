@@ -1,18 +1,18 @@
-import { buildProps, definePropType } from 'element-plus/es/utils/index.mjs'
+import { buildProps, definePropType } from "element-plus/es/utils/index.mjs";
 
-import type { ExtractPropTypes } from 'vue'
-import type { Arrayable } from 'element-plus/es/utils/index.mjs'
-import type { FormItemRule } from './types'
+import type { ExtractPropTypes } from "vue";
+import type { Arrayable } from "element-plus/es/utils/index.mjs";
+import type { FormItemRule } from "./types";
 
 export const formItemValidateStates = [
-  '',
-  'error',
-  'validating',
-  'success',
-] as const
-export type FormItemValidateState = typeof formItemValidateStates[number]
+  "",
+  "error",
+  "validating",
+  "success",
+] as const;
+export type FormItemValidateState = (typeof formItemValidateStates)[number];
 
-export type FormItemProp = Arrayable<string>
+export type FormItemProp = Arrayable<string>;
 
 export const formItemProps = buildProps({
   /**
@@ -60,5 +60,5 @@ export const formItemProps = buildProps({
     type: Boolean,
     default: true,
   },
-} as const)
-export type FormItemProps = ExtractPropTypes<typeof formItemProps>
+} as const);
+export type FormItemProps = ExtractPropTypes<typeof formItemProps>;
