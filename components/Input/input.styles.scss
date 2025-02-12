@@ -108,13 +108,23 @@
 
   @include e("help") {
     @apply flex gap-xxs justify-between text-2 font-medium text-disabled-txt px-xs;
+    min-height: 18px;
   }
 
   @include e("help-text") {
     @apply line-clamp-2;
   }
 
-  @include e("help-count") {
-    // @apply ;
+  @each $fadeActive in ("fade-enter-active", "fade-leave-active") {
+    @include e($fadeActive) {
+      // agregar despues la animación para que funcione en grupo con todos los componentes y los errores
+      @apply transition-opacity duration-0 ease-in;
+    }
+  }
+
+  @each $fadeOut in ("fade-enter-from", "fade-leave-to") {
+    @include e($fadeOut) {
+      @apply opacity-0;
+    }
   }
 }

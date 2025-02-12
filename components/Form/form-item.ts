@@ -1,4 +1,3 @@
-import { componentSizes } from 'element-plus'
 import { buildProps, definePropType } from 'element-plus/es/utils/index.mjs'
 
 import type { ExtractPropTypes } from 'vue'
@@ -16,25 +15,6 @@ export type FormItemValidateState = typeof formItemValidateStates[number]
 export type FormItemProp = Arrayable<string>
 
 export const formItemProps = buildProps({
-  /**
-   * @description Label text.
-   */
-  label: String,
-  /**
-   * @description Width of label, e.g. `'50px'`. `'auto'` is supported.
-   */
-  labelWidth: {
-    type: [String, Number],
-    default: '',
-  },
-  /**
-   * @description Position of label. If set to `'left'` or `'right'`, `label-width` prop is also required. The default is extend from `form label-position`.
-   */
-  labelPosition: {
-    type: String,
-    values: ['left', 'right', 'top', ''],
-    default: '',
-  },
   /**
    * @description  A key of `model`. It could be an array of property paths (e.g `['a', 'b', '0']`). In the use of `validate` and `resetFields` method, the attribute is required.
    */
@@ -70,25 +50,15 @@ export const formItemProps = buildProps({
    */
   for: String,
   /**
-   * @description Inline style validate message.
-   */
-  inlineMessage: {
-    type: [String, Boolean],
-    default: '',
-  },
-  /**
    * @description Whether to show the error message.
    */
   showMessage: {
     type: Boolean,
-    default: true,
+    default: false,
   },
-  /**
-   * @description Control the size of components in this form-item.
-   */
-  size: {
-    type: String,
-    values: componentSizes,
+  showMessageChild: {
+    type: Boolean,
+    default: true,
   },
 } as const)
 export type FormItemProps = ExtractPropTypes<typeof formItemProps>

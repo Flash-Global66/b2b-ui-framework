@@ -1,5 +1,5 @@
 <template>
-  <form :class="formClasses">
+  <form :class="ns.b()">
     <slot />
   </form>
 </template>
@@ -8,7 +8,6 @@
 import { computed, provide, reactive, toRefs, watch } from 'vue'
 import { debugWarn, isFunction } from 'element-plus/es/utils/index.mjs'
 import { useNamespace } from 'element-plus'
-import { useFormSize } from './hooks'
 import { formContextKey } from './constants'
 import { formEmits, formProps } from './form'
 import { filterFields, useFormLabelWidth } from './utils'
@@ -32,21 +31,7 @@ const emit = defineEmits(formEmits)
 
 const fields: FormItemContext[] = []
 
-const formSize = useFormSize()
 const ns = useNamespace('form')
-const formClasses = computed(() => {
-  const { labelPosition, inline } = props
-  return [
-    ns.b(),
-    // todo: in v2.2.0, we can remove default
-    // in fact, remove it doesn't affect the final style
-    ns.m(formSize.value || 'default'),
-    {
-      [ns.m(`label-${labelPosition}`)]: labelPosition,
-      [ns.m('inline')]: inline,
-    },
-  ]
-})
 
 const getField: FormContext['getField'] = (prop) => {
   return fields.find((field) => field.prop === prop)
@@ -127,6 +112,7 @@ const validateField: FormContext['validateField'] = async (
   modelProps = [],
   callback
 ) => {
+  console.log('modelProps', modelProps)
   const shouldThrow = !isFunction(callback)
   try {
     const result = await doValidateField(modelProps)
