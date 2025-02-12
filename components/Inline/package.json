@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-inline",
   "author": "Global66",
-  "version": "1.0.12",
+  "version": "1.0.17",
   "license": "MIT",
   "exports": {
     ".": "./index.ts",
@@ -14,7 +14,5 @@
   "repository": {
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
   },
-  "dependencies": {
-    "@flash-global66/b2b-ui-icon-font": "^1.0.12"
-  }
+  "gitHead": "dc031789714efcb4e0fadbfe785964dc376930d7"
 }

@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-icon-font",
   "author": "Global66",
-  "version": "1.0.12",
+  "version": "1.0.17",
   "license": "MIT",
   "exports": {
     ".": "./index.ts",
@@ -22,5 +22,6 @@
     "@fortawesome/pro-regular-svg-icons": "^6.7.2",
     "@fortawesome/pro-solid-svg-icons": "^6.7.2",
     "@fortawesome/vue-fontawesome": "^3.0.8"
-  }
+  },
+  "gitHead": "dc031789714efcb4e0fadbfe785964dc376930d7"
 }
