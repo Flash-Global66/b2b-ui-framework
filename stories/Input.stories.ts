@@ -45,6 +45,8 @@ const Template: StoryFn<typeof GInput> = (args, selected) => {
           prefix-icon="solid file-image"
           label="Nombre"
           show-word-limit
+          show-password
+          placeholder="Ingrese su nombre"
           help-text="Help text lorem ipsum lorem lorem lorem ad"
           v-model="name"
           v-bind="args"
