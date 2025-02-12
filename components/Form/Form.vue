@@ -5,151 +5,151 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, provide, reactive, toRefs, watch } from 'vue'
-import { debugWarn, isFunction } from 'element-plus/es/utils/index.mjs'
-import { useNamespace } from 'element-plus'
-import { formContextKey } from './constants'
-import { formEmits, formProps } from './form'
-import { filterFields, useFormLabelWidth } from './utils'
+import { computed, provide, reactive, toRefs, watch } from "vue";
+import { debugWarn, isFunction } from "element-plus/es/utils/index.mjs";
+import { useNamespace } from "element-plus";
+import { formContextKey } from "./constants";
+import { formEmits, formProps } from "./form";
+import { filterFields } from "./utils";
 
-import type { ValidateFieldsError } from 'async-validator'
-import type { Arrayable } from 'element-plus/es/utils/index.mjs'
+import type { ValidateFieldsError } from "async-validator";
+import type { Arrayable } from "element-plus/es/utils/index.mjs";
 import type {
   FormContext,
   FormItemContext,
   FormValidateCallback,
   FormValidationResult,
-} from './types'
-import type { FormItemProp } from './form-item'
+} from "./types";
+import type { FormItemProp } from "./form-item";
 
-const COMPONENT_NAME = 'ElForm'
+const COMPONENT_NAME = "ElForm";
 defineOptions({
   name: COMPONENT_NAME,
-})
-const props = defineProps(formProps)
-const emit = defineEmits(formEmits)
+});
+const props = defineProps(formProps);
+const emit = defineEmits(formEmits);
 
-const fields: FormItemContext[] = []
+const fields: FormItemContext[] = [];
 
-const ns = useNamespace('form')
+const ns = useNamespace("form");
 
-const getField: FormContext['getField'] = (prop) => {
-  return fields.find((field) => field.prop === prop)
-}
+const getField: FormContext["getField"] = (prop) => {
+  return fields.find((field) => field.prop === prop);
+};
 
-const addField: FormContext['addField'] = (field) => {
-  fields.push(field)
-}
+const addField: FormContext["addField"] = (field) => {
+  fields.push(field);
+};
 
-const removeField: FormContext['removeField'] = (field) => {
+const removeField: FormContext["removeField"] = (field) => {
   if (field.prop) {
-    fields.splice(fields.indexOf(field), 1)
+    fields.splice(fields.indexOf(field), 1);
   }
-}
+};
 
-const resetFields: FormContext['resetFields'] = (properties = []) => {
+const resetFields: FormContext["resetFields"] = (properties = []) => {
   if (!props.model) {
-    debugWarn(COMPONENT_NAME, 'model is required for resetFields to work.')
-    return
+    debugWarn(COMPONENT_NAME, "model is required for resetFields to work.");
+    return;
   }
-  filterFields(fields, properties).forEach((field) => field.resetField())
-}
+  filterFields(fields, properties).forEach((field) => field.resetField());
+};
 
-const clearValidate: FormContext['clearValidate'] = (props = []) => {
-  filterFields(fields, props).forEach((field) => field.clearValidate())
-}
+const clearValidate: FormContext["clearValidate"] = (props = []) => {
+  filterFields(fields, props).forEach((field) => field.clearValidate());
+};
 
 const isValidatable = computed(() => {
-  const hasModel = !!props.model
+  const hasModel = !!props.model;
   if (!hasModel) {
-    debugWarn(COMPONENT_NAME, 'model is required for validate to work.')
+    debugWarn(COMPONENT_NAME, "model is required for validate to work.");
   }
-  return hasModel
-})
+  return hasModel;
+});
 
 const obtainValidateFields = (props: Arrayable<FormItemProp>) => {
-  if (fields.length === 0) return []
+  if (fields.length === 0) return [];
 
-  const filteredFields = filterFields(fields, props)
+  const filteredFields = filterFields(fields, props);
   if (!filteredFields.length) {
-    debugWarn(COMPONENT_NAME, 'please pass correct props!')
-    return []
+    debugWarn(COMPONENT_NAME, "please pass correct props!");
+    return [];
   }
-  return filteredFields
-}
+  return filteredFields;
+};
 
 const validate = async (
   callback?: FormValidateCallback
-): FormValidationResult => validateField(undefined, callback)
+): FormValidationResult => validateField(undefined, callback);
 
 const doValidateField = async (
   props: Arrayable<FormItemProp> = []
 ): Promise<boolean> => {
-  console.log('que')
-  if (!isValidatable.value) return false
+  console.log("que");
+  if (!isValidatable.value) return false;
 
-  const fields = obtainValidateFields(props)
-  if (fields.length === 0) return true
+  const fields = obtainValidateFields(props);
+  if (fields.length === 0) return true;
 
-  let validationErrors: ValidateFieldsError = {}
+  let validationErrors: ValidateFieldsError = {};
   for (const field of fields) {
     try {
-      await field.validate('')
-      if (field.validateState === 'error') field.resetField()
+      await field.validate("");
+      if (field.validateState === "error") field.resetField();
     } catch (fields) {
       validationErrors = {
         ...validationErrors,
         ...(fields as ValidateFieldsError),
-      }
+      };
     }
   }
 
-  if (Object.keys(validationErrors).length === 0) return true
-  return Promise.reject(validationErrors)
-}
+  if (Object.keys(validationErrors).length === 0) return true;
+  return Promise.reject(validationErrors);
+};
 
-const validateField: FormContext['validateField'] = async (
+const validateField: FormContext["validateField"] = async (
   modelProps = [],
   callback
 ) => {
-  console.log('modelProps', modelProps)
-  const shouldThrow = !isFunction(callback)
+  console.log("modelProps", modelProps);
+  const shouldThrow = !isFunction(callback);
   try {
-    const result = await doValidateField(modelProps)
+    const result = await doValidateField(modelProps);
     // When result is false meaning that the fields are not validatable
     if (result === true) {
-      await callback?.(result)
+      await callback?.(result);
     }
-    return result
+    return result;
   } catch (e) {
-    if (e instanceof Error) throw e
+    if (e instanceof Error) throw e;
 
-    const invalidFields = e as ValidateFieldsError
+    const invalidFields = e as ValidateFieldsError;
 
     if (props.scrollToError) {
-      scrollToField(Object.keys(invalidFields)[0])
+      scrollToField(Object.keys(invalidFields)[0]);
     }
-    await callback?.(false, invalidFields)
-    return shouldThrow && Promise.reject(invalidFields)
+    await callback?.(false, invalidFields);
+    return shouldThrow && Promise.reject(invalidFields);
   }
-}
+};
 
 const scrollToField = (prop: FormItemProp) => {
-  const field = filterFields(fields, prop)[0]
+  const field = filterFields(fields, prop)[0];
   if (field) {
-    field.$el?.scrollIntoView(props.scrollIntoViewOptions)
+    field.$el?.scrollIntoView(props.scrollIntoViewOptions);
   }
-}
+};
 
 watch(
   () => props.rules,
   () => {
     if (props.validateOnRuleChange) {
-      validate().catch((err) => debugWarn(err))
+      validate().catch((err) => debugWarn(err));
     }
   },
-  { deep: true, flush: 'post' }
-)
+  { deep: true, flush: "post" }
+);
 
 provide(
   formContextKey,
@@ -163,10 +163,8 @@ provide(
     getField,
     addField,
     removeField,
-
-    ...useFormLabelWidth(),
   })
-)
+);
 
 defineExpose({
   /**
@@ -193,5 +191,5 @@ defineExpose({
    * @description All fields context.
    */
   fields,
-})
+});
 </script>

@@ -4,18 +4,18 @@ import {
   isArray,
   isBoolean,
   isString,
-} from 'element-plus/es/utils/index.mjs'
+} from "element-plus/es/utils/index.mjs";
 
-import type { ExtractPropTypes } from 'vue'
-import type { FormItemProp } from './form-item'
-import type { FormRules } from './types'
+import type { ExtractPropTypes } from "vue";
+import type { FormItemProp } from "./form-item";
+import type { FormRules } from "./types";
 
 export const formMetaProps = buildProps({
   /**
    * @description Whether to disable all components in this form. If set to `true`, it will override the `disabled` prop of the inner component.
    */
   disabled: Boolean,
-} as const)
+} as const);
 
 export const formProps = buildProps({
   ...formMetaProps,
@@ -49,14 +49,14 @@ export const formProps = buildProps({
   scrollIntoViewOptions: {
     type: [Object, Boolean],
   },
-} as const)
-export type FormProps = ExtractPropTypes<typeof formProps>
-export type FormMetaProps = ExtractPropTypes<typeof formMetaProps>
+} as const);
+export type FormProps = ExtractPropTypes<typeof formProps>;
+export type FormMetaProps = ExtractPropTypes<typeof formMetaProps>;
 
 export const formEmits = {
   validate: (prop: FormItemProp, isValid: boolean, message: string) =>
     (isArray(prop) || isString(prop)) &&
     isBoolean(isValid) &&
     isString(message),
-}
-export type FormEmits = typeof formEmits
+};
+export type FormEmits = typeof formEmits;
