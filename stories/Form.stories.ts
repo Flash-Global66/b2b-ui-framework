@@ -11,7 +11,9 @@ const meta: Meta<typeof GForm> = {
   parameters: {
     docs: {
       description: {
-        component: "El componente `Form` se utiliza para crear formularios con validaciones integradas, manejo de estados y mensajes de error personalizables.",
+        component: `El componente \`Form\` se utiliza para crear formularios con validaciones integradas, manejo de estados y mensajes de error personalizables. 
+        
+Para las validaciones y reglas se utiliza <a href="https://github.com/yiminghe/async-validator" target="_blank">async-validator</a>, una potente librería que permite implementar validaciones síncronas y asíncronas.`,
       },
     },
   },
@@ -39,7 +41,6 @@ const meta: Meta<typeof GForm> = {
     },
   },
 };
-
 export default meta;
 type Story = StoryObj<typeof GForm>;
 
