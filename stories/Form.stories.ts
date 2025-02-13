@@ -203,32 +203,6 @@ En este ejemplo, el email se valida en tiempo real mientras el usuario escribe, 
     `
   })
 };
-// Mensajes de Ayuda
-export const HelpMessages: Story = {
-  name: 'Mensajes de Ayuda',
-  parameters: {
-    docs: {
-      description: {
-        story: 'Formulario con mensajes de ayuda para guiar al usuario.'
-      }
-    }
-  },
-  render: () => ({
-    components: { GForm, GFormItem, GInput, GConfigProvider },
-    template: `
-      <g-config-provider>
-        <g-form>
-          <g-form-item>
-            <g-input 
-              label="Nombre"
-              help-text="Este campo aparecerá en tu perfil público"
-            />
-          </g-form-item>
-        </g-form>
-      </g-config-provider>
-    `
-  })
-};
 
 // Formulario Deshabilitado
 export const DisabledForm: Story = {
