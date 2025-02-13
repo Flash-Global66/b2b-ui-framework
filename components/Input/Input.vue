@@ -151,6 +151,7 @@ const isError = computed(() => elFormItem?.shouldShowErrorChild)
 const containerKls = computed(() => [
   ns.b(),
 
+  ns.is("label", Boolean(props.label)),
   ns.is("disabled", inputDisabled.value),
   ns.is("focus", isFocused.value),
   ns.is("complete", !isFocused.value && Boolean(nativeInputValue.value)),

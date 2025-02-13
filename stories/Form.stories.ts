@@ -344,3 +344,138 @@ async function handleSubmit() {
     `
   })
 };
+
+export const CustomRules: Story = {
+  name: 'Reglas Personalizadas',
+  parameters: {
+    docs: {
+      description: {
+        story: `Las reglas de validación pueden ser personalizadas usando funciones validadoras.
+        
+\`\`\`typescript
+function checkAge (rule: any, value: any, callback: any) {
+  if (!value) {
+    return callback(new Error('La edad es requerida'))
+  }
+  if (!Number.isInteger(value)) {
+    callback(new Error('Ingrese solo números'))
+  } else if (value < 18) {
+    callback(new Error('La edad debe ser mayor a 18'))
+  } else {
+    callback()
+  }
+}
+\`\`\`
+`
+      }
+    }
+  },
+  render: () => ({
+    components: { GForm, GFormItem, GInput, GConfigProvider, GButton },
+    setup() {
+      const formRef = ref<FormInstance>();
+      const formData = reactive({
+        pass: '',
+        checkPass: '',
+        age: ''
+      });
+
+      const validatePass = (rule: any, value: any, callback: any) => {
+        if (value === '') {
+          callback(new Error('Ingrese una contraseña'))
+        } else {
+          if (formData.checkPass !== '') {
+            formRef.value?.validateField('checkPass')
+          }
+          callback()
+        }
+      };
+
+      const validatePass2 = (rule: any, value: any, callback: any) => {
+        if (value === '') {
+          callback(new Error('Confirme su contraseña'))
+        } else if (value !== formData.pass) {
+          callback(new Error('Las contraseñas no coinciden'))
+        } else {
+          callback()
+        }
+      };
+
+      const checkAge = (rule: any, value: any, callback: any) => {
+        if (!value) {
+          return callback(new Error('La edad es requerida'))
+        }
+        setTimeout(() => {
+          if (!Number.isInteger(Number(value))) {
+            callback(new Error('Ingrese solo números'))
+          } else if (Number(value) < 18) {
+            callback(new Error('La edad debe ser mayor a 18'))
+          } else {
+            callback()
+          }
+        }, 1000)
+      };
+
+      const rules = {
+        pass: [{ validator: validatePass, trigger: 'blur' }],
+        checkPass: [{ validator: validatePass2, trigger: 'blur' }],
+        age: [{ validator: checkAge, trigger: 'blur' }]
+      };
+
+      async function handleSubmit() {
+        if (!formRef.value) return
+        await formRef.value.validate((valid, fields) => {
+          if (valid) {
+            console.log('submit!', formData)
+          } else {
+            console.log('error submit!', fields)
+          }
+        })
+      }
+
+      async function handleReset() {
+        if (!formRef.value) return
+        formRef.value.resetFields()
+      }
+
+      return { formRef, formData, rules, handleSubmit, handleReset };
+    },
+    template: `
+      <g-config-provider>
+        <g-form ref="formRef" :model="formData" :rules="rules">
+          <g-form-item label="Contraseña" prop="pass">
+            <g-input 
+              v-model="formData.pass" 
+              type="password" 
+              show-password
+              autocomplete="off"
+              placeholder="Ingrese su contraseña"
+              help-text="La contraseña debe tener al menos 6 caracteres"
+            />
+          </g-form-item>
+          <g-form-item label="Confirmar" prop="checkPass">
+            <g-input 
+              v-model="formData.checkPass" 
+              type="password"
+              show-password
+              autocomplete="off"
+              placeholder="Confirme su contraseña"
+              help-text="Repita la contraseña ingresada"
+            />
+          </g-form-item>
+          <g-form-item label="Edad" prop="age">
+            <g-input 
+              v-model="formData.age"
+              label="Edad"
+              placeholder="Ingrese su edad"
+              help-text="Debe ser mayor de 18 años"
+            />
+          </g-form-item>
+          <div class="flex gap-4 mt-4">
+            <g-button @click="handleSubmit" type="primary">Enviar</g-button>
+            <g-button @click="handleReset" variant="secondary">Limpiar</g-button>
+          </div>
+        </g-form>
+      </g-config-provider>
+    `  })
+};
