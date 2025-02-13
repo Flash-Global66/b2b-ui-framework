@@ -19,9 +19,12 @@ Las reglas de validación pueden ser aplicadas de dos formas:
 - Globalmente en el componente Form usando la prop \`rules\`
 - Individualmente en cada FormItem usando la prop \`rules\`
 
-Una característica importante es que el validador es lo suficientemente inteligente para omitir las validaciones de campos que están condicionalmente ocultos (v-if/v-show).`,
-      },
-    },
+Una característica importante es que el validador es lo suficientemente inteligente para omitir las validaciones de campos que están condicionalmente ocultos (v-if/v-show).
+
+### Dependencias
+Este componente trabaja en conjunto con el componente \`FormItem\` para proporcionar una experiencia completa de formularios. Para más detalles sobre FormItem consulta la [documentación de FormItem](/docs/form-form-item--docs).`
+      }
+    }
   },
   argTypes: {
     model: {
@@ -46,8 +49,7 @@ Una característica importante es que el validador es lo suficientemente intelig
       defaultValue: true,
     },
   },
-};
-export default meta;
+};export default meta;
 type Story = StoryObj<typeof GForm>;
 
 // Historia Principal
