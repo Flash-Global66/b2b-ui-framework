@@ -111,42 +111,98 @@ export const Primary: Story = {
 };
 
 // Validación en Tiempo Real
-export const LiveValidation: Story = {
-  name: 'Validación en Tiempo Real',
+export const TriggerValidation: Story = {
+  name: 'Tipo de ejecución',
   parameters: {
     docs: {
       description: {
-        story: 'Formulario con validación mientras el usuario escribe.'
+        story: `La validación de campos puede realizarse de dos formas:
+
+- **change**: La validación se ejecuta cada vez que el valor del campo cambia
+- **blur**: La validación se ejecuta cuando el campo pierde el foco
+
+Ejemplo de reglas de validación:
+
+\`\`\`typescript
+const rules = {
+  email: [
+    { type: 'email', message: 'Ingrese un email válido', trigger: 'change' }
+  ],
+  password: [
+    { min: 6, message: 'La contraseña debe tener al menos 6 caracteres', trigger: 'blur' }
+  ]
+};
+\`\`\`
+
+En este ejemplo, el email se valida en tiempo real mientras el usuario escribe, mientras que la contraseña se valida cuando el campo pierde el foco.`
       }
     }
   },
   render: () => ({
-    components: { GForm, GFormItem, GInput, GConfigProvider },
+    components: { GForm, GFormItem, GInput, GConfigProvider, GButton },
     setup() {
+      const formRef = ref();
       const formData = reactive({
-        usuario: ''
+        email: '',
+        password: ''
       });
 
       const rules = {
-        usuario: [
-          { required: true, message: 'Usuario requerido', trigger: 'change' }
+        email: [
+          { required: true, message: 'El email es requerido', trigger: 'change' },
+          { type: 'email', message: 'Ingrese un email válido', trigger: 'change' }
+        ],
+        password: [
+          { required: true, message: 'La contraseña es requerida', trigger: 'blur' },
+          { min: 6, message: 'La contraseña debe tener al menos 6 caracteres', trigger: 'blur' }
         ]
       };
 
-      return { formData, rules };
+      async function handleSubmit() {
+        if (!formRef.value) return
+        await formRef.value.validate((valid, fields) => {
+          if (valid) {
+            console.log('submit!', fields)
+          } else {
+            console.log('error submit!' + fields)
+          }
+        })
+      };
+
+      async function handleReset() {
+        if (!formRef.value) return
+        formRef.value.resetFields();
+      }
+
+      return { formRef, formData, rules, handleSubmit, handleReset };
     },
     template: `
       <g-config-provider>
-        <g-form :model="formData" :rules="rules" validate-on-rule-change>
-          <g-form-item prop="usuario">
-            <g-input v-model="formData.usuario" label="Usuario" />
+        <g-form ref="formRef" :model="formData" :rules="rules">
+          <g-form-item prop="email">
+            <g-input 
+              v-model="formData.email" 
+              label="Email"
+              help-text="La validación se ejecuta mientras escribes"
+            />
           </g-form-item>
+          <g-form-item prop="password">
+            <g-input 
+              v-model="formData.password" 
+              type="password"
+              label="Contraseña"
+              help-text="La validación se ejecuta al perder el foco"
+            />
+          </g-form-item>
+          <div class="flex gap-4 mt-4">
+            <g-button @click="handleSubmit" type="primary">Enviar</g-button>
+            <g-button @click="handleReset" variant="secondary">Limpiar</g-button>
+          </div>
         </g-form>
       </g-config-provider>
     `
   })
 };
-
 // Mensajes de Ayuda
 export const HelpMessages: Story = {
   name: 'Mensajes de Ayuda',
