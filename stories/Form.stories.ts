@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { ref, reactive } from "vue";
-import { GForm, GFormItem } from "../components/Form";
+import { FormInstance, GForm, GFormItem } from "../components/Form";
 import { GInput } from "../components/Input";
 import { GConfigProvider } from "../components/ConfigProvider";
+import { GButton } from '../components/Button/src';
 
 const meta: Meta<typeof GForm> = {
   title: "Form/Form",
@@ -53,7 +54,7 @@ export const Primary: Story = {
     }
   },
   render: () => ({
-    components: { GForm, GFormItem, GInput, GConfigProvider },
+    components: { GForm, GFormItem, GInput, GConfigProvider, GButton },
     setup() {
       const formRef = ref();
       const formData = reactive({
@@ -72,7 +73,23 @@ export const Primary: Story = {
         ]
       };
 
-      return { formRef, formData, rules };
+      async function handleSubmit() {
+        if (!formRef.value) return
+        await formRef.value.validate((valid, fields) => {
+          if (valid) {
+            console.log('submit!', fields)
+          } else {
+            console.log('error submit!' + fields)
+          }
+        })
+      };
+
+      async function handleReset() {
+        if (!formRef.value) return
+        formRef.value.resetFields();
+      }
+
+      return { formRef, formData, rules, handleSubmit, handleReset };
     },
     template: `
       <g-config-provider>
@@ -83,6 +100,10 @@ export const Primary: Story = {
           <g-form-item prop="email">
             <g-input v-model="formData.email" label="Email" />
           </g-form-item>
+          <div class="flex gap-4 mt-4">
+            <g-button @click="handleSubmit" type="primary">Enviar</g-button>
+            <g-button @click="handleReset" variant="secondary">Limpiar</g-button>
+          </div>
         </g-form>
       </g-config-provider>
     `
@@ -159,18 +180,51 @@ export const DisabledForm: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Ejemplo de un formulario completamente deshabilitado.'
+        story: 'Ejemplo de un formulario completamente deshabilitado con múltiples campos.'
       }
     }
   },
   render: () => ({
-    components: { GForm, GFormItem, GInput, GConfigProvider },
+    components: { GForm, GFormItem, GInput, GConfigProvider, GButton },
+    setup() {
+      const formData = reactive({
+        name: 'Juan Pérez',
+        email: 'juan@ejemplo.com',
+        phone: '+51 999888777',
+        address: 'Av. Principal 123',
+        ciudad: 'Lima',
+        country: 'Perú'
+      });
+
+      return { formData };
+    },
     template: `
       <g-config-provider>
-        <g-form disabled>
-          <g-form-item>
-            <g-input label="Campo Deshabilitado" />
-          </g-form-item>
+        <g-form :model="formData" disabled>
+          <div class="grid grid-cols-2 gap-4">
+            <g-form-item>
+              <g-input v-model="formData.name" label="Nombre Completo" />
+            </g-form-item>
+            <g-form-item>
+              <g-input v-model="formData.email" label="Correo Electrónico" />
+            </g-form-item>
+            <g-form-item>
+              <g-input v-model="formData.phone" label="Teléfono" />
+            </g-form-item>
+            <g-form-item>
+              <g-input v-model="formData.address" label="Dirección" />
+            </g-form-item>
+            <g-form-item>
+              <g-input v-model="formData.ciudad" label="Ciudad" />
+            </g-form-item>
+            <g-form-item>
+              <g-input v-model="formData.country" label="País" />
+            </g-form-item>
+          </div>
+          <div class="flex gap-4 mt-4">
+            <g-button disabled>No disponible</g-button>
+            <g-button variant="secondary" disabled>Cancelar</g-button>
+          </div>
         </g-form>
       </g-config-provider>
     `
