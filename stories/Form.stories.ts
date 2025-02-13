@@ -1,206 +1,178 @@
-import { Meta, StoryFn } from '@storybook/vue3';
-import { reactive, ref } from 'vue';
-import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from "@storybook/vue3";
+import { ref, reactive } from "vue";
+import { GForm, GFormItem } from "../components/Form";
+import { GInput } from "../components/Input";
+import { GConfigProvider } from "../components/ConfigProvider";
 
-// COMPONENTS
-import type { FormInstance, FormRules } from '../components/Form';
-import { GForm, GFormItem } from '../components/Form';
-import { GInput } from '../components/Input';
-import { GSelect } from '../components/Select';
-import { GSelectOption } from '../components/SelectOption';
-
-// CONFIG
-import { GConfigProvider } from '../components/ConfigProvider';
-
-export default {
-  title: 'Form/Form',
+const meta: Meta<typeof GForm> = {
+  title: "Form/Form",
   component: GForm,
-  subcomponents: { GFormItem },
-  argTypes: {
-    'v-model': {
-      description: 'binding value.',
-      table: {
-        type: { summary: 'Number, String, Boolean, Object' }
-      }
-    },
-    // slots
-    default: {
-      control: { type: null },
-      table: {
-        type: { summary: 'Components' }
-      }
-    },
-    // events
-    change: {
-      control: { type: null },
-      table: {
-        type: { summary: 'String, Number, Boolean' }
-      }
-    },
-  },
-  args: {
-    size: '',
-    disabled: false,
-  },
   parameters: {
     docs: {
       description: {
-        component: `When there are plenty of options, use a drop-down menu to display and select desired ones.`,
+        component: "El componente `Form` se utiliza para crear formularios con validaciones integradas, manejo de estados y mensajes de error personalizables.",
       },
     },
   },
-} as Meta<typeof GForm>;
+  argTypes: {
+    model: {
+      description: 'Objeto de datos del formulario',
+      control: 'object',
+      table: {
+        type: { summary: 'object' },
+      }
+    },
+    rules: {
+      description: "Reglas de validación para los campos del formulario",
+      control: "object",
+    },
+    disabled: {
+      description: "Deshabilita todos los campos del formulario",
+      control: "boolean",
+      defaultValue: false,
+    },
+    validateOnRuleChange: {
+      description: "Validar cuando cambian las reglas",
+      control: "boolean",
+      defaultValue: true,
+    },
+  },
+};
 
-const Template: StoryFn<typeof GForm> = (args, selected) => {
-  return {
-    components: { GForm, GFormItem, GInput, GConfigProvider, GSelect, GSelectOption },
+export default meta;
+type Story = StoryObj<typeof GForm>;
+
+// Historia Principal
+export const Primary: Story = {
+  name: 'Básico',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Ejemplo básico del formulario con validaciones.'
+      }
+    }
+  },
+  render: () => ({
+    components: { GForm, GFormItem, GInput, GConfigProvider },
     setup() {
-
-      const ruleFormRef = ref<FormInstance>()
-      const ruleForm = reactive({
-        name: '',
-        lastName: '',
-      })
-
-      const rules = reactive<FormRules>({
-        name: [
-          { required: true, message: 'Campo requerido', trigger: 'blur' },
-          { min: 3, max: 10, message: 'Length should be 3 to 10', trigger: 'blur' },
-        ],
-        lastName: [
-          { required: true, message: 'Campo requerido', trigger: 'blur' },
-          { min: 3, max: 10, message: 'Length should be 3 to 10', trigger: 'blur' },
-        ],
+      const formRef = ref();
+      const formData = reactive({
+        nombre: '',
+        email: ''
       });
 
-      async function onReset(formEl: FormInstance | undefined) {
-        if (!formEl) return
-        formEl.resetFields();
-      }
-
-      async function onSend(formEl: FormInstance | undefined) {
-        if (!formEl) return
-        await formEl.validate((valid, fields) => {
-          if (valid) {
-            console.log('submit!')
-          } else {
-            console.log('error submit!', fields)
-          }
-        })
-      }
-
-      const selected = ref('');
-
-      const options = [
-        {
-          value: 'Option1',
-          label: 'Option1',
-        },
-        {
-          value: 'Option2',
-          label: 'Option2',
-        },
-        {
-          value: 'Option3',
-          label: 'Option3',
-        },
-        {
-          value: 'Option4',
-          label: 'Option4',
-        },
-        {
-          value: 'Option5',
-          label: 'Option5',
-        },
-        {
-          value: 'Option6',
-          label: 'Option6',
-        },
-        {
-          value: 'Option7',
-          label: 'Option7',
-        },
-        {
-          value: 'Option8',
-          label: 'Option8',
-        },
-        {
-          value: 'Option9',
-          label: 'Option9',
-        },
-        {
-          value: 'Option10',
-          label: 'Option10',
-        },
-      ];
-
-      function onChange() {
-        action('change');
-      }
-
-      function setFormat(value) {
-        return `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-      }
-
-      function setParser(value) {
-        return value.replace(/\$\s?|(,*)/g, '');
-      }
-
-      return {
-        ruleFormRef,
-        rules,
-        ruleForm,
-        args,
-        selected,
-        options,
-        onChange,
-        onSend,
-        onReset,
-        setFormat,
-        setParser,
+      const rules = {
+        nombre: [
+          { required: true, message: 'El nombre es requerido', trigger: 'blur' },
+          { min: 3, message: 'Mínimo 3 caracteres', trigger: 'blur' }
+        ],
+        email: [
+          { required: true, message: 'El email es requerido', trigger: 'blur' },
+          { type: 'email', message: 'Email inválido', trigger: 'blur' }
+        ]
       };
+
+      return { formRef, formData, rules };
     },
     template: `
       <g-config-provider>
-        <div class="p-7 h-80 bg-gray-10">
-          <g-form
-            ref="ruleFormRef"
-            :model="ruleForm"
-            :rules="rules"
-            v-bind="args"
-          >
-            <div class="grid grid-cols-2 gap-10">
-              <g-form-item prop="name" :show-message-child="false" show-message>
-                <g-input
-                  label="Nombre"
-                  help-text="Ejemplo"
-                  v-model="ruleForm.name">
-                </g-input>
-              </g-form-item>
-              <g-form-item prop="lastName">
-                <g-input
-                  label="Mensaje"
-                  type="textarea"
-                  v-model="ruleForm.lastName">
-                </g-input>
-              <g-form-item prop="lastName">
-                <g-input
-                  label="Mensaje"
-                  type="textarea"
-                  v-model="ruleForm.lastName">
-                </g-input>
-              </g-form-item>
-            </div>
-
-          </g-form>
-
-          <button @click="onSend(ruleFormRef)">Validar</button>
-          -
-          <button @click="onReset(ruleFormRef)">Reset</button>
-        </div>
+        <g-form ref="formRef" :model="formData" :rules="rules">
+          <g-form-item prop="nombre">
+            <g-input v-model="formData.nombre" label="Nombre" />
+          </g-form-item>
+          <g-form-item prop="email">
+            <g-input v-model="formData.email" label="Email" />
+          </g-form-item>
+        </g-form>
       </g-config-provider>
-    `,
-  }
+    `
+  })
 };
 
-export const Default = Template.bind({});
+// Validación en Tiempo Real
+export const LiveValidation: Story = {
+  name: 'Validación en Tiempo Real',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Formulario con validación mientras el usuario escribe.'
+      }
+    }
+  },
+  render: () => ({
+    components: { GForm, GFormItem, GInput, GConfigProvider },
+    setup() {
+      const formData = reactive({
+        usuario: ''
+      });
+
+      const rules = {
+        usuario: [
+          { required: true, message: 'Usuario requerido', trigger: 'change' }
+        ]
+      };
+
+      return { formData, rules };
+    },
+    template: `
+      <g-config-provider>
+        <g-form :model="formData" :rules="rules" validate-on-rule-change>
+          <g-form-item prop="usuario">
+            <g-input v-model="formData.usuario" label="Usuario" />
+          </g-form-item>
+        </g-form>
+      </g-config-provider>
+    `
+  })
+};
+
+// Mensajes de Ayuda
+export const HelpMessages: Story = {
+  name: 'Mensajes de Ayuda',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Formulario con mensajes de ayuda para guiar al usuario.'
+      }
+    }
+  },
+  render: () => ({
+    components: { GForm, GFormItem, GInput, GConfigProvider },
+    template: `
+      <g-config-provider>
+        <g-form>
+          <g-form-item>
+            <g-input 
+              label="Nombre"
+              help-text="Este campo aparecerá en tu perfil público"
+            />
+          </g-form-item>
+        </g-form>
+      </g-config-provider>
+    `
+  })
+};
+
+// Formulario Deshabilitado
+export const DisabledForm: Story = {
+  name: 'Formulario Deshabilitado',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Ejemplo de un formulario completamente deshabilitado.'
+      }
+    }
+  },
+  render: () => ({
+    components: { GForm, GFormItem, GInput, GConfigProvider },
+    template: `
+      <g-config-provider>
+        <g-form disabled>
+          <g-form-item>
+            <g-input label="Campo Deshabilitado" />
+          </g-form-item>
+        </g-form>
+      </g-config-provider>
+    `
+  })
+};
