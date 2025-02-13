@@ -46,10 +46,6 @@ export const formItemProps = buildProps({
     values: formItemValidateStates,
   },
   /**
-   * @description Same as for in native label.
-   */
-  for: String,
-  /**
    * @description Whether to show the error message.
    */
   showMessage: {
