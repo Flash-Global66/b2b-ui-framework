@@ -13,7 +13,13 @@ const meta: Meta<typeof GForm> = {
       description: {
         component: `El componente \`Form\` se utiliza para crear formularios con validaciones integradas, manejo de estados y mensajes de error personalizables. 
         
-Para las validaciones y reglas se utiliza <a href="https://github.com/yiminghe/async-validator" target="_blank">async-validator</a>, una potente librería que permite implementar validaciones síncronas y asíncronas.`,
+Para las validaciones y reglas se utiliza <a href="https://github.com/yiminghe/async-validator" target="_blank">async-validator</a>, una potente librería que permite implementar validaciones síncronas y asíncronas.
+
+Las reglas de validación pueden ser aplicadas de dos formas:
+- Globalmente en el componente Form usando la prop \`rules\`
+- Individualmente en cada FormItem usando la prop \`rules\`
+
+Una característica importante es que el validador es lo suficientemente inteligente para omitir las validaciones de campos que están condicionalmente ocultos (v-if/v-show).`,
       },
     },
   },
