@@ -520,3 +520,147 @@ async function handleSubmit() {
     `,
   }),
 };
+
+export const DynamicValidation: Story = {
+  name: 'Validación Dinámica',
+  parameters: {
+    docs: {
+      description: {
+        story: `Puedes agregar o eliminar campos de formulario dinámicamente junto con sus reglas de validación.
+
+\`\`\`typescript
+interface DomainItem {
+  key: number
+  value: string
+}
+
+const formData = reactive({
+  domains: [{ key: 1, value: '' }],
+  email: ''
+})
+
+const addDomain = () => {
+  formData.domains.push({
+    key: Date.now(),
+    value: ''
+  })
+}
+\`\`\`
+`
+      }
+    }
+  },
+  render: () => ({
+    components: { GForm, GFormItem, GInput, GConfigProvider, GButton },
+    setup() {
+      const formRef = ref<FormInstance>();
+      
+      interface DomainItem {
+        key: number
+        value: string
+      }
+
+      const formData = reactive({
+        domains: [
+          {
+            key: 1,
+            value: '',
+          },
+        ],
+        email: '',
+      });
+
+      const removeDomain = (item: DomainItem) => {
+        const index = formData.domains.indexOf(item)
+        if (index !== -1) {
+          formData.domains.splice(index, 1)
+        }
+      };
+
+      const addDomain = () => {
+        formData.domains.push({
+          key: Date.now(),
+          value: '',
+        });
+      };
+
+      async function handleSubmit() {
+        if (!formRef.value) return
+        await formRef.value.validate((valid, fields) => {
+          if (valid) {
+            console.log('submit!', formData)
+          } else {
+            console.log('error submit!', fields)
+          }
+        })
+      }
+
+      async function handleReset() {
+        if (!formRef.value) return
+        formRef.value.resetFields()
+      }
+
+      return { 
+        formRef, 
+        formData, 
+        handleSubmit, 
+        handleReset,
+        addDomain,
+        removeDomain
+      };
+    },
+    template: `
+      <g-config-provider>
+        <g-form ref="formRef" :model="formData">
+          <g-form-item
+            prop="email"
+            label="Email"
+            :rules="[
+              { required: true, message: 'El email es requerido', trigger: 'blur' },
+              { type: 'email', message: 'Ingrese un email válido', trigger: ['blur', 'change'] }
+            ]"
+          >
+            <g-input 
+              v-model="formData.email"
+              placeholder="Ingrese su email"
+              label="Email"
+              help-text="Ejemplo: usuario@dominio.com"
+            />
+          </g-form-item>
+
+          <g-form-item
+            v-for="(domain, index) in formData.domains"
+            :key="domain.key"
+            :label="'Dominio ' + (index + 1)"
+            :prop="'domains.' + index + '.value'"
+            :rules="{
+              required: true,
+              message: 'El dominio no puede estar vacío',
+              trigger: 'blur'
+            }"
+          >
+            <div class="flex gap-4">
+              <g-input 
+                v-model="domain.value"
+                label="Dominio"
+                placeholder="Ingrese el dominio"
+              />
+              <g-button 
+                variant="secondary" 
+                @click.prevent="removeDomain(domain)"
+              >
+                Eliminar
+              </g-button>
+            </div>
+          </g-form-item>
+
+          <div class="flex gap-4 mt-4">
+            <g-button @click="handleSubmit" type="primary">Enviar</g-button>
+            <g-button @click="addDomain" variant="secondary">Nuevo dominio</g-button>
+            <g-button @click="handleReset" variant="secondary">Limpiar</g-button>
+          </div>
+        </g-form>
+      </g-config-provider>
+    `
+  })
+};
