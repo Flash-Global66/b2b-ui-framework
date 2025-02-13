@@ -260,3 +260,86 @@ export const DisabledForm: Story = {
     `
   })
 };
+
+export const PreventSubmit: Story = {
+  name: 'Prevenir Submit',
+  parameters: {
+    docs: {
+      description: {
+        story: `Por comportamiento nativo de HTML, cuando un formulario tiene un solo input, al presionar Enter se dispara automáticamente el evento submit. Se recomienda usar @submit.prevent para controlar este comportamiento.
+
+Para más información sobre el comportamiento nativo de formularios HTML, puedes consultar la <a href="https://www.w3.org/MarkUp/html-spec/html-spec_8.html#SEC8.2" target="_blank">documentación oficial de W3C</a>.
+
+Ejemplo de implementación:
+
+\`\`\`typescript
+async function handleSubmit() {
+  if (!formRef.value) return
+
+  await formRef.value.validate((valid, fields) => {
+    if (valid) {
+      console.log('submit!', formData)
+    } else {
+      console.log('error submit!', fields)
+    }
+  })
+}
+\`\`\`
+`
+      }
+    }
+  },
+  render: () => ({
+    components: { GForm, GFormItem, GInput, GConfigProvider, GButton },
+    setup() {
+      const formRef = ref();
+      const formData = reactive({
+        usuario: '',
+        clave: ''
+      });
+
+      const rules = {
+        usuario: [
+          { required: true, message: 'El usuario es requerido', trigger: 'blur' }
+        ],
+        clave: [
+          { required: true, message: 'La clave es requerida', trigger: 'blur' }
+        ]
+      };
+
+      async function handleSubmit() {
+        if (!formRef.value) return
+
+        await formRef.value.validate((valid, fields) => {
+          if (valid) {
+            alert('submit!')
+          } else {
+            console.log('error submit!', fields)
+          }
+        })
+      };
+
+      return { formRef, formData, rules, handleSubmit };
+    },
+    template: `
+      <g-config-provider>
+        <g-form 
+          ref="formRef" 
+          :model="formData" 
+          :rules="rules"
+          @submit.prevent="handleSubmit"
+        >
+          <g-form-item prop="usuario">
+            <g-input 
+              v-model="formData.usuario" 
+              label="Usuario"
+            />
+          </g-form-item>
+          <div class="flex gap-4 mt-4">
+            <g-button type="submit" type="primary">Enviar</g-button>
+          </div>
+        </g-form>
+      </g-config-provider>
+    `
+  })
+};
