@@ -369,7 +369,7 @@ onMounted(() => {
 });
 
 const updatePrefixPosition = () => {
-  if (!props.prefixIcon) {
+  if (!props.prefixIcon && !slots.prefix) {
     leftPrefix.value = "0";
     return;
   }
