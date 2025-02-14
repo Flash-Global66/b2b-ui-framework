@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { ref, reactive } from "vue";
-import { GFormItem, GForm } from "../components/Form";
+import { GFormItem, GForm, FormItemInstance } from "../components/Form";
 import { GInput } from "../components/Input";
 import { GButton } from "../components/Button/src";
 import { GConfigProvider } from "../components/ConfigProvider";
 
-const meta: Meta<typeof GFormItem> = {
+const meta: Meta<FormItemInstance> = {
   title: "Form/Form/Item",
   component: GFormItem,
   tags: ['autodocs'],
@@ -51,11 +51,60 @@ Este componente está diseñado para funcionar dentro de un componente \`Form\`.
         defaultValue: { summary: 'true' }
       }
     },
+    validateMessage: {
+      description: "Mensaje de validación actual",
+      table: {
+        category: "Expuesto",
+        type: { summary: "string" }
+      }
+    },
+    shouldShowError: {
+      description: "Indica si se debe mostrar el error en el form item",
+      table: {
+        category: "Expuesto",
+        type: { summary: "boolean" }
+      }
+    },
+    shouldShowErrorChild: {
+      description: "Indica si se debe mostrar el error en el componente hijo",
+      table: {
+        category: "Expuesto", 
+        type: { summary: "boolean" }
+      }
+    },
+    validateState: {
+      description: "Estado actual de la validación",
+      table: {
+        category: "Expuesto",
+        type: { summary: "string" }
+      }
+    },
+    validate: {
+      description: "Método para validar el form item",
+      table: {
+        category: "Expuesto",
+        type: { summary: "() => Promise<void>" }
+      }
+    },
+    clearValidate: {
+      description: "Elimina el estado de validación del campo",
+      table: {
+        category: "Expuesto",
+        type: { summary: "() => void" }
+      }
+    },
+    resetField: {
+      description: "Reinicia el campo actual y elimina el resultado de la validación",
+      table: {
+        category: "Expuesto",
+        type: { summary: "() => void" }
+      }
+    },
   }
-};
 
+};
 export default meta;
-type Story = StoryObj<typeof GFormItem>;
+type Story = StoryObj<FormItemInstance>;
 
 export const CombinedRules: Story = {
   name: "Combinación de Reglas",
@@ -112,7 +161,7 @@ El atributo \`validate-event\` controla si el componente de entrada dispara la v
     },
     template: `
       <g-config-provider>
-        <g-form ref="formRef" :model="formData" :rules="rules">
+        <g-form ref="formRef" :model="formData" :rules="rules" class="flex flex-col gap-4">
           <g-form-item prop="nombre">
             <g-input 
               v-model="formData.nombre" 
@@ -157,9 +206,9 @@ El atributo \`validate-event\` controla si el componente de entrada dispara la v
             />
           </g-form-item>
 
-          <div style="margin-top: 20px">
-            <g-button type="primary" @click="handleSubmit">Enviar</g-button>
-            <g-button @click="handleReset" style="margin-left: 10px">Resetear</g-button>
+          <div class="flex gap-4 mt-4">
+            <g-button @click="handleSubmit">Enviar</g-button>
+            <g-button @click="handleReset" variant="secondary">Resetear</g-button>
           </div>
         </g-form>
       </g-config-provider>
@@ -216,7 +265,7 @@ export const MessageBehavior: Story = {
     },
     template: `
       <g-config-provider>
-        <g-form ref="formRef" :model="formData" :rules="rules">
+        <g-form ref="formRef" :model="formData" :rules="rules" class="flex flex-col gap-4">
           <g-form-item prop="campo1">
             <g-input 
               v-model="formData.campo1"
@@ -249,9 +298,9 @@ export const MessageBehavior: Story = {
             />
           </g-form-item>
 
-          <div style="margin-top: 20px">
-            <g-button type="primary" @click="handleSubmit">Validar</g-button>
-            <g-button @click="handleReset" style="margin-left: 10px">Resetear</g-button>
+          <div style="flex gap-4 mt-4">
+            <g-button @click="handleSubmit">Validar</g-button>
+            <g-button @click="handleReset" variant="secondary" style="margin-left: 10px">Resetear</g-button>
           </div>
         </g-form>
       </g-config-provider>

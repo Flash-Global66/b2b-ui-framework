@@ -1,4 +1,4 @@
-import type { SetupContext, UnwrapRef } from "vue";
+import type { ComputedRef, Ref, SetupContext, UnwrapRef } from "vue";
 import type {
   RuleItem,
   ValidateError,
