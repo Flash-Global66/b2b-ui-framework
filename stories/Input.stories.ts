@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/vue3";
 import { GInput, InputInstance } from "../components/Input";
 import { GConfigProvider } from "../components/ConfigProvider";
 import { reactive, ref } from "vue";
+import { generateIconOptions } from "./IconFont.stories";
+import { prefix } from "@fortawesome/pro-solid-svg-icons";
 
 const meta: Meta<InputInstance> = {
   title: "Form/Input",
@@ -38,28 +40,36 @@ import '@flash-global66/b2b-ui-input/input.styles.scss'
     }
   },
   argTypes: {
-    // Props principales
     modelValue: {
       description: "Valor del input (v-model)",
-      control: "text",
+      control: {
+        type: undefined,
+      },
+      table: {
+        type: { summary: "string | number | null" }
+      }
     },
     label: {
       description: "Etiqueta flotante del input",
       control: "text",
     },
-    type: {
-      description: "Tipo de input",
-      control: "select",
-      options: ["text", "password", "email", "number", "tel", "url"],
-      defaultValue: "text"
-    },
     prefixIcon: {
       description: "Ícono al inicio del input",
-      control: "text"
+      control: 'select',
+      options: ['', ...generateIconOptions()],
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      }
     },
     suffixIcon: {
       description: "Ícono al final del input",
-      control: "text"
+      control: 'select',
+      options: ['', ...generateIconOptions()],
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      }
     },
     showPassword: {
       description: "Muestra/oculta el contenido del campo password",
@@ -76,6 +86,67 @@ import '@flash-global66/b2b-ui-input/input.styles.scss'
       table: {
         type: { summary: "(value: string) => string" }
       }
+    },
+    helpText: {
+      description: "Texto de ayuda mostrado debajo del input",
+      control: "text",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: "undefined" }
+      }
+    },
+    loading: {
+      description: "Muestra estado de carga en el input",
+      control: "boolean",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" }
+      }
+    },
+    minlength: {
+      description: "Longitud mínima del valor del input. (nativo)",
+      control: "number",
+      table: {
+        type: { summary: "string | number" }
+      }
+    },
+    showWordLimit: {
+      description: "Muestra contador de caracteres",
+      control: "boolean",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" }
+      }
+    },
+    validateEvent: {
+      description: "Activa la validación del formulario en eventos",
+      control: "boolean",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "true" }
+      }
+    },
+    isEvent: {
+      description: "Indica si el input es controlado por eventos",
+      control: "boolean",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" }
+      }
+    },
+    autofocus: {
+      description: "Enfoca automáticamente el input al montar",
+      control: "boolean",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" }
+      }
+    },
+    type: {
+      description: "Tipo de input",
+      control: "select",
+      options: ["text", "password", "email", "number", "tel", "url"],
+      defaultValue: "text"
     },
     ref: {
       description: "Referencia al elemento raíz",
@@ -118,7 +189,33 @@ import '@flash-global66/b2b-ui-input/input.styles.scss'
         category: "Expuesto",
         type: { summary: "() => void" }
       }
+    },
+    messageError: {
+      description: "Mensaje de error",
+      control: "text",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: "undefined" }
+      }
     }
+  },
+  args: {
+    label: 'Etiqueta',
+    placeholder: 'Placeholder',
+    suffixIcon: undefined,
+    prefixIcon: undefined,
+    showPassword: false,
+    helpText: '',
+    messageError: undefined,
+    loading: false,
+    minlength: undefined,
+    showWordLimit: false,
+    validateEvent: true,
+    isEvent: false,
+    autofocus: false,
+    disabled: false,
+    maxlength: 50,
+    type: 'text',
   }
 };
 export default meta;
@@ -127,17 +224,17 @@ type Story = StoryObj<InputInstance>;
 // Ejemplo Básico
 export const Basic: Story = {
   name: "Básico",
-  render: () => ({
+  render: (args) => ({
     components: { GInput, GConfigProvider },
     setup() {
       const name = ref('');
       
-      return { name }
+      return { name, args }
     },
     template: `
       <g-config-provider>
         <div class="flex flex-col gap-4">
-          <g-input v-model="name" label="Nombre" placeholder="Ingrese su nombre" />
+          <g-input v-bind="args" v-model="name" />
         </div>
       </g-config-provider>
     `

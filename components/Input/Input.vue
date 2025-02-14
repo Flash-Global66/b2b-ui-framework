@@ -44,7 +44,6 @@
         :tabindex="tabindex"
         :aria-label="ariaLabel"
         :placeholder="placeholder"
-        :style="inputStyle"
         :form="form"
         :autofocus="autofocus"
         :role="containerRole"
