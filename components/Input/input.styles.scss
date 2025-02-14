@@ -90,7 +90,7 @@
     }
   }
 
-  @include when(label) {
+  &:not(.is-focus):not(.is-complete) {
     @include e("inner") {
       &::placeholder {
         @apply opacity-0;
