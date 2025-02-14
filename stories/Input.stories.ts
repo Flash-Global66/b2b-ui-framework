@@ -12,39 +12,33 @@ const meta: Meta<InputInstance> = {
       description: {
         component: `El componente Input es un campo de entrada enriquecido que soporta:
         
-- Etiquetas flotantes (floating labels)
-- Validación integrada
-- Estados de carga y error
-- Íconos prefix y suffix
-- Texto de ayuda
-- Límite de caracteres
-- Formateo de entrada
-- Modo contraseña con visibilidad toggle
+> - Etiquetas flotantes (floating labels)
+> - Validación integrada
+> - Estados de carga y error
+> - Íconos prefix y suffix
+> - Texto de ayuda
+> - Límite de caracteres
+> - Formateo de entrada
+> - Modo contraseña con visibilidad toggle
+
+### Instalación
+
+\`\`\`bash
+# npm
+npm install @flash-global66/b2b-ui-input
+
+# yarn
+yarn add @flash-global66/b2b-ui-input
+
+# pnpm
+pnpm add @flash-global66/b2b-ui-input
+\`\`\`
 
 ### Importación
 
-#### Componente
 \`\`\`typescript
-import { GInput } from '@flash-global66/b2b-ui-input'
-\`\`\`
-
-#### Estilos
-
-\`\`\`css
-@use "@flash-global66/b2b-ui-input/input.styles.scss" as *;
-\`\`\`
-
-### Uso con v-model
-
-\`\`\`vue
-<template>
-  <g-input v-model="value" label="Nombre" />
-</template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-const value = ref('')
-</script>
+import { GInput } from '@flash-global66/b2b-ui-framework'
+import '@flash-global66/b2b-ui-input/input.styles.scss'
 \`\`\`
 `
       }
