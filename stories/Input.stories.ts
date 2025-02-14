@@ -31,7 +31,7 @@ import { GInput } from '@flash-global66/b2b-ui-input'
 #### Estilos
 
 \`\`\`css
-@use "../../components/Input/input.styles.scss" as *;
+@use "@flash-global66/b2b-ui-input/input.styles.scss" as *;
 \`\`\`
 
 ### Uso con v-model
