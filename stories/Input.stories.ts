@@ -2,7 +2,7 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { GInput, InputInstance } from "../components/Input";
 import { GConfigProvider } from "../components/ConfigProvider";
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 
 const meta: Meta<InputInstance> = {
   title: "Form/Input",
@@ -135,70 +135,62 @@ export const Basic: Story = {
   name: "Básico",
   render: () => ({
     components: { GInput, GConfigProvider },
+    setup() {
+      const name = ref('')
+      const email = ref('')
+      const phone = ref('')
+      
+      return { name, email, phone }
+    },
     template: `
       <g-config-provider>
         <div class="flex flex-col gap-4">
-          <g-input label="Nombre" placeholder="Ingrese su nombre" />
-          <g-input label="Email" type="email" placeholder="ejemplo@dominio.com" />
-          <g-input label="Teléfono" type="tel" placeholder="+51 999888777" />
+          <g-input v-model="name" label="Nombre" placeholder="Ingrese su nombre" />
+          <g-input v-model="email" label="Email" type="email" placeholder="ejemplo@dominio.com" />
+          <g-input v-model="phone" label="Teléfono" type="tel" placeholder="999888777" />
         </div>
       </g-config-provider>
     `
   })
 };
 
-// Ejemplo con Validación
-export const WithValidation: Story = {
-  name: "Con Validación",
-  render: () => ({
-    components: { GInput, GConfigProvider },
-    template: `
-      <g-config-provider>
-        <div class="flex flex-col gap-4">
-          <g-input 
-            label="Email Corporativo" 
-            type="email"
-            help-text="Debe ser un email corporativo válido"
-            placeholder="usuario@empresa.com"
-          />
-          <g-input 
-            label="Contraseña"
-            type="password"
-            show-password
-            help-text="Mínimo 8 caracteres, incluir números y símbolos"
-          />
-        </div>
-      </g-config-provider>
-    `
-  })
-};
-
-// Ejemplo de Formulario de Pago
 export const PaymentForm: Story = {
   name: "Formulario de Pago",
   render: () => ({
     components: { GInput, GConfigProvider },
+    setup() {
+      const cardNumber = ref('')
+      const titular = ref('')
+      const expDate = ref('')
+      const cvv = ref('')
+      
+      return { cardNumber, titular, expDate, cvv }
+    },
     template: `
       <g-config-provider>
         <div class="grid grid-cols-2 gap-4">
           <g-input 
+            v-model="cardNumber"
             label="Número de Tarjeta"
             placeholder="1234 5678 9012 3456"
             maxlength="19"
-            prefix-icon="regular credit-card"
+            prefix-icon="solid credit-card"
           />
           <g-input 
+            v-model="titular"
             label="Titular"
             placeholder="Como aparece en la tarjeta"
             prefix-icon="regular user"
           />
           <g-input 
+            v-model="expDate"
             label="Fecha Vencimiento"
             placeholder="MM/YY"
             maxlength="5"
             prefix-icon="regular calendar"
           />
           <g-input 
+            v-model="cvv"
             label="CVV"
             type="password"
             maxlength="4"
@@ -211,37 +203,58 @@ export const PaymentForm: Story = {
   })
 };
 
-// Ejemplo de Estados
 export const States: Story = {
   name: "Estados",
   render: () => ({
     components: { GInput, GConfigProvider },
+    setup() {
+      const states = reactive({
+        normal: 'Input normal',
+        disabled: 'Input deshabilitado',
+        readonly: 'Input readonly',
+        event: '',
+        error: 'Input con error',
+        loading: 'Input loading'
+      })
+
+      function handleClick (e) {
+        console.log('Click en el input', e)
+      }
+      
+      return { states, handleClick }
+    },
     template: `
       <g-config-provider>
         <div class="flex flex-col gap-4">
           <g-input 
+            v-model="states.normal"
             label="Normal"
-            value="Input normal"
           />
           <g-input 
+            v-model="states.disabled"
             label="Deshabilitado"
-            value="Input deshabilitado"
             disabled
           />
           <g-input 
+            v-model="states.readonly"
             label="Solo lectura"
-            value="Input readonly"
             readonly
           />
           <g-input 
-            label="Con error"
-            value="Input con error"
-            class="is-error"
-            help-text="Este campo contiene un error"
+            v-model="states.event"
+            label="Input evento"
+            is-event
+            @click="handleClick"
+            suffix-icon="regular chevron-down"
           />
           <g-input 
+            v-model="states.error"
+            label="Con error"
+            message-error="Este campo contiene un error"
+          />
+          <g-input 
+            v-model="states.loading"
             label="Cargando"
-            value="Input loading"
             loading
           />
         </div>

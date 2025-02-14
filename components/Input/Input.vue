@@ -5,7 +5,11 @@
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >
-    <div ref="wrapperRef" :class="ns.e('wrapper')">
+    <div
+      ref="wrapperRef"
+      :class="ns.e('wrapper')"
+      @click="isEvent ? emit('click', $event) : undefined"
+    >
       <div ref="prefixRef" :class="ns.e('prefix')">
         <slot name="prefix">
           <g-icon-font
@@ -35,7 +39,7 @@
         :maxlength="maxlength"
         :type="showPassword ? (passwordVisible ? 'text' : 'password') : type"
         :disabled="inputDisabled"
-        :readonly="readonly"
+        :readonly="readonly || loading || isEvent"
         :autocomplete="autocomplete"
         :tabindex="tabindex"
         :aria-label="ariaLabel"
@@ -56,7 +60,7 @@
       <slot name="suffix">
         <span :class="ns.e('suffix')">
           <g-icon-font
-            v-if="suffixIcon && !showPassword && !isLoading"
+            v-if="suffixIcon && !showPassword && !loading"
             :class="[ns.e('icon'), ns.e('suffix-icon')]"
             :name="suffixIcon"
           />
@@ -69,7 +73,7 @@
           />
 
           <g-icon-font
-            v-if="isLoading"
+            v-if="loading"
             :class="[ns.e('icon'), ns.e('icon-loading')]"
             name="regular arrows-rotate"
             spin
@@ -80,7 +84,7 @@
     </div>
     <div :class="ns.e('help')">
       <p :key="isError ? 'error' : 'help'" :class="helpTextKls">
-        {{ isError ? elFormItem?.validateMessage : helpText }}
+        {{ isError ? error : helpText }}
       </p>
       <span v-if="isWordLimitVisible" :class="ns.e('help-count')">
         {{ textLength }}/{{ maxlength }}
@@ -143,7 +147,14 @@ const prefixRef = ref<HTMLElement | null>(null);
 
 const { form: elForm, formItem: elFormItem } = useFormItem();
 
-const isError = computed(() => elFormItem?.shouldShowErrorChild)
+const isError = computed(() => 
+  elFormItem?.shouldShowErrorChild || Boolean(props?.messageError)
+)
+
+const error = computed(() => {
+  if (props?.messageError) return props.messageError
+  return elFormItem?.validateMessage
+})
 
 const containerKls = computed(() => [
   ns.b(),
@@ -155,6 +166,9 @@ const containerKls = computed(() => [
   ns.is("disabled", inputDisabled.value),
   ns.is("exceed", inputExceed.value),
   ns.is("error", isError.value || elFormItem?.shouldShowError),
+  ns.is("event", props.isEvent),
+  ns.is("loading", props.loading),
+  ns.is("readonly", props.readonly),
 
   {
     [ns.m("prefix")]: props.prefixIcon || slots.prefix,
