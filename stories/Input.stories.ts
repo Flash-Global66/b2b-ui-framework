@@ -23,8 +23,15 @@ const meta: Meta<InputInstance> = {
 
 ### Importación
 
+#### Componente
 \`\`\`typescript
-import { GInput } from '@flash-global66/b2b-ui-framework'
+import { GInput } from '@flash-global66/b2b-ui-input'
+\`\`\`
+
+#### Estilos
+
+\`\`\`css
+@use "../../components/Input/input.styles.scss" as *;
 \`\`\`
 
 ### Uso con v-model
@@ -136,18 +143,14 @@ export const Basic: Story = {
   render: () => ({
     components: { GInput, GConfigProvider },
     setup() {
-      const name = ref('')
-      const email = ref('')
-      const phone = ref('')
+      const name = ref('');
       
-      return { name, email, phone }
+      return { name }
     },
     template: `
       <g-config-provider>
         <div class="flex flex-col gap-4">
           <g-input v-model="name" label="Nombre" placeholder="Ingrese su nombre" />
-          <g-input v-model="email" label="Email" type="email" placeholder="ejemplo@dominio.com" />
-          <g-input v-model="phone" label="Teléfono" type="tel" placeholder="999888777" />
         </div>
       </g-config-provider>
     `
