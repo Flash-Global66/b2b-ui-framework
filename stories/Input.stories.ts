@@ -273,6 +273,52 @@ const parseCardNumber = (value: string) => {
   })
 };
 
+export const CharacterCount: Story = {
+  name: "Conteo de Caracteres",
+  parameters: {
+    docs: {
+      description: {
+        story: `El input puede mostrar un contador de caracteres usando la propiedad showWordLimit junto con maxlength:
+
+- Muestra el conteo actual/máximo (ej: 12/100)
+- Se actualiza en tiempo real mientras el usuario escribe
+- Útil para campos con límite como tweets, mensajes o descripciones`
+      }
+    }
+  },
+  render: () => ({
+    components: { GInput, GConfigProvider },
+    setup() {
+      const tweet = ref('')
+      const description = ref('')
+      
+      return { tweet, description }
+    },
+    template: `
+      <g-config-provider>
+        <div class="flex flex-col gap-4">
+          <g-input 
+            v-model="tweet"
+            label="Tweet"
+            placeholder="¿Qué está pasando?"
+            maxlength="280"
+            show-word-limit
+            help-text="Máximo 280 caracteres"
+          />
+          <g-input 
+            v-model="description"
+            label="Descripción corta"
+            placeholder="Describe tu producto"
+            maxlength="100"
+            show-word-limit
+            help-text="Sé conciso y claro"
+          />
+        </div>
+      </g-config-provider>
+    `
+  })
+};
+
 export const States: Story = {
   name: "Estados",
   parameters: {
