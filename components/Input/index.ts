@@ -1,12 +1,16 @@
-import { App } from 'vue'
-import GInput from './Input.vue'
+import {
+  withInstall,
+  withNoopInstall,
+  SFCWithInstall,
+} from "element-plus/es/utils/index.mjs";
+import Input from './Input.vue'
+export const GInput: SFCWithInstall<typeof Input> & {
+  Input: typeof Input;
+} = withInstall(Input, {
+  Input,
+});
+export default GInput;
 
-export { GInput }
+export * from "./input.type";
 
-export default {
-  install: (app: App) => {
-    app.component('GInput', GInput)
-  }
-}
-
-export * from './input.type'
+export type InputInstance = InstanceType<typeof Input>;
