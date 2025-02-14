@@ -319,6 +319,59 @@ export const CharacterCount: Story = {
   })
 };
 
+export const CustomSlots: Story = {
+  name: "Slots Personalizados",
+  parameters: {
+    docs: {
+      description: {
+        story: `Los slots prefix y suffix permiten insertar contenido personalizado al inicio o final del input:
+
+- **slot:prefix**: Contenido al inicio del input (izquierda)
+- **slot:suffix**: Contenido al final del input (derecha)
+
+Ideal para mostrar símbolos de moneda, unidades de medida o contenido personalizado.`
+      }
+    }
+  },
+  render: () => ({
+    components: { GInput, GConfigProvider },
+    setup() {
+      const formData = reactive({
+        amountCOP: '',
+        amountCLP: ''
+      });
+      
+      return { formData }
+    },
+    template: `
+      <g-config-provider>
+        <div class="flex flex-col gap-4">
+          <g-input 
+            v-model="formData.amountCOP"
+            label="Monto en Pesos Colombianos"
+            placeholder="0.00"
+          >
+            <template #prefix>
+              <span class="text-gray-500 font-medium">COP</span>
+            </template>
+          </g-input>
+
+          <g-input 
+            v-model="formData.amountCLP"
+            label="Monto en Pesos Chilenos"
+            placeholder="0.00"
+          >
+            <template #suffix>
+              <span class="text-gray-500 font-medium">CLP</span>
+            </template>
+          </g-input>
+        </div>
+      </g-config-provider>
+    `
+  })
+};
+
+
 export const States: Story = {
   name: "Estados",
   parameters: {
