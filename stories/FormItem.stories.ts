@@ -15,6 +15,27 @@ const meta: Meta<FormItemInstance> = {
         component: `
 El componente \`GFormItem\` es un contenedor para elementos de formulario que controla los errores de validación y muestra mensajes de error cuando es necesario.
 
+### Características
+> - Control de errores de validación
+> - Mensajes de error personalizables
+> - Integración con Form padre
+> - Estados de validación
+> - Reseteo individual de campos
+> - Soporte para reglas específicas
+
+### Instalación
+
+\`\`\`bash
+yarn add @flash-global66/b2b-ui-form
+\`\`\`
+
+### Importación
+
+\`\`\`typescript
+import { GFormItem } from '@flash-global66/b2b-ui-form'
+import '@flash-global66/b2b-ui-form/form.styles.scss'
+\`\`\`
+
 ### Dependencias
 Este componente está diseñado para funcionar dentro de un componente \`Form\`. Para ver la documentación completa del sistema de formularios, visita la [documentación de Form](/docs/form-form--docs).`
       }

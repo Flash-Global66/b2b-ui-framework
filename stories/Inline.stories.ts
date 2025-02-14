@@ -12,10 +12,30 @@ const meta: Meta<typeof GInline> = {
   parameters: {
     docs: {
       description: {
-        component:
-          "El componente `Inline` se utiliza para mostrar información en un formato compacto, con opciones para incluir un título, descripción, ícono y enlaces interactivos.",
-      },
-    },
+        component: `El componente Inline se utiliza para mostrar información en un formato compacto, con múltiples opciones de personalización:
+
+> - Títulos y descripciones personalizables
+> - Íconos integrados
+> - Enlaces interactivos
+> - Diferentes tipos de mensajes (success, info, warning, error)
+> - Tamaños adaptables (md, sm)
+> - Control de visibilidad
+
+### Instalación
+
+\`\`\`bash
+yarn add @flash-global66/b2b-ui-inline
+\`\`\`
+
+### Importación
+
+\`\`\`typescript
+import { GInline } from '@flash-global66/b2b-ui-framework'
+import '@flash-global66/b2b-ui-inline/inline.styles.scss'
+\`\`\`
+`
+      }
+    }
   },
   argTypes: {
     icon: {
