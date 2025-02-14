@@ -1,17 +1,15 @@
 <template>
   <div ref="formItemRef" :class="formItemClasses">
     <slot />
-    <transition-group :name="`${ns.namespace.value}-fade`" mode="out-in">
-      <div :class="{
-        [ns.e('content-error')]: showMessage,
-      }">
-        <slot v-if="shouldShowError && !showMessageChild" name="error" :error="validateMessage">
-          <span :class="ns.e('error')">
-            {{ validateMessage }}
-          </span>
-        </slot>
-      </div>
-    </transition-group>
+    <div :class="{
+      [ns.e('content-error')]: showMessage,
+    }">
+      <slot v-if="shouldShowError && !showMessageChild" name="error" :error="validateMessage">
+        <span :class="ns.e('error')">
+          {{ validateMessage }}
+        </span>
+      </slot>
+    </div>
   </div>
 </template>
 

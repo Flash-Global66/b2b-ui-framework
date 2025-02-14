@@ -79,12 +79,9 @@
       </slot>
     </div>
     <div :class="ns.e('help')">
-      <transition-group :name="`${ns.namespace.value}-fade`" mode="out-in">
-        <p :key="isError ? 'error' : 'help'" :class="helpTextKls">
-          {{ isError ? elFormItem?.validateMessage : helpText }}
-        </p>
-      </transition-group>
-
+      <p :key="isError ? 'error' : 'help'" :class="helpTextKls">
+        {{ isError ? elFormItem?.validateMessage : helpText }}
+      </p>
       <span v-if="isWordLimitVisible" :class="ns.e('help-count')">
         {{ textLength }}/{{ maxlength }}
       </span>
