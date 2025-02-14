@@ -20,6 +20,29 @@ Las reglas de validación pueden ser aplicadas de dos formas:
 
 Una característica importante es que el validador es lo suficientemente inteligente para omitir las validaciones de campos que están condicionalmente ocultos (v-if/v-show).
 
+### Características
+
+> - Validación síncrona y asíncrona
+> - Reglas personalizables
+> - Manejo de estados
+> - Validación por eventos
+> - Reseteo de campos
+> - Scroll automático a errores
+> - Integración con FormItem
+
+### Instalación
+
+\`\`\`bash
+yarn add @flash-global66/b2b-ui-form
+\`\`\`
+
+### Importación
+
+\`\`\`typescript
+import { GForm } from '@flash-global66/b2b-ui-form'
+import '@flash-global66/b2b-ui-form/form.styles.scss'
+\`\`\`
+
 ### Dependencias
 Este componente trabaja en conjunto con el componente \`FormItem\` para proporcionar una experiencia completa de formularios. Para más detalles sobre FormItem consulta la [documentación de FormItem](/docs/form-form-item--docs).`
       }
