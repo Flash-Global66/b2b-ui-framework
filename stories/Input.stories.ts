@@ -1,277 +1,251 @@
-import { Meta, StoryFn } from '@storybook/vue3';
-import { ref } from 'vue';
-import { action } from '@storybook/addon-actions';
-import { fn } from "@storybook/test";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-// COMPONENTS
-import { GInput } from '../components/Input';
+import type { Meta, StoryObj } from "@storybook/vue3";
+import { GInput, InputInstance } from "../components/Input";
+import { GConfigProvider } from "../components/ConfigProvider";
+import { ref } from "vue";
 
-// CONFIG
-import { GConfigProvider } from '../components/ConfigProvider';
-
-export default {
-  title: 'Form/Input',
+const meta: Meta<InputInstance> = {
+  title: "Form/Input",
   component: GInput,
+  parameters: {
+    docs: {
+      description: {
+        component: `El componente Input es un campo de entrada enriquecido que soporta:
+        
+- Etiquetas flotantes (floating labels)
+- Validación integrada
+- Estados de carga y error
+- Íconos prefix y suffix
+- Texto de ayuda
+- Límite de caracteres
+- Formateo de entrada
+- Modo contraseña con visibilidad toggle
+
+### Importación
+
+\`\`\`typescript
+import { GInput } from '@flash-global66/b2b-ui-framework'
+\`\`\`
+
+### Uso con v-model
+
+\`\`\`vue
+<template>
+  <g-input v-model="value" label="Nombre" />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+const value = ref('')
+</script>
+\`\`\`
+`
+      }
+    }
+  },
   argTypes: {
-    'v-model': {
-      description: 'binding value.',
+    // Props principales
+    modelValue: {
+      description: "Valor del input (v-model)",
+      control: "text",
+    },
+    label: {
+      description: "Etiqueta flotante del input",
+      control: "text",
+    },
+    type: {
+      description: "Tipo de input",
+      control: "select",
+      options: ["text", "password", "email", "number", "tel", "url"],
+      defaultValue: "text"
+    },
+    prefixIcon: {
+      description: "Ícono al inicio del input",
+      control: "text"
+    },
+    suffixIcon: {
+      description: "Ícono al final del input",
+      control: "text"
+    },
+    showPassword: {
+      description: "Muestra/oculta el contenido del campo password",
+      control: "boolean"
+    },
+    formatter: {
+      description: "Función para formatear el valor de entrada",
       table: {
-        type: { summary: 'Number, String' }
+        type: { summary: "(value: string) => string" }
       }
     },
-  },
-  args: {
-    label: 'Nombre',
-  },
-} as Meta<typeof GInput>;
-
-const Template: StoryFn<typeof GInput> = (args, selected) => {
-  return {
-    components: { GInput, GConfigProvider },
-    setup() {
-      const name = ref('');
-
-      return {
-        args,
-        name,
-        onKeydown: fn(action('keydown')),
-      };
+    parser: {
+      description: "Función para parsear el valor antes de emitirlo",
+      table: {
+        type: { summary: "(value: string) => string" }
+      }
     },
-    template: `
-      <g-config-provider>
-        <g-input
-          prefix-icon="solid file-image"
-          label="Nombre"
-          show-word-limit
-          placeholder="Ingrese su nombre"
-          help-text="Help text lorem ipsum lorem lorem lorem ad"
-          v-model="name"
-          v-bind="args"
-          @keydown="onKeydown"
-        >
-        </g-input>
-        {{name}}
-      </g-config-provider>
-    `,
+    ref: {
+      description: "Referencia al elemento raíz",
+      table: {
+        category: "Expuesto",
+        type: { summary: "HTMLElement" }
+      }
+    },
+    isComposing: {
+      description: "Estado de composición del input",
+      table: {
+        category: "Expuesto",
+        type: { summary: "boolean" }
+      }
+    },
+    focus: {
+      description: "Enfoca el input",
+      table: {
+        category: "Expuesto",
+        type: { summary: "() => void" }
+      }
+    },
+    blur: {
+      description: "Quita el foco del input",
+      table: {
+        category: "Expuesto",
+        type: { summary: "() => void" }
+      }
+    },
+    select: {
+      description: "Selecciona todo el texto del input",
+      table: {
+        category: "Expuesto",
+        type: { summary: "() => void" }
+      }
+    },
+    clear: {
+      description: "Limpia el valor del input",
+      table: {
+        category: "Expuesto",
+        type: { summary: "() => void" }
+      }
+    }
   }
 };
+export default meta;
+type Story = StoryObj<InputInstance>;
 
-export const Default = Template.bind({});
-
-Default.parameters = {
-  docs: {
-    description: {
-      component: `When there are plenty of options, use a drop-down menu to display and select desired ones.`,
-    },
-  },
-};
-
-const TemplateTextarea: StoryFn<typeof GInput> = (args, selected) => {
-  return {
+// Ejemplo Básico
+export const Basic: Story = {
+  name: "Básico",
+  render: () => ({
     components: { GInput, GConfigProvider },
-    setup() {
-      const message = ref('');
-
-      return {
-        args,
-        message,
-        onKeydown: action('change'),
-      };
-    },
     template: `
       <g-config-provider>
-        <g-input
-          v-model="message"
-          v-bind="args"
-          label="Mensaje"
-          type="textarea"
-        >
-      </g-config-provider>
-    `,
-  }
-};
-
-export const Textarea = TemplateTextarea.bind({});
-
-Textarea.args = {
-  type: 'textarea',
-};
-
-Textarea.parameters = {
-  docs: {
-    description: {
-      story: `Disable the Input with the \`disabled\` attribute.`,
-    },
-  },
-};
-
-export const Disabled = Template.bind({});
-
-Disabled.args = {
-  disabled: true,
-};
-
-Disabled.parameters = {
-  docs: {
-    description: {
-      story: `Disable the Input with the \`disabled\` attribute.`,
-    },
-  },
-};
-
-export const Clearable = Template.bind({});
-
-Clearable.args = {
-  clearable: true,
-};
-
-Clearable.parameters = {
-  docs: {
-    description: {
-      story: `Make the Input clearable with the \`clearable\` attribute.`,
-    },
-  },
-};
-
-const TemplateSlots: StoryFn<typeof GInput> = (args, selected) => {
-  return {
-    components: { GInput, GConfigProvider, FontAwesomeIcon },
-    setup() {
-      const name = ref('');
-
-      return {
-        args,
-        name,
-        onKeydown: action('keydown'),
-      };
-    },
-    template: `
-      <g-config-provider>
-        <div class="grid grid-cols-1 gap-4">
-          <g-input
-            v-model="name"
-            label="Buscar"
-            @keydown="onKeydown"
-          >
-            <template #prefix>
-              <FontAwesomeIcon
-                :icon="['fas', 'search']"
-              />
-            </template>
-          </g-input>
-
-          <g-input
-            v-model="name"
-            label="Suscribirse"
-            @keydown="onKeydown"
-          >
-            <template #suffix>
-              <FontAwesomeIcon
-                :icon="['fas', 'arrow-right']"
-              />
-            </template>
-          </g-input>
-
-          <g-input
-            v-model="name"
-            @keydown="onKeydown"
-          >
-            <template #prefix>
-              <div class="pr-2">
-                Como estas?
-              </div>
-            </template>
-          </g-input>
-
-          <g-input
-            v-model="name"
-            label="Buscar..."
-            @keydown="onKeydown"
-          >
-            <template #suffix>
-              Enter
-            </template>
-          </g-input>
+        <div class="flex flex-col gap-4">
+          <g-input label="Nombre" placeholder="Ingrese su nombre" />
+          <g-input label="Email" type="email" placeholder="ejemplo@dominio.com" />
+          <g-input label="Teléfono" type="tel" placeholder="+51 999888777" />
         </div>
       </g-config-provider>
-    `,
-  }
+    `
+  })
 };
 
-export const Slots = TemplateSlots.bind({});
-
-Slots.args = {
-};
-
-Slots.parameters = {
-  docs: {
-    description: {
-      story: `\`Prefix\`: Content as Input prefix, only works when type is not 'textarea' -  \`Suffix\`: Content as Input suffix, only works when type is not 'textarea.'`,
-    },
-  },
-};
-
-const TemplateFormatter: StoryFn<typeof GInput> = (args, selected) => {
-  return {
+// Ejemplo con Validación
+export const WithValidation: Story = {
+  name: "Con Validación",
+  render: () => ({
     components: { GInput, GConfigProvider },
-    setup() {
-      const name = ref('');
-      const amount = ref('');
-
-      function formatterCharacter(value: string) {
-        return value.replace(/[?!@#%^&*]/g, '');
-      }
-
-      function formatterAmount(value: string) {
-        return value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-      }
-
-      function parseAmount(value: string) {
-        return value.replace(/\s|,|\./g, '');
-      }
-
-      return {
-        args,
-        name,
-        amount,
-        onKeydown: action('keydown'),
-        formatterCharacter,
-        formatterAmount,
-        parseAmount,
-      };
-    },
     template: `
       <g-config-provider>
-        <div class="grid grid-cols-1 gap-4">
-          <g-input
-            v-model="name"
-            label="No se permiten (?!@#%^&*))"
-            :formatter="formatterCharacter"
-            @keydown="onKeydown"
-          >
-          </g-input>
-
-          <g-input
-            v-model="amount"
-            label="Colocar decimales"
-            :formatter="formatterAmount"
-            :parser="parseAmount"
-            @keydown="onKeydown"
-          >
-          </g-input>
+        <div class="flex flex-col gap-4">
+          <g-input 
+            label="Email Corporativo" 
+            type="email"
+            help-text="Debe ser un email corporativo válido"
+            placeholder="usuario@empresa.com"
+          />
+          <g-input 
+            label="Contraseña"
+            type="password"
+            show-password
+            help-text="Mínimo 8 caracteres, incluir números y símbolos"
+          />
         </div>
       </g-config-provider>
-    `,
-  }
+    `
+  })
 };
 
-export const formatter = TemplateFormatter.bind({});
+// Ejemplo de Formulario de Pago
+export const PaymentForm: Story = {
+  name: "Formulario de Pago",
+  render: () => ({
+    components: { GInput, GConfigProvider },
+    template: `
+      <g-config-provider>
+        <div class="grid grid-cols-2 gap-4">
+          <g-input 
+            label="Número de Tarjeta"
+            placeholder="1234 5678 9012 3456"
+            maxlength="19"
+            prefix-icon="regular credit-card"
+          />
+          <g-input 
+            label="Titular"
+            placeholder="Como aparece en la tarjeta"
+            prefix-icon="regular user"
+          />
+          <g-input 
+            label="Fecha Vencimiento"
+            placeholder="MM/YY"
+            maxlength="5"
+            prefix-icon="regular calendar"
+          />
+          <g-input 
+            label="CVV"
+            type="password"
+            maxlength="4"
+            show-password
+            prefix-icon="regular lock"
+          />
+        </div>
+      </g-config-provider>
+    `
+  })
+};
 
-formatter.parameters = {
-  docs: {
-    description: {
-      story: `Display value within it's situation with \`formatter\`, and we usually use \`parser\` at the same time.`,
-    },
-  },
+// Ejemplo de Estados
+export const States: Story = {
+  name: "Estados",
+  render: () => ({
+    components: { GInput, GConfigProvider },
+    template: `
+      <g-config-provider>
+        <div class="flex flex-col gap-4">
+          <g-input 
+            label="Normal"
+            value="Input normal"
+          />
+          <g-input 
+            label="Deshabilitado"
+            value="Input deshabilitado"
+            disabled
+          />
+          <g-input 
+            label="Solo lectura"
+            value="Input readonly"
+            readonly
+          />
+          <g-input 
+            label="Con error"
+            value="Input con error"
+            class="is-error"
+            help-text="Este campo contiene un error"
+          />
+          <g-input 
+            label="Cargando"
+            value="Input loading"
+            loading
+          />
+        </div>
+      </g-config-provider>
+    `
+  })
 };
