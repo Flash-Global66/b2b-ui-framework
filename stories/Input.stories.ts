@@ -205,20 +205,36 @@ export const PaymentForm: Story = {
 
 export const States: Story = {
   name: "Estados",
+  parameters: {
+    docs: {
+      description: {
+        story: `Los inputs pueden tener diferentes estados que indican su comportamiento y apariencia:
+
+- **Enabled**: Estado inicial del input, listo para recibir datos
+- **Completed**: Cuando el input ya contiene datos ingresados
+- **Disabled**: Input deshabilitado, no permite interacción
+- **Readonly**: Permite ver pero no modificar el contenido
+- **Evento**: Input controlado por eventos externos (ej: modal)
+- **Error**: Muestra estado de error con mensaje
+- **Loading**: Estado de carga durante operaciones asíncronas`
+      }
+    }
+  },
   render: () => ({
     components: { GInput, GConfigProvider },
     setup() {
       const states = reactive({
-        normal: 'Input normal',
+        enabled: '',
+        completed: 'Input con contenido',
         disabled: 'Input deshabilitado',
         readonly: 'Input readonly',
         event: '',
-        error: 'Input con error',
+        error: '',
         loading: 'Input loading'
       })
 
-      function handleClick (e) {
-        console.log('Click en el input', e)
+      function handleClick(e: MouseEvent) {
+        alert('Click en el input')
       }
       
       return { states, handleClick }
@@ -227,38 +243,50 @@ export const States: Story = {
       <g-config-provider>
         <div class="flex flex-col gap-4">
           <g-input 
-            v-model="states.normal"
-            label="Normal"
+            v-model="states.enabled"
+            label="Enabled"
+            help-text="Input en estado inicial, listo para recibir datos"
+          />
+          <g-input 
+            v-model="states.completed"
+            label="Completed"
+            help-text="Input que ya contiene información ingresada"
           />
           <g-input 
             v-model="states.disabled"
-            label="Deshabilitado"
+            label="Disabled"
             disabled
+            help-text="Input deshabilitado, no permite ninguna interacción"
           />
           <g-input 
             v-model="states.readonly"
-            label="Solo lectura"
+            label="Readonly"
             readonly
+            help-text="Permite ver pero no modificar el contenido"
           />
           <g-input 
             v-model="states.event"
-            label="Input evento"
+            label="Evento"
             is-event
             @click="handleClick"
             suffix-icon="regular chevron-down"
+            help-text="Click para abrir modal de selección"
           />
           <g-input 
             v-model="states.error"
-            label="Con error"
+            label="Error"
             message-error="Este campo contiene un error"
+            help-text="Ejemplo de input con estado de error"
           />
           <g-input 
             v-model="states.loading"
-            label="Cargando"
+            label="Loading"
             loading
+            help-text="Estado durante operaciones asíncronas"
           />
         </div>
       </g-config-provider>
     `
   })
 };
+
