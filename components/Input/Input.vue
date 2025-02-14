@@ -369,8 +369,8 @@ const updatePrefixPosition = () => {
 useResizeObserver(prefixRef, updatePrefixPosition);
 
 defineExpose({
-  /** @description HTML input element */
-  input,
+  /** @description HTML element, input or textarea */
+  ref: _ref,
 
   /** @description is input composing */
   isComposing,
