@@ -22,28 +22,10 @@ export const formItemProps = buildProps({
     type: definePropType<FormItemProp>([String, Array]),
   },
   /**
-   * @description Whether the field is required or not, will be determined by validation rules if omitted.
-   */
-  required: {
-    type: Boolean,
-    default: undefined,
-  },
-  /**
    * @description Validation rules of form, see the [following table](#formitemrule), more advanced usage at [async-validator](https://github.com/yiminghe/async-validator).
    */
   rules: {
     type: definePropType<Arrayable<FormItemRule>>([Object, Array]),
-  },
-  /**
-   * @description Field error message, set its value and the field will validate error and show this message immediately.
-   */
-  error: String,
-  /**
-   * @description Validation state of formItem.
-   */
-  validateStatus: {
-    type: String,
-    values: formItemValidateStates,
   },
   /**
    * @description Whether to show the error message.
