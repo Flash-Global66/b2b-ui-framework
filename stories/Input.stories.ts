@@ -24,7 +24,7 @@ const meta: Meta<InputInstance> = {
 ### Instalación
 
 \`\`\`bash
-pnpm add @flash-global66/b2b-ui-input
+yarn add @flash-global66/b2b-ui-input
 \`\`\`
 
 ### Importación
