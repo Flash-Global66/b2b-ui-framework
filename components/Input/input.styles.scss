@@ -83,6 +83,13 @@
     }
   }
 
+  @include when(event) {
+    @apply cursor-pointer;
+    @include e("inner") {
+      @apply cursor-pointer;
+    }
+  }
+
   @include when(label) {
     @include e("inner") {
       &::placeholder {

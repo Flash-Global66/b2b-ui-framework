@@ -26,7 +26,7 @@ export const inputProps = buildProps({
     type: String,
     default: undefined,
   },
-  isLoading: {
+  loading: {
     type: Boolean,
     default: false,
   },
@@ -34,6 +34,13 @@ export const inputProps = buildProps({
    * @description label text
    */
   label: {
+    type: String,
+    default: undefined,
+  },
+  /**
+   * @description message error
+   */
+  messageError: {
     type: String,
     default: undefined,
   },
@@ -150,6 +157,10 @@ export const inputProps = buildProps({
     type: Boolean,
     default: true,
   },
+  isEvent: {
+    type: Boolean,
+    default: false,
+  },
   /**
    * @description input or textarea element style
    */
@@ -167,6 +178,7 @@ export type InputProps = ExtractPropTypes<typeof inputProps>
 
 export const inputEmits = {
   [UPDATE_MODEL_EVENT]: (value: string) => isString(value),
+  click: (evt: MouseEvent) => evt instanceof MouseEvent,
   input: (value: string) => isString(value),
   change: (value: string) => isString(value),
   focus: (evt: FocusEvent) => evt instanceof FocusEvent,
