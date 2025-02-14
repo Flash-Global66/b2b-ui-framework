@@ -2,7 +2,9 @@
   <div ref="formItemRef" :class="formItemClasses">
     <slot />
     <transition :name="ns.e('fade')" mode="out-in">
-      <div :class="ns.e('content-error')">
+      <div :class="{
+        [ns.e('content-error')]: showMessage && !showMessageChild,
+      }">
         <slot v-if="shouldShowError" name="error" :error="validateMessage">
           <span :class="ns.e('error')">
             {{ validateMessage }}
@@ -148,8 +150,7 @@ const shouldShowError = computed(
 const shouldShowErrorChild = computed(
   () =>
     validateStateDebounced.value === "error" &&
-    props.showMessageChild &&
-    !props.showMessage
+    props.showMessageChild
 );
 
 const setValidationState = (state: FormItemValidateState) => {
