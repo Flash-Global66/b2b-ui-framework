@@ -153,50 +153,120 @@ export const Basic: Story = {
     `
   })
 };
-
 export const PaymentForm: Story = {
   name: "Formulario de Pago",
+  parameters: {
+    docs: {
+      description: {
+        story: `
+- **Número de Tarjeta**: 
+  - Usa formatter/parser para formateo automático XXXX XXXX XXXX XXXX
+  - Prefix-icon: credit-card
+  - Maxlength: 19 caracteres (16 números + 3 espacios)
+
+- **Titular**: 
+  - Campo de texto simple
+  - Prefix-icon: user
+  - Placeholder guía al usuario sobre el formato esperado
+
+- **Fecha Vencimiento**: 
+  - Prefix-icon: calendar
+  - Maxlength: 5 caracteres (formato MM/YY)
+
+- **CVV**: 
+  - Tipo password con toggle de visibilidad
+  - Prefix-icon: lock
+  - Maxlength: 4 dígitos
+  - Incluye showPassword para alternar visibilidad
+
+### Formateo de Tarjeta
+
+El input de tarjeta implementa formatter/parser para mejor experiencia:
+
+\`\`\`typescript
+// Formatea visualmente: 4111111111111111 -> 4111 1111 1111 1111
+const formatCardNumber = (value: string) => {
+  if (!value) return ''
+  const numbers = value.replace(/\s/g, '')
+  const groups = numbers.match(/.{1,4}/g) || []
+  return groups.join(' ')
+}
+
+// Mantiene datos limpios: 4111 1111 1111 1111 -> 4111111111111111
+const parseCardNumber = (value: string) => {
+  return value.replace(/\s/g, '')
+}
+\`\`\`
+`
+      }
+    }
+  },
   render: () => ({
     components: { GInput, GConfigProvider },
     setup() {
-      const cardNumber = ref('')
-      const titular = ref('')
-      const expDate = ref('')
-      const cvv = ref('')
+      const formData = reactive({
+        cardNumber: '',
+        titular: '',
+        expDate: '',
+        cvv: ''
+      })
+
+      const formatCardNumber = (value: string) => {
+        if (!value) return ''
+        const numbers = value.replace(/\s/g, '')
+        const groups = numbers.match(/.{1,4}/g) || []
+        return groups.join(' ')
+      }
+
+      const parseCardNumber = (value: string) => {
+        return value.replace(/\s/g, '')
+      }
       
-      return { cardNumber, titular, expDate, cvv }
+      return { 
+        formData,
+        formatCardNumber,
+        parseCardNumber
+      }
     },
     template: `
       <g-config-provider>
-        <div class="grid grid-cols-2 gap-4">
-          <g-input 
-            v-model="cardNumber"
-            label="Número de Tarjeta"
-            placeholder="1234 5678 9012 3456"
-            maxlength="19"
-            prefix-icon="solid credit-card"
-          />
-          <g-input 
-            v-model="titular"
-            label="Titular"
-            placeholder="Como aparece en la tarjeta"
-            prefix-icon="regular user"
-          />
-          <g-input 
-            v-model="expDate"
-            label="Fecha Vencimiento"
-            placeholder="MM/YY"
-            maxlength="5"
-            prefix-icon="regular calendar"
-          />
-          <g-input 
-            v-model="cvv"
-            label="CVV"
-            type="password"
-            maxlength="4"
-            show-password
-            prefix-icon="regular lock"
-          />
+        <div class="flex flex-col gap-8">
+          <div class="grid grid-cols-2 gap-4">
+            <g-input 
+              v-model="formData.cardNumber"
+              label="Número de Tarjeta"
+              placeholder="1234 5678 9012 3456"
+              maxlength="19"
+              prefix-icon="regular credit-card"
+              :formatter="formatCardNumber"
+              :parser="parseCardNumber"
+            />
+            <g-input 
+              v-model="formData.titular"
+              label="Titular"
+              placeholder="Como aparece en la tarjeta"
+              prefix-icon="regular user"
+            />
+            <g-input 
+              v-model="formData.expDate"
+              label="Fecha Vencimiento"
+              placeholder="MM/YY"
+              maxlength="5"
+              prefix-icon="regular calendar"
+            />
+            <g-input 
+              v-model="formData.cvv"
+              label="CVV"
+              type="password"
+              maxlength="4"
+              show-password
+              prefix-icon="regular lock"
+            />
+          </div>
+
+          <div class="bg-gray-100 p-4 rounded">
+            <pre class="text-sm">{{ formData }}</pre>
+          </div>
         </div>
       </g-config-provider>
     `
