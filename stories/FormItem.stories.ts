@@ -166,3 +166,95 @@ El atributo \`validate-event\` controla si el componente de entrada dispara la v
     `
   })
 };
+
+export const MessageBehavior: Story = {
+  name: "Mensajes de Error",
+  parameters: {
+    docs: {
+      description: {
+        story: `Demostración de las diferentes formas de mostrar mensajes de error:
+        
+- \`show-message-child=true\`: El error se muestra en el componente hijo (Input, Select, etc)
+- \`show-message=true\`: El error se muestra en el FormItem
+- Cuando ambos están activos, tiene prioridad show-message-child`
+      }
+    }
+  },
+  render: () => ({
+    components: { GForm, GFormItem, GInput, GConfigProvider, GButton },
+    setup() {
+      const formRef = ref();
+      const formData = reactive({
+        campo1: "",
+        campo2: "",
+        campo3: ""
+      });
+
+      const rules = {
+        campo1: [{ required: true, message: "Este campo es requerido", trigger: "blur" }],
+        campo2: [{ required: true, message: "Este campo es requerido", trigger: "blur" }],
+        campo3: [{ required: true, message: "Este campo es requerido", trigger: "blur" }]
+      };
+
+      async function handleSubmit() {
+        if (!formRef.value) return;
+        await formRef.value.validate((valid, fields) => {
+          if (valid) {
+            console.log("submit!", fields);
+          } else {
+            console.log("error submit!", fields);
+          }
+        });
+      }
+
+      async function handleReset() {
+        if (!formRef.value) return;
+        formRef.value.resetFields();
+      }
+
+      return { formRef, formData, rules, handleSubmit, handleReset };
+    },
+    template: `
+      <g-config-provider>
+        <g-form ref="formRef" :model="formData" :rules="rules">
+          <g-form-item prop="campo1">
+            <g-input 
+              v-model="formData.campo1"
+              label="Error en Input"
+              placeholder="Error se muestra en el input"
+            />
+          </g-form-item>
+
+          <g-form-item 
+            prop="campo2"
+            :show-message-child="false"
+            show-message
+          >
+            <g-input 
+              v-model="formData.campo2"
+              label="Error en FormItem"
+              placeholder="Error se muestra debajo"
+            />
+          </g-form-item>
+
+          <g-form-item 
+            prop="campo3"
+            :show-message-child="true"
+            :show-message="true"
+          >
+            <g-input 
+              v-model="formData.campo3"
+              label="Prioridad a show-message-child"
+              placeholder="Error se muestra en el input"
+            />
+          </g-form-item>
+
+          <div style="margin-top: 20px">
+            <g-button type="primary" @click="handleSubmit">Validar</g-button>
+            <g-button @click="handleReset" style="margin-left: 10px">Resetear</g-button>
+          </div>
+        </g-form>
+      </g-config-provider>
+    `
+  })
+};
