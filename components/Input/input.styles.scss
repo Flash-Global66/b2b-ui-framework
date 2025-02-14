@@ -115,18 +115,8 @@
   }
 
   @include e("help") {
-    @apply flex gap-xxs justify-between text-2 font-medium text-disabled-txt px-xs relative;
-    height: auto;
+    @apply flex gap-xxs justify-between text-2 font-medium text-disabled-txt px-xs;
     min-height: 18px;
-    
-    p {
-      @apply absolute;
-      width: 100%;
-      z-index: 1;
-      &.error {
-        z-index: 2;
-      }
-    }
   }
 
   @include e("help-text") {
