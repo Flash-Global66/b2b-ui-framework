@@ -93,7 +93,6 @@ const fieldValue = computed(() => {
 });
 
 const normalizedRules = computed(() => {
-  const { required } = props;
 
   const rules: FormItemRule[] = [];
 
@@ -109,21 +108,6 @@ const normalizedRules = computed(() => {
     ).value;
     if (_rules) {
       rules.push(...ensureArray(_rules));
-    }
-  }
-
-  if (required !== undefined) {
-    const requiredRules = rules
-      .map((rule, i) => [rule, i] as const)
-      .filter(([rule]) => Object.keys(rule).includes("required"));
-
-    if (requiredRules.length > 0) {
-      for (const [rule, i] of requiredRules) {
-        if (rule.required === required) continue;
-        rules[i] = { ...rule, required };
-      }
-    } else {
-      rules.push({ required });
     }
   }
 
@@ -273,20 +257,6 @@ const addInputId: FormItemContext["addInputId"] = (id: string) => {
 const removeInputId: FormItemContext["removeInputId"] = (id: string) => {
   inputIds.value = inputIds.value.filter((listId) => listId !== id);
 };
-
-watch(
-  () => props.error,
-  (val) => {
-    validateMessage.value = val || "";
-    setValidationState(val ? "error" : "");
-  },
-  { immediate: true }
-);
-
-watch(
-  () => props.validateStatus,
-  (val) => setValidationState(val || "")
-);
 
 const context: FormItemContext = reactive({
   ...toRefs(props),
