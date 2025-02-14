@@ -4,8 +4,7 @@ import { FormInstance, GForm, GFormItem } from "../components/Form";
 import { GInput } from "../components/Input";
 import { GConfigProvider } from "../components/ConfigProvider";
 import { GButton } from "../components/Button/src";
-
-const meta: Meta<typeof GForm> = {
+const meta: Meta<FormInstance> = {
   title: "Form/Form",
   component: GForm,
   parameters: {
@@ -48,9 +47,53 @@ Este componente trabaja en conjunto con el componente \`FormItem\` para proporci
       control: "boolean",
       defaultValue: true,
     },
+    validate: {
+      description: "Valida el formulario completo. Recibe un callback o retorna una Promise",
+      table: {
+        category: "Expuesto",
+        type: { summary: "() => Promise<boolean>" }
+      }
+    },
+    validateField: {
+      description: "Valida campos específicos del formulario",
+      table: {
+        category: "Expuesto",
+        type: { summary: "(props?: Arrayable<FormItemProp>, callback?: FormValidateCallback) => FormValidationResult" }
+      }
+    },
+    resetFields: {
+      description: "Reinicia los campos especificados y elimina los resultados de validación",
+      table: {
+        category: "Expuesto",
+        type: { summary: "(props?: Arrayable<FormItemProp>) => void" }
+      }
+    },
+    clearValidate: {
+      description: "Limpia los mensajes de validación para los campos especificados",
+      table: {
+        category: "Expuesto",
+        type: { summary: "(props?: Arrayable<FormItemProp>) => void" }
+      }
+    },
+    scrollToField: {
+      description: "Desplaza la vista hacia el campo especificado",
+      table: {
+        category: "Expuesto",
+        type: { summary: "(prop: FormItemProp) => void" }
+      }
+    },
+    fields: {
+      description: "Contexto de todos los campos del formulario",
+      table: {
+        category: "Expuesto",
+        type: { summary: "FormItemContext[]" }
+      }
+    }
   },
-};export default meta;
-type Story = StoryObj<typeof GForm>;
+
+};
+
+export default meta;type Story = StoryObj<FormInstance>;
 
 // Historia Principal
 export const Primary: Story = {
@@ -106,7 +149,7 @@ export const Primary: Story = {
     },
     template: `
       <g-config-provider>
-        <g-form ref="formRef" :model="formData" :rules="rules">
+        <g-form ref="formRef" :model="formData" :rules="rules" class="flex flex-col gap-4">
           <g-form-item prop="nombre">
             <g-input v-model="formData.nombre" label="Nombre" />
           </g-form-item>
@@ -114,7 +157,7 @@ export const Primary: Story = {
             <g-input v-model="formData.email" label="Email" />
           </g-form-item>
           <div class="flex gap-4 mt-4">
-            <g-button @click="handleSubmit" type="primary">Enviar</g-button>
+            <g-button @click="handleSubmit">Enviar</g-button>
             <g-button @click="handleReset" variant="secondary">Limpiar</g-button>
           </div>
         </g-form>
@@ -234,7 +277,7 @@ La validación se ejecutará cuando el campo pierda el foco (trigger: "blur") y 
     },
     template: `
       <g-config-provider>
-        <g-form ref="formRef" :model="formData" :rules="rules">
+        <g-form ref="formRef" :model="formData" :rules="rules" class="flex flex-col gap-4">
           <g-form-item label="Contraseña" prop="pass">
             <g-input 
               v-model="formData.pass" 
@@ -264,7 +307,7 @@ La validación se ejecutará cuando el campo pierda el foco (trigger: "blur") y 
             />
           </g-form-item>
           <div class="flex gap-4 mt-4">
-            <g-button @click="handleSubmit" type="primary">Enviar</g-button>
+            <g-button @click="handleSubmit">Enviar</g-button>
             <g-button @click="handleReset" variant="secondary">Limpiar</g-button>
           </div>
         </g-form>
@@ -358,7 +401,7 @@ En este ejemplo, el email se valida en tiempo real mientras el usuario escribe, 
     },
     template: `
       <g-config-provider>
-        <g-form ref="formRef" :model="formData" :rules="rules">
+        <g-form ref="formRef" :model="formData" :rules="rules" class="flex flex-col gap-4">
           <g-form-item prop="email">
             <g-input 
               v-model="formData.email" 
@@ -375,7 +418,7 @@ En este ejemplo, el email se valida en tiempo real mientras el usuario escribe, 
             />
           </g-form-item>
           <div class="flex gap-4 mt-4">
-            <g-button @click="handleSubmit" type="primary">Enviar</g-button>
+            <g-button @click="handleSubmit">Enviar</g-button>
             <g-button @click="handleReset" variant="secondary">Limpiar</g-button>
           </div>
         </g-form>
@@ -521,7 +564,7 @@ async function handleSubmit() {
             />
           </g-form-item>
           <div class="flex gap-4 mt-4">
-            <g-button type="submit" type="primary">Enviar</g-button>
+            <g-button type="submit">Enviar</g-button>
           </div>
         </g-form>
       </g-config-provider>
@@ -621,6 +664,7 @@ const addDomain = () => {
       <g-config-provider>
         <g-form ref="formRef" :model="formData">
           <g-form-item
+            class="mb-4"
             prop="email"
             label="Email"
             :rules="[
@@ -638,6 +682,7 @@ const addDomain = () => {
 
           <g-form-item
             v-for="(domain, index) in formData.domains"
+            class="mb-6"
             :key="domain.key"
             :label="'Dominio ' + (index + 1)"
             :prop="'domains.' + index + '.value'"
@@ -663,7 +708,7 @@ const addDomain = () => {
           </g-form-item>
 
           <div class="flex gap-4 mt-4">
-            <g-button @click="handleSubmit" type="primary">Enviar</g-button>
+            <g-button @click="handleSubmit">Enviar</g-button>
             <g-button @click="addDomain" variant="secondary">Nuevo dominio</g-button>
             <g-button @click="handleReset" variant="secondary">Limpiar</g-button>
           </div>
