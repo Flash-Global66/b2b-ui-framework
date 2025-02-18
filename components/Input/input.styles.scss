@@ -114,7 +114,7 @@
   }
 
   @include e("icon") {
-    @apply text-7 text-grey-500 select-none w-6;
+    @apply text-6 text-grey-500 select-none w-5;
   }
 
   @include e("icon-password") {
