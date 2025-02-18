@@ -7,8 +7,8 @@ export type klsByType = {
 }
 
 export type Option = {
-  value: CheckboxGroupValueType
-  label?: CheckboxGroupValueType
+  value: string | number | boolean
+  label?: string | number | boolean
   disabled?: boolean
   checked?: boolean
 }
