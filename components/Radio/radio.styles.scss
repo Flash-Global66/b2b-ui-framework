@@ -1,5 +1,5 @@
 @use 'element-plus/theme-chalk/src/radio.scss' as *;
-/* @use "element-plus/theme-chalk/src/radio-group.scss" as * ; */
+@use "element-plus/theme-chalk/src/radio-group.scss" as * ;
 @use 'element-plus/theme-chalk/src/mixins/mixins' as *;
 @use 'element-plus/theme-chalk/src/mixins/utils' as *;
 @use 'element-plus/theme-chalk/src/mixins/var' as *;
@@ -13,8 +13,13 @@
   }
 
   @include when(checked) {
-    @include e(label) {
-      @apply text-secondary-txt;
+    &:not(.is-disabled) {
+      @include e(label) {
+        @apply text-secondary-txt;
+      }
+      @include e(inner) {
+        @apply border-primary-bd;
+      }
     }
     &.is-disabled {
       @include e(inner) {

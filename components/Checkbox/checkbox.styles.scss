@@ -13,7 +13,7 @@
         @apply text-secondary-txt;
       }
       @include e(inner) {
-        @apply border-primary-bd;
+        @apply border-primary-bd bg-primary-def;
       }
     }
     &.is-disabled {
