@@ -9,7 +9,7 @@ export const radioPropsBase = buildProps({
    */
   modelValue: {
     type: [String, Number, Boolean],
-    default: undefined,
+    default: undefined
   },
   /**
    * @description whether Radio is disabled
@@ -20,33 +20,33 @@ export const radioPropsBase = buildProps({
    */
   label: {
     type: [String, Number, Boolean],
-    default: undefined,
+    default: undefined
   },
   /**
    * @description the value of Radio
    */
   value: {
     type: [String, Number, Boolean],
-    default: undefined,
+    default: undefined
   },
   /**
    * @description native `name` attribute
    */
   name: {
     type: String,
-    default: undefined,
-  },
+    default: undefined
+  }
 })
 
 export const radioProps = buildProps({
-  ...radioPropsBase,
+  ...radioPropsBase
 } as const)
 
 export const radioEmits = {
   [UPDATE_MODEL_EVENT]: (val: string | number | boolean | undefined) =>
     isString(val) || isNumber(val) || isBoolean(val),
   [CHANGE_EVENT]: (val: string | number | boolean | undefined) =>
-    isString(val) || isNumber(val) || isBoolean(val),
+    isString(val) || isNumber(val) || isBoolean(val)
 }
 
 export type RadioProps = ExtractPropTypes<typeof radioProps>

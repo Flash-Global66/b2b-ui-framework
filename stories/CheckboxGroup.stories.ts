@@ -11,11 +11,22 @@ const meta: Meta<typeof GCheckboxGroup> = {
     docs: {
       description: {
         component: `
-### Uso básico
-Grupo de checkboxes que permite selección múltiple con validación y configuración visual. Existen dos maneras
+El componente \`GCheckboxGroup\` es un grupo de checkboxes que permite selección múltiple con validación y configuración visual. Existen dos maneras
 de construir el grupo: mediante la propiedad \`options\` o con los slots predeterminados.
 
-Ejemplo con slots personalizados:
+### Instalación
+\`\`\`bash
+yarn add @flash-global66/b2b-ui-checkbox
+\`\`\`
+
+### Importación
+
+\`\`\`typescript
+import { GCheckboxGroup } from '@flash-global66/b2b-ui-checkbox'
+import '@flash-global66/b2b-ui-checkbox/checkbox.styles.scss'
+\`\`\`
+
+### Ejemplo con slots personalizados:
 \`\`\`vue
 <g-checkbox-group 
   v-bind="args"
@@ -26,7 +37,7 @@ Ejemplo con slots personalizados:
 </g-checkbox-group>
 \`\`\`
 
-Ejemplo con opciones predefinidas:
+### Ejemplo con opciones predefinidas:
 \`\`\`vue
 <g-checkbox-group
   v-bind="args"
