@@ -15,10 +15,21 @@ const meta: Meta<typeof GCheckbox> = {
     docs: {
       description: {
         component: `
-### Uso básico
-Componente de selección que permite activar o desactivar una opción.
+El componente \`GCheckbox\` es un elemento de selección que permite activar o desactivar una opción.
 
-Ejemplo básico:
+### Instalación
+\`\`\`bash
+yarn add @flash-global66/b2b-ui-checkbox
+\`\`\`
+
+### Importación
+
+\`\`\`typescript
+import { GCheckbox } from '@flash-global66/b2b-ui-checkbox'
+import '@flash-global66/b2b-ui-checkbox/checkbox.styles.scss'
+\`\`\`
+
+### Ejemplo básico:
 \`\`\`vue
 <g-checkbox v-model="checked" label="Acepto los términos" />
 \`\`\`

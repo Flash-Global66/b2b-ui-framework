@@ -80,7 +80,7 @@ onMounted(() => {
     .map((item) => item.value)
   
   if (checkedValues.length > 0) {
-    modelValue.value = checkedValues
+    modelValue.value = checkedValues as CheckboxGroupValueType
   }
 })
 
