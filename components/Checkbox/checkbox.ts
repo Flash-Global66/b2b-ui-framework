@@ -12,21 +12,21 @@ export const checkboxProps = {
    */
   modelValue: {
     type: [Number, String, Boolean],
-    default: undefined,
+    default: undefined
   },
   /**
    * @description label of the Checkbox when used inside a `checkbox-group`
    */
   label: {
     type: [String, Boolean, Number, Object],
-    default: undefined,
+    default: undefined
   },
   /**
    * @description value of the Checkbox when used inside a `checkbox-group`
    */
   value: {
     type: [String, Boolean, Number, Object],
-    default: undefined,
+    default: undefined
   },
   /**
    * @description Set indeterminate state, only responsible for style control
@@ -45,28 +45,28 @@ export const checkboxProps = {
    */
   name: {
     type: String,
-    default: undefined,
+    default: undefined
   },
   /**
    * @description value of the Checkbox if it's checked
    */
   trueValue: {
     type: [String, Number],
-    default: undefined,
+    default: undefined
   },
   /**
    * @description value of the Checkbox if it's not checked
    */
   falseValue: {
     type: [String, Number],
-    default: undefined,
+    default: undefined
   },
   /**
    * @description input id
    */
   id: {
     type: String,
-    default: undefined,
+    default: undefined
   },
   /**
    * @description input tabindex
@@ -77,16 +77,15 @@ export const checkboxProps = {
    */
   validateEvent: {
     type: Boolean,
-    default: true,
+    default: true
   },
-  ...useAriaProps(['ariaControls']),
+  ...useAriaProps(['ariaControls'])
 }
 
 export const checkboxEmits = {
   [UPDATE_MODEL_EVENT]: (val: CheckboxValueType) =>
     isString(val) || isNumber(val) || isBoolean(val),
-  change: (val: CheckboxValueType) =>
-    isString(val) || isNumber(val) || isBoolean(val),
+  change: (val: CheckboxValueType) => isString(val) || isNumber(val) || isBoolean(val)
 }
 
 export type CheckboxProps = ExtractPropTypes<typeof checkboxProps>
