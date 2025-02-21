@@ -1,183 +1,134 @@
 <template>
-  <el-dialog
-    v-bind="{ ...$attrs, ...$props }"
-    @open="$emit('open')"
-    @opened="$emit('opened')"
-    @close="onClose"
-    @closed="$emit('closed')"
-    @open-auto-focus="$emit('open-auto-focus')"
-    @close-auto-focus="$emit('close-auto-focus')"
-    :show-close="false"
-  >
+  <el-teleport :to="appendTo" :disabled="appendTo !== 'body' ? false : !appendToBody">
+    <transition name="dialog-fade" @after-enter="afterEnter" @after-leave="afterLeave" @before-leave="beforeLeave">
+      <el-overlay 
+        v-show="visible" 
+        custom-mask-event 
+        :mask="modal" 
+        :overlay-class="modalClass" 
+        :z-index="zIndex"
+      >
+        <div
+          role="dialog"
+          aria-modal="true"
+          :aria-label="title || undefined"
+          :aria-labelledby="!title ? titleId : undefined"
+          :aria-describedby="bodyId"
+          :class="`${ns.namespace.value}-overlay-dialog`"
+          :style="overlayDialogStyle"
+          @click="overlayEvent.onClick"
+          @mousedown="overlayEvent.onMousedown"
+          @mouseup="overlayEvent.onMouseup"
+        >
+          <el-focus-trap
+            loop
+            :trapped="visible"
+            focus-start-el="container"
+            @focus-after-trapped="onOpenAutoFocus"
+            @focus-after-released="onCloseAutoFocus"
+            @focusout-prevented="onFocusoutPrevented"
+            @release-requested="onCloseRequested"
+          >
+            <dialog-content 
+              v-if="rendered"
+              ref="dialogContentRef"
+              v-bind="$attrs"
+              :center="center"
+              :align-center="alignCenter"
+              :close-icon="closeIcon"
+              :draggable="draggable"
+              :overflow="overflow"
+              :fullscreen="fullscreen"
+              :show-close="showClose"
+              :title="title"
+              :aria-level="headerAriaLevel"
+              :width="width"
+              :size-mode="sizeMode"
+              @close="handleClose"
+            >
+              <template v-if="$slots.image" #image>
+                <slot name="image" />
+              </template>
 
-    <!--
-      @slot Dialog Content
-    -->
-    <slot>
-      <section
-        v-if="!$slots.default"
-        v-html="description"
-        class="gui-dialog__description px-5"
-      />
-    </slot>
+              <slot />
 
-    <!--
-      @slot Dialog head
-    -->
-    <template #header="propsSlot">
-      <slot name="head" v-bind="propsSlot">
-        <!--
-          @slot Dialog head title
-        -->
-        <slot name="head-title" v-bind="propsSlot">
-          <h4
-            v-if="title.length"
-            :id="propsSlot.titleId"
-            class="gui-dialog__title">
-            {{ title }}
-          </h4>
-        </slot>
 
-        <!--
-          @slot Dialog head close
-        -->
-        <slot name="head-close" v-bind="propsSlot">
-          <div
-            :data-test="dataTestCloseModal"
-            v-if="!hideClose"
-            class="gui-dialog__head-close"
-            @click="propsSlot.close">
-            <fa-icon :icon="['far', 'times']" class="text-gray-4 text-6" />
-          </div>
-        </slot>
-      </slot>
-    </template>
-    <template #footer>
-      <!--
-        @slot Dialog footer
-      -->
-      <slot name="footer" />
-    </template>
-  </el-dialog>
+              <template v-if="$slots.footer" #footer>
+                <slot name="footer" />
+              </template>
+            </dialog-content>
+          </el-focus-trap>
+        </div>
+      </el-overlay>
+    </transition>
+  </el-teleport>
 </template>
 
-<script lang="ts">
-import { Component, defineComponent, PropType } from 'vue';
-import {
-  ElDialog,
-  DialogBeforeCloseFn,
-} from "element-plus";
+<script setup lang="ts">
+import { computed, provide, ref } from "vue";
+import { ElOverlay, useNamespace, useSameTarget } from "element-plus";
+import { ElFocusTrap } from "../focus-trap";
+import { ElTeleport } from "../teleport";
+import { dialogInjectionKey } from "./constants";
+import { dialogEmits, dialogProps } from "./dialog";
+import { useDialog } from "./use-dialog";
+import DialogContent from './DialogContent.vue';
 
-export default defineComponent({
-  name: 'GDialog',
-  components: {
-    ElDialog,
-  },
-  emits: [
-    /**
-     * triggers when the Dialog opens
-     */
-    'open',
-    /**
-     * triggers when the Dialog opening animation ends
-     */
-    'opened',
-    /**
-     * triggers when the Dialog closes
-     */
-    'close',
-    /**
-     * 	triggers when the Dialog closing animation ends
-     */
-    'closed',
-    /**
-     * 	triggers after Dialog opens and content focused
-     */
-    'open-auto-focus',
-    /**
-     * 	triggers after Dialog closed and content focused
-     */
-    'close-auto-focus',
-  ],
-  props: {
-    title: {
-      type: String,
-      default: '',
-    },
-    description: {
-      type: String,
-      default: '',
-    },
-    hideClose: {
-      type: Boolean,
-      default: false,
-    },
-    appendToBody: {
-      type: Boolean,
-      default: false,
-    },
-    beforeClose: {
-      type: Function as PropType<DialogBeforeCloseFn>,
-    },
-    destroyOnClose: {
-      type: Boolean,
-      default: false,
-    },
-    closeOnClickModal: {
-      type: Boolean,
-      default: true,
-    },
-    closeOnPressEscape: {
-      type: Boolean,
-      default: true,
-    },
-    lockScroll: {
-      type: Boolean,
-      default: true,
-    },
-    modal: {
-      type: Boolean,
-      default: true,
-    },
-    openDelay: {
-      type: Number,
-      default: 0,
-    },
-    closeDelay: {
-      type: Number,
-      default: 0,
-    },
-    top: {
-      type: String,
-    },
-    modelValue: {
-      type: Boolean,
-      default: false,
-    },
-    modalClass: String,
-    width: {
-      type: [String, Number],
-    },
-    zIndex: {
-      type: Number,
-    },
-    trapFocus: {
-      type: Boolean,
-      default: false,
-    },
-    dataTestCloseModal: {
-      type: String,
-      default: 'close-modal',
-    },
-  },
-  setup(props, { emit }) {
-    function onClose () {
-      emit('close')
-    }
+const props = defineProps(dialogProps);
+const emit = defineEmits(dialogEmits);
 
-    return {
-      onClose,
-    }
-  }
+const ns = useNamespace("dialog");
+const dialogRef = ref<HTMLElement>();
+const headerRef = ref<HTMLElement>();
+const dialogContentRef = ref();
+
+const closeOnClickModal = computed(() => props.showClose && props.closeOnClickModal);
+const closeOnPressEscape = computed(() => props.showClose && props.closeOnPressEscape);
+
+const {
+  visible,
+  titleId,
+  bodyId,
+  style,
+  overlayDialogStyle,
+  rendered,
+  zIndex,
+  afterEnter,
+  afterLeave,
+  beforeLeave,
+  handleClose,
+  onModalClick,
+  onOpenAutoFocus,
+  onCloseAutoFocus,
+  onCloseRequested,
+  onFocusoutPrevented,
+} = useDialog(props, dialogRef, {
+  closeOnClickModal,
+  closeOnPressEscape,
+});
+
+provide(dialogInjectionKey, {
+  dialogRef,
+  headerRef,
+  bodyId,
+  ns,
+  rendered,
+  style,
+});
+
+const overlayEvent = useSameTarget(onModalClick);
+
+const draggable = computed(() => props.draggable && !props.fullscreen);
+
+const resetPosition = () => {
+  dialogContentRef.value?.resetPosition();
+};
+
+defineExpose({
+  /** @description whether the dialog is visible */
+  visible,
+  dialogContentRef,
+  resetPosition,
 });
 </script>
+
