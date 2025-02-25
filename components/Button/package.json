@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-button",
   "author": "Global66",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "license": "MIT",
   "exports": {
     ".": "./src/index.ts",
