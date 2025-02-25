@@ -105,6 +105,19 @@ export default {
         defaultValue: { summary: "2" },
       },
     },
+    footerButtons: {
+      control: 'object',
+      description: `Array de configuración para los botones del footer. Cada botón debe tener:
+      - text: Texto del botón
+      - onClick: Función a ejecutar al hacer clic
+      - variant: Variante del botón (primary/secondary/tertiary)`,
+      table: {
+        defaultValue: { summary: "[]" },
+        type: {
+          summary: "Array<{ text: string, onClick: () => void, variant: 'primary' | 'secondary' | 'tertiary' }>",
+        }
+      }
+    },
   },
   parameters: {
     docs: {
@@ -134,16 +147,22 @@ const BasicTemplate: StoryFn<typeof GDialog> = (args) => ({
       <g-dialog
         v-model="dialogVisible"
         v-bind="args"
+        :footer-buttons="[
+          {
+            text: 'Aceptar',
+            onClick: handleClose,
+            variant: 'primary'
+          },
+          {
+            text: 'Cancelar',
+            onClick: () => dialogVisible = false,
+            variant: 'secondary'
+          }
+        ]"
         @close="handleClose"
         append-to-body
       >
         <p>Este es un dialog básico con contenido de texto simple.</p>
-        <template #footer>
-          <div class="flex flex-col gap-2 items-stretch">
-            <g-button full @click="handleClose">Aceptar</g-button>
-            <g-button full variant="secondary" @click="dialogVisible = false">Cancelar</g-button>
-          </div>
-        </template>
       </g-dialog>
     </g-config-provider>
   `,
@@ -339,11 +358,23 @@ WithImage.args = {
   title: "Dialog con Imagen",
   showClose: true,
   sizeMode: "default",
+  footerButtons: [
+    {
+      text: 'Aceptar',
+      onClick: () => {},
+      variant: 'primary'
+    },
+    {
+      text: 'Cancelar',
+      onClick: () => {},
+      variant: 'secondary'
+    }
+  ]
 };
 WithImage.parameters = {
   docs: {
     description: {
-      story: "Dialog con imagen, título, texto descriptivo y botones.",
+      story: "Dialog con imagen y botones configurados mediante la prop footerButtons.",
     },
     source: {
       code: `
@@ -351,6 +382,18 @@ WithImage.parameters = {
   <g-dialog
     v-model="dialogVisible"
     title="Dialog con Imagen"
+    :footer-buttons="[
+      {
+        text: 'Aceptar',
+        onClick: handleConfirm,
+        variant: 'primary'
+      },
+      {
+        text: 'Cancelar',
+        onClick: handleClose,
+        variant: 'secondary'
+      }
+    ]"
     @close="handleClose"
   >
     <template #image>
@@ -360,12 +403,6 @@ WithImage.parameters = {
       />
     </template>
     <p>Este dialog muestra una imagen con un mensaje.</p>
-    <template #footer>
-      <div class="flex flex-col gap-2 items-stretch">
-         <g-button full @click="handleClose">Aceptar</g-button>
-        <g-button full variant="secondary" @click="dialogVisible = false">Cancelar</g-button>
-      </div>
-    </template>
   </g-dialog>
 </template>
 
@@ -374,11 +411,12 @@ const dialogVisible = ref(false);
 const handleClose = () => {
   dialogVisible.value = false;
 };
+const handleConfirm = () => {
+  dialogVisible.value = false;
+};
 </script>`,
-      language: "html",
-      type: "auto",
-    },
-  },
+    }
+  }
 };
 
 export const NoCloseButton = NoCloseButtonTemplate.bind({});

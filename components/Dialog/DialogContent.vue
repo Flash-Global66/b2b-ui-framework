@@ -42,20 +42,33 @@
     </div>
 
     <!-- Footer -->
-    <footer v-if="$slots.footer" :class="[ns.e('footer'), footerClass]">
-      <slot name="footer" />
+    <footer :class="[ns.e('footer'), footerClass]">
+      <slot name="footer">
+        <div v-if="props.footerButtons?.length" :class="ns.e('footer-buttons')">
+          <g-button
+            v-for="(button, index) in props.footerButtons"
+            :key="index"
+            :variant="button.variant"
+            full
+            @click="button.onClick"
+          >
+            {{ button.text }}
+          </g-button>
+        </div>
+      </slot>
     </footer>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { computed, inject } from "vue";
-import { FOCUS_TRAP_INJECTION_KEY } from "../focus-trap/";
+import { GIconFont } from "@flash-global66/b2b-ui-icon-font";
+import { GButton } from "@flash-global66/b2b-ui-button";
+import { FOCUS_TRAP_INJECTION_KEY } from "@flash-global66/b2b-ui-focus-trap";
+import { composeRefs } from "element-plus/es/utils/index";
 import { useDraggable } from "element-plus/es/hooks/index";
-import { composeRefs} from "element-plus/es/utils/index";
 import { dialogInjectionKey } from "./constants";
 import { dialogContentEmits, dialogContentProps, validateDialogProps } from "./dialog-content";
-import { GIconFont } from "@flash-global66/b2b-ui-icon-font";
 
 const props = defineProps(dialogContentProps);
 const emit = defineEmits(dialogContentEmits);

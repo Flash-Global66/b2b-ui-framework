@@ -110,6 +110,10 @@
   
   @include e('footer') {
     @apply w-full mx-auto;
+
+    &-buttons {
+      @apply flex flex-col gap-xs w-full;
+    }
   }
 
   

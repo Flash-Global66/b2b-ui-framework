@@ -1,7 +1,7 @@
 <template>
-  <el-teleport :to="appendTo" :disabled="appendTo !== 'body' ? false : !appendToBody">
+  <g-teleport :to="appendTo" :disabled="appendTo !== 'body' ? false : !appendToBody">
     <transition name="dialog-fade" @after-enter="afterEnter" @after-leave="afterLeave" @before-leave="beforeLeave">
-      <el-overlay 
+      <g-overlay 
         v-show="visible" 
         custom-mask-event 
         :mask="modal" 
@@ -20,7 +20,7 @@
           @mousedown="overlayEvent.onMousedown"
           @mouseup="overlayEvent.onMouseup"
         >
-          <el-focus-trap
+          <g-focus-trap
             loop
             :trapped="visible"
             focus-start-el="container"
@@ -39,11 +39,15 @@
               :draggable="draggable"
               :overflow="overflow"
               :fullscreen="fullscreen"
+              :header-class="headerClass"
+              :body-class="bodyClass"
+              :footer-class="footerClass"
               :show-close="showClose"
               :title="title"
               :aria-level="headerAriaLevel"
               :width="width"
               :size-mode="sizeMode"
+              :footer-buttons="footerButtons"
               @close="handleClose"
             >
               <template v-if="$slots.image" #image>
@@ -52,23 +56,23 @@
 
               <slot />
 
-
               <template v-if="$slots.footer" #footer>
                 <slot name="footer" />
               </template>
             </dialog-content>
-          </el-focus-trap>
+          </g-focus-trap>
         </div>
-      </el-overlay>
+      </g-overlay>
     </transition>
-  </el-teleport>
+  </g-teleport>
 </template>
 
 <script setup lang="ts">
 import { computed, provide, ref } from "vue";
-import { ElOverlay, useNamespace, useSameTarget } from "element-plus";
-import { ElFocusTrap } from "../focus-trap";
-import { ElTeleport } from "../teleport";
+import { GFocusTrap } from "@flash-global66/b2b-ui-focus-trap";
+import { GTeleport } from "@flash-global66/b2b-ui-teleport";
+import { GOverlay } from "@flash-global66/b2b-ui-overlay";
+import { useNamespace, useSameTarget } from "element-plus";
 import { dialogInjectionKey } from "./constants";
 import { dialogEmits, dialogProps } from "./dialog";
 import { useDialog } from "./use-dialog";

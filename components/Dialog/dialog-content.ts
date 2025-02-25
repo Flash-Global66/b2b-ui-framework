@@ -1,8 +1,7 @@
 import { buildProps, iconPropType } from 'element-plus/es/utils/index'
 import { ExtractPropTypes, PropType } from 'vue';
 import { debugWarn, isBoolean, isString } from "element-plus/es/utils/index";
-
-type DialogSizeMode = 'default' | 'fixed' | 'adaptive';
+import type { DialogSizeMode, FooterButton } from './types';
 
 export const dialogContentProps = buildProps({
   /**
@@ -84,10 +83,18 @@ export const dialogContentProps = buildProps({
     default: 'default',
     validator: (val: string) => ['default', 'fixed', 'adaptive'].includes(val),
   },
+  /**
+   * @description Array of button types to be displayed in the footer
+   */
+  footerButtons: {
+    type: Array as PropType<FooterButton[]>,
+    default: () => [],
+  },
 } as const)
 
 export const dialogContentEmits = {
   close: () => true,
+  buttonClick: (button: FooterButton) => button,
 }
 
 export type DialogContentProps = ExtractPropTypes<typeof dialogContentProps>
@@ -136,5 +143,26 @@ export function validateDialogProps(props: DialogContentProps) {
 
   if (props.width && props.sizeMode === 'adaptive') {
     debugWarn("DialogContent", "Width prop is ignored when sizeMode is 'adaptive'.");
+  }
+
+  if (props.footerButtons) {
+    if (!Array.isArray(props.footerButtons)) {
+      debugWarn("DialogContent", "footerButtons debe ser un array");
+      return;
+    }
+
+    props.footerButtons.forEach((button, index) => {
+      if (!button.text || typeof button.text !== 'string') {
+        debugWarn("DialogContent", `El botón ${index} debe tener un texto válido`);
+      }
+
+      if (!button.onClick || typeof button.onClick !== 'function') {
+        debugWarn("DialogContent", `El botón ${index} debe tener una función onClick válida`);
+      }
+
+      if (!button.variant || !['primary', 'secondary', 'tertiary'].includes(button.variant)) {
+        debugWarn("DialogContent", `El botón ${index} debe tener una variante válida (primary/secondary/tertiary)`);
+      }
+    });
   }
 }

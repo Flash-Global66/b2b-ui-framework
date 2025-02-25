@@ -1,13 +1,9 @@
 import { buildProps, definePropType, isBoolean } from 'element-plus/es/utils/index'
 import { UPDATE_MODEL_EVENT } from 'element-plus/es/constants/index'
 import { dialogContentProps } from './dialog-content'
-
-
 import type { ExtractPropTypes } from 'vue'
+import type { DialogBeforeCloseFn } from './types'
 import type Dialog from './Dialog.vue'
-
-type DoneFn = (cancel?: boolean) => void
-export type DialogBeforeCloseFn = (done: DoneFn) => void
 
 export const dialogProps = buildProps({
   ...dialogContentProps,
