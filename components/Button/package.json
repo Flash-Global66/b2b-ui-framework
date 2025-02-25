@@ -7,9 +7,6 @@
     ".": "./src/index.ts",
     "./button.styles.scss": "./src/button.styles.scss"
   },
-  "scripts": {
-    "build": "vite build && vue-tsc --emitDeclarationOnly -p tsconfig.json --skipLibCheck"
-  },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
