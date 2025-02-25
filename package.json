@@ -64,6 +64,7 @@
   },
   "dependencies": {
     "@element-plus/utils": "^0.0.5",
+    "@flash-global66/b2b-ui-button": "^1.0.21",
     "@flash-global66/b2b-ui-config-element": "^0.0.14",
     "@flash-global66/b2b-ui-dialog": "^0.0.6",
     "@flash-global66/b2b-ui-icon-font": "^1.0.15",
