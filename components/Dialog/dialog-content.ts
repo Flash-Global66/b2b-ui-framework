@@ -5,21 +5,11 @@ import type { DialogSizeMode, FooterButton } from './types';
 
 export const dialogContentProps = buildProps({
   /**
-   * @description whether to align the header and footer in center
-   */
-  center: Boolean,
-  /**
    * @description whether to align the dialog both horizontally and vertically
    */
   alignCenter: {
     type: Boolean,
     default: true,
-  },
-  /**
-   * @description custom close icon, default is Close
-   */
-  closeIcon: {
-    type: iconPropType,
   },
   /**
    * @description enable dragging feature for Dialog
@@ -84,7 +74,7 @@ export const dialogContentProps = buildProps({
     validator: (val: string) => ['default', 'fixed', 'adaptive'].includes(val),
   },
   /**
-   * @description Array of button types to be displayed in the footer
+   * @description Array of button configurations to be displayed in the footer (max 3 buttons)
    */
   footerButtons: {
     type: Array as PropType<FooterButton[]>,
@@ -101,34 +91,6 @@ export type DialogContentProps = ExtractPropTypes<typeof dialogContentProps>
 export type DialogContentEmits = typeof dialogContentEmits
 
 export function validateDialogProps(props: DialogContentProps) {
-  if (!isBoolean(props.center)) {
-    debugWarn("DialogContent", `Invalid prop "center": expected a boolean, but received "${typeof props.center}".`);
-  }
-
-  if (!isBoolean(props.alignCenter)) {
-    debugWarn("DialogContent", `Invalid prop "alignCenter": expected a boolean, but received "${typeof props.alignCenter}".`);
-  }
-
-  if (props.closeIcon && typeof props.closeIcon !== 'string') {
-    debugWarn("DialogContent", `Invalid prop "closeIcon": expected a string, but received "${typeof props.closeIcon}".`);
-  }
-
-  if (props.headerClass && !isString(props.headerClass)) {
-    debugWarn("DialogContent", `Invalid prop "headerClass": expected a string, but received "${typeof props.headerClass}".`);
-  }
-
-  if (props.bodyClass && !isString(props.bodyClass)) {
-    debugWarn("DialogContent", `Invalid prop "bodyClass": expected a string, but received "${typeof props.bodyClass}".`);
-  }
-
-  if (props.footerClass && !isString(props.footerClass)) {
-    debugWarn("DialogContent", `Invalid prop "footerClass": expected a string, but received "${typeof props.footerClass}".`);
-  }
-
-  if (props.ariaLevel && !isString(props.ariaLevel)) {
-    debugWarn("DialogContent", `Invalid prop "ariaLevel": expected a string, but received "${typeof props.ariaLevel}".`);
-  }
-
   if (props.sizeMode && !['default', 'fixed', 'adaptive'].includes(props.sizeMode)) {
     debugWarn("DialogContent", `Invalid prop "sizeMode": expected one of "default", "fixed", "adaptive", but received "${props.sizeMode}".`);
   }

@@ -10,7 +10,10 @@ export const dialogProps = buildProps({
   /**
    * @description whether to append Dialog itself to body. A nested Dialog should have this attribute set to `true`
    */
-  appendToBody: Boolean,
+  appendToBody: {
+    type: Boolean,
+    default: false,
+  },
   /**
    * @description which element the Dialog appends to
    */
@@ -27,7 +30,10 @@ export const dialogProps = buildProps({
   /**
    * @description destroy elements in Dialog when closed
    */
-  destroyOnClose: Boolean,
+  destroyOnClose: {
+    type: Boolean,
+    default: false,
+  },
   /**
    * @description whether the Dialog can be closed by clicking the mask
    */
@@ -108,11 +114,17 @@ export const dialogProps = buildProps({
   zIndex: {
     type: Number,
   },
-  trapFocus: Boolean,
+  /**
+   * @description Whether to trap focus inside the dialog
+   */
+  trapFocus: {
+    type: Boolean,
+    default: true,
+  },
   /**
    * @description header's aria-level attribute
    */
-  headerAriaLevel: {
+  ariaLevel: {
     type: String,
     default: '2',
   },

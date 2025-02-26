@@ -33,9 +33,7 @@
               v-if="rendered"
               ref="dialogContentRef"
               v-bind="$attrs"
-              :center="center"
               :align-center="alignCenter"
-              :close-icon="closeIcon"
               :draggable="draggable"
               :overflow="overflow"
               :fullscreen="fullscreen"
@@ -44,7 +42,7 @@
               :footer-class="footerClass"
               :show-close="showClose"
               :title="title"
-              :aria-level="headerAriaLevel"
+              :aria-level="ariaLevel"
               :width="width"
               :size-mode="sizeMode"
               :footer-buttons="footerButtons"
@@ -106,6 +104,8 @@ const {
   onCloseAutoFocus,
   onCloseRequested,
   onFocusoutPrevented,
+  displayButtons,
+  buttonLayoutClass
 } = useDialog(props, dialogRef, {
   closeOnClickModal,
   closeOnPressEscape,
@@ -118,6 +118,8 @@ provide(dialogInjectionKey, {
   ns,
   rendered,
   style,
+  displayButtons,
+  buttonLayoutClass
 });
 
 const overlayEvent = useSameTarget(onModalClick);

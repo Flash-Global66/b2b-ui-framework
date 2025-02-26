@@ -64,8 +64,7 @@
   }
 
   @include when('draggable') {
-    @apply cursor-move;
-    position: relative;
+    @apply cursor-move relative;
     
     @include e('header') {
       @apply select-none;
@@ -73,8 +72,7 @@
   }
 
   &.is-dragging {
-    @apply cursor-move;
-    margin: 0;
+    @apply cursor-move m-0;
     transform: none;
   }
 
@@ -112,7 +110,28 @@
     @apply w-full mx-auto;
 
     &-buttons {
-      @apply flex flex-col gap-xs w-full;
+      @apply w-full;
+      
+      &.layout-dual-row {
+        @apply grid gap-xs grid-cols-2;
+        
+        > button:nth-child(3) {
+        @apply mt-xs mx-auto col-span-2 col-start-1;
+        max-width: 50%;
+        }
+        
+        @media (max-width: theme('screens.sm')) {
+          @apply flex flex-col;
+          
+          > button:nth-child(3) {
+            @apply max-w-full mx-0 mt-xxs;
+          }
+        }
+      }
+      
+      &.layout-single-column {
+        @apply flex flex-col gap-xs;
+      }
     }
   }
 
