@@ -1,5 +1,6 @@
 import type { CSSProperties, ComputedRef, InjectionKey, Ref } from 'vue'
 import type { UseNamespaceReturn } from 'element-plus/es/hooks'
+import type { FooterButton } from './types'
 
 export type DialogContext = {
   dialogRef: Ref<HTMLElement | undefined>
@@ -8,6 +9,8 @@ export type DialogContext = {
   ns: UseNamespaceReturn
   rendered: Ref<boolean>
   style: ComputedRef<CSSProperties>
+  displayButtons: ComputedRef<FooterButton[]>
+  buttonLayoutClass: ComputedRef<string>
 }
 
 export const dialogInjectionKey: InjectionKey<DialogContext> =

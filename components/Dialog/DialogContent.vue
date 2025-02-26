@@ -44,9 +44,9 @@
     <!-- Footer -->
     <footer :class="[ns.e('footer'), footerClass]">
       <slot name="footer">
-        <div v-if="props.footerButtons?.length" :class="ns.e('footer-buttons')">
+        <div v-if="props.footerButtons?.length" :class="[ns.e('footer-buttons'), buttonLayoutClass]">
           <g-button
-            v-for="(button, index) in props.footerButtons"
+            v-for="(button, index) in displayButtons"
             :key="index"
             :variant="button.variant"
             full
@@ -75,7 +75,7 @@ const emit = defineEmits(dialogContentEmits);
 
 validateDialogProps(props);
 
-const { dialogRef, headerRef, bodyId, ns, style } = inject(dialogInjectionKey)!;
+const { dialogRef, headerRef, bodyId, ns, style, displayButtons, buttonLayoutClass } = inject(dialogInjectionKey)!;
 const { focusTrapRef } = inject(FOCUS_TRAP_INJECTION_KEY)!;
 
 const dialogKls = computed(() => {
@@ -85,7 +85,6 @@ const dialogKls = computed(() => {
     ns.b(),
     ns.is("draggable", props.draggable),
     ns.is("align-center", props.alignCenter),
-    { [ns.m("center")]: props.center },
     ns.is(mode)
   ];
   return cls;

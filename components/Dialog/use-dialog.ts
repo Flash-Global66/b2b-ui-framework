@@ -21,6 +21,7 @@ import { useGlobalConfig } from 'element-plus/es/components/config-provider/inde
 
 import type { CSSProperties, Ref, SetupContext, ComputedRef } from 'vue'
 import type { DialogEmits, DialogProps } from './dialog'
+import type { FooterButton } from './types'
 
 export const useDialog = (
   props: DialogProps,
@@ -44,6 +45,15 @@ export const useDialog = (
   const closed = ref(false)
   const rendered = ref(false) // when desctroyOnClose is true, we initialize it as false vise versa
   const zIndex = ref(props.zIndex ?? nextZIndex())
+
+  const displayButtons = computed<FooterButton[]>(() => {
+    return props.footerButtons?.slice(0, 3) || [];
+  });
+
+  const buttonLayoutClass = computed(() => {
+    const count = displayButtons.value.length;
+    return count === 3 ? 'layout-dual-row' : 'layout-single-column';
+  });
 
   let openTimer: (() => void) | undefined = undefined
   let closeTimer: (() => void) | undefined = undefined
@@ -225,5 +235,7 @@ export const useDialog = (
     rendered,
     visible,
     zIndex,
+    displayButtons,
+    buttonLayoutClass
   }
 }
