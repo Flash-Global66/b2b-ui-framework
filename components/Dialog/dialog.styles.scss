@@ -165,10 +165,6 @@
   }
 }
 
-.#{$namespace}-overlay {
-  @apply fixed inset-0 overflow-auto bg-grey-800/80;
-}
-
 .#{$namespace}-overlay-dialog {
   @apply fixed inset-0 overflow-auto;
 }

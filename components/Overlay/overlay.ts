@@ -3,7 +3,7 @@ import { PatchFlags, buildProps, definePropType } from "element-plus/es/utils/in
 import { useNamespace, useSameTarget } from "element-plus/es/hooks/index";
 
 import type { CSSProperties, ExtractPropTypes } from 'vue'
-import type { ZIndexProperty } from 'csstype'
+import type { Property } from 'csstype'
 
 export const overlayProps = buildProps({
   mask: {
@@ -19,7 +19,7 @@ export const overlayProps = buildProps({
     ]),
   },
   zIndex: {
-    type: definePropType<ZIndexProperty>([String, Number]),
+    type: definePropType<Property.ZIndex>([String, Number]),
   },
 } as const)
 export type OverlayProps = ExtractPropTypes<typeof overlayProps>
@@ -32,7 +32,7 @@ export type OverlayEmits = typeof overlayEmits
 const BLOCK = 'overlay'
 
 export default defineComponent({
-  name: 'ElOverlay',
+  name: 'GOverlay',
 
   props: overlayProps,
   emits: overlayEmits,
