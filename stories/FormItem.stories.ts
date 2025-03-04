@@ -1,12 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/vue3";
-import { ref, reactive } from "vue";
-import { GFormItem, GForm, FormItemInstance } from "../components/Form";
-import { GInput } from "../components/Input";
-import { GButton } from "../components/Button/src";
-import { GConfigProvider } from "../components/ConfigProvider";
+import type { Meta, StoryObj } from '@storybook/vue3'
+import { ref, reactive } from 'vue'
+import { GFormItem, GForm, FormItemInstance } from '../components/Form'
+import { GInput } from '../components/Input'
+import { GSelect } from '../components/Select'
+import { GButton } from '../components/Button/src'
+import { GConfigProvider } from '../components/ConfigProvider'
 
 const meta: Meta<FormItemInstance> = {
-  title: "Form/Form/Item",
+  title: 'Form/Form/Item',
   component: GFormItem,
   tags: ['autodocs'],
   parameters: {
@@ -43,92 +44,91 @@ Este componente está diseñado para funcionar dentro de un componente \`Form\`.
   },
   argTypes: {
     prop: {
-      description: "Nombre del campo en el modelo de datos",
-      control: "text",
+      description: 'Nombre del campo en el modelo de datos',
+      control: 'text',
       table: {
-        type: { summary: "string | string[]" }
+        type: { summary: 'string | string[]' }
       }
     },
     rules: {
-      description: "Reglas de validación específicas para este campo",
-      control: "object",
+      description: 'Reglas de validación específicas para este campo',
+      control: 'object',
       table: {
-        type: { summary: "FormItemRule | FormItemRule[]" }
+        type: { summary: 'FormItemRule | FormItemRule[]' }
       }
     },
     showMessage: {
-      description: "Mostrar mensaje de error en el FormItem",
-      control: "boolean",
+      description: 'Mostrar mensaje de error en el FormItem',
+      control: 'boolean',
       table: {
-        type: { summary: "boolean" },
+        type: { summary: 'boolean' },
         defaultValue: { summary: 'false' }
       }
     },
     showMessageChild: {
-      description: "Mostrar mensaje de error en el componente hijo",
-      control: "boolean",
+      description: 'Mostrar mensaje de error en el componente hijo',
+      control: 'boolean',
       table: {
-        type: { summary: "boolean" },
+        type: { summary: 'boolean' },
         defaultValue: { summary: 'true' }
       }
     },
     validateMessage: {
-      description: "Mensaje de validación actual",
+      description: 'Mensaje de validación actual',
       table: {
-        category: "Expuesto",
-        type: { summary: "string" }
+        category: 'Expuesto',
+        type: { summary: 'string' }
       }
     },
     shouldShowError: {
-      description: "Indica si se debe mostrar el error en el form item",
+      description: 'Indica si se debe mostrar el error en el form item',
       table: {
-        category: "Expuesto",
-        type: { summary: "boolean" }
+        category: 'Expuesto',
+        type: { summary: 'boolean' }
       }
     },
     shouldShowErrorChild: {
-      description: "Indica si se debe mostrar el error en el componente hijo",
+      description: 'Indica si se debe mostrar el error en el componente hijo',
       table: {
-        category: "Expuesto", 
-        type: { summary: "boolean" }
+        category: 'Expuesto',
+        type: { summary: 'boolean' }
       }
     },
     validateState: {
-      description: "Estado actual de la validación",
+      description: 'Estado actual de la validación',
       table: {
-        category: "Expuesto",
-        type: { summary: "string" }
+        category: 'Expuesto',
+        type: { summary: 'string' }
       }
     },
     validate: {
-      description: "Método para validar el form item",
+      description: 'Método para validar el form item',
       table: {
-        category: "Expuesto",
-        type: { summary: "() => Promise<void>" }
+        category: 'Expuesto',
+        type: { summary: '() => Promise<void>' }
       }
     },
     clearValidate: {
-      description: "Elimina el estado de validación del campo",
+      description: 'Elimina el estado de validación del campo',
       table: {
-        category: "Expuesto",
-        type: { summary: "() => void" }
+        category: 'Expuesto',
+        type: { summary: '() => void' }
       }
     },
     resetField: {
-      description: "Reinicia el campo actual y elimina el resultado de la validación",
+      description: 'Reinicia el campo actual y elimina el resultado de la validación',
       table: {
-        category: "Expuesto",
-        type: { summary: "() => void" }
+        category: 'Expuesto',
+        type: { summary: '() => void' }
       }
-    },
+    }
   }
-
-};
-export default meta;
-type Story = StoryObj<FormItemInstance>;
+}
+export default meta
+type Story = StoryObj<FormItemInstance>
 
 export const CombinedRules: Story = {
-  name: "Combinación de Reglas",
+  name: 'Combinación de Reglas',
   parameters: {
     docs: {
       description: {
@@ -142,43 +142,62 @@ El atributo \`validate-event\` controla si el componente de entrada dispara la v
     }
   },
   render: () => ({
-    components: { GForm, GFormItem, GInput, GConfigProvider, GButton },
+    components: { GForm, GFormItem, GInput, GConfigProvider, GButton, GSelect },
     setup() {
-      const formRef = ref();
+      const formRef = ref()
       const formData = reactive({
-        nombre: "",
-        apellido: "",
-        edad: ""
-      });
+        nombre: '',
+        apellido: '',
+        edad: '',
+        ciudad: ''
+      })
 
       const rules = {
         nombre: [
-          { required: true, message: "El nombre es requerido", trigger: "blur" },
-          { min: 5, message: "Mínimo 5 caracteres", trigger: "blur" }
+          { required: true, message: 'El nombre es requerido', trigger: 'blur' },
+          { min: 5, message: 'Mínimo 5 caracteres', trigger: 'blur' }
         ],
-        apellido: [
-          { required: true, message: "El apellido es requerido", trigger: "blur" }
-        ]
-      };
+        apellido: [{ required: true, message: 'El apellido es requerido', trigger: 'blur' }],
+        ciudad: [{ required: true, message: 'La ciudad es requerida' }]
+      }
+
+      const options = [
+        {
+          value: 'Bogotá',
+          title: 'Bogotá'
+        },
+        {
+          value: 'Medellín',
+          title: 'Medellín'
+        },
+        {
+          value: 'Cali',
+          title: 'Cali'
+        },
+        {
+          value: 'Barranquilla',
+          title: 'Barranquilla'
+        }
+      ]
 
       async function handleSubmit() {
-        if (!formRef.value) return;
+        if (!formRef.value) return
 
         await formRef.value.validate((valid, fields) => {
           if (valid) {
-            console.log("submit!", fields);
+            console.log('submit!', fields)
           } else {
-            console.log("error submit!", fields);
+            console.log('error submit!', fields)
           }
-        });
+        })
       }
 
       async function handleReset() {
-        if (!formRef.value) return;
-        formRef.value.resetFields();
+        if (!formRef.value) return
+        formRef.value.resetFields()
       }
 
-      return { formRef, formData, rules, handleSubmit, handleReset };
+      return { formRef, formData, rules, handleSubmit, handleReset, options }
     },
     template: `
       <g-config-provider>
@@ -192,7 +211,6 @@ El atributo \`validate-event\` controla si el componente de entrada dispara la v
               :validate-event="false"
             />
           </g-form-item>
-          
           <g-form-item prop="apellido">
             <g-input 
               v-model="formData.apellido" 
@@ -201,6 +219,18 @@ El atributo \`validate-event\` controla si el componente de entrada dispara la v
               help-text="Campo requerido"
             />
           </g-form-item>
+
+          <g-form-item prop="ciudad">
+            <g-select
+              v-model="formData.ciudad"
+              label="Ciudad"
+              placeholder="Seleccione una ciudad"
+              :options="options"
+              help-text="Campo requerido"
+            />
+          </g-form-item>
+
+            
 
           <g-form-item 
             prop="edad"
@@ -235,10 +265,10 @@ El atributo \`validate-event\` controla si el componente de entrada dispara la v
       </g-config-provider>
     `
   })
-};
+}
 
 export const MessageBehavior: Story = {
-  name: "Mensajes de Error",
+  name: 'Mensajes de Error',
   parameters: {
     docs: {
       description: {
@@ -253,36 +283,36 @@ export const MessageBehavior: Story = {
   render: () => ({
     components: { GForm, GFormItem, GInput, GConfigProvider, GButton },
     setup() {
-      const formRef = ref();
+      const formRef = ref()
       const formData = reactive({
-        campo1: "",
-        campo2: "",
-        campo3: ""
-      });
+        campo1: '',
+        campo2: '',
+        campo3: ''
+      })
 
       const rules = {
-        campo1: [{ required: true, message: "Este campo es requerido", trigger: "blur" }],
-        campo2: [{ required: true, message: "Este campo es requerido", trigger: "blur" }],
-        campo3: [{ required: true, message: "Este campo es requerido", trigger: "blur" }]
-      };
+        campo1: [{ required: true, message: 'Este campo es requerido', trigger: 'blur' }],
+        campo2: [{ required: true, message: 'Este campo es requerido', trigger: 'blur' }],
+        campo3: [{ required: true, message: 'Este campo es requerido', trigger: 'blur' }]
+      }
 
       async function handleSubmit() {
-        if (!formRef.value) return;
+        if (!formRef.value) return
         await formRef.value.validate((valid, fields) => {
           if (valid) {
-            console.log("submit!", fields);
+            console.log('submit!', fields)
           } else {
-            console.log("error submit!", fields);
+            console.log('error submit!', fields)
           }
-        });
+        })
       }
 
       async function handleReset() {
-        if (!formRef.value) return;
-        formRef.value.resetFields();
+        if (!formRef.value) return
+        formRef.value.resetFields()
       }
 
-      return { formRef, formData, rules, handleSubmit, handleReset };
+      return { formRef, formData, rules, handleSubmit, handleReset }
     },
     template: `
       <g-config-provider>
@@ -327,4 +357,4 @@ export const MessageBehavior: Story = {
       </g-config-provider>
     `
   })
-};
+}
