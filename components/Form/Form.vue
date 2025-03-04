@@ -85,7 +85,6 @@ const validate = async (
 const doValidateField = async (
   props: Arrayable<FormItemProp> = []
 ): Promise<boolean> => {
-  console.log("que");
   if (!isValidatable.value) return false;
 
   const fields = obtainValidateFields(props);
