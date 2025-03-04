@@ -1,6 +1,6 @@
-import { buildProps, iconPropType } from 'element-plus/es/utils/index'
+import { buildProps } from 'element-plus/es/utils/index'
 import { ExtractPropTypes, PropType } from 'vue';
-import { debugWarn, isBoolean, isString } from "element-plus/es/utils/index";
+import { debugWarn } from "element-plus/es/utils/index";
 import type { DialogSizeMode, FooterButton } from './types';
 
 export const dialogContentProps = buildProps({
@@ -79,6 +79,9 @@ export const dialogContentProps = buildProps({
   footerButtons: {
     type: Array as PropType<FooterButton[]>,
     default: () => [],
+    validator: (buttons: FooterButton[]) => {
+      return Array.isArray(buttons);
+    }
   },
 } as const)
 
@@ -91,40 +94,22 @@ export type DialogContentProps = ExtractPropTypes<typeof dialogContentProps>
 export type DialogContentEmits = typeof dialogContentEmits
 
 export function validateDialogProps(props: DialogContentProps) {
-  if (props.sizeMode && !['default', 'fixed', 'adaptive'].includes(props.sizeMode)) {
-    debugWarn("DialogContent", `Invalid prop "sizeMode": expected one of "default", "fixed", "adaptive", but received "${props.sizeMode}".`);
-  }
-
+  // Validation for draggable and fullscreen (incompatible properties)
   if (props.draggable && props.fullscreen) {
     debugWarn("DialogContent", "Dialog cannot be both draggable and fullscreen.");
   }
 
-  if (props.width && props.fullscreen) {
-    debugWarn("DialogContent", "Width prop is ignored when dialog is fullscreen.");
-  }
-
-  if (props.width && props.sizeMode === 'adaptive') {
-    debugWarn("DialogContent", "Width prop is ignored when sizeMode is 'adaptive'.");
-  }
-
-  if (props.footerButtons) {
-    if (!Array.isArray(props.footerButtons)) {
-      debugWarn("DialogContent", "footerButtons debe ser un array");
-      return;
+  // Validation for width with fullscreen or adaptive sizeMode
+  if (props.width) {
+    if (props.fullscreen) {
+      debugWarn("DialogContent", "Width prop is ignored when dialog is fullscreen.");
+    } else if (props.sizeMode === 'adaptive') {
+      debugWarn("DialogContent", "Width prop is ignored when sizeMode is 'adaptive'.");
     }
+  }
 
-    props.footerButtons.forEach((button, index) => {
-      if (!button.text || typeof button.text !== 'string') {
-        debugWarn("DialogContent", `El botón ${index} debe tener un texto válido`);
-      }
-
-      if (!button.onClick || typeof button.onClick !== 'function') {
-        debugWarn("DialogContent", `El botón ${index} debe tener una función onClick válida`);
-      }
-
-      if (!button.variant || !['primary', 'secondary', 'tertiary'].includes(button.variant)) {
-        debugWarn("DialogContent", `El botón ${index} debe tener una variante válida (primary/secondary/tertiary)`);
-      }
-    });
+  // Validation for footerButtons
+  if (props.footerButtons && props.footerButtons.length > 3) {
+    debugWarn("DialogContent", "Maximum number of buttons allowed is 3, only the first 3 will be displayed.");
   }
 }

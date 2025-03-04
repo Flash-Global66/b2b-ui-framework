@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 // COMPONENTS
 import { GDialog } from "../components/Dialog";
-import { GButton } from "../components/Button/src";
+import { GButton } from "@flash-global66/b2b-ui-button";
 import { GConfigProvider } from "../components/ConfigProvider";
 
 export default {
@@ -156,7 +156,7 @@ El componente Dialog proporciona una ventana modal configurable para mostrar inf
 ## Instalación
 
 \`\`\`bash
-npm install @flash-global66/b2b-ui-dialog
+yarn add @flash-global66/b2b-ui-dialog
 \`\`\`
 
 ## Dependencias
@@ -166,6 +166,13 @@ Este componente requiere:
 - @flash-global66/b2b-ui-focus-trap
 - @flash-global66/b2b-ui-teleport
 - @flash-global66/b2b-ui-overlay
+
+## Importación de estilos SASS
+Para que el componente funcione correctamente, es necesario importar los estilos SASS:
+
+\`\`\`html
+@import '@flash-global66/b2b-ui-dialog/dist/styles';
+\`\`\`
 
 ## Uso básico
 
@@ -224,15 +231,10 @@ const BasicTemplate: StoryFn<typeof GDialog> = (args) => ({
     const handleClose = () => {
       dialogVisible.value = false;
     };
-    return { args, dialogVisible, handleClose };
-  },
-  template: `
-    <g-config-provider>
-      <g-button @click="dialogVisible = true">Abrir Dialog Básico</g-button>
-      <g-dialog
-        v-model="dialogVisible"
-        v-bind="args"
-        :footer-buttons="[
+    
+    const processFooterButtons = () => {
+      if (!args.footerButtons || args.footerButtons.length === 0) {
+        return [
           {
             text: 'Aceptar',
             onClick: handleClose,
@@ -240,10 +242,34 @@ const BasicTemplate: StoryFn<typeof GDialog> = (args) => ({
           },
           {
             text: 'Cancelar',
-            onClick: () => dialogVisible = false,
+            onClick: () => dialogVisible.value = false,
             variant: 'secondary'
           }
-        ]"
+        ];
+      }
+      
+      return args.footerButtons.map(button => ({
+        ...button,
+        onClick: () => {
+          dialogVisible.value = false;
+        }
+      }));
+    };
+    
+    return { 
+      args, 
+      dialogVisible, 
+      handleClose, 
+      processFooterButtons
+    };
+  },
+  template: `
+    <g-config-provider>
+      <g-button @click="dialogVisible = true">Abrir Dialog Básico</g-button>
+      <g-dialog
+        v-model="dialogVisible"
+        v-bind="args"
+        :footer-buttons="processFooterButtons()"
         @close="handleClose"
         append-to-body
       >
@@ -358,7 +384,6 @@ const CustomWidthTemplate: StoryFn<typeof GDialog> = (args) => ({
   `,
 });
 
-// Agregar este template nuevo
 const LargeImageTemplate: StoryFn<typeof GDialog> = (args) => ({
   components: { GDialog, GConfigProvider, GButton },
   setup() {
@@ -412,7 +437,7 @@ const TwoButtonsTemplate: StoryFn<typeof GDialog> = (args) => ({
       <g-dialog
         v-model="dialogVisible"
         v-bind="args"
-        title="Dialog con Botones Apilados"
+        title="Dialog con Botones"
         :footer-buttons="[
           {
             text: 'Aceptar',
@@ -428,7 +453,7 @@ const TwoButtonsTemplate: StoryFn<typeof GDialog> = (args) => ({
         @close="handleClose"
         append-to-body
       >
-        <p>Este dialog muestra dos botones apilados verticalmente.</p>
+        <p>Este dialog muestra dos botones.</p>
       </g-dialog>
     </g-config-provider>
   `,
@@ -481,10 +506,115 @@ const ThreeButtonsTemplate: StoryFn<typeof GDialog> = (args) => ({
   `,
 });
 
+const SizeModeComparisonTemplate: StoryFn<typeof GDialog> = (args) => ({
+  components: { GDialog, GConfigProvider, GButton },
+  setup() {
+    const defaultDialogVisible = ref(false);
+    const fixedDialogVisible = ref(false);
+    const adaptiveDialogVisible = ref(false);
+    
+    const closeDefaultDialog = () => {
+      defaultDialogVisible.value = false;
+    };
+    
+    const closeFixedDialog = () => {
+      fixedDialogVisible.value = false;
+    };
+    
+    const closeAdaptiveDialog = () => {
+      adaptiveDialogVisible.value = false;
+    };
+    
+    return { 
+      args, 
+      defaultDialogVisible, 
+      fixedDialogVisible,
+      adaptiveDialogVisible,
+      closeDefaultDialog,
+      closeFixedDialog,
+      closeAdaptiveDialog
+    };
+  },
+  template: `
+    <g-config-provider>
+      <div class="flex flex-wrap gap-4">
+        <g-button @click="defaultDialogVisible = true">Modo Default</g-button>
+        <g-button @click="fixedDialogVisible = true">Modo Fixed</g-button>
+        <g-button @click="adaptiveDialogVisible = true">Modo Adaptive</g-button>
+      </div>
+      
+      <!-- Dialog con modo DEFAULT -->
+      <g-dialog
+        v-model="defaultDialogVisible"
+        title="Dialog - Modo Default"
+        size-mode="default"
+        :footer-buttons="[
+          { text: 'Aceptar', onClick: closeDefaultDialog, variant: 'primary' },
+          { text: 'Cancelar', onClick: closeDefaultDialog, variant: 'secondary' }
+        ]"
+        append-to-body
+        @close="closeDefaultDialog"
+      >
+        <p>Este dialog utiliza el modo <strong>default</strong>. Tiene un ancho máximo predefinido y se ajusta a pantallas más pequeñas.</p>
+      </g-dialog>
+      
+      <!-- Dialog con modo FIXED -->
+      <g-dialog
+        v-model="fixedDialogVisible"
+        title="Dialog - Modo Fixed"
+        size-mode="fixed"
+        width="600px"
+        :footer-buttons="[
+          { text: 'Aceptar', onClick: closeFixedDialog, variant: 'primary' },
+          { text: 'Cancelar', onClick: closeFixedDialog, variant: 'secondary' }
+        ]"
+        append-to-body
+        @close="closeFixedDialog"
+      >
+        <p>Este dialog utiliza el modo <strong>fixed</strong> con un ancho de 600px. No tiene restricciones de ancho máximo, pero se adaptará en pantallas pequeñas.</p>
+      </g-dialog>
+      
+      <!-- Dialog con modo ADAPTIVE -->
+      <g-dialog
+        v-model="adaptiveDialogVisible"
+        title="Dialog - Modo Adaptive"
+        size-mode="adaptive"
+        :footer-buttons="[
+          { text: 'Aceptar', onClick: closeAdaptiveDialog, variant: 'primary' },
+          { text: 'Cancelar', onClick: closeAdaptiveDialog, variant: 'secondary' }
+        ]"
+        append-to-body
+        @close="closeAdaptiveDialog"
+      >
+        <template #image>
+          <img 
+            src="https://placehold.co/600x300"
+            alt="Imagen de ejemplo"
+            class="rounded"
+          />
+        </template>
+        <p>Este dialog utiliza el modo <strong>adaptive</strong>. Se adapta automáticamente al contenido, respetando un tamaño mínimo y máximo.</p>
+      </g-dialog>
+    </g-config-provider>
+  `,
+});
+
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   title: "Dialog Básico",
   showClose: true,
+  footerButtons: [
+    {
+      text: 'Aceptar',
+      onClick: () => {},
+      variant: 'primary'
+    },
+    {
+      text: 'Cancelar',
+      onClick: () => {},
+      variant: 'secondary'
+    }
+  ]
 };
 Basic.parameters = {
   docs: {
@@ -498,15 +628,21 @@ Basic.parameters = {
     v-model="dialogVisible"
     title="Dialog Básico"
     :show-close="true"
+    :footer-buttons="[
+      {
+        text: 'Aceptar',
+        onClick: handleClose,
+        variant: 'primary'
+      },
+      {
+        text: 'Cancelar',
+        onClick: () => dialogVisible = false,
+        variant: 'secondary'
+      }
+    ]"
     @close="handleClose"
   >
-    <p>Este dialog básico con contenido de texto simple.</p>
-    <template #footer>
-      <div class="flex flex-col gap-2 items-stretch">
-        <g-button full @click="handleClose">Aceptar</g-button>
-        <g-button full variant="secondary" @click="dialogVisible = false">Cancelar</g-button>
-      </div>
-    </template>
+    <p>Este es un dialog básico con contenido de texto simple.</p>
   </g-dialog>
 </template>
 
@@ -724,20 +860,20 @@ const handleClose = () => {
 
 export const TwoButtonsStacked = TwoButtonsTemplate.bind({});
 TwoButtonsStacked.args = {
-  title: "Dialog con Botones Apilados",
+  title: "Dialog con Botones",
   showClose: true,
 };
 TwoButtonsStacked.parameters = {
   docs: {
     description: {
-      story: "Dialog con dos botones apilados verticalmente.",
+      story: "Dialog con dos botones.",
     },
     source: {
       code: `
 <template>
   <g-dialog
     v-model="dialogVisible"
-    title="Dialog con Botones Apilados"
+    title="Dialog con Botones"
     :footer-buttons="[
       {
         text: 'Aceptar',
@@ -752,7 +888,7 @@ TwoButtonsStacked.parameters = {
     ]"
     @close="handleClose"
   >
-    <p>Este dialog muestra dos botones apilados verticalmente.</p>
+    <p>Este dialog muestra dos botones.</p>
   </g-dialog>
 </template>
 
@@ -816,6 +952,65 @@ const handleClose = () => {
   dialogVisible.value = false;
 };
 </script>`,
+      language: "html",
+      type: "auto",
+    },
+  },
+};
+
+export const SizeModeComparison = SizeModeComparisonTemplate.bind({});
+SizeModeComparison.args = {
+  showClose: true,
+};
+SizeModeComparison.parameters = {
+  docs: {
+    description: {
+      story: "Comparativa de los tres modos de tamaño disponibles: default, fixed y adaptive.",
+    },
+    source: {
+      code: `
+<!-- MODO DEFAULT -->
+<g-dialog
+  v-model="dialogVisible"
+  title="Dialog - Modo Default"
+  size-mode="default"
+  :footer-buttons="[
+    { text: 'Aceptar', onClick: handleClose, variant: 'primary' },
+    { text: 'Cancelar', onClick: handleClose, variant: 'secondary' }
+  ]"
+>
+  <p>Este dialog utiliza el modo default con ancho máximo predefinido.</p>
+</g-dialog>
+
+<!-- MODO FIXED -->
+<g-dialog
+  v-model="dialogVisible"
+  title="Dialog - Modo Fixed"
+  size-mode="fixed"
+  width="600px"
+  :footer-buttons="[
+    { text: 'Aceptar', onClick: handleClose, variant: 'primary' },
+    { text: 'Cancelar', onClick: handleClose, variant: 'secondary' }
+  ]"
+>
+  <p>Este dialog utiliza el modo fixed con un ancho específico de 600px.</p>
+</g-dialog>
+
+<!-- MODO ADAPTIVE -->
+<g-dialog
+  v-model="dialogVisible"
+  title="Dialog - Modo Adaptive"
+  size-mode="adaptive"
+  :footer-buttons="[
+    { text: 'Aceptar', onClick: handleClose, variant: 'primary' },
+    { text: 'Cancelar', onClick: handleClose, variant: 'secondary' }
+  ]"
+>
+  <template #image>
+    <img src="https://placehold.co/600x300" alt="Imagen de ejemplo" class="rounded" />
+  </template>
+  <p>Este dialog utiliza el modo adaptive que se adapta al contenido.</p>
+</g-dialog>`,
       language: "html",
       type: "auto",
     },
