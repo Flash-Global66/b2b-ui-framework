@@ -14,29 +14,35 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: `El componente Select es una forma de entrada que permite al usuario seleccionar una o varias opciones de una lista desplegable.
-        
-- Etiquetas flotantes (floating labels)
-- Validación integrada
-- Estado de error
-- Íconos prefix
-- Texto de ayuda
-- Opciones personalizadas
-- Búsqueda de opciones
-- Opciones remotas
-- Múltiple selección
+        component: `✨ \`GSelect\` - Componente de selección interactivo y personalizable
+    
+Un campo de selección moderno con funcionalidades avanzadas para formularios dinámicos. Ideal para integrar listas locales/remotas y manejar selecciones complejas.
 
-### Instalación
+**Características principales:**
+- Etiquetas flotantes: Diseño limpio que muestra la etiqueta sobre el campo al enfocar
+- Validación integrada: Sistema de errores automatizado con mensajes personalizables
+- Estado de error: Destaca campos inválidos con feedback visual inmediato
+- Íconos prefix: Añade contexto visual con íconos personalizados al inicio del campo
+- Texto de ayuda: Mensajes descriptivos bajo el campo para guiar al usuario
+- Opciones personalizadas: Diseña plantillas únicas para cada ítem de la lista
+- Búsqueda dinámica: Filtra opciones en tiempo real con buscador integrado
+- Datos remotos: Carga opciones desde APIs externas con paginación opcional
+- Selección múltiple: Permite elegir varios valores con tags removibles
+
+🚀 **Instalación**
 
 \`\`\`bash
-yarn add @flash-global66/b2b-ui-select
+yarn add @flash-global66/b2b-ui-checkbox
 \`\`\`
 
-### Importación
+📥 **Importación básica**
 
 \`\`\`typescript
 import { GSelect } from '@flash-global66/b2b-ui-select'
 import '@flash-global66/b2b-ui-input/select.style.scss'
+
+// tipos si son necesarios
+import type { OptionType } from '@flash-global66/b2b-ui-select'
 \`\`\`
 `
       }
