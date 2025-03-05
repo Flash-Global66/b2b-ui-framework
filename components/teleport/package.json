@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-teleport",
   "author": "Global66",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "exports": {
     ".": "./index.ts",
