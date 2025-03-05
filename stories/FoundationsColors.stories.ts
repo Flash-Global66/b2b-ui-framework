@@ -374,7 +374,6 @@ const Template: StoryFn = () => ({
           <div
             class="bg-blue-900 aspect-square rounded-sm outline -outline-offset-1 outline-black/10 sm:rounded-md dark:outline-white/10 cursor-pointer"
             @click="handleColorClick"
-            @click="handleColorClick"
           ></div>
         </div>
       </div>

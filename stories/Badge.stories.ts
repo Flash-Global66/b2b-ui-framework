@@ -14,7 +14,7 @@ const Template: StoryFn<typeof GBadge> = (args) => ({
   <g-config-provider>
     <g-badge value="8" v-bind="args">
       Hola
-    </g-badge/>
+    </g-badge>
   </g-config-provider>
   `,
   setup() {
