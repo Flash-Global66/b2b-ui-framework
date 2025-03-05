@@ -71,7 +71,7 @@ export default {
       },
     },
     appendToBody: {
-      control: "boolean", 
+      control: "boolean",
       description: "Añadir el dialog directamente al body del documento",
       table: {
         defaultValue: { summary: "false" },
@@ -127,7 +127,7 @@ export default {
       },
     },
     footerButtons: {
-      control: 'object',
+      control: "object",
       description: `Array de configuración para los botones del footer (máximo 3 botones). Cada botón debe tener:
       - text: Texto del botón
       - onClick: Función a ejecutar al hacer clic
@@ -135,9 +135,10 @@ export default {
       table: {
         defaultValue: { summary: "[]" },
         type: {
-          summary: "Array<{ text: string, onClick: () => void, variant: 'primary' | 'secondary' | 'tertiary' }>",
-        }
-      }
+          summary:
+            "Array<{ text: string, onClick: () => void, variant: 'primary' | 'secondary' | 'tertiary' }>",
+        },
+      },
     },
   },
   parameters: {
@@ -166,6 +167,8 @@ Este componente requiere:
 - @flash-global66/b2b-ui-focus-trap
 - @flash-global66/b2b-ui-teleport
 - @flash-global66/b2b-ui-overlay
+
+Nota: Asegúrate de tener instaladas estas dependencias para que el componente funcione correctamente y sus archivos sass respectivos importados.
 
 ## Importación de estilos SASS
 Para que el componente funcione correctamente, es necesario importar los estilos SASS:
