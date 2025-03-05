@@ -26,7 +26,7 @@ export default {
     },
     width: {
       control: "text",
-      description: "Ancho del dialog.",
+      description: "Ancho del dialog. Requiere size-mode='fixed'.",
       table: {
         defaultValue: { summary: "undefined" },
       },
@@ -170,8 +170,8 @@ Este componente requiere:
 ## Importación de estilos SASS
 Para que el componente funcione correctamente, es necesario importar los estilos SASS:
 
-\`\`\`html
-@import '@flash-global66/b2b-ui-dialog/dist/styles';
+\`\`\`scss
+@use "@flash-global66/b2b-ui-dialog/dialog.styles.scss" as *;
 \`\`\`
 
 ## Uso básico
@@ -775,7 +775,8 @@ CustomWidth.args = {
 CustomWidth.parameters = {
   docs: {
     description: {
-      story: "Dialog con ancho personalizado definido a 800px.",
+      story:
+        "Dialog con ancho personalizado definido a 800px. Requiere size-mode='fixed'",
     },
     source: {
       code: `
@@ -1016,10 +1017,3 @@ SizeModeComparison.parameters = {
     },
   },
 };
-
-
-
-
-
-
-

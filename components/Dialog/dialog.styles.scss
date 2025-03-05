@@ -161,7 +161,7 @@
   }
 
   @include e('content') {
-    @apply w-full text-center mb-lg;
+    @apply w-full text-center mb-lg text-secondary-txt;
   }
 }
 
