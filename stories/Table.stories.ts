@@ -28,7 +28,7 @@ const Template: StoryFn<typeof GTable> = (args) => ({
           <template #default="{ row, column, $index }">
             {{ row.date }}
           </template>
-        </g-table-column/>
+        </g-table-column>
         <g-table-column prop="email" label="Email" width="220" />
         <g-table-column prop="address" label="Address" width="180" />
         <g-table-column prop="cellphone" label="Cellphone" width="180" />
