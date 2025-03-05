@@ -5,3 +5,6 @@ dist
 **/dist
 .codegpt
 .yarn/
+
+# Build output
+storybook-static/
