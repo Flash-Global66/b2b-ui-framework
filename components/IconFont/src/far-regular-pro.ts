@@ -54,4 +54,5 @@ export {
   faArrowsRotate,
   faCalendar,
   faGear,
+  faSpinner,
 } from '@fortawesome/pro-regular-svg-icons';

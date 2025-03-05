@@ -167,6 +167,12 @@
       }
     }
   }
+
+  @include e('loading') {
+    & svg {
+      @apply text-7 text-gray-500;
+    }
+  }
 }
 
 @include b('popper') {

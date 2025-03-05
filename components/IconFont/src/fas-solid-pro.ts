@@ -52,5 +52,6 @@ export {
   faCaretUp,
   faTriangle,
   faLightbulb,
-  faStore
+  faStore,
+  faSpinner,
 } from '@fortawesome/pro-solid-svg-icons';

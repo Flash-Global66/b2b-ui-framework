@@ -499,10 +499,12 @@ export const selectorCountries: Story = {
     components: { GSelect, GConfigProvider },
     setup() {
       const value = ref()
+      const loadingCountries = ref(false)
       const countries = ref<any[]>([])
 
       const getCountries = async () => {
         try {
+          loadingCountries.value = true
           const response = await fetch('https://restcountries.com/v3.1/all')
           const data = await response.json()
 
@@ -519,15 +521,16 @@ export const selectorCountries: Story = {
         } catch (error) {
           console.error('Error fetching data:', error)
           return []
+        } finally {
+          loadingCountries.value = false
         }
       }
 
-      onMounted(async () => {
-        const countriesApi = await getCountries()
-        countries.value = countriesApi
-      })
+      const onFocusSelect = async () => {
+        countries.value = await getCountries()
+      }
 
-      return { value, countries }
+      return { value, countries, onFocusSelect, loadingCountries }
     },
     template: `
       <g-config-provider>
@@ -541,6 +544,8 @@ export const selectorCountries: Story = {
           :item-height="70"
           :clearable="true"
           style="width: 240px"
+          :loading="loadingCountries"
+          @focus="onFocusSelect"
         >
           <template #default="{ item }">
             <div class="flex items-center h-full w-full gap-xs">
