@@ -248,10 +248,11 @@
               </div>
             </template>
             <template v-else-if="loading || filteredOptions.length === 0" #empty>
-              <div :class="nsSelect.be('dropdown', 'empty')">
-                <slot name="empty">
-                  <span>{{ emptyText }}</span>
-                </slot>
+              <div v-if="filteredOptions.length === 0 && !loading" :class="nsSelect.be('dropdown', 'empty')">
+                <slot name="empty" />
+              </div>
+              <div v-if="loading" :class="nsSelect.be('dropdown', 'loading')">
+                <g-icon-font name="solid spinner" spin-pulse />
               </div>
             </template>
             <template v-if="$slots.footer" #footer>
