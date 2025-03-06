@@ -800,7 +800,7 @@ const useSelect: useSelectReturnType = (props: propsUseSelect, emit: SelectEmitF
 
   const updatePrefixPosition = () => {
     if (!props.prefixIcon && !props.slots.prefix) {
-      leftPrefixSelect.value = '0px'
+      leftPrefixSelect.value = '-7px'
       return
     }
 
