@@ -33,7 +33,7 @@
       <input
         :id="inputId"
         ref="input"
-        :class="ns.e('inner')"
+        :class="[ns.e('inner')]"
         v-bind="attrs"
         :minlength="minlength"
         :maxlength="maxlength"
@@ -402,5 +402,6 @@ defineExpose({
 <style lang="scss">
 .dynamic-label {
   left: calc(v-bind(leftPrefix) + 16px);
+  z-index: 10;
 }
 </style>

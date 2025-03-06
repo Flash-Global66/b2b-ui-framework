@@ -196,7 +196,8 @@
                 :class="[
                   nsSelect.e('selected-item'),
                   nsSelect.e('placeholder'),
-                  nsSelect.is('transparent', !hasModelValue || (expanded && !states.inputValue))
+                  nsSelect.is('transparent', !hasModelValue || (expanded && !states.inputValue)),
+                  'dynamic-label-select'
                 ]"
               >
                 <slot
@@ -248,8 +249,18 @@
               </div>
             </template>
             <template v-else-if="loading || filteredOptions.length === 0" #empty>
-              <div v-if="filteredOptions.length === 0 && !loading" :class="nsSelect.be('dropdown', 'empty')">
-                <slot name="empty" />
+              <div
+                v-if="filteredOptions.length === 0 && !loading"
+              >
+                <slot name="empty" v-if="$slots.empty" />
+                <div v-else :class="nsSelect.be('dropdown', 'empty')">
+                  <span :class="nsSelect.bem('dropdown', 'empty', 'title')">
+                    No hay coincidencias
+                  </span>
+                  <span :class="nsSelect.bem('dropdown', 'empty', 'description')">
+                    Revisa tu búsqueda o intenta con otras palabras
+                  </span>
+                </div>
               </div>
               <div v-if="loading" :class="nsSelect.be('dropdown', 'loading')">
                 <g-icon-font name="solid spinner" spin-pulse />
