@@ -1,5 +1,5 @@
 {
-  "name": "@flash-global66/b2b-ui-dialog",
+  "name": "@flash-global66/b2b-ui-focus-trap",
   "author": "Global66",
   "version": "1.0.1",
   "license": "MIT",
@@ -12,5 +12,6 @@
   },
   "repository": {
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
-  }
+  },
+  "description": "A focus trap component for accessibility"
 }
