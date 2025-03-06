@@ -469,7 +469,7 @@ export const withAllProps: Story = {
           v-model="value"
           :options="options"
           placeholder="Please select"
-          :item-height="120"
+          :item-height="90"
           :filterable="true"
           prefix-icon="regular bolt"
           label="Label"
@@ -554,7 +554,7 @@ export const selectorCountries: Story = {
             </div>
           </template>
           <template #prefix v-if="value">
-            <img class="w-7 h-7 rounded-full object-cover" :src="value.image" />
+            <img class="w-5 h-5 rounded-full object-cover" :src="value.image" />
           </template>
         </g-select>
       </g-config-provider>
