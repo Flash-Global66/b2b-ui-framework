@@ -18,4 +18,5 @@ export {
   faChevronRight,
   faComment,
   faStore,
+  faPencil,
 } from '@fortawesome/pro-light-svg-icons';
