@@ -155,6 +155,9 @@ export const ICON_SETS = {
     'arrows-rotate',
     'calendar',
     'gear',
+    'filter',
+    'arrow-up-right-from-square',
+    'lock-keyhole-open'
   ] as const,
 
   light: [
@@ -175,7 +178,8 @@ export const ICON_SETS = {
     'sync',
     'chevron-right',
     'comment',
-    'store'
+    'store',
+    'pencil',
   ] as const,
 
   brands: [
