@@ -54,6 +54,7 @@ export {
   faArrowsRotate,
   faCalendar,
   faGear,
+  faSpinner,
   faFilter,
   faArrowUpRightFromSquare,
   faLockKeyholeOpen
