@@ -1,23 +1,16 @@
+import { buildProps, definePropType } from 'element-plus/es/utils/index'
+import type Tag from './tag.vue'
+import { IconString } from '@flash-global66/b2b-ui-icon-font'
 import type { ExtractPropTypes } from 'vue'
 
-import type Tag from './Tag.vue'
-
-import { buildProps } from "element-plus/es/utils/index.mjs";
-import { componentSizes } from 'element-plus';
-
-
 export const tagProps = buildProps({
-  text: {
-    type: String,
-    default: '',
-  },
   /**
    * @description type of Tag
    */
   type: {
     type: String,
-    values: ['primary', 'success', 'info', 'warning', 'danger'],
-    default: 'primary',
+    values: ['success', 'info', 'warning', 'error', 'grey'],
+    default: 'grey'
   },
   /**
    * @description whether Tag can be removed
@@ -28,41 +21,54 @@ export const tagProps = buildProps({
    */
   disableTransitions: Boolean,
   /**
-   * @description whether Tag has a highlighted border
-   */
-  hit: Boolean,
-  /**
-   * @description background color of the Tag
-   */
-  color: String,
-  /**
    * @description size of Tag
    */
   size: {
     type: String,
-    values: componentSizes,
+    values: ['xs', 'sm', 'md'],
+    default: 'sm'
+  },
+  /**
+   * @description prefix icon
+   * @default undefined
+   * @type {IconString}
+   */
+  prefixIcon: {
+    type: definePropType<IconString>(String),
+    default: undefined
+  },
+  /**
+   * @description suffix icon
+   * @default undefined
+   * @type {IconString}
+   */
+  suffixIcon: {
+    type: definePropType<IconString>(String),
+    default: undefined
   },
   /**
    * @description theme of Tag
    */
   effect: {
     type: String,
-    values: ['dark', 'light', 'plain'],
-    default: 'light',
+    values: ['dark', 'light'],
+    default: 'light'
   },
   /**
-   * @description whether Tag is rounded
+   * @description text content in Tag
+   * @default undefined
+   * @type {String}
    */
-  round: {
-    type: Boolean,
-    default: true,
-  },
+  text: {
+    type: String,
+    default: undefined
+  }
 } as const)
 export type TagProps = ExtractPropTypes<typeof tagProps>
 
 export const tagEmits = {
   close: (evt: MouseEvent) => evt instanceof MouseEvent,
-  click: (evt: MouseEvent) => evt instanceof MouseEvent,
+  click: (evt: MouseEvent) => evt instanceof MouseEvent
 }
 export type TagEmits = typeof tagEmits
 

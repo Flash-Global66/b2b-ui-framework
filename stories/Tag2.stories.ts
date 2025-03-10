@@ -1,59 +1,49 @@
-import { Meta, StoryObj } from '@storybook/vue3'
-import { reactive, ref } from 'vue'
+import { StoryObj } from '@storybook/vue3'
+import { reactive } from 'vue'
 
 // COMPONENTS
-import { GTag, TagInstance } from '../components/tag-2'
+import { GTag, TagInstance } from '../components/tag'
 
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider'
 import { generateIconOptions } from './IconFont.stories'
 
 const meta = {
-  title: 'Data/Tag2',
+  title: 'Data/Tag',
   component: GTag,
   parameters: {
     docs: {
       description: {
-        component: `✨ \`GSelect\` - Componente de selección interactivo y personalizable
-    
-Un campo de selección moderno con funcionalidades avanzadas para formularios dinámicos. Ideal para integrar listas locales/remotas y manejar selecciones complejas.
+        component: `✨ \`GTag\` - Componente de etiqueta personalizable con íconos y opciones avanzadas.
 
-> Este componente usa la versión \`2.9.3\` de Element Plus.
+> Este componente usa la versión \`2.9.5\` de Element Plus.
 
 **Características principales:**
 
-- Etiquetas flotantes: Diseño limpio que muestra la etiqueta sobre el campo al enfocar
-- Validación integrada: Sistema de errores automatizado con mensajes personalizables
-- Estado de error: Destaca campos inválidos con feedback visual inmediato
-- Íconos prefix: Añade contexto visual con íconos personalizados al inicio del campo
-- Texto de ayuda: Mensajes descriptivos bajo el campo para guiar al usuario
-- Opciones personalizadas: Diseña plantillas únicas para cada ítem de la lista
-- Búsqueda dinámica: Filtra opciones en tiempo real con buscador integrado
-- Datos remotos: Carga opciones desde APIs externas con paginación opcional
-- Selección múltiple: Permite elegir varios valores con tags removibles
+- Tamaños personalizables
+- Tipos de etiqueta
+- Temas de etiqueta
+- Iconos personalizables
+- Etiqueta cerrable
+- Transiciones deshabilitables
 
 🚀 **Instalación**
 
 \`\`\`bash
-yarn add @flash-global66/b2b-ui-select
+yarn add @flash-global66/b2b-ui-tag
 \`\`\`
 
 🪝 **Dependencias**
 
 Este componente requiere:
 
-> - @flash-global66/b2b-ui-tag
 > - @flash-global66/b2b-ui-icon-font
-> - element-plus/es/components/tooltip/index <span style="color: rgb(227 83 83);font-size: 13px;">(se necesita crear @flash-global66/b2b-ui-tooltip)</span>
 
 📥 **Importación básica**
 
 \`\`\`typescript
-import { GSelect } from '@flash-global66/b2b-ui-select'
-import '@flash-global66/b2b-ui-input/select.style.scss'
-
-// tipos si son necesarios
-import type { OptionType } from '@flash-global66/b2b-ui-select'
+import { GTag } from '@flash-global66/b2b-ui-tag'
+import '@flash-global66/b2b-ui-tag/tag.style.scss'
 \`\`\`
 `
       }
@@ -65,6 +55,7 @@ import type { OptionType } from '@flash-global66/b2b-ui-select'
       control: 'select',
       options: ['xs', 'sm', 'md'],
       table: {
+        category: 'Apariencia',
         type: { summary: 'string' },
         defaultValue: { summary: 'sm' }
       }
@@ -74,6 +65,7 @@ import type { OptionType } from '@flash-global66/b2b-ui-select'
       control: 'select',
       options: ['success', 'info', 'warning', 'error', 'grey'],
       table: {
+        category: 'Apariencia',
         type: { summary: 'string' },
         defaultValue: { summary: 'grey' }
       }
@@ -83,6 +75,7 @@ import type { OptionType } from '@flash-global66/b2b-ui-select'
       control: 'select',
       options: ['dark', 'light'],
       table: {
+        category: 'Apariencia',
         type: { summary: 'string' },
         defaultValue: { summary: 'light' }
       }
@@ -93,6 +86,7 @@ import type { OptionType } from '@flash-global66/b2b-ui-select'
       control: 'select',
       options: ['', ...generateIconOptions()],
       table: {
+        category: 'Iconos',
         type: { summary: 'string' },
         defaultValue: { summary: 'undefined' }
       }
@@ -103,6 +97,7 @@ import type { OptionType } from '@flash-global66/b2b-ui-select'
       control: 'select',
       options: ['', ...generateIconOptions()],
       table: {
+        category: 'Iconos',
         type: { summary: 'string' },
         defaultValue: { summary: 'undefined' }
       }
@@ -111,6 +106,7 @@ import type { OptionType } from '@flash-global66/b2b-ui-select'
       description: 'Texto a mostrar en el tag',
       control: 'text',
       table: {
+        category: 'Contenido',
         type: { summary: 'string' },
         defaultValue: { summary: 'undefined' }
       }
@@ -119,6 +115,7 @@ import type { OptionType } from '@flash-global66/b2b-ui-select'
       description: 'Habilita el botón de cerrar',
       control: 'boolean',
       table: {
+        category: 'Comportamiento',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' }
       }
@@ -127,6 +124,7 @@ import type { OptionType } from '@flash-global66/b2b-ui-select'
       description: 'Deshabilita las transiciones',
       control: 'boolean',
       table: {
+        category: 'Comportamiento',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' }
       }
@@ -135,19 +133,26 @@ import type { OptionType } from '@flash-global66/b2b-ui-select'
       description: 'Evento emitido al cerrar',
       action: 'close',
       table: {
-        type: { summary: 'Event', detail: '() => void' }
-      }
+        category: 'Métodos Expuestos',
+        type: { summary: 'Event', detail: '() => void' },
+        defaultValue: { summary: '() => void' }
+      },
+      control: false
     },
     click: {
       description: 'Evento emitido al hacer clic',
       action: 'click',
       table: {
-        type: { summary: 'Event', detail: '() => void' }
-      }
+        category: 'Métodos Expuestos',
+        type: { summary: 'Event', detail: '() => void' },
+        defaultValue: { summary: '() => void' }
+      },
+      control: false
     },
     prefix: {
       description: 'slot para el inicio del tag',
       table: {
+        category: 'Slots',
         type: { summary: 'slot' }
       },
       control: false
@@ -155,6 +160,7 @@ import type { OptionType } from '@flash-global66/b2b-ui-select'
     default: {
       description: 'slot para el contenido del tag',
       table: {
+        category: 'Slots',
         type: { summary: 'slot' }
       },
       control: false
@@ -162,6 +168,7 @@ import type { OptionType } from '@flash-global66/b2b-ui-select'
     suffix: {
       description: 'slot para el final del tag',
       table: {
+        category: 'Slots',
         type: { summary: 'slot' }
       },
       control: false
@@ -171,7 +178,11 @@ import type { OptionType } from '@flash-global66/b2b-ui-select'
     text: 'Etiqueta',
     size: 'sm',
     type: 'success',
-    effect: 'light'
+    effect: 'light',
+    prefixIcon: '',
+    suffixIcon: '',
+    closable: false,
+    disableTransitions: false
   }
 }
 export default meta
@@ -194,297 +205,168 @@ export const Basic: Story = {
   })
 }
 
-export const withAllProps: Story = {
-  name: 'Personalizado de opciones con props',
+export const allCombination: Story = {
+  name: 'Combinaciones de colores y tamaños',
   parameters: {
     docs: {
       description: {
-        story: ` Este select es personalizado con opciones que incluyen íconos, descripciones y estados de deshabilitado.
+        story: `Combinaciones de todos los colores y tamaños disponibles.
 
-- Muestra ícono y descripción
-- Opciones deshabilitadas
-- Búsqueda de opciones
-- Largo de opciones personalizado`
+> - **📋 Nota**: Puedes copiar el código de cada tag haciendo clic en ellos.`
       }
     }
   },
   render: () => ({
     components: { GTag, GConfigProvider },
     setup() {
-      const initials = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+      const state = reactive({
+        types: ['success', 'info', 'warning', 'error', 'grey'],
+        sizes: ['xs', 'sm', 'md'],
+        effects: ['dark', 'light']
+      })
 
-      const value = ref()
-      const value2 = ref()
-      const options = Array.from({ length: 1000 }).map((_, idx) => ({
-        value: `Option ${idx + 1}`,
-        title: `${initials[idx % 10]}${idx} - option ${idx + 1}`,
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in enim elementum, sagittis velit eu, feugiat sem. Sed lacinia tincidunt lacinia.`,
-        icon: idx % 2 === 0 ? 'regular bolt' : 'regular user',
-        disabled: idx % 3 === 0 && idx !== 0
-      }))
-
-      const aver = () => {
-        console.log('aver')
+      const copyTag = async (type: string, size: string, effect: string) => {
+        const text = `<g-tag
+  type="${type}"
+  size="${size}"
+  effect="${effect}"
+  text="Etiqueta"
+  prefix-icon="solid check"
+  suffix-icon="solid check"
+/>`
+        try {
+          await navigator.clipboard.writeText(text)
+        } catch (err) {
+          console.error('Failed to copy: ', err)
+        }
       }
 
-      return { value, options, value2, aver }
+      return { state, copyTag }
     },
     template: `
       <g-config-provider>
-        <div class="flex flex-row gap-4 items-center flex-wrap">
+        <div class="flex flex-col gap-4">
+          <div v-for="type in state.types" :key="type" class="flex flex-row gap-6 items-center justify-center">
+            <div v-for="size in state.sizes" :key="size" class="flex flex-col gap-4">
+              <div v-for="effect in state.effects" :key="effect">
+                <g-tag
+                  :type="type"
+                  :size="size"
+                  :effect="effect"
+                  text="Etiqueta"
+                  prefix-icon="solid check"
+                  suffix-icon="solid check"
+                  @click="() => copyTag(type, size, effect)"
+                  style="cursor: pointer"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </g-config-provider>
+    `
+  })
+}
+
+export const prefixAndSuffix: Story = {
+  name: 'Banderas como slots al inicio y al final',
+  parameters: {
+    docs: {
+      description: {
+        story: `Banderas como slots al inicio y al final del tag.`
+      }
+    }
+  },
+  render: () => ({
+    components: { GTag, GConfigProvider },
+    setup() {
+      return {}
+    },
+    template: `
+    <g-config-provider>
+      <div class="flex flex-row gap-4">
+        <g-tag
+          type="success"
+          size="sm"
+          effect="light"
+        >
+          <template #prefix>
+            <span class="w-3 h-3 rounded-full">
+              <img src="https://flagcdn.com/co.svg" alt="Venezuela" class="w-3 h-3 rounded-full object-cover" />
+            </span>
+          </template>
+          <template #default>COP</template>
+        </g-tag>
+        <g-tag
+          type="info"
+          size="sm"
+          effect="light"
+        >
+          <template #default>USD</template>
+          <template #suffix>
+            <span class="w-3 h-3 rounded-full">
+              <img src="https://flagcdn.com/us.svg" alt="Venezuela" class="w-3 h-3 rounded-full object-cover" />
+            </span>
+          </template>
+        </g-tag>
+      </div>
+    </g-config-provider>`
+  })
+}
+
+export const closableDynamic: Story = {
+  name: 'Tags eliminables',
+  parameters: {
+    docs: {
+      description: {
+        story: `Tags que se pueden eliminar al hacer clic en el botón de cerrar.`
+      }
+    }
+  },
+  render: () => ({
+    components: { GTag, GConfigProvider },
+    setup() {
+      const initTags = [
+        { text: 'Tag 1', type: 'warning', effect: 'light' },
+        { text: 'Tag 2', type: 'grey', effect: 'light' },
+        { text: 'Tag 3', type: 'success', effect: 'light' },
+        { text: 'Tag 4', type: 'info', effect: 'light' },
+        { text: 'Tag 5', type: 'error', effect: 'light' },
+        { text: 'Tag 6', type: 'warning', effect: 'dark' },
+        { text: 'Tag 7', type: 'grey', effect: 'dark' },
+        { text: 'Tag 8', type: 'success', effect: 'dark' },
+        { text: 'Tag 9', type: 'info', effect: 'dark' },
+        { text: 'Tag 10', type: 'error', effect: 'dark' }
+      ]
+      const dynamicTags = reactive([...initTags])
+
+      const handleClose = (tag: string) => {
+        if (dynamicTags.length === 1) {
+          dynamicTags.splice(-1, 1, ...initTags)
+          return
+        }
+
+        dynamicTags.splice(
+          dynamicTags.findIndex((item) => item.text === tag),
+          1
+        )
+      }
+
+      return { dynamicTags, handleClose }
+    },
+    template: `
+      <g-config-provider>
+        <div class="flex flex-row gap-4">
           <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="xs"
-            text="prueba"
+            v-for="(tag, index) in dynamicTags"
+            :key="tag.text"
+            :type="tag.type"
+            :effect="tag.effect"
+            :text="tag.text"
+            :disable-transitions="false"
+            closable
+            @close="() => handleClose(tag.text)"
           />
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="sm"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="md"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="xs"
-            type="success"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="sm"
-            type="success"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="md"
-            type="success"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="xs"
-            type="info"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="sm"
-            type="info"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="md"
-            type="info"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="xs"
-            type="warning"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="sm"
-            type="warning"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="md"
-            type="warning"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="xs"
-            type="error"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="sm"
-            type="error"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="md"
-            type="error"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="xs"
-            type="grey"
-            effect="dark"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="sm"
-            type="grey"
-            effect="dark"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="md"
-            type="grey"
-            effect="dark"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="xs"
-            type="success"
-            effect="dark"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="sm"
-            type="success"
-            effect="dark"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="md"
-            type="success"
-            effect="dark"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="xs"
-            type="info"
-            effect="dark"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="sm"
-            type="info"
-            effect="dark"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="md"
-            type="info"
-            effect="dark"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="xs"
-            type="warning"
-            effect="dark"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="sm"
-            type="warning"
-            effect="dark"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="md"
-            type="warning"
-            effect="dark"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="xs"
-            type="error"
-            effect="dark"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            size="sm"
-            type="error"
-            effect="dark"
-          >
-            cualquier cosa
-          </g-tag>
-          <g-tag
-            prefix-icon="regular check"
-            suffix-icon="regular check"
-            :closable="true"
-            size="md"
-            type="error"
-            effect="dark"
-            @close="aver"
-          >
-            cualquier cosa
-          </g-tag>
         </div>
       </g-config-provider>
     `
