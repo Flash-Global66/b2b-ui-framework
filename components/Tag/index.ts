@@ -1,4 +1,4 @@
-import GTag from "./Tag.vue";
-export * from './tag';
+import GTag from './Tag.vue'
+export * from './tag'
 
-export { GTag};
+export { GTag }

@@ -97,7 +97,8 @@ export const ICON_SETS = {
     'receipt',
     'caret-up',
     'triangle',
-    'lightbulb'
+    'lightbulb',
+    'spinner',
   ] as const,
 
   regular: [
@@ -155,6 +156,7 @@ export const ICON_SETS = {
     'arrows-rotate',
     'calendar',
     'gear',
+    'spinner',
     'filter',
     'arrow-up-right-from-square',
     'lock-keyhole-open'
