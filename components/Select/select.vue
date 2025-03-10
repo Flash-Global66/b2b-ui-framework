@@ -141,7 +141,8 @@
                 :class="[
                   nsSelect.e('selected-item'),
                   nsSelect.e('input-wrapper'),
-                  nsSelect.is('hidden', !filterable)
+                  nsSelect.is('hidden', !filterable),
+                  nsSelect.is('withIcon', Boolean(prefixIcon))
                 ]"
               >
                 <input
@@ -249,9 +250,7 @@
               </div>
             </template>
             <template v-else-if="loading || filteredOptions.length === 0" #empty>
-              <div
-                v-if="filteredOptions.length === 0 && !loading"
-              >
+              <div v-if="filteredOptions.length === 0 && !loading">
                 <slot name="empty" v-if="$slots.empty" />
                 <div v-else :class="nsSelect.be('dropdown', 'empty')">
                   <span :class="nsSelect.bem('dropdown', 'empty', 'title')">
@@ -275,7 +274,7 @@
         </template>
       </el-tooltip>
     </div>
-    <div :class="nsSelect.e('help')">
+    <div :class="nsSelect.e('help')" v-if="descriptionError || helpText">
       <p :key="selectError ? 'error' : 'help'" :class="helpTextKls">
         {{ selectError ? descriptionError : helpText }}
       </p>

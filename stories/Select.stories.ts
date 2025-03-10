@@ -1,5 +1,5 @@
 import { StoryObj } from '@storybook/vue3'
-import { onMounted, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 
 // COMPONENTS
 import { GSelect, SelectInstance } from '../components/Select'
@@ -7,6 +7,7 @@ import { GSelect, SelectInstance } from '../components/Select'
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider'
 import { generateIconOptions } from './IconFont.stories'
+import { OptionType } from '../components/Select/types/select.types'
 
 const meta = {
   title: 'Form/Select',
@@ -18,7 +19,10 @@ const meta = {
     
 Un campo de selección moderno con funcionalidades avanzadas para formularios dinámicos. Ideal para integrar listas locales/remotas y manejar selecciones complejas.
 
+> Este componente usa la versión \`2.9.3\` de Element Plus.
+
 **Características principales:**
+
 - Etiquetas flotantes: Diseño limpio que muestra la etiqueta sobre el campo al enfocar
 - Validación integrada: Sistema de errores automatizado con mensajes personalizables
 - Estado de error: Destaca campos inválidos con feedback visual inmediato
@@ -32,8 +36,16 @@ Un campo de selección moderno con funcionalidades avanzadas para formularios di
 🚀 **Instalación**
 
 \`\`\`bash
-yarn add @flash-global66/b2b-ui-checkbox
+yarn add @flash-global66/b2b-ui-select
 \`\`\`
+
+🪝 **Dependencias**
+
+Este componente requiere:
+
+> - @flash-global66/b2b-ui-tag
+> - @flash-global66/b2b-ui-icon-font
+> - element-plus/es/components/tooltip/index <span style="color: rgb(227 83 83);font-size: 13px;">(se necesita crear @flash-global66/b2b-ui-tooltip)</span>
 
 📥 **Importación básica**
 
@@ -435,7 +447,7 @@ export const Basic: Story = {
 }
 
 export const withAllProps: Story = {
-  name: 'Personalizado de opciones',
+  name: 'Personalizado de opciones con props',
   parameters: {
     docs: {
       description: {
@@ -443,7 +455,8 @@ export const withAllProps: Story = {
 
 - Muestra ícono y descripción
 - Opciones deshabilitadas
-- Búsqueda de opciones`
+- Búsqueda de opciones
+- Largo de opciones personalizado`
       }
     }
   },
@@ -453,7 +466,8 @@ export const withAllProps: Story = {
       const initials = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
 
       const value = ref()
-      const options = Array.from({ length: 20 }).map((_, idx) => ({
+      const value2 = ref()
+      const options = Array.from({ length: 1000 }).map((_, idx) => ({
         value: `Option ${idx + 1}`,
         title: `${initials[idx % 10]}${idx} - option ${idx + 1}`,
         description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in enim elementum, sagittis velit eu, feugiat sem. Sed lacinia tincidunt lacinia.`,
@@ -461,21 +475,105 @@ export const withAllProps: Story = {
         disabled: idx % 3 === 0 && idx !== 0
       }))
 
-      return { value, options }
+      return { value, options, value2 }
+    },
+    template: `
+      <g-config-provider>
+        <div class="flex flex-row gap-4 items-center">
+          <g-select
+            v-model="value"
+            :options="options"
+            placeholder="Please select"
+            :item-height="90"
+            :filterable="true"
+            prefix-icon="regular bolt"
+            label="Label"
+            style="width: 300px"
+            :clearable="true"
+            helpText="This is a help text"
+          />
+          <g-select
+            v-model="value2"
+            :options="options"
+            placeholder="Please select"
+            :item-height="90"
+            :filterable="true"
+            prefix-icon="regular bolt"
+            label="Label"
+            style="width: 300px"
+            :clearable="true"
+            helpText="This is a help text"
+            :fit-input-width="440"
+          />
+        </div>
+      </g-config-provider>
+    `
+  })
+}
+
+export const remoteSearch: Story = {
+  name: 'Búsqueda remota',
+  parameters: {
+    docs: {
+      description: {
+        story: `Este select carga opciones de forma remota desde una API externa.
+
+- Carga de opciones desde API
+- Búsqueda de opciones
+- Mapeo de propiedades`
+      }
+    }
+  },
+  render: () => ({
+    components: { GSelect, GConfigProvider },
+    setup() {
+      const value = ref()
+      const loading = ref(false)
+      const options = ref([])
+
+      // Mapeo de propiedades
+      const mappingProps = {
+        title: 'title',
+        description: 'body',
+        value: 'id',
+      }
+
+      const fetchOptions = async (query: string) => {
+        try {
+          loading.value = true
+          const response = await fetch(`https://jsonplaceholder.typicode.com/posts?q=${query}`)
+          const data = await response.json()
+
+          return data
+        } catch (error) {
+          console.error('Error fetching data:', error)
+          return []
+        } finally {
+          loading.value = false
+        }
+      }
+
+      const handleSearch = async (query: string) => {
+        options.value = await fetchOptions(query)
+      }
+
+      return { value, options, handleSearch, loading, mappingProps }
     },
     template: `
       <g-config-provider>
         <g-select
           v-model="value"
+          placeholder="Buscar opciones"
+          label="Buscar"
           :options="options"
-          placeholder="Please select"
-          :item-height="90"
+          :loading="loading"
           :filterable="true"
-          prefix-icon="regular bolt"
-          label="Label"
+          :props="mappingProps"
+          :remote="true"
+          :remote-method="handleSearch"
+          prefix-icon="regular search"
           style="width: 300px"
-          :clearable="true"
-          helpText="This is a help text"
+          :item-height="90"
         />
       </g-config-provider>
     `
@@ -491,7 +589,12 @@ export const selectorCountries: Story = {
 
 - Muestra la bandera y el nombre del país
 - Búsqueda de opciones
-- Opciones personalizadas`
+- Opciones personalizadas
+- Carga de datos desde API externa
+- Estado de carga durante operaciones asíncronas
+- Limpieza de selección
+- Uso de value-key para cuando las opciones son objetos
+- Uso de slots como prefix, default y selectedLabel`
       }
     }
   },
@@ -511,7 +614,8 @@ export const selectorCountries: Story = {
           const countries = data.map((country) => ({
             value: {
               id: country.cca2,
-              image: country.flags.svg
+              image: country.flags.svg,
+              countryName: country.name.common
             },
             title: country.name.common,
             country: `${country.name.common} ${country.idd.root ?? ''}`
@@ -543,8 +647,9 @@ export const selectorCountries: Story = {
           prefix-icon="regular globe"
           :item-height="70"
           :clearable="true"
-          style="width: 240px"
+          style="width: 320px"
           :loading="loadingCountries"
+          :filterable="true"
           @focus="onFocusSelect"
         >
           <template #default="{ item }">
@@ -556,7 +661,177 @@ export const selectorCountries: Story = {
           <template #prefix v-if="value">
             <img class="w-5 h-5 rounded-full object-cover" :src="value.image" />
           </template>
+          <template #selectedLabel="{ value }">
+            <span class="text-3 text-everBlue-500">{{ value.countryName + ' es increible'  }}</span>
+          </template>
         </g-select>
+      </g-config-provider>
+    `
+  })
+}
+
+export const clearable: Story = {
+  name: 'Con limpieza',
+  parameters: {
+    docs: {
+      description: {
+        story: `El select con opción de limpieza permite al usuario borrar la selección actual.
+
+- Muestra el ícono de limpieza al final del campo
+- Permite borrar la selección actual`
+      }
+    }
+  },
+  render: () => ({
+    components: { GSelect, GConfigProvider },
+    setup() {
+      const value = ref()
+
+      const options = [
+        { value: '1', title: 'Opción 1' },
+        { value: '2', title: 'Opción 2' },
+        { value: '3', title: 'Opción 3' },
+        { value: '4', title: 'Opción 4' },
+        { value: '5', title: 'Opción 5' },
+        { value: '6', title: 'Opción 6' },
+        { value: '7', title: 'Opción 7' }
+      ]
+
+      return { value, options }
+    },
+    template: `
+      <g-config-provider>
+        <g-select
+          v-model="value"
+          placeholder="Selecciona una opción"
+          label="Label"
+          clearable
+          style="width: 280px"
+          :options="options"
+        />
+      </g-config-provider>
+    `
+  })
+}
+
+export const states: Story = {
+  name: 'Estados',
+  parameters: {
+    docs: {
+      description: {
+        story: `Los selects pueden tener diferentes estados que indican su comportamiento y apariencia:
+
+- **Enabled**: Estado inicial del select, listo para seleccionar opciones
+- **Completed**: Cuando el select ya contiene una opción seleccionada
+- **Disabled**: Select deshabilitado, no permite interacción
+- **Evento**: Select controlado por eventos externos (ej: modal)
+- **Error**: Muestra estado de error con mensaje
+- **Loading**: Estado de carga durante operaciones asíncronas`
+      }
+    }
+  },
+  render: () => ({
+    components: { GSelect, GConfigProvider },
+    setup() {
+      const states = reactive({
+        enabled: '',
+        completed: '2',
+        disabled: 'Select deshabilitado',
+        event: '',
+        error: '',
+        loading: ''
+      })
+
+      const options: OptionType[] = [
+        {
+          value: '1',
+          title: 'Opción 1',
+          description: 'Descripción de la opción 1',
+          icon: 'regular bolt'
+        },
+        {
+          value: '2',
+          title: 'Opción 2',
+          description: 'Descripción de la opción 2',
+          icon: 'regular user'
+        },
+        {
+          value: '3',
+          title: 'Opción 3',
+          description: 'Descripción de la opción 3',
+          icon: 'regular bolt'
+        },
+        {
+          value: '4',
+          title: 'Opción 4',
+          description: 'Descripción de la opción 4',
+          icon: 'regular user'
+        },
+        {
+          value: '5',
+          title: 'Opción 5',
+          description: 'Descripción de la opción 5',
+          icon: 'regular bolt'
+        }
+      ]
+
+      function handleClick(e: MouseEvent) {
+        alert('Click en el input')
+      }
+
+      return { states, handleClick, options }
+    },
+    template: `
+      <g-config-provider>
+        <div class="flex flex-row gap-4 flex-wrap">
+          <g-select 
+            v-model="states.enabled"
+            label="Enabled"
+            help-text="select en estado inicial, listo para recibir datos"
+            :options="options"
+            style="width: calc(50% - 1rem)"
+          />
+          <g-select 
+            v-model="states.completed"
+            label="Completed"
+            help-text="select que ya contiene información ingresada"
+            :options="options"
+            style="width: calc(50% - 1rem)"
+          />
+          <g-select 
+            v-model="states.disabled"
+            label="Disabled"
+            disabled
+            help-text="select deshabilitado, no permite ninguna interacción"
+            :options="options"
+            style="width: calc(50% - 1rem)"
+          />
+          <g-select 
+            v-model="states.event"
+            label="Evento"
+            is-event
+            @click="handleClick"
+            help-text="Click para abrir modal de selección"
+            :options="options"
+            style="width: calc(50% - 1rem)"
+          />
+          <g-select 
+            v-model="states.error"
+            label="Error"
+            message-error="Este campo contiene un error"
+            help-text="Ejemplo de select con estado de error"
+            :options="options"
+            style="width: calc(50% - 1rem)"
+          />
+          <g-select 
+            v-model="states.loading"
+            label="Loading"
+            loading
+            help-text="Estado durante operaciones asíncronas"
+            :options="options"
+            style="width: calc(50% - 1rem)"
+          />
+        </div>
       </g-config-provider>
     `
   })
