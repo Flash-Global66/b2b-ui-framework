@@ -384,7 +384,7 @@ const useSelect: useSelectReturnType = (props: propsUseSelect, emit: SelectEmitF
   })
 
   const currentPlaceholder = computed(() => {
-    const _placeholder = props.placeholder ?? t('el.select.placeholder')
+    const _placeholder = props.placeholder ?? 'Selecciona una opción'
     return props.multiple || !hasModelValue.value ? _placeholder : states.selectedLabel
   })
 
