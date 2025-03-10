@@ -55,4 +55,7 @@ export {
   faCalendar,
   faGear,
   faSpinner,
+  faFilter,
+  faArrowUpRightFromSquare,
+  faLockKeyholeOpen
 } from '@fortawesome/pro-regular-svg-icons';
