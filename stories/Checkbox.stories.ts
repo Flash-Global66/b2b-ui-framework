@@ -30,7 +30,7 @@ import '@flash-global66/b2b-ui-checkbox/checkbox.styles.scss'
 \`\`\`
 
 ### Ejemplo básico:
-\`\`\`vue
+\`\`\`html
 <g-checkbox v-model="checked" label="Acepto los términos" />
 \`\`\`
         `
