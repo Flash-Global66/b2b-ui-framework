@@ -918,6 +918,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@flash-global66/b2b-ui-tag-2@workspace:components/tag-2":
+  version: 0.0.0-use.local
+  resolution: "@flash-global66/b2b-ui-tag-2@workspace:components/tag-2"
+  dependencies:
+    "@flash-global66/b2b-ui-icon": "npm:^0.0.3"
+  languageName: unknown
+  linkType: soft
+
 "@flash-global66/b2b-ui-tag@workspace:components/Tag":
   version: 0.0.0-use.local
   resolution: "@flash-global66/b2b-ui-tag@workspace:components/Tag"
