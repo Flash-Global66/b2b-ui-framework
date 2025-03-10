@@ -27,7 +27,7 @@ import '@flash-global66/b2b-ui-checkbox/checkbox.styles.scss'
 \`\`\`
 
 ### Ejemplo con slots personalizados:
-\`\`\`vue
+\`\`\`html
 <g-checkbox-group 
   v-bind="args"
   v-model="selectedValues"
@@ -38,7 +38,7 @@ import '@flash-global66/b2b-ui-checkbox/checkbox.styles.scss'
 \`\`\`
 
 ### Ejemplo con opciones predefinidas:
-\`\`\`vue
+\`\`\`html
 <g-checkbox-group
   v-bind="args"
   v-model="selectedValues"
