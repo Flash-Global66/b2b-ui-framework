@@ -4,7 +4,8 @@
 
 @use "../../components/Scrollbar/scrollbar.styles.scss" as *;
 
-@use "../../components/Tag/tag.styles.scss" as *;
+/* @use "../../components/Tag/tag.styles.scss" as *; */
+@use "../../components/tag-2/tag.styles.scss" as *;
 
 @use "../../components/RadioGroup/radio-group.styles.scss" as *;
 @use "../../components/Radio/radio.styles.scss" as *;
