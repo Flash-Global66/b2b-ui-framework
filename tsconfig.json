@@ -15,7 +15,7 @@
     "emitDeclarationOnly": true,
     "paths": {
       "@/*": ["./src/*"],
-      "assets/*": ["./src/assets/*"],
+      "assets/*": ["./src/assets/*"]
     }
   },
   "include": ["common/**/*.ts"],
