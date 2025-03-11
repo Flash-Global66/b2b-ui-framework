@@ -2,7 +2,7 @@ import { StoryObj } from '@storybook/vue3'
 import { reactive } from 'vue'
 
 // COMPONENTS
-import { GTag, TagInstance } from '../components/tag'
+import { GTag, TagInstance } from '../components/Tag'
 
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider'
