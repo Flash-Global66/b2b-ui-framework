@@ -108,7 +108,8 @@ export const tGlobalTheme = {
       '3xl': '1900px',
     },
     borderWidth: {
-      3: '3px',
+      1: '1px',
+      3: '3px'
     },
     boxShadow: {
       content: '0px 2px 10px rgba(0, 0, 0, 0.04)',
