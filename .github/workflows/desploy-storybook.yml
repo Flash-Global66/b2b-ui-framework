@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          ref: develop
       
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
@@ -28,22 +26,18 @@ jobs:
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GBP_PACKAGE_TOKEN }}" >> .npmrc
           echo "@flash-global66:registry=https://npm.pkg.github.com/" >> .npmrc
           echo "@Flash-Global66:registry=https://npm.pkg.github.com/" >> .npmrc
+
       - name: Configure Yarn
         run: |
           yarn config set @fortawesome:registry https://npm.fontawesome.com/
           yarn config set @flash-global66:registry https://npm.pkg.github.com/
           yarn config set @Flash-Global66:registry https://npm.pkg.github.com/
       
-          - name: Check npm config
-            run: |
-              cat .npmrc
-              npm config list
-              echo "Token has ${#GBP_PACKAGE_TOKEN} characters"
-            env:
-              GBP_PACKAGE_TOKEN: ${{ secrets.GBP_PACKAGE_TOKEN }}
-
-          - name: Install dependencies
-            run: yarn install --frozen-lockfile
+      - name: Check npm configuration
+        run: cat .npmrc
+      
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
       
       - name: Build Storybook
         run: yarn build-storybook
@@ -59,4 +53,5 @@ jobs:
           force_orphan: true
 
       - name: Cleanup .npmrc
+        if: always()
         run: rm -f .npmrc
