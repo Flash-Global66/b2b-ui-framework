@@ -5,6 +5,7 @@ dist
 **/dist
 .codegpt
 .yarn/
+remote_versions.txt
 
 # Build output
 storybook-static/
