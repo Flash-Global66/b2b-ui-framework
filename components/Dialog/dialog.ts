@@ -14,7 +14,7 @@ export const dialogProps = buildProps({
     type: Boolean,
     default: false,
   },
-  /**
+  /***
    * @description which element the Dialog appends to
    */
   appendTo: {
