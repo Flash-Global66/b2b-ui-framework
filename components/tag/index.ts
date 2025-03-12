@@ -1,5 +1,4 @@
-import { withInstall } from 'element-plus/es/utils/index'
-import type { SFCWithInstall } from 'element-plus/es/utils/index'
+import { withInstall, SFCWithInstall } from 'element-plus/es/utils/index'
 
 import Tag from './tag.vue'
 
@@ -8,5 +7,4 @@ export type TagInstance = InstanceType<typeof Tag>
 
 export * from './tag'
 
-export { GTag as Tag }
 export default GTag
