@@ -54,7 +54,9 @@
     "upgrade-storybook": "storybook storybook@latest upgrade",
     "build": "npx lerna run build --stream",
     "dev": "npx lerna run dev --parallel",
-    "clean": "npx lerna clean"
+    "clean": "npx lerna clean",
+    "diff": "npx lerna diff",
+    "compare-versions": "bash ./scripts-terminal/generate-versions-local.sh && bash ./scripts-terminal/compare-versions.sh"
   },
   "resolutions": {
     "jest-mock": "^28.1.0"
