@@ -5,6 +5,8 @@ import Tag from './tag.vue'
 
 export const GTag: SFCWithInstall<typeof Tag> = withInstall(Tag)
 export type TagInstance = InstanceType<typeof Tag>
-export default GTag
 
 export * from './tag'
+
+export { GTag as Tag }
+export default GTag
