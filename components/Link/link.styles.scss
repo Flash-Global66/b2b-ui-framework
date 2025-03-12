@@ -1,0 +1,188 @@
+@use 'sass:map';
+
+@use 'element-plus/theme-chalk/src/mixins/mixins' as *;
+@use 'element-plus/theme-chalk/src/mixins/utils' as *;
+@use 'element-plus/theme-chalk/src/mixins/var' as *;
+@use 'element-plus/theme-chalk/src/common/var' as *;
+
+@include b(link) {
+    @apply inline-flex flex-row items-center justify-center;
+    @apply relative no-underline outline-none;
+    @apply cursor-pointer p-0;
+    @apply font-semibold;
+
+    /* Size variations */
+    &.#{$namespace}-link--sm {
+        @apply text-2;
+        
+        @include e(icon-left); @include e(icon-right) {
+            @apply text-3;
+        }
+    }
+
+    &.#{$namespace}-link--md {
+        @apply text-3;
+        
+        @include e(icon-left); @include e(icon-right) {
+            @apply text-3;
+        }
+    }
+
+    &.#{$namespace}-link--lg {
+        @apply text-4;
+        
+        @include e(icon-left); @include e(icon-right) {
+            @apply text-7;
+        }
+    }
+
+    &:hover {
+        @apply text-primary-def-hover;
+    }
+
+    &:active {
+        @apply text-primary-def-press;
+    }
+
+    // Only add underline on hover when NOT already of type "underline"
+    &:not(.#{$namespace}-link--underline) {
+        @include when(underline) {
+            &:hover:after {
+                content: '';
+                @apply absolute left-0 right-0 h-0 bottom-0;
+                @apply border-b border-primary-def-hover;
+            }
+        }
+    }
+
+    @include when(disabled) {
+        @apply text-disabled-txt cursor-not-allowed;
+    }
+
+    @include e('icon-left') {
+        @apply flex items-center justify-center mr-xxs;
+    }
+
+    @include e('icon-right') {
+        @apply flex items-center justify-center ml-xxs;
+    }
+
+    @include e('inner') {
+        @apply inline-flex justify-center items-center;
+    }
+
+    /* Status variations - Define default behavior first */
+    &.#{$namespace}-link--default {
+        @apply text-primary-txt;
+        
+        &:hover {
+            @apply text-primary-def-hover;
+        }
+        
+        &:active {
+            @apply text-primary-def-press;
+        }
+
+        /* Types override base colors but keep status behavior */
+        &.#{$namespace}-link--primary {
+            @apply text-primary-def;
+            
+            &:hover {
+                @apply text-primary-def-hover;
+            }
+            
+            &:active {
+                @apply text-primary-def-press;
+            }
+        }
+
+        &.#{$namespace}-link--success {
+            @apply text-success-def;
+            
+            &:hover {
+                @apply text-success-txt;
+            }
+        }
+
+        &.#{$namespace}-link--warning {
+            @apply text-warning-def;
+            
+            &:hover {
+                @apply text-warning-txt;
+            }
+        }
+
+        &.#{$namespace}-link--danger {
+            @apply text-error-def;
+            
+            &:hover {
+                @apply text-error-txt;
+            }
+        }
+
+        &.#{$namespace}-link--info {
+            @apply text-info-def;
+            
+            &:hover {
+                @apply text-info-txt;
+            }
+        }
+    }
+    
+    /* Inline status - For links within text */
+    &.#{$namespace}-link--inline {
+        @apply text-secondary-txt;
+        
+        &:hover {
+            @apply text-grey-400;
+        }
+        
+        &:active {
+            @apply text-grey-600;
+        }
+        
+        /* For inline links, different underline style */
+        &:not(.#{$namespace}-link--underline) {
+            @include when(underline) {
+                &:hover:after {
+                    @apply border-grey-400;
+                }
+            }
+        }
+    }
+
+    /* Type-specific styles for underline type */  
+    &.#{$namespace}-link--underline {
+        position: relative;
+        
+        &:after {
+            content: '';
+            @apply absolute left-0 right-0 h-0 bottom-0;
+            @apply border-b border-primary-bd;
+        }
+        
+        &:hover {
+            @apply text-primary-def-hover;
+            
+            &:after {
+                @apply border-primary-def-hover;
+            }
+        }
+        
+        &:active {
+            @apply text-primary-def-press;
+            
+            &:after {
+                @apply border-primary-def-press;
+            }
+        }
+        
+        @include when(disabled) {
+            @apply text-disabled-txt;
+            
+            &:after {
+                @apply border-disabled-bd;
+            }
+        }
+    }
+}
