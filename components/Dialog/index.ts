@@ -8,6 +8,8 @@ import { useDialog } from './use-dialog'
 import { DialogEmits, DialogProps } from './dialog'
 import type { FooterButton } from './types'
 
-export default { GDialog }
 export { useDialog, DialogEmits, DialogProps }
 export type { FooterButton }
+export { GDialog }
+
+export default GDialog;
