@@ -33,9 +33,6 @@ jobs:
           yarn config set @flash-global66:registry https://npm.pkg.github.com/
           yarn config set @Flash-Global66:registry https://npm.pkg.github.com/
       
-      - name: Check npm configuration
-        run: cat .npmrc
-      
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       
@@ -51,7 +48,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./storybook-static
           force_orphan: true
-
+          publish_branch: gh-pages
+      
       - name: Cleanup .npmrc
         if: always()
         run: rm -f .npmrc
