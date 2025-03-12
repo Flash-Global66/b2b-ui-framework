@@ -3,7 +3,7 @@ name: Deploy Storybook
 on:
   push:
     branches:
-      - gh-pages
+      - develop
 
 jobs:
   build-and-deploy:
@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          ref: develop
       
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
@@ -30,7 +32,6 @@ jobs:
         run: |
           yarn config set @fortawesome:registry https://npm.fontawesome.com/
           yarn config set @flash-global66:registry https://npm.pkg.github.com/
-        
       
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -46,6 +47,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./storybook-static
+          force_orphan: true
 
       - name: Cleanup .npmrc
         run: rm -f .npmrc
