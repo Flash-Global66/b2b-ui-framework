@@ -1,4 +1,3 @@
-# .github/workflows/publish-packages.yml
 name: Publish Packages
 
 on:
@@ -26,7 +25,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GBP_PACKAGE_TOKEN }}
 
       - name: Setup Node.js 20
         uses: actions/setup-node@v4
@@ -38,7 +37,7 @@ jobs:
 
       - name: Configure temporary .npmrc
         run: |
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GBP_PACKAGE_TOKEN }}" > .npmrc
           echo "//npm.fontawesome.com/:_authToken=${{ secrets.FONTAWESOME_TOKEN }}" >> .npmrc
           npm config set @flash-global66:registry https://npm.pkg.github.com/
           npm config set @fortawesome:registry https://npm.fontawesome.com/
@@ -52,21 +51,28 @@ jobs:
           git fetch --tags
           echo "LOCAL_TAGS=$(git tag --list | jq -R -s -c 'split("\n")')" >> $GITHUB_OUTPUT
 
-      - name: Version and publish packages
+      - name: Version packages with Lerna
+        id: version
         env:
           GIT_AUTHOR_NAME: GitHub Actions
           GIT_AUTHOR_EMAIL: actions@github.com
           GIT_COMMITTER_NAME: GitHub Actions
           GIT_COMMITTER_EMAIL: actions@github.com
         run: |
-          npx lerna version --conventional-commits --yes --no-push \
-            --tag-version-prefix="" \
-            --create-release=github \
-            --message "chore(release): publish %s [skip ci]"
+          OUTPUT=$(npx lerna version --conventional-commits --yes --no-push --tag-version-prefix="" --create-release=github --message "chore(release): publish %s [skip ci]" 2>&1) || true
+          echo "$OUTPUT"
+          if echo "$OUTPUT" | grep -q "No changed packages to publish"; then
+            echo "no_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "no_changes=false" >> $GITHUB_OUTPUT
+          fi
 
-          npx lerna publish from-package --yes \
-            --verify-access \
-            --no-verify-registry
+      - name: Publish packages with Lerna
+        if: steps.version.outputs.no_changes == 'false'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GBP_PACKAGE_TOKEN }}
+        run: |
+          npx lerna publish from-package --yes --verify-access --no-verify-registry
 
       - name: Push tags with conflict check
         run: |
