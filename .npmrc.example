@@ -1,0 +1,5 @@
+//npm.fontawesome.com/:_authToken=TOKEN
+@fortawesome:registry=https://npm.fontawesome.com/
+
+//npm.pkg.github.com/:_authToken=TOKEN
+@flash-global66:registry=https://npm.pkg.github.com/
