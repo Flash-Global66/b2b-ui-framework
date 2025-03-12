@@ -454,6 +454,13 @@
   resolved "https://npm.pkg.github.com/download/@flash-global66/b2b-ui-dialog/0.0.6/2a18492a3c7cf3b3ff6ab27289e1164299352b41#2a18492a3c7cf3b3ff6ab27289e1164299352b41"
   integrity sha512-EFgQbBJLOK3fNzXxmIHy296gzl53NMe3qPyWpEzyNV3qsM63PSsOEFDYi5T6LDgd1MAF0xZM9Pq8FS0zHhNA8g==
 
+"@flash-global66/b2b-ui-icon@^0.0.3":
+  version "0.0.3"
+  resolved "https://npm.pkg.github.com/download/@flash-global66/b2b-ui-icon/0.0.3/efe206ec0e67d5dc5e9c9bbf3f5d3725e478d1cd#efe206ec0e67d5dc5e9c9bbf3f5d3725e478d1cd"
+  integrity sha512-H1gpqtNpniBR7ayKQHuMIr+YnqGybwXfAwxGkiRsgscAtmZQhA/RH6NBo8QYbfwC0JQGd4gb9BRWzJZxI5H4pA==
+  dependencies:
+    vue-icomoon "^0.6.1"
+
 "@floating-ui/core@^1.6.0":
   version "1.6.9"
   resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.6.9.tgz#64d1da251433019dafa091de9b2886ff35ec14e6"
