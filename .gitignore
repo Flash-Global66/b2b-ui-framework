@@ -7,5 +7,7 @@ dist
 .yarn/
 remote_versions.txt
 
+.npmrc
+
 # Build output
 storybook-static/
