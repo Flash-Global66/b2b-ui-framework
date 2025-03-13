@@ -45,18 +45,13 @@ done
 
 echo -e "${GREEN}✅ registry_versions.txt generado con ${total_components} componentes${NC}"
 
-# Preguntar si se deben actualizar los package.json
-read -p "¿Actualizar los package.json con las versiones publicadas? (s/n): " update_packages
-if [[ "$update_packages" != "s" ]]; then
-  echo -e "${YELLOW}Operación cancelada.${NC}"
-  exit 0
-fi
-
 read -p "¿Crear tags Git? (s/n): " create_tags
 
 components_updated=0
 components_skipped=0
 components_error=0
+
+echo -e "${BLUE}Sincronizando versiones... Por favor espere.${NC}"
 
 for dir in components/*; do
   if [ -f "$dir/package.json" ]; then
@@ -73,12 +68,11 @@ for dir in components/*; do
 
     version_local=$(node -p "require('./$dir/package.json').version" | tr -d '[:space:]')
     
-    echo -e "\n${BLUE}$pkg:${NC}"
-    echo -e "  Local: ${YELLOW}$version_local${NC} | Registry: ${GREEN}$version_registry${NC}"
-    
     if [[ "$version_local" != "$version_registry" ]]; then
-      if [[ $(semver compare "$version_local" "$version_registry" 2>/dev/null) -eq 1 ]]; then
-        echo -e "  ${RED}⚠️ ADVERTENCIA: La versión local ($version_local) es mayor que la del registro ($version_registry)${NC}"
+      # Comparar versiones de manera segura
+      semver_result=$(semver compare "$version_local" "$version_registry" 2>/dev/null)
+      if [[ "$semver_result" == "1" ]]; then
+        echo -e "${RED}⚠️ $pkg: Local ($version_local) > Registry ($version_registry)${NC}"
         read -p "  ¿Continuar y degradar a la versión del registro? (s/n): " respuesta
         if [[ "$respuesta" != "s" ]]; then
           echo -e "  ${YELLOW}Saltando este componente${NC}"
@@ -95,24 +89,19 @@ for dir in components/*; do
       "
       
       if [ $? -eq 0 ]; then
-        echo -e "  ${GREEN}🔄 Actualizado a $version_registry${NC}"
         ((components_updated++))
         
         if [[ "$create_tags" == "s" ]]; then
           tag_name="@flash-global66/b2b-ui-${component_kebab}@${version_registry}"
           git tag -a "$tag_name" -m "Versión $version_registry de $pkg" 2>/dev/null
-          if [ $? -eq 0 ]; then
-            echo -e "  ${GREEN}🏷️ Tag creado: $tag_name${NC}"
-          else
-            echo -e "  ${YELLOW}⚠️ Tag '$tag_name' ya existe o error al crearlo${NC}"
+          if [ $? -ne 0 ]; then
+            echo -e "${YELLOW}⚠️ Tag '$tag_name' ya existe o error al crearlo${NC}"
           fi
         fi
       else
-        echo -e "  ${RED}❌ Error al actualizar package.json${NC}"
+        echo -e "${RED}❌ Error al actualizar package.json de $pkg${NC}"
         ((components_error++))
       fi
-    else
-      echo -e "  ${GREEN}✅ Ya sincronizado${NC}"
     fi
   fi
 done
