@@ -1,0 +1,20 @@
+{
+  "name": "@flash-global66/b2b-ui-icon-button",
+  "author": "Global66",
+  "version": "0.0.1",
+  "license": "MIT",
+  "exports": {
+    ".": "./src/index.ts",
+    "./icon-button.styles.scss": "./src/icon-button.styles.scss"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
+  },
+  "peerDependencies": {
+    "@flash-global66/b2b-ui-icon-font": "^1.0.2"
+  },
+  "gitHead": "dc031789714efcb4e0fadbfe785964dc376930d7"
+}
