@@ -4,40 +4,47 @@ on:
   push:
     branches:
       - develop
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 15
+    env:
+      GBP_PACKAGE_TOKEN: ${{ secrets.GBP_PACKAGE_TOKEN }}
+      FONT_AWESOME_TOKEN: ${{ secrets.FONT_AWESOME_TOKEN }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       
       - name: Setup Node.js environment
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'yarn'
-      
-      - name: Configure temporary .npmrc
-        run: |
-          echo "//npm.fontawesome.com/:_authToken=${{ secrets.FONT_AWESOME_TOKEN }}" > .npmrc
-          echo "@fortawesome:registry=https://npm.fontawesome.com/" >> .npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GBP_PACKAGE_TOKEN }}" >> .npmrc
-          echo "@flash-global66:registry=https://npm.pkg.github.com/" >> .npmrc
-          echo "@Flash-Global66:registry=https://npm.pkg.github.com/" >> .npmrc
-
-      - name: Configure Yarn
-        run: |
-          yarn config set @fortawesome:registry https://npm.fontawesome.com/
-          yarn config set @flash-global66:registry https://npm.pkg.github.com/
-          yarn config set @Flash-Global66:registry https://npm.pkg.github.com/
+          cache-dependency-path: '**/yarn.lock'
       
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+        
+      - name: Verify Yarn configuration
+        run: |
+          echo "Verificando configuración de Yarn y variables de entorno..."
+          yarn config list
+          # No imprime los tokens por seguridad
+          if [ -z "$GBP_PACKAGE_TOKEN" ]; then echo "⚠️ GBP_PACKAGE_TOKEN no está configurado"; else echo "✓ GBP_PACKAGE_TOKEN configurado"; fi
+          if [ -z "$FONT_AWESOME_TOKEN" ]; then echo "⚠️ FONT_AWESOME_TOKEN no está configurado"; else echo "✓ FONT_AWESOME_TOKEN configurado"; fi
       
       - name: Build Storybook
+        id: build
         run: yarn build-storybook
+        
+      - name: Check build output
+        run: |
+          if [ ! -d "./storybook-static" ]; then
+            echo "::error::La carpeta de build no existe"
+            exit 1
+          fi
       
       - name: Create .nojekyll file
         run: touch ./storybook-static/.nojekyll
@@ -49,7 +56,11 @@ jobs:
           publish_dir: ./storybook-static
           force_orphan: true
           publish_branch: gh-pages
-      
-      - name: Cleanup .npmrc
-        if: always()
-        run: rm -f .npmrc
+          
+      - name: Notify success
+        if: success()
+        run: echo "✅ Storybook desplegado exitosamente en https://flash-global66.github.io/b2b-ui-framework/"
+        
+      - name: Notify failure
+        if: failure()
+        run: echo "❌ Falló el despliegue de Storybook"

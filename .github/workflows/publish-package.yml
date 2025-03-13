@@ -7,6 +7,7 @@ on:
       - 'components/**'
       - 'lerna.json'
       - 'package*.json'
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -19,6 +20,9 @@ jobs:
     permissions:
       contents: write
       packages: write
+    env:
+      GBP_PACKAGE_TOKEN: ${{ secrets.GBP_PACKAGE_TOKEN }}
+      FONT_AWESOME_TOKEN: ${{ secrets.FONT_AWESOME_TOKEN }}
 
     steps:
       - name: Checkout repository
@@ -31,25 +35,36 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
-          registry-url: 'https://npm.pkg.github.com'
           cache: 'yarn'
           cache-dependency-path: '**/yarn.lock'
 
-      - name: Configure temporary .npmrc
+      - name: Verify environment variables
         run: |
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GBP_PACKAGE_TOKEN }}" > .npmrc
-          echo "//npm.fontawesome.com/:_authToken=${{ secrets.FONT_AWESOME_TOKEN }}" >> .npmrc
-          npm config set @flash-global66:registry https://npm.pkg.github.com/
-          npm config set @fortawesome:registry https://npm.fontawesome.com/
+          if [ -z "$GBP_PACKAGE_TOKEN" ]; then 
+            echo "::error::GBP_PACKAGE_TOKEN no está configurado"
+            exit 1
+          fi
+          if [ -z "$FONT_AWESOME_TOKEN" ]; then 
+            echo "::error::FONT_AWESOME_TOKEN no está configurado"
+            exit 1
+          fi
+          echo "✅ Variables de entorno configuradas correctamente"
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+        
+      - name: Verify Yarn configuration
+        run: |
+          echo "Verificando configuración de Yarn"
+          yarn config list --verbose | grep -v "npmAuthToken"
+          echo "✅ Configuración de Yarn verificada"
 
       - name: Check existing tags
         id: check-tags
         run: |
           git fetch --tags
           echo "LOCAL_TAGS=$(git tag --list | jq -R -s -c 'split("\n")')" >> $GITHUB_OUTPUT
+          echo "✅ Tags existentes verificados"
 
       - name: Version packages with Lerna
         id: version
@@ -59,31 +74,59 @@ jobs:
           GIT_COMMITTER_NAME: GitHub Actions
           GIT_COMMITTER_EMAIL: actions@github.com
         run: |
-          OUTPUT=$(npx lerna version --conventional-commits --yes --no-push --tag-version-prefix="" --create-release=github --message "chore(release): publish %s [skip ci]" 2>&1) || true
+          echo "Ejecutando versionado con Lerna..."
+          OUTPUT=$(yarn lerna version --conventional-commits --yes --no-push --tag-version-prefix="" --create-release=github --message "chore(release): publish %s [skip ci]" 2>&1) || true
           echo "$OUTPUT"
           if echo "$OUTPUT" | grep -q "No changed packages to publish"; then
             echo "no_changes=true" >> $GITHUB_OUTPUT
+            echo "ℹ️ No hay cambios para publicar"
           else
             echo "no_changes=false" >> $GITHUB_OUTPUT
+            echo "✅ Versionado completado, hay cambios para publicar"
           fi
 
       - name: Publish packages with Lerna
         if: steps.version.outputs.no_changes == 'false'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GBP_PACKAGE_TOKEN }}
+        id: publish
         run: |
-          npx lerna publish from-package --yes --verify-access --no-verify-registry
+          echo "Publicando paquetes con Lerna..."
+          yarn lerna publish from-package --yes --verify-access --no-verify-registry
+          echo "✅ Paquetes publicados exitosamente"
 
       - name: Push tags with conflict check
         run: |
+          echo "Empujando tags a GitHub..."
+          NEW_TAGS=0
           git tag --list | while read tag; do
             if ! grep -q "$tag" <<< "${{ steps.check-tags.outputs.LOCAL_TAGS }}"; then
               echo "Pushing new tag: $tag"
               git push origin "$tag"
+              NEW_TAGS=$((NEW_TAGS+1))
             else
               echo "Skipping existing tag: $tag"
             fi
           done
+          if [ $NEW_TAGS -gt 0 ]; then
+            echo "✅ $NEW_TAGS nuevos tags fueron enviados a GitHub"
+          else
+            echo "ℹ️ No se encontraron nuevos tags para enviar"
+          fi
 
-      - name: Cleanup .npmrc
-        run: rm -f .npmrc
+      - name: Verify publish results
+        if: steps.version.outputs.no_changes == 'false'
+        run: |
+          echo "Verificando resultados de la publicación..."
+          if [ "${{ steps.publish.outcome }}" == "success" ]; then
+            echo "✅ Publicación completada exitosamente"
+          else
+            echo "❌ Hubo un problema con la publicación"
+            exit 1
+          fi
+
+      - name: Notification on success
+        if: success()
+        run: echo "🎉 Workflow completado exitosamente - Los paquetes han sido versionados y publicados"
+
+      - name: Notification on failure
+        if: failure()
+        run: echo "❌ El workflow ha fallado - Revisa los logs para más detalles"
