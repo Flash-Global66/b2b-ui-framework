@@ -10,11 +10,11 @@ const meta: Meta<typeof GLink> = {
   argTypes: {
     type: {
       control: { type: 'select' },
-      options: ['default', 'underline', 'primary', 'success', 'warning', 'danger', 'info'],
+      options: ['primary', 'secondary'],
       description: 'Tipo de estilo del link. Define la apariencia visual y el color del link.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'default' },
+        defaultValue: { summary: 'primary' },
       },
     },
     size: {
@@ -28,10 +28,10 @@ const meta: Meta<typeof GLink> = {
     },
     underline: {
       control: { type: 'boolean' },
-      description: 'Define si el link muestra un subrayado al pasar el cursor por encima. No aplica cuando el tipo es "underline" para evitar duplicidad.',
+      description: 'Define si el link muestra un underline permanente.',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
+        defaultValue: { summary: 'false' },
       },
     },
     disabled: {
@@ -95,7 +95,8 @@ const meta: Meta<typeof GLink> = {
 El componente Link proporciona un link versátil y personalizable para la navegación y acciones:
 
 ## Características
-- Múltiples tipos de link (default, underline, primary, success, warning, danger, info)
+- Dos tipos de link (primary, secondary)
+- Opción para mostrar underline permanente
 - Tres tamaños disponibles: small (sm), medium (md) y large (lg)
 - Soporte para íconos a la izquierda y derecha
 - Estados de hover, active y disabled
@@ -122,15 +123,22 @@ Para que el componente funcione correctamente, es necesario importar los estilos
 
 \`\`\`html
 <template>
-  <g-link href="https://empresas.global66.com/">link básico</g-link>
+  <!-- Link primario (por defecto) -->
+  <g-link href="https://empresas.global66.com/">link primario</g-link>
   
+  <!-- Link secundario -->
   <g-link 
-    type="primary"
+    type="secondary"
     icon-right="regular chevron-right"
     href="https://empresas.global66.com/"
     target="_blank"
   >
-    link con icono
+    link secundario con icono
+  </g-link>
+  
+  <!-- Link con underline permanente -->
+  <g-link underline href="https://empresas.global66.com/">
+    link con underline
   </g-link>
 </template>
 
@@ -143,9 +151,9 @@ import { GLink } from '@flash-global66/b2b-ui-link';
     }
   },
   args: {
-    type: 'default',
+    type: 'primary',
     size: 'md',
-    underline: true,
+    underline: false,
     disabled: false,
     href: 'https://empresas.global66.com/',
     target: '_blank',
@@ -299,38 +307,23 @@ export const Types: Story = {
       <g-config-provider>
         <div class="flex flex-col space-y-4">
           <div>
-            <h3 class="mb-2 font-semibold">Default</h3>
-            <g-link type="default" href="https://empresas.global66.com/">Link por defecto</g-link>
-          </div>
-          
-          <div>
-            <h3 class="mb-2 font-semibold">Underline</h3>
-            <g-link type="underline" href="https://empresas.global66.com/">Link underline</g-link>
-          </div>
-          
-          <div>
             <h3 class="mb-2 font-semibold">Primary</h3>
             <g-link type="primary" href="https://empresas.global66.com/">Link primario</g-link>
           </div>
           
           <div>
-            <h3 class="mb-2 font-semibold">Success</h3>
-            <g-link type="success" href="https://empresas.global66.com/">Link de éxito</g-link>
+            <h3 class="mb-2 font-semibold">Secondary</h3>
+            <g-link type="secondary" href="https://empresas.global66.com/">Link secundario</g-link>
           </div>
           
           <div>
-            <h3 class="mb-2 font-semibold">Warning</h3>
-            <g-link type="warning" href="https://empresas.global66.com/">Link de advertencia</g-link>
+            <h3 class="mb-2 font-semibold">Primary con underline</h3>
+            <g-link type="primary" underline href="https://empresas.global66.com/">Link primario con underline</g-link>
           </div>
           
           <div>
-            <h3 class="mb-2 font-semibold">Danger</h3>
-            <g-link type="danger" href="https://empresas.global66.com/">Link de peligro</g-link>
-          </div>
-          
-          <div>
-            <h3 class="mb-2 font-semibold">Info</h3>
-            <g-link type="info" href="https://empresas.global66.com/">Link informativo</g-link>
+            <h3 class="mb-2 font-semibold">Secondary con underline</h3>
+            <g-link type="secondary" underline href="https://empresas.global66.com/">Link secundario con underline</g-link>
           </div>
         </div>
       </g-config-provider>
@@ -339,23 +332,110 @@ export const Types: Story = {
   parameters: {
     docs: {
       description: {
-        story: "links con diferentes tipos de estilo: default, underline, primary, success, warning, danger e info."
+        story: "Links con diferentes tipos de estilo: primary y secondary, con y sin underline."
       },
       source: {
         code: `
-<g-link type="default" href="https://empresas.global66.com/">Link por defecto</g-link>
-
-<g-link type="underline" href="https://empresas.global66.com/">Link underline</g-link>
-
 <g-link type="primary" href="https://empresas.global66.com/">Link primario</g-link>
 
-<g-link type="success" href="https://empresas.global66.com/">Link de éxito</g-link>
+<g-link type="secondary" href="https://empresas.global66.com/">Link secundario</g-link>
 
-<g-link type="warning" href="https://empresas.global66.com/">Link de advertencia</g-link>
+<g-link type="primary" underline href="https://empresas.global66.com/">Link primario con underline</g-link>
 
-<g-link type="danger" href="https://empresas.global66.com/">Link de peligro</g-link>
+<g-link type="secondary" underline href="https://empresas.global66.com/">Link secundario con underline</g-link>`,
+        language: "html",
+        type: "auto",
+      },
+    },
+  },
+};
 
-<g-link type="info" href="https://empresas.global66.com/">Link informativo</g-link>`,
+// Add a new story for links with both icons and underline
+export const IconsWithUnderline: Story = {
+  name: 'Links con íconos y underline',
+  render: () => ({
+    components: { GLink, GConfigProvider },
+    template: `
+      <g-config-provider>
+        <div class="flex flex-col space-y-4">
+          <div>
+            <h3 class="mb-2 font-semibold">Primary con íconos y underline</h3>
+            <g-link 
+              type="primary" 
+              underline 
+              icon-left="regular arrow-left" 
+              icon-right="regular arrow-right" 
+              href="https://empresas.global66.com/"
+            >
+              Link con íconos y underline
+            </g-link>
+          </div>
+          
+          <div>
+            <h3 class="mb-2 font-semibold">Primary solo con ícono izquierdo y underline</h3>
+            <g-link 
+              type="primary" 
+              underline 
+              icon-left="regular external-link" 
+              href="https://empresas.global66.com/"
+            >
+              Link con ícono izquierdo y underline
+            </g-link>
+          </div>
+          
+          <div>
+            <h3 class="mb-2 font-semibold">Secondary con íconos y underline</h3>
+            <g-link 
+              type="secondary" 
+              underline 
+              icon-left="regular envelope" 
+              icon-right="regular arrow-up-right-from-square" 
+              href="https://empresas.global66.com/"
+              target="_blank"
+            >
+              Link secundario con íconos y underline
+            </g-link>
+          </div>
+        </div>
+      </g-config-provider>
+    `,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story: "Links que combinan íconos y underline permanente, mostrando diferentes variaciones."
+      },
+      source: {
+        code: `
+<g-link 
+  type="primary" 
+  underline 
+  icon-left="regular arrow-left" 
+  icon-right="regular arrow-right" 
+  href="https://empresas.global66.com/"
+>
+  Link con íconos y underline
+</g-link>
+
+<g-link 
+  type="primary" 
+  underline 
+  icon-left="regular external-link" 
+  href="https://empresas.global66.com/"
+>
+  Link con ícono izquierdo y underline
+</g-link>
+
+<g-link 
+  type="secondary" 
+  underline 
+  icon-left="regular envelope" 
+  icon-right="regular arrow-up-right-from-square" 
+  href="https://empresas.global66.com/"
+  target="_blank"
+>
+  Link secundario con íconos y underline
+</g-link>`,
         language: "html",
         type: "auto",
       },

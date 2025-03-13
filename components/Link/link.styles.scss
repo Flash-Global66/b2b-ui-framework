@@ -36,29 +36,6 @@
         }
     }
 
-    &:hover {
-        @apply text-primary-def-hover;
-    }
-
-    &:active {
-        @apply text-primary-def-press;
-    }
-
-    // Only add underline on hover when NOT already of type "underline"
-    &:not(.#{$namespace}-link--underline) {
-        @include when(underline) {
-            &:hover:after {
-                content: '';
-                @apply absolute left-0 right-0 h-0 bottom-0;
-                @apply border-b border-primary-def-hover;
-            }
-        }
-    }
-
-    @include when(disabled) {
-        @apply text-disabled-txt cursor-not-allowed;
-    }
-
     @include e('icon-left') {
         @apply flex items-center justify-center mr-xxs;
     }
@@ -69,62 +46,73 @@
 
     @include e('inner') {
         @apply inline-flex justify-center items-center;
+        @apply relative;
     }
 
-    /* Status variations - Define default behavior first */
-    &.#{$namespace}-link--default {
-        @apply text-primary-txt;
+    @include when(disabled) {
+        @apply text-disabled-txt cursor-not-allowed;
+        
+        .#{$namespace}-link__inner:after {
+            @apply border-disabled-bd;
+        }
+    }
+
+    /* Primary link - everBlue color palette */
+    &.#{$namespace}-link--primary {
+        @apply text-everBlue-500;
         
         &:hover {
-            @apply text-primary-def-hover;
+            @apply text-everBlue-700;
         }
         
         &:active {
-            @apply text-primary-def-press;
+            @apply text-everBlue-400;
         }
-
-        /* Types override base colors but keep status behavior */
-        &.#{$namespace}-link--primary {
-            @apply text-primary-def;
-            
-            &:hover {
-                @apply text-primary-def-hover;
+        
+        /* Underline styles for primary links */
+        @include when(underline) {
+            .#{$namespace}-link__inner:after {
+                content: '';
+                @apply absolute left-0 right-0 h-0 bottom-0;
+                @apply border-b border-everBlue-500;
             }
             
-            &:active {
-                @apply text-primary-def-press;
+            &:hover .#{$namespace}-link__inner:after {
+                @apply border-everBlue-700;
+            }
+            
+            &:active .#{$namespace}-link__inner:after {
+                @apply border-everBlue-400;
             }
         }
-
-        &.#{$namespace}-link--success {
-            @apply text-success-def;
-            
-            &:hover {
-                @apply text-success-txt;
-            }
+    }
+    
+    /* Secondary link - grey color palette */
+    &.#{$namespace}-link--secondary {
+        @apply text-grey-700;
+        
+        &:hover {
+            @apply text-grey-900;
         }
-
-        &.#{$namespace}-link--warning {
-            @apply text-warning-def;
-            
-            &:hover {
-                @apply text-warning-txt;
-            }
+        
+        &:active {
+            @apply text-grey-500;
         }
-
-        &.#{$namespace}-link--danger {
-            @apply text-error-def;
-            
-            &:hover {
-                @apply text-error-txt;
+        
+        /* Underline styles for secondary links */
+        @include when(underline) {
+            .#{$namespace}-link__inner:after {
+                content: '';
+                @apply absolute left-0 right-0 h-0 bottom-0;
+                @apply border-b border-grey-700;
             }
-        }
-
-        &.#{$namespace}-link--info {
-            @apply text-info-def;
             
-            &:hover {
-                @apply text-info-txt;
+            &:hover .#{$namespace}-link__inner:after {
+                @apply border-grey-900;
+            }
+            
+            &:active .#{$namespace}-link__inner:after {
+                @apply border-grey-500;
             }
         }
     }
@@ -141,47 +129,20 @@
             @apply text-grey-600;
         }
         
-        /* For inline links, different underline style */
-        &:not(.#{$namespace}-link--underline) {
-            @include when(underline) {
-                &:hover:after {
-                    @apply border-grey-400;
-                }
+        /* Underline styles for inline links */
+        @include when(underline) {
+            .#{$namespace}-link__inner:after {
+                content: '';
+                @apply absolute left-0 right-0 h-0 bottom-0;
+                @apply border-b border-grey-700;
             }
-        }
-    }
-
-    /* Type-specific styles for underline type */  
-    &.#{$namespace}-link--underline {
-        position: relative;
-        
-        &:after {
-            content: '';
-            @apply absolute left-0 right-0 h-0 bottom-0;
-            @apply border-b border-primary-bd;
-        }
-        
-        &:hover {
-            @apply text-primary-def-hover;
             
-            &:after {
-                @apply border-primary-def-hover;
+            &:hover .#{$namespace}-link__inner:after {
+                @apply border-grey-400;
             }
-        }
-        
-        &:active {
-            @apply text-primary-def-press;
             
-            &:after {
-                @apply border-primary-def-press;
-            }
-        }
-        
-        @include when(disabled) {
-            @apply text-disabled-txt;
-            
-            &:after {
-                @apply border-disabled-bd;
+            &:active .#{$namespace}-link__inner:after {
+                @apply border-grey-600;
             }
         }
     }

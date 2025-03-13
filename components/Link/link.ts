@@ -5,12 +5,12 @@ import type Link from './Link.vue'
 
 export const linkProps = buildProps({
   /**
-   * @description type of link, controls the color scheme
+   * @description type of link
    */
   type: {
     type: String,
-    values: ["default", "underline", "primary", "success", "warning", "info", "danger"],
-    default: "default",
+    values: ["primary", "secondary"],
+    default: "primary",
   },
   /**
    * @description size of link
@@ -21,12 +21,11 @@ export const linkProps = buildProps({
     default: "md",
   },
   /**
-   * @description whether the component has underline on hover
-   * Note: Does not apply when type="underline" to prevent double underlines
+   * @description whether the component always shows an underline
    */
   underline: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   /**
    * @description whether the component is disabled
@@ -78,5 +77,3 @@ export const linkEmits = {
 export type LinkEmits = typeof linkEmits
 
 export type LinkInstance = InstanceType<typeof Link>
-
-
