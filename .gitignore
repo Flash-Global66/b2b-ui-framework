@@ -6,6 +6,7 @@ dist
 .codegpt
 .yarn/
 remote_versions.txt
+registry_versions.txt
 
 .npmrc
 .env
