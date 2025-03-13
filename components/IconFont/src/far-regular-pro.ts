@@ -57,5 +57,13 @@ export {
   faSpinner,
   faFilter,
   faArrowUpRightFromSquare,
-  faLockKeyholeOpen
+  faLockKeyholeOpen,
+  faPen,
+  faShieldXmark,
+  faShield,
+  faShieldCheck,
+  faShieldSlash,
+  faUserShield,
+  faTrashXmark,
+  faTrash,
 } from '@fortawesome/pro-regular-svg-icons';

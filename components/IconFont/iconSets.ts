@@ -159,7 +159,14 @@ export const ICON_SETS = {
     'spinner',
     'filter',
     'arrow-up-right-from-square',
-    'lock-keyhole-open'
+    'lock-keyhole-open',
+    'pen',
+    'shield-slash',
+    'shield-check',
+    'shield-xmark',
+    'shield',
+    'trash-xmark',
+    'trash'
   ] as const,
 
   light: [
