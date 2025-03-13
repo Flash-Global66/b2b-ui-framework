@@ -3,11 +3,6 @@ name: Publish Packages
 on:
   push:
     branches: [main]
-    paths:
-      - 'components/**'
-      - 'lerna.json'
-      - 'package*.json'
-  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -85,13 +80,24 @@ jobs:
             echo "✅ Versionado completado, hay cambios para publicar"
           fi
 
+      - name: Setup authentication for publishing
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${GBP_PACKAGE_TOKEN}" > .npmrc
+          echo "@flash-global66:registry=https://npm.pkg.github.com/" >> .npmrc
+          echo "//npm.fontawesome.com/:_authToken=${FONT_AWESOME_TOKEN}" >> .npmrc
+          echo "@fortawesome:registry=https://npm.fontawesome.com/" >> .npmrc
+
       - name: Publish packages with Lerna
         if: steps.version.outputs.no_changes == 'false'
         id: publish
         run: |
           echo "Publicando paquetes con Lerna..."
-          yarn lerna publish from-package --yes --verify-access --no-verify-registry
+          yarn lerna publish from-package --yes --npm-client=npm --verify-access
           echo "✅ Paquetes publicados exitosamente"
+
+      - name: Cleanup temporary files
+        if: always()
+        run: rm -f .npmrc
 
       - name: Push tags with conflict check
         run: |
