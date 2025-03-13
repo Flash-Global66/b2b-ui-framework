@@ -17,13 +17,12 @@ fi
 echo -e "${BLUE}Generando registry_versions.txt...${NC}"
 rm -f registry_versions.txt
 
-# Función para convertir nombres de camelCase a kebab-case
 to_kebab() {
   echo "$1" | sed -E 's/([a-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]'
 }
 
 # Crear directorio de respaldo si no existe
-BACKUP_DIR="backups/$(date +%Y%m%d_%H%M%S)"
+BACKUP_DIR="backups-temporal/$(date +%Y%m%d_%H%M%S)"
 mkdir -p "$BACKUP_DIR"
 echo -e "${BLUE}Se crearán respaldos en: ${BACKUP_DIR}${NC}"
 
@@ -124,16 +123,33 @@ echo -e "Actualizados: ${GREEN}${components_updated}${NC}"
 echo -e "Omitidos: ${YELLOW}${components_skipped}${NC}"
 echo -e "Errores: ${RED}${components_error}${NC}"
 
-if [[ "$create_tags" == "s" && $components_updated -gt 0 ]]; then
+# IMPORTANTE: Separamos la creación de commit de la creación de tags
+if [[ $components_updated -gt 0 ]]; then
+  # Siempre preguntar por el commit si se actualizó algún componente
   read -p "¿Realizar commit de los cambios? (s/n): " do_commit
   if [[ "$do_commit" == "s" ]]; then
     git add components/*/package.json
-    git commit -m "chore: sincronizar versiones con registry"
-    echo -e "\n${GREEN}✅ Commit realizado${NC}"
-    echo -e "${BLUE}📌 Ejecuta 'git push --follow-tags' para subir cambios y tags.${NC}"
+    git commit -m "chore: synchronize versions with registry"
+    
+    # Verificar si el commit fue exitoso
+    if [ $? -eq 0 ]; then
+      echo -e "\n${GREEN}✅ Commit realizado correctamente${NC}"
+      
+      # Si también se crearon tags, sugerir push con --follow-tags
+      if [[ "$create_tags" == "s" ]]; then
+        echo -e "${BLUE}📌 Ejecuta 'git push --follow-tags' para subir cambios y tags.${NC}"
+      else
+        echo -e "${BLUE}📌 Ejecuta 'git push' para subir los cambios.${NC}"
+      fi
+    else
+      echo -e "\n${RED}❌ Error al realizar el commit${NC}"
+      echo -e "${YELLOW}Verifica si hay problemas con tu configuración de Git${NC}"
+    fi
   else
     echo -e "\n${YELLOW}Los cambios están pendientes para commit${NC}"
-    echo -e "${BLUE}📌 Recuerda hacer commit y luego ejecutar 'git push --follow-tags'${NC}"
+    echo -e "${BLUE}Puedes hacer commit manualmente con:${NC}"
+    echo -e "git add components/*/package.json"
+    echo -e "git commit -m \"chore: sincronizar versiones con registry\""
   fi
 fi
 

@@ -11,5 +11,7 @@ registry_versions.txt
 .npmrc
 .env
 
+backups-temporal/
+
 # Build output
 storybook-static/
