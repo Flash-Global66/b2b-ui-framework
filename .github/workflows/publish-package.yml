@@ -92,13 +92,12 @@ jobs:
         id: publish
         run: |
           echo "Publicando paquetes con Lerna..."
-          yarn lerna publish from-package --yes --npm-client=npm --verify-access
+          npx lerna publish from-package --yes
           echo "✅ Paquetes publicados exitosamente"
 
       - name: Cleanup temporary files
         if: always()
         run: rm -f .npmrc
-
       - name: Push tags with conflict check
         run: |
           echo "Empujando tags a GitHub..."
