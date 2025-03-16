@@ -1,10 +1,8 @@
 <template>
   <div ref="formItemRef" :class="formItemClasses">
     <slot />
-    <div :class="{
-      [ns.e('content-error')]: showMessage,
-    }">
-      <slot v-if="shouldShowError && !showMessageChild" name="error" :error="validateMessage">
+    <div :class="{ [ns.e('content-error')]: shouldShowError }">
+      <slot v-if="shouldShowError" name="error" :error="validateMessage">
         <span :class="ns.e('error')">
           {{ validateMessage }}
         </span>
@@ -143,14 +141,13 @@ const isRequired = computed(() =>
 const shouldShowError = computed(
   () =>
     validateStateDebounced.value === "error" &&
-    props.showMessage &&
-    !props.showMessageChild
+    props.showMessage === "parent"
 );
 
 const shouldShowErrorChild = computed(
   () =>
     validateStateDebounced.value === "error" &&
-    props.showMessageChild
+    props.showMessage === "child"
 );
 
 const setValidationState = (state: FormItemValidateState) => {
@@ -178,7 +175,6 @@ const onValidationSucceeded = () => {
 
 const doValidate = async (rules: RuleItem[]): Promise<true> => {
   const modelName = propString.value;
-  console.log("modelName", modelName);
   const validator = new AsyncValidator({
     [modelName]: rules,
   });

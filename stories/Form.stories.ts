@@ -1,9 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
-import { ref, reactive } from "vue";
+import { ref, reactive, computed, watch } from "vue";
 import { FormInstance, GForm, GFormItem } from "../components/Form";
 import { GInput } from "../components/Input";
 import { GConfigProvider } from "../components/ConfigProvider";
 import { GButton } from "../components/Button/src";
+import { GSelect } from "../components/Select";
+import { GRadio } from "../components/Radio";
+import { GCheckbox } from "@flash-global66/b2b-ui-checkbox";
+
 const meta: Meta<FormInstance> = {
   title: "Form/Form",
   component: GForm,
@@ -119,6 +123,259 @@ Este componente trabaja en conjunto con el componente \`FormItem\` para proporci
 export default meta;type Story = StoryObj<FormInstance>;
 
 // Historia Principal
+export const CompleteForm: Story = {
+  name: 'Formulario Completo',
+  parameters: {
+    docs: {
+      description: {
+        story: `Este ejemplo muestra un formulario completo que integra todos los componentes de formulario con validaciones.`
+      }
+    }
+  },
+  render: () => ({
+    components: { 
+      GForm, 
+      GFormItem, 
+      GInput, 
+      GConfigProvider, 
+      GButton,
+      GSelect,
+      GRadio,
+      GCheckbox
+    },
+    setup() {
+      const formRef = ref<FormInstance>();
+      const formData = reactive({
+        fullName: '',
+        email: '',
+        country: '',
+        city: '',
+        gender: '',
+        termsAccepted: false
+      });
+
+      // Lista de países
+      const countries = [
+        { value: 'mx', title: 'México' },
+        { value: 'co', title: 'Colombia' },
+        { value: 'ar', title: 'Argentina' },
+        { value: 'cl', title: 'Chile' },
+        { value: 'pe', title: 'Perú' },
+        { value: 'es', title: 'España' }
+      ];
+
+      // Mapa de ciudades por país
+      const citiesByCountry = {
+        mx: [
+          { value: 'mx-cdmx', title: 'Ciudad de México' },
+          { value: 'mx-gdl', title: 'Guadalajara' },
+          { value: 'mx-mty', title: 'Monterrey' }
+        ],
+        co: [
+          { value: 'co-bog', title: 'Bogotá' },
+          { value: 'co-med', title: 'Medellín' },
+          { value: 'co-cal', title: 'Cali' }
+        ],
+        ar: [
+          { value: 'ar-bue', title: 'Buenos Aires' },
+          { value: 'ar-cor', title: 'Córdoba' },
+          { value: 'ar-ros', title: 'Rosario' }
+        ],
+        cl: [
+          { value: 'cl-san', title: 'Santiago' },
+          { value: 'cl-val', title: 'Valparaíso' },
+          { value: 'cl-con', title: 'Concepción' }
+        ],
+        pe: [
+          { value: 'pe-lim', title: 'Lima' },
+          { value: 'pe-are', title: 'Arequipa' },
+          { value: 'pe-tru', title: 'Trujillo' }
+        ],
+        es: [
+          { value: 'es-mad', title: 'Madrid' },
+          { value: 'es-bcn', title: 'Barcelona' },
+          { value: 'es-val', title: 'Valencia' }
+        ]
+      };
+
+      // Ciudades disponibles basadas en el país seleccionado
+      const availableCities = computed(() => {
+        if (!formData.country) return [];
+        return citiesByCountry[formData.country as keyof typeof citiesByCountry] || [];
+      });
+
+      // Limpiar ciudad cuando cambia el país
+      watch(() => formData.country, () => {
+        formData.city = '';
+      });
+
+      // Reglas de validación
+      const rules = {
+        fullName: [
+          { required: true, message: 'El nombre completo es requerido', trigger: 'blur' },
+          { min: 3, message: 'El nombre debe tener al menos 3 caracteres', trigger: 'blur' }
+        ],
+        email: [
+          { required: true, message: 'El correo electrónico es requerido', trigger: 'blur' },
+          { type: 'email', message: 'Por favor ingrese un correo electrónico válido', trigger: 'blur' }
+        ],
+        country: [
+          { required: true, message: 'Por favor seleccione un país' }
+        ],
+        city: [
+          { required: true, message: 'Por favor seleccione una ciudad' }
+        ],
+        gender: [
+          { required: true, message: 'Por favor seleccione su género' }
+        ],
+        termsAccepted: [
+          { 
+            validator: (rule: any, value: boolean, callback: any) => {
+              if (value === true) {
+                callback();
+              } else {
+                callback(new Error('Debe aceptar los términos y condiciones para continuar'));
+              }
+            },
+            type: 'boolean',
+            trigger: 'change' 
+          }
+        ]
+      };
+
+      // Manejar envío del formulario
+      async function handleSubmit() {
+        if (!formRef.value) return;
+        
+        try {
+          const valid = await formRef.value.validate();
+          if (valid) {
+            alert('Formulario enviado correctamente');
+            console.log('Form data:', formData);
+          } else {
+            alert('Formulario no válido');
+            console.log('Formulario no válido');
+          }
+        } catch (error) {
+          console.error('Validation error:', error);
+        }
+      }
+
+      // Resetear formulario
+      function handleReset() {
+        if (!formRef.value) return;
+        formRef.value.resetFields();
+      }
+
+      return { 
+        formRef, 
+        formData, 
+        countries, 
+        availableCities,
+        rules, 
+        handleSubmit, 
+        handleReset 
+      };
+    },
+    template: `
+      <g-config-provider>
+        <g-form 
+          ref="formRef" 
+          :model="formData" 
+          :rules="rules"
+        >
+          <div class="mb-6">
+            <h3 class="text-lg font-bold mb-2">Nombre completo y Email</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <g-form-item prop="fullName">
+                  <g-input 
+                  v-model="formData.fullName" 
+                  label="Nombre completo"
+                  placeholder="Ingrese su nombre y apellidos"
+                  prefix-icon="regular user"
+                  help-text="Ingrese su nombre y apellidos completos"
+                />
+              </g-form-item>
+              
+              <g-form-item prop="email">
+                <g-input 
+                  v-model="formData.email" 
+                  label="Correo electrónico"
+                  placeholder="ejemplo@correo.com"
+                  prefix-icon="regular envelope"
+                  help-text="Usaremos este email para contactarlo"
+                />
+              </g-form-item>
+            </div>
+          </div>
+          
+          <div class="mb-6">
+            <h3 class="text-lg font-bold mb-2">Origen geográfico</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <g-form-item prop="country">
+                <g-select
+                  v-model="formData.country"
+                  :options="countries"
+                  label="País"
+                  placeholder="Seleccione un país"
+                  prefix-icon="regular globe"
+                  filterable
+                  clearable
+                  help-text="Seleccione su país de residencia"
+                />
+              </g-form-item>
+              
+              <g-form-item prop="city">
+                <g-select
+                  v-model="formData.city"
+                  :options="availableCities"
+                  label="Ciudad"
+                  placeholder="Seleccione una ciudad"
+                  prefix-icon="regular building"
+                  filterable
+                  clearable
+                  :disabled="!formData.country"
+                  help-text="Seleccione su ciudad de residencia"
+                />
+              </g-form-item>
+            </div>
+          </div>
+          
+          <div class="mb-6">
+            <h3 class="text-lg font-bold mb-2">Género</h3>
+            <g-form-item prop="gender" show-message="parent" label="Género">
+              <div class="flex flex-row gap-6 mt-2">
+                <g-radio v-model="formData.gender" label="Masculino" value="male" />
+                <g-radio v-model="formData.gender" label="Femenino" value="female" />
+                <g-radio v-model="formData.gender" label="Prefiero no decir" value="other" />
+              </div>
+            </g-form-item>
+          </div>
+          
+          <!-- Cuarta línea: Términos y condiciones -->
+          <div class="mb-6">
+            <g-form-item
+              prop="termsAccepted"
+              show-message="parent"
+            >
+              <g-checkbox 
+                v-model="formData.termsAccepted"
+                label="Acepto los términos y condiciones de uso"
+              />
+            </g-form-item>
+          </div>
+          
+          <!-- Botones de acción -->
+          <div class="flex gap-4 mt-8">
+            <g-button variant="primary" @click="handleSubmit">Enviar formulario</g-button>
+            <g-button variant="secondary" @click="handleReset">Limpiar campos</g-button>
+          </div>
+        </g-form>
+      </g-config-provider>
+    `
+  })
+};
+
 export const Primary: Story = {
   name: "Básico",
   parameters: {
