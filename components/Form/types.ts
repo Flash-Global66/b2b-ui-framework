@@ -4,7 +4,6 @@ import type {
   ValidateError,
   ValidateFieldsError,
 } from "async-validator";
-import type { ComponentSize } from "element-plus";
 import type { Arrayable } from "element-plus/es/utils/index.mjs";
 import type { MaybeRef } from "@vueuse/core";
 import type {
@@ -126,6 +125,7 @@ export interface FormItemContext extends FormItemProps {
   validateState: FormItemValidateState;
   inputIds: string[];
   fieldValue: any;
+  labelId: string;
   shouldShowError: boolean;
   shouldShowErrorChild: boolean;
   validateMessage: string;
