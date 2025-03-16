@@ -35,13 +35,11 @@
 import {
   CHANGE_EVENT,
   UPDATE_MODEL_EVENT,
-  useFormDisabled,
-  useFormItem,
-  useFormItemInputId,
   useFormSize,
   useId,
   useNamespace,
 } from "element-plus";
+import { useFormItemInputId, useFormItem, useFormDisabled } from '@flash-global66/b2b-ui-form';
 import { computed, reactive, ref, watch } from "vue";
 import { Option } from "./segmented.type";
 import { useActiveElement, useResizeObserver } from "@vueuse/core";
