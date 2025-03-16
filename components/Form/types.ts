@@ -96,6 +96,8 @@ export type FormRules<
   >
 >;
 
+export type ShowMessage = "parent" | "child" | "none";
+
 export type FormValidationResult = Promise<boolean>;
 export type FormValidateCallback = (
   isValid: boolean,
