@@ -362,6 +362,6 @@ export default defineComponent({
 
 <style lang="scss">
 .dynamic-label-select {
-  left: calc(v-bind(leftPrefixSelect) + 16px);
+  left: calc(v-bind(leftPrefixSelect) + 18px);
 }
 </style>

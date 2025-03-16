@@ -99,7 +99,7 @@
   }
 
   @include e("inner") {
-    @apply w-full text-primary-txt font-medium text-4 appearance-none outline-none relative -left-[7px];
+    @apply w-full text-primary-txt font-medium text-4 appearance-none outline-none relative;
     &:focus {
       @apply outline-none;
     }

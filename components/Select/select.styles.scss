@@ -16,7 +16,7 @@
 
 @include b('select') {
   @include e('wrapper') {
-    @apply h-12 p-sm rounded-md gap-xxs border-disabled-bd border relative shadow-none;
+    @apply h-12 p-sm rounded-md gap-xs border-disabled-bd border relative shadow-none;
 
     @include e('label') {
       @apply absolute text-terciary-txt text-4 transition-all duration-200 ease-in font-medium;
@@ -63,7 +63,7 @@
     }
 
     @include when(disabled) {
-      @apply shadow-none border-disabled-bd bg-gray-50;
+      @apply shadow-none border-disabled-bd bg-gray-50 cursor-not-allowed;
 
       &:hover {
         @apply shadow-none;
