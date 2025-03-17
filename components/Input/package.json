@@ -5,7 +5,7 @@
   "license": "MIT",
   "exports": {
     ".": "./src/index.ts",
-    "./input.styles.scss": "./src/input.styles.scss"
+    "./styles.scss": "./src/input.styles.scss"
   },
   "files": [
     "src"

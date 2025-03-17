@@ -3,7 +3,7 @@ import {
   withNoopInstall,
   SFCWithInstall,
 } from "element-plus/es/utils/index.mjs";
-import Input from './Input.vue'
+import Input from './src/Input.vue'
 export const GInput: SFCWithInstall<typeof Input> & {
   Input: typeof Input;
 } = withInstall(Input, {
@@ -11,6 +11,6 @@ export const GInput: SFCWithInstall<typeof Input> & {
 });
 export default GInput;
 
-export * from "./input.type";
+export * from "./src/input.type";
 
 export type InputInstance = InstanceType<typeof Input>;
