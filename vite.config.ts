@@ -16,5 +16,14 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: false,
     },
+    target: 'esnext',
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+      }
+    },
+    chunkSizeWarningLimit: 2000,
   },
 });
+
