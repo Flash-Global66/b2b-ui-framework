@@ -1,5 +1,4 @@
 import type { StorybookConfig } from '@storybook/vue3-vite';
-import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
   framework: {
@@ -16,11 +15,6 @@ const config: StorybookConfig = {
     "@storybook/addon-controls",
     '@storybook/addon-docs'
   ],
-
-
-  async viteFinal(config) {
-    return config
-  },
 
   docs: { autodocs: 'tag' }
 };
