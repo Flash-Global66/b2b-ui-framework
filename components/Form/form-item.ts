@@ -2,7 +2,7 @@ import { buildProps, definePropType } from "element-plus/es/utils/index.mjs";
 
 import type { ExtractPropTypes } from "vue";
 import type { Arrayable } from "element-plus/es/utils/index.mjs";
-import type { FormItemRule } from "./types";
+import type { FormItemRule, ShowMessage } from "./types";
 
 export const formItemValidateStates = [
   "",
@@ -31,12 +31,8 @@ export const formItemProps = buildProps({
    * @description Whether to show the error message.
    */
   showMessage: {
-    type: Boolean,
-    default: false,
-  },
-  showMessageChild: {
-    type: Boolean,
-    default: true,
+    type: definePropType<ShowMessage>(String),
+    default: "child",
   },
 } as const);
 export type FormItemProps = ExtractPropTypes<typeof formItemProps>;

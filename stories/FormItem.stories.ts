@@ -58,19 +58,12 @@ Este componente está diseñado para funcionar dentro de un componente \`Form\`.
       }
     },
     showMessage: {
-      description: 'Mostrar mensaje de error en el FormItem',
-      control: 'boolean',
+      description: 'Controla dónde se muestran los mensajes de error',
+      control: 'select',
+      options: ['parent', 'child', 'none'],
       table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' }
-      }
-    },
-    showMessageChild: {
-      description: 'Mostrar mensaje de error en el componente hijo',
-      control: 'boolean',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' }
+        type: { summary: '"parent" | "child" | "none"' },
+        defaultValue: { summary: '"child"' }
       }
     },
     validateMessage: {
@@ -141,7 +134,7 @@ El atributo \`validate-event\` controla si el componente de entrada dispara la v
       }
     }
   },
-  render: () => ({
+  render: (args) => ({
     components: { GForm, GFormItem, GInput, GConfigProvider, GButton, GSelect },
     setup() {
       const formRef = ref()
@@ -197,12 +190,12 @@ El atributo \`validate-event\` controla si el componente de entrada dispara la v
         formRef.value.resetFields()
       }
 
-      return { formRef, formData, rules, handleSubmit, handleReset, options }
+      return { args, formRef, formData, rules, handleSubmit, handleReset, options }
     },
     template: `
       <g-config-provider>
         <g-form ref="formRef" :model="formData" :rules="rules" class="flex flex-col gap-4">
-          <g-form-item prop="nombre">
+          <g-form-item prop="nombre" :show-message="args.showMessage">
             <g-input 
               v-model="formData.nombre" 
               label="Nombre"
@@ -211,7 +204,7 @@ El atributo \`validate-event\` controla si el componente de entrada dispara la v
               :validate-event="false"
             />
           </g-form-item>
-          <g-form-item prop="apellido">
+          <g-form-item prop="apellido" :show-message="args.showMessage">
             <g-input 
               v-model="formData.apellido" 
               label="Apellido"
@@ -220,7 +213,7 @@ El atributo \`validate-event\` controla si el componente de entrada dispara la v
             />
           </g-form-item>
 
-          <g-form-item prop="ciudad">
+          <g-form-item prop="ciudad" :show-message="args.showMessage">
             <g-select
               v-model="formData.ciudad"
               label="Ciudad"
@@ -230,10 +223,9 @@ El atributo \`validate-event\` controla si el componente de entrada dispara la v
             />
           </g-form-item>
 
-            
-
           <g-form-item 
             prop="edad"
+            :show-message="args.showMessage"
             :rules="[
               { required: true, message: 'La edad es requerida' },
               { 
@@ -274,9 +266,9 @@ export const MessageBehavior: Story = {
       description: {
         story: `Demostración de las diferentes formas de mostrar mensajes de error:
         
-- \`show-message-child=true\`: El error se muestra en el componente hijo (Input, Select, etc)
-- \`show-message=true\`: El error se muestra en el FormItem
-- Cuando ambos están activos, tiene prioridad show-message-child`
+- \`showMessage="child"\`: El error se muestra en el componente hijo (Input, Select, etc). Este es el valor predeterminado.
+- \`showMessage="parent"\`: El error se muestra en el FormItem.
+- \`showMessage="none"\`: No se muestra ningún mensaje de error.`
       }
     }
   },
@@ -317,35 +309,36 @@ export const MessageBehavior: Story = {
     template: `
       <g-config-provider>
         <g-form ref="formRef" :model="formData" :rules="rules" class="flex flex-col gap-4">
-          <g-form-item prop="campo1">
+          <g-form-item 
+            prop="campo1"
+            showMessage="child"
+          >
             <g-input 
               v-model="formData.campo1"
-              label="Error en Input"
+              label="Error en Input (child)"
               placeholder="Error se muestra en el input"
             />
           </g-form-item>
 
           <g-form-item 
             prop="campo2"
-            :show-message-child="false"
-            show-message
+            showMessage="parent"
           >
             <g-input 
               v-model="formData.campo2"
-              label="Error en FormItem"
+              label="Error en FormItem (parent)"
               placeholder="Error se muestra debajo"
             />
           </g-form-item>
 
           <g-form-item 
             prop="campo3"
-            :show-message-child="true"
-            :show-message="true"
+            showMessage="none"
           >
             <g-input 
               v-model="formData.campo3"
-              label="Prioridad a show-message-child"
-              placeholder="Error se muestra en el input"
+              label="Sin mensaje de error (none)"
+              placeholder="No se muestra ningún error"
             />
           </g-form-item>
 

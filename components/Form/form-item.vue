@@ -1,10 +1,8 @@
 <template>
   <div ref="formItemRef" :class="formItemClasses">
     <slot />
-    <div :class="{
-      [ns.e('content-error')]: showMessage,
-    }">
-      <slot v-if="shouldShowError && !showMessageChild" name="error" :error="validateMessage">
+    <div :class="{ [ns.e('content-error')]: shouldShowError }">
+      <slot v-if="shouldShowError" name="error" :error="validateMessage">
         <span :class="ns.e('error')">
           {{ validateMessage }}
         </span>
@@ -38,7 +36,7 @@ import {
   isString,
   Arrayable,
 } from "element-plus/es/utils/index.mjs";
-import { useNamespace } from "element-plus";
+import { useId, useNamespace } from "element-plus";
 import { formItemProps } from "./form-item";
 import { formContextKey, formItemContextKey } from "./constants";
 
@@ -59,6 +57,8 @@ const formContext = inject(formContextKey, undefined);
 const parentFormItemContext = inject(formItemContextKey, undefined);
 
 const ns = useNamespace("form-item");
+
+const labelId = useId().value
 
 const inputIds = ref<string[]>([]);
 
@@ -141,14 +141,13 @@ const isRequired = computed(() =>
 const shouldShowError = computed(
   () =>
     validateStateDebounced.value === "error" &&
-    props.showMessage &&
-    !props.showMessageChild
+    props.showMessage === "parent"
 );
 
 const shouldShowErrorChild = computed(
   () =>
     validateStateDebounced.value === "error" &&
-    props.showMessageChild
+    props.showMessage === "child"
 );
 
 const setValidationState = (state: FormItemValidateState) => {
@@ -176,7 +175,6 @@ const onValidationSucceeded = () => {
 
 const doValidate = async (rules: RuleItem[]): Promise<true> => {
   const modelName = propString.value;
-  console.log("modelName", modelName);
   const validator = new AsyncValidator({
     [modelName]: rules,
   });
@@ -262,6 +260,7 @@ const context: FormItemContext = reactive({
   $el: formItemRef,
   validateState,
   inputIds,
+  labelId,
   fieldValue,
   shouldShowError,
   shouldShowErrorChild,
