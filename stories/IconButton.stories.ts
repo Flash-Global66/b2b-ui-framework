@@ -18,7 +18,7 @@ export default {
 ### Uso básico
 Ejemplo de uso básico:
 \`\`\` vue
-<g-icon-button variant="grey" name="solid check"/>
+<g-icon-button variant="grey" icon="solid check"/>
 \`\`\`
         `,
       },
@@ -125,14 +125,6 @@ Ejemplo de uso básico:
       table: {
         category: "Events",
         type: { summary: "(event: Event) => void" },
-      },
-    },
-    default: {
-      constrol: "text",
-      description: "Slot por defecto del icono botón",
-      table: {
-        category: "Slots",
-        type: { summary: "string | Component" },
       },
     },
   },
