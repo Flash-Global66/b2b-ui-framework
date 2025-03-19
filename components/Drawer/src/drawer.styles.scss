@@ -12,11 +12,14 @@
       @apply self-end;
     }
     @include m('container-title') {
+      @apply flex flex-col gap-md w-full;
+    }
+    @include m('title-description') {
       @apply flex flex-col gap-xxs;
     }
   }
   @include e('title') {
-    @apply text-10 font-bold text-primary-txt;
+    @apply text-8 font-bold text-primary-txt line-clamp-3;
   }
   @include e('description') {
     @apply text-3 font-medium text-secondary-txt whitespace-pre-line;

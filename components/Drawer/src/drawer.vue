@@ -40,20 +40,25 @@
               <div :class="ns.em('header', 'container-close')">
                 <g-icon-button icon="regular times" @click="handleClose" />
               </div>
-              <div v-if="title || description" :class="ns.em('header', 'container-title')">
-                <h5
-                  v-if="title"
-                  :id="titleId"
-                  role="heading"
-                  :aria-level="headerAriaLevel"
-                  :class="ns.e('title')"
-                >
-                  {{ title }}
-                </h5>
+              <div
+                v-if="$slots.customHeader || title || description"
+                :class="ns.em('header', 'container-title')"
+              >
+                <div v-if="title || description" :class="ns.em('header', 'title-description')">
+                  <h5
+                    v-if="title"
+                    :id="titleId"
+                    role="heading"
+                    :aria-level="headerAriaLevel"
+                    :class="ns.e('title')"
+                  >
+                    {{ title }}
+                  </h5>
 
-                <span v-if="description" :class="ns.e('description')">
-                  {{ description }}
-                </span>
+                  <span v-if="description" :class="ns.e('description')">
+                    {{ description }}
+                  </span>
+                </div>
 
                 <slot v-if="$slots.customHeader" name="customHeader" />
               </div>
@@ -63,7 +68,10 @@
                 <slot />
               </div>
             </template>
-            <div v-if="$slots.footer || props.footerButtons?.length" :class="[ns.e('footer'), footerClass]">
+            <div
+              v-if="$slots.footer || props.footerButtons?.length"
+              :class="[ns.e('footer'), footerClass]"
+            >
               <slot name="footer">
                 <div
                   v-if="props.footerButtons?.length"
@@ -97,7 +105,7 @@ import { GTeleport } from '@flash-global66/b2b-ui-teleport'
 // import { useDialog } from 'element-plus/es/components/dialog/index'
 import { useDialog } from '@flash-global66/b2b-ui-dialog'
 import { addUnit } from 'element-plus/es/utils/index'
-import { GButton } from "@flash-global66/b2b-ui-button";
+import { GButton } from '@flash-global66/b2b-ui-button'
 import { GIconButton } from '@flash-global66/b2b-ui-icon-button'
 import { useNamespace } from 'element-plus/es/hooks/index'
 import { drawerEmits, drawerProps } from './drawer'
