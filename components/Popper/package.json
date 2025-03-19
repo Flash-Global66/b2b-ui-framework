@@ -5,7 +5,7 @@
   "license": "MIT",
   "exports": {
     ".": "./index.ts",
-    "./*": "./*"
+    "./popper.styles.scss": "./popper.styles.scss"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
