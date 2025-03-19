@@ -8,7 +8,7 @@ import {
 } from 'element-plus/es/utils/index.mjs'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from 'element-plus/es/constants/index.mjs'
 import { useTooltipContentProps } from 'element-plus'
-import { tagProps } from '../tag'
+import { tagProps } from '@flash-global66/b2b-ui-tag'
 import { defaultProps } from './hooks/useProps'
 
 import type { Option, OptionType } from './types/select.types'
