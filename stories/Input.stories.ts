@@ -4,7 +4,6 @@ import { GInput, InputInstance } from "../components/Input";
 import { GConfigProvider } from "../components/ConfigProvider";
 import { reactive, ref } from "vue";
 import { generateIconOptions } from "./IconFont.stories";
-import { prefix } from "@fortawesome/pro-solid-svg-icons";
 
 const meta: Meta<InputInstance> = {
   title: "Form/Input",

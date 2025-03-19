@@ -5,11 +5,11 @@
  */
 import GDialog from './Dialog.vue'
 import { useDialog } from './use-dialog'
-import { DialogEmits, DialogProps } from './dialog'
+import { DialogEmits, DialogProps, dialogEmits, dialogProps } from './dialog'
 import type { FooterButton } from './types'
 
-export { useDialog, DialogEmits, DialogProps }
-export type { FooterButton }
+export { useDialog, dialogEmits, dialogProps }
+export type { FooterButton, DialogEmits, DialogProps }
 export { GDialog }
 
 export default GDialog;
