@@ -71,7 +71,7 @@ const state = reactive({
   focusVisible: false,
 })
 
-console.log('prueba')
+console.log('prueba 2')
 
 const handleChange = (item: Option) => {
   const value = getValue(item)
