@@ -45,6 +45,15 @@ jobs:
           fi
           echo "✅ Variables de entorno configuradas correctamente"
 
+      - name: Setup authentication for publishing
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${GBP_PACKAGE_TOKEN}" > .npmrc
+          echo "@flash-global66:registry=https://npm.pkg.github.com/" >> .npmrc
+          echo "//npm.fontawesome.com/:_authToken=${FONT_AWESOME_TOKEN}" >> .npmrc
+          echo "@fortawesome:registry=https://npm.fontawesome.com/" >> .npmrc
+          cat .npmrc | grep -v "_authToken"
+          echo "✅ Configuración de autenticación completada"
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
         
