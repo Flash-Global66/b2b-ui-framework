@@ -70,16 +70,28 @@ jobs:
           GIT_COMMITTER_EMAIL: actions@github.com
           GH_TOKEN: ${{ secrets.GBP_PACKAGE_TOKEN }}
         run: |
-          OUTPUT=$(yarn lerna version --conventional-commits --yes --tag-version-prefix="" --create-release=github --message "chore(release): publish %s [skip ci]" 2>&1)
+          # Habilitar debugging en Git
+          export GIT_CURL_VERBOSE=1
+          export GIT_TRACE=1
+          
+          # Verificar estado de Git
+          echo "Estado de Git antes de ejecutar lerna:"
+          git status
+          
+          # Ejecutar lerna con más verbosidad
+          OUTPUT=$(yarn lerna version --conventional-commits --yes --tag-version-prefix="" --create-release=github --message "chore(release): publish %s [skip ci]" --loglevel=debug 2>&1)
           EXIT_CODE=$?
+          
+          # Mostrar la salida completa para diagnóstico
+          echo "SALIDA COMPLETA DE LERNA:"
           echo "$OUTPUT"
+          
           if [ $EXIT_CODE -ne 0 ]; then
             if echo "$OUTPUT" | grep -q "No changed packages to publish"; then
               echo "no_changes=true" >> $GITHUB_OUTPUT
               echo "ℹ️ No hay cambios para publicar"
             else
-              echo "::error::Falló el proceso de versionado"
-              echo "$OUTPUT"
+              echo "::error::Falló el proceso de versionado con código $EXIT_CODE"
               exit $EXIT_CODE
             fi
           else
