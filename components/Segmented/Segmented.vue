@@ -71,6 +71,8 @@ const state = reactive({
   focusVisible: false,
 })
 
+console.log('prueba')
+
 const handleChange = (item: Option) => {
   const value = getValue(item)
   emit(UPDATE_MODEL_EVENT, value)
