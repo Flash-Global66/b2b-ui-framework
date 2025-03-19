@@ -68,12 +68,20 @@ jobs:
           GIT_AUTHOR_EMAIL: actions@github.com
           GIT_COMMITTER_NAME: GitHub Actions
           GIT_COMMITTER_EMAIL: actions@github.com
+          GH_TOKEN: ${{ secrets.GBP_PACKAGE_TOKEN }}
         run: |
-          OUTPUT=$(yarn lerna version --conventional-commits --yes --tag-version-prefix="" --create-release=github --message "chore(release): publish %s [skip ci]" 2>&1 || true)
+          OUTPUT=$(yarn lerna version --conventional-commits --yes --tag-version-prefix="" --create-release=github --message "chore(release): publish %s [skip ci]" 2>&1)
+          EXIT_CODE=$?
           echo "$OUTPUT"
-          if echo "$OUTPUT" | grep -q "No changed packages to publish"; then
-            echo "no_changes=true" >> $GITHUB_OUTPUT
-            echo "ℹ️ No hay cambios para publicar"
+          if [ $EXIT_CODE -ne 0 ]; then
+            if echo "$OUTPUT" | grep -q "No changed packages to publish"; then
+              echo "no_changes=true" >> $GITHUB_OUTPUT
+              echo "ℹ️ No hay cambios para publicar"
+            else
+              echo "::error::Falló el proceso de versionado"
+              echo "$OUTPUT"
+              exit $EXIT_CODE
+            fi
           else
             echo "no_changes=false" >> $GITHUB_OUTPUT
             echo "✅ Versionado completado, hay cambios para publicar"
