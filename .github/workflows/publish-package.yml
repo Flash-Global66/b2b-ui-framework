@@ -132,7 +132,7 @@ jobs:
           export GIT_TRACE=1
           
           echo "Estado de Git antes de ejecutar lerna:"
-          git status
+          # git status
           
           OUTPUT=$(yarn lerna version --conventional-commits --yes --tag-version-prefix="" --create-release=github --message "chore(release): publish %s [skip ci]" --loglevel=debug 2>&1)
           EXIT_CODE=$?
