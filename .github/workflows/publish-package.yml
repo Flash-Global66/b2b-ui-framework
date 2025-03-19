@@ -45,21 +45,21 @@ jobs:
           fi
           echo "✅ Variables de entorno configuradas correctamente"
 
+      - name: Setup authentication for publishing
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${GBP_PACKAGE_TOKEN}" > .npmrc
+          echo "@flash-global66:registry=https://npm.pkg.github.com/" >> .npmrc
+          echo "//npm.fontawesome.com/:_authToken=${FONT_AWESOME_TOKEN}" >> .npmrc
+          echo "@fortawesome:registry=https://npm.fontawesome.com/" >> .npmrc
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-        
-      - name: Verify Yarn configuration
-        run: |
-          echo "Verificando configuración de Yarn"
-          yarn config list --verbose | grep -v "npmAuthToken"
-          echo "✅ Configuración de Yarn verificada"
 
       - name: Check existing tags
         id: check-tags
         run: |
           git fetch --tags
           echo "LOCAL_TAGS=$(git tag --list | jq -R -s -c 'split("\n")')" >> $GITHUB_OUTPUT
-          echo "✅ Tags existentes verificados"
 
       - name: Version packages with Lerna
         id: version
@@ -68,47 +68,51 @@ jobs:
           GIT_AUTHOR_EMAIL: actions@github.com
           GIT_COMMITTER_NAME: GitHub Actions
           GIT_COMMITTER_EMAIL: actions@github.com
+          GH_TOKEN: ${{ secrets.GBP_PACKAGE_TOKEN }}
         run: |
-          echo "Ejecutando versionado con Lerna..."
-          OUTPUT=$(yarn lerna version --conventional-commits --yes --no-push --tag-version-prefix="" --create-release=github --message "chore(release): publish %s [skip ci]" 2>&1) || true
+          # Habilitar debugging en Git
+          export GIT_CURL_VERBOSE=1
+          export GIT_TRACE=1
+          
+          # Verificar estado de Git
+          echo "Estado de Git antes de ejecutar lerna:"
+          git status
+          
+          # Ejecutar lerna con más verbosidad
+          OUTPUT=$(yarn lerna version --conventional-commits --yes --tag-version-prefix="" --create-release=github --message "chore(release): publish %s [skip ci]" --loglevel=debug 2>&1)
+          EXIT_CODE=$?
+          
+          # Mostrar la salida completa para diagnóstico
+          echo "SALIDA COMPLETA DE LERNA:"
           echo "$OUTPUT"
-          if echo "$OUTPUT" | grep -q "No changed packages to publish"; then
-            echo "no_changes=true" >> $GITHUB_OUTPUT
-            echo "ℹ️ No hay cambios para publicar"
+          
+          if [ $EXIT_CODE -ne 0 ]; then
+            if echo "$OUTPUT" | grep -q "No changed packages to publish"; then
+              echo "no_changes=true" >> $GITHUB_OUTPUT
+              echo "ℹ️ No hay cambios para publicar"
+            else
+              echo "::error::Falló el proceso de versionado con código $EXIT_CODE"
+              exit $EXIT_CODE
+            fi
           else
             echo "no_changes=false" >> $GITHUB_OUTPUT
             echo "✅ Versionado completado, hay cambios para publicar"
           fi
-
-      - name: Setup authentication for publishing
-        run: |
-          echo "//npm.pkg.github.com/:_authToken=${GBP_PACKAGE_TOKEN}" > .npmrc
-          echo "@flash-global66:registry=https://npm.pkg.github.com/" >> .npmrc
-          echo "//npm.fontawesome.com/:_authToken=${FONT_AWESOME_TOKEN}" >> .npmrc
-          echo "@fortawesome:registry=https://npm.fontawesome.com/" >> .npmrc
-
       - name: Publish packages with Lerna
         if: steps.version.outputs.no_changes == 'false'
-        id: publish
-        run: |
-          echo "Publicando paquetes con Lerna..."
-          npx lerna publish from-package --yes
-          echo "✅ Paquetes publicados exitosamente"
+        run: npx lerna publish from-package --yes
 
       - name: Cleanup temporary files
         if: always()
         run: rm -f .npmrc
+
       - name: Push tags with conflict check
         run: |
-          echo "Empujando tags a GitHub..."
           NEW_TAGS=0
           git tag --list | while read tag; do
             if ! grep -q "$tag" <<< "${{ steps.check-tags.outputs.LOCAL_TAGS }}"; then
-              echo "Pushing new tag: $tag"
               git push origin "$tag"
               NEW_TAGS=$((NEW_TAGS+1))
-            else
-              echo "Skipping existing tag: $tag"
             fi
           done
           if [ $NEW_TAGS -gt 0 ]; then
@@ -116,22 +120,3 @@ jobs:
           else
             echo "ℹ️ No se encontraron nuevos tags para enviar"
           fi
-
-      - name: Verify publish results
-        if: steps.version.outputs.no_changes == 'false'
-        run: |
-          echo "Verificando resultados de la publicación..."
-          if [ "${{ steps.publish.outcome }}" == "success" ]; then
-            echo "✅ Publicación completada exitosamente"
-          else
-            echo "❌ Hubo un problema con la publicación"
-            exit 1
-          fi
-
-      - name: Notification on success
-        if: success()
-        run: echo "🎉 Workflow completado exitosamente - Los paquetes han sido versionados y publicados"
-
-      - name: Notification on failure
-        if: failure()
-        run: echo "❌ El workflow ha fallado - Revisa los logs para más detalles"
