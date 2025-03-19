@@ -4,7 +4,7 @@
   "version": "0.0.61",
   "license": "MIT",
   "exports": {
-    ".": "./src/index.ts",
+    ".": "./index.ts",
     "./styles.scss": "./src/input.styles.scss",
     "./*": "./*"
   },
