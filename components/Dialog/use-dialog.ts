@@ -1,20 +1,8 @@
-import {
-  computed,
-  getCurrentInstance,
-  nextTick,
-  onMounted,
-  ref,
-  watch,
-} from 'vue'
+import { computed, getCurrentInstance, isRef, nextTick, onMounted, ref, watch } from 'vue'
 import { useTimeoutFn } from '@vueuse/core'
 
 import { isUndefined } from 'lodash-unified'
-import {
-  defaultNamespace,
-  useId,
-  useLockscreen,
-  useZIndex,
-} from 'element-plus/es/hooks/index'
+import { defaultNamespace, useId, useLockscreen, useZIndex } from 'element-plus/es/hooks/index'
 import { UPDATE_MODEL_EVENT } from 'element-plus/es/constants/index'
 import { addUnit, isClient } from 'element-plus/es/utils/index'
 import { useGlobalConfig } from 'element-plus/es/components/config-provider/index'
@@ -28,10 +16,10 @@ export const useDialog = (
   dialogRef: Ref<HTMLElement | undefined>,
   {
     closeOnClickModal,
-    closeOnPressEscape,
+    closeOnPressEscape
   }: {
-    closeOnClickModal: ComputedRef<boolean>,
-    closeOnPressEscape: ComputedRef<boolean>,
+    closeOnClickModal: ComputedRef<boolean>
+    closeOnPressEscape: ComputedRef<boolean>
   }
 ) => {
   const instance = getCurrentInstance()!
@@ -47,13 +35,13 @@ export const useDialog = (
   const zIndex = ref(props.zIndex ?? nextZIndex())
 
   const displayButtons = computed<FooterButton[]>(() => {
-    return props.footerButtons?.slice(0, 3) || [];
-  });
+    return props.footerButtons?.slice(0, 3) || []
+  })
 
   const buttonLayoutClass = computed(() => {
-    const count = displayButtons.value.length;
-    return count === 3 ? 'layout-dual-row' : 'layout-single-column';
-  });
+    const count = displayButtons.value.length
+    return count === 3 ? 'layout-dual-row' : 'layout-single-column'
+  })
 
   let openTimer: (() => void) | undefined = undefined
   let closeTimer: (() => void) | undefined = undefined
@@ -120,18 +108,18 @@ export const useDialog = (
   }
 
   const handleClose = () => {
-    if (!props.showClose) return;
-    
+    if (!props.showClose) return
+
     if (props.beforeClose) {
-      props.beforeClose(doClose);
+      props.beforeClose(doClose)
     } else {
-      doClose();
+      doClose()
     }
-  };
+  }
 
   function onModalClick() {
     if (closeOnClickModal.value) {
-      handleClose();
+      handleClose()
     }
   }
 

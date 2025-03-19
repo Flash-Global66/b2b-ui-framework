@@ -1,5 +1,5 @@
 import { StoryObj } from '@storybook/vue3'
-import { onMounted, reactive, ref } from 'vue'
+import { reactive, ref } from 'vue'
 
 // COMPONENTS
 import { GSelect, SelectInstance } from '../components/Select'
