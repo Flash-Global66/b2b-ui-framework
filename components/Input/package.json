@@ -8,12 +8,6 @@
     "./styles.scss": "./src/input.styles.scss",
     "./*": "./*"
   },
-  "files": [
-    "src"
-  ],
-  "scripts": {
-    "build": "vite build && vue-tsc --emitDeclarationOnly -p tsconfig.json --skipLibCheck"
-  },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
