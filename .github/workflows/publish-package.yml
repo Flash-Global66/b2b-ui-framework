@@ -249,7 +249,7 @@ jobs:
           yarn lerna changed -a
           
           # OUTPUT=$(yarn lerna version --conventional-commits --yes --tag-version-prefix="" --create-release=github --message "chore(release): publish %s [skip ci]" --loglevel=debug 2>&1)
-          OUTPUT=$(yarn lerna version --conventional-commits --yes --tag-version-prefix="" --loglevel=debug 2>&1)
+          OUTPUT=$(yarn lerna version --conventional-commits --yes --tag-version-prefix="" --loglevel=debug 2>&1) || true
           EXIT_CODE=$?
           
           echo "SALIDA COMPLETA DE LERNA:"
@@ -268,17 +268,17 @@ jobs:
             echo "✅ Versionado completado, hay cambios para publicar"
           fi
 
-      - name: Publish packages with Lerna
-        if: steps.version.outputs.no_changes == 'false'
-        run: npx lerna publish from-package --yes
+      # - name: Publish packages with Lerna
+      #   if: steps.version.outputs.no_changes == 'false'
+      #   run: npx lerna publish from-package --yes
 
-      - name: Push version changes and tags to main
-        if: steps.version.outputs.no_changes == 'false'
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git remote set-url origin "https://x-access-token:${{ secrets.GBP_PACKAGE_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
-          git push origin main --follow-tags
+      # - name: Push version changes and tags to main
+      #   if: steps.version.outputs.no_changes == 'false'
+      #   run: |
+      #     git config --global user.name "GitHub Actions"
+      #     git config --global user.email "actions@github.com"
+      #     git remote set-url origin "https://x-access-token:${{ secrets.GBP_PACKAGE_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+      #     git push origin main --follow-tags
 
       - name: Cleanup temporary files
         if: always()
