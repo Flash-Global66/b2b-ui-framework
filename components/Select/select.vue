@@ -274,7 +274,7 @@
         </template>
       </el-tooltip>
     </div>
-    <div :class="nsSelect.e('help')" v-if="descriptionError || helpText">
+    <div :class="nsSelect.e('help')">
       <p :key="selectError ? 'error' : 'help'" :class="helpTextKls">
         {{ selectError ? descriptionError : helpText }}
       </p>
