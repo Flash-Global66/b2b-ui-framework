@@ -249,7 +249,7 @@ jobs:
           yarn lerna changed -a
           
           # OUTPUT=$(yarn lerna version --conventional-commits --yes --tag-version-prefix="" --create-release=github --message "chore(release): publish %s [skip ci]" --loglevel=debug 2>&1)
-          OUTPUT=$(yarn lerna version --conventional-commits --yes --tag-version-prefix="" --loglevel=debug 2>&1) || true
+          OUTPUT=$(yarn lerna version --conventional-commits --yes --tag-version-prefix="" --no-changelog --loglevel=debug 2>&1) || true
           EXIT_CODE=$?
           
           echo "SALIDA COMPLETA DE LERNA:"
