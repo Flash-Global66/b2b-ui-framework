@@ -1,9 +1,9 @@
 import { computed, getCurrentInstance, inject, nextTick, watch } from 'vue'
-import { useFormItem } from '@flash-global66/b2b-ui-form'
+import { useFormItem } from '@flash-global66/b2b-ui-form/hooks'
 import { debugWarn } from 'element-plus/es/utils/index.mjs'
 import { checkboxGroupContextKey } from '../constants'
 
-import type { useFormItemInputId } from '@flash-global66/b2b-ui-form'
+import type { useFormItemInputId } from '@flash-global66/b2b-ui-form/hooks'
 import type { CheckboxProps } from '../checkbox'
 import type {
   CheckboxDisabled,

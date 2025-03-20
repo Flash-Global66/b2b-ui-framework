@@ -107,7 +107,8 @@ import {
 import { useResizeObserver } from "@vueuse/core";
 import { GIconFont } from "@flash-global66/b2b-ui-icon-font";
 import { isNil } from "lodash-unified";
-import { useFormItem, useFormItemInputId, useFormDisabled } from '@flash-global66/b2b-ui-form'
+import { useFormItem, useFormItemInputId, useFormDisabled } from '@flash-global66/b2b-ui-form/hooks';
+
 import {
   useAttrs,
   useComposition,
@@ -146,9 +147,11 @@ const prefixRef = ref<HTMLElement | null>(null);
 
 const { form: elForm, formItem: elFormItem } = useFormItem();
 
-const isError = computed(() => 
-  elFormItem?.shouldShowErrorChild || Boolean(props?.messageError)
-)
+const isError = computed(() => {
+  console.log('elFormItem?.shouldShowErrorChild', elFormItem?.shouldShowErrorChild)
+  console.log('Boolean(props?.messageError)', Boolean(props?.messageError))
+ return elFormItem?.shouldShowErrorChild || Boolean(props?.messageError)
+})
 
 const error = computed(() => {
   if (props?.messageError) return props.messageError

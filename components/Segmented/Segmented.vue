@@ -39,7 +39,7 @@ import {
   useId,
   useNamespace,
 } from "element-plus";
-import { useFormItemInputId, useFormItem, useFormDisabled } from '@flash-global66/b2b-ui-form';
+import { useFormItemInputId, useFormItem, useFormDisabled } from '@flash-global66/b2b-ui-form/hooks';
 import { computed, reactive, ref, watch } from "vue";
 import { Option } from "./segmented.type";
 import { useActiveElement, useResizeObserver } from "@vueuse/core";

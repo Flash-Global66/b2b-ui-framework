@@ -6,7 +6,9 @@
   "exports": {
     ".": "./index.ts",
     "./*": "./*",
-    "./styles.scss": "./form.styles.scss"
+    "./styles.scss": "./form.styles.scss",
+    "./hooks": "./hooks/index.ts",
+    "./constants": "./constants.ts"
   },
   "main": "index.ts",
   "publishConfig": {
