@@ -216,7 +216,7 @@ jobs:
           echo "@fortawesome:registry=https://npm.fontawesome.com/" >> .npmrc
 
       - name: Install dependencies
-        run: yarn install --mode=update-lockfile
+        run: yarn install
 
       - name: Debug - List latest commits and tags
         run: |
