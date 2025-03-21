@@ -253,7 +253,7 @@ jobs:
           yarn lerna version --conventional-commits \
             --conventional-graduate \
             --yes \
-            --tag-version-prefix="v" \
+            --tag-version-prefix="" \
             --loglevel=debug
           
           # Capturar el código de salida
@@ -277,7 +277,7 @@ jobs:
 
       - name: Publish packages with Lerna
         if: steps.version.outputs.no_changes == 'false'
-        run: npx lerna publish from-package --yes --tag-version-prefix="v"
+        run: npx lerna publish from-package --yes --tag-version-prefix=""
         
 
       - name: Cleanup temporary files
