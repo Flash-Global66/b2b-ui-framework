@@ -235,30 +235,37 @@ jobs:
         run: |
           export GIT_CURL_VERBOSE=1
           export GIT_TRACE=1
-
-          # Forzar detección de cambios
-          yarn lerna changed -a
+          
+          # Configurar Git para manejar mejor caracteres especiales
+          git config --global core.quotePath true
+          
+          # Forzar detección de cambios (sin arrojar error si no hay cambios)
+          CHANGED_PACKAGES=$(yarn lerna changed -a 2>&1) || true
+          
+          # Verificar si hay paquetes cambiados
+          if echo "$CHANGED_PACKAGES" | grep -q "No changed packages"; then
+            echo "no_changes=true" >> $GITHUB_OUTPUT
+            echo "ℹ️ No hay cambios para publicar"
+            exit 0
+          fi
+          
+          echo "Paquetes con cambios detectados:"
+          echo "$CHANGED_PACKAGES"
 
           # Ejecutar Lerna con parámetros modificados
-          OUTPUT=$(yarn lerna version --conventional-commits \
+          yarn lerna version --conventional-commits \
             --conventional-graduate \
             --yes \
             --tag-version-prefix="" \
-            # --create-release=github \
-            # --message "chore(release): publish %s [skip ci]" \
-            --loglevel=debug 2>&1) || true
+            --loglevel=debug
           
-          echo "SALIDA COMPLETA DE LERNA:"
-          echo "$OUTPUT"
+          # Capturar el código de salida
+          EXIT_CODE=$?
           
+          # Procesar el resultado
           if [ $EXIT_CODE -ne 0 ]; then
-            if echo "$OUTPUT" | grep -q "No changed packages to publish"; then
-              echo "no_changes=true" >> $GITHUB_OUTPUT
-              echo "ℹ️ No hay cambios para publicar"
-            else
-              echo "::error::Falló el proceso de versionado con código $EXIT_CODE"
-              exit $EXIT_CODE
-            fi
+            echo "::error::Falló el proceso de versionado con código $EXIT_CODE"
+            exit $EXIT_CODE
           else
             echo "no_changes=false" >> $GITHUB_OUTPUT
             echo "✅ Versionado completado, hay cambios para publicar"
