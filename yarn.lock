@@ -832,6 +832,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@flash-global66/b2b-ui-link@workspace:components/Link":
+  version: 0.0.0-use.local
+  resolution: "@flash-global66/b2b-ui-link@workspace:components/Link"
+  languageName: unknown
+  linkType: soft
+
 "@flash-global66/b2b-ui-loader@workspace:components/Loader":
   version: 0.0.0-use.local
   resolution: "@flash-global66/b2b-ui-loader@workspace:components/Loader"
