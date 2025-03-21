@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-segmented@0.4.1...@flash-global66/b2b-ui-segmented@0.4.2) (2025-03-21)
+
+
+### Bug Fixes
+
+* test [#31](https://github.com/Flash-Global66/b2b-ui-framework/issues/31) deploy ([d4ca520](https://github.com/Flash-Global66/b2b-ui-framework/commit/d4ca5202850a4d24935a9c0d4b36782da94e099c))
+* test [#32](https://github.com/Flash-Global66/b2b-ui-framework/issues/32) deploy ([e656480](https://github.com/Flash-Global66/b2b-ui-framework/commit/e65648027b7b8176a9ebf453399a2bc97ee17be6))
+* test [#32](https://github.com/Flash-Global66/b2b-ui-framework/issues/32) deploy ([04decf4](https://github.com/Flash-Global66/b2b-ui-framework/commit/04decf47181fe07976d01039fbc465885e49b4ea))
+
+
+
+
+
 ## [0.4.1](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-segmented@0.4.0...@flash-global66/b2b-ui-segmented@0.4.1) (2025-03-21)
 
 
