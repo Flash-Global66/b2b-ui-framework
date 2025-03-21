@@ -239,7 +239,6 @@ jobs:
           # Forzar detección de cambios
           yarn lerna changed -a
 
-          
           # Ejecutar Lerna con parámetros modificados
           OUTPUT=$(yarn lerna version --conventional-commits \
             --conventional-graduate \
