@@ -186,6 +186,15 @@ jobs:
           fetch-depth: 0
           fetch-tags: true
           token: ${{ secrets.GBP_PACKAGE_TOKEN }}
+    
+      - name: Fetch all tags and history (adicional)
+        run: |
+          git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+
+      - name: Setup Git config
+        run: |
+          git config --global core.quotepath off
+          git config --global tag.sort version:refname
 
       - name: Setup Node.js 20
         uses: actions/setup-node@v4
@@ -246,12 +255,28 @@ jobs:
           echo "Estado de Git antes de ejecutar lerna:"
           git status
           
+          
+          # # OUTPUT=$(yarn lerna version --conventional-commits --yes --tag-version-prefix="" --create-release=github --message "chore(release): publish %s [skip ci]" --loglevel=debug 2>&1)
+          # OUTPUT=$(yarn lerna version --conventional-commits --yes --tag-version-prefix="" --loglevel=silly 2>&1) || true
+          # EXIT_CODE=$?
+
           # Forzar detección de cambios
           yarn lerna changed -a
+
+          # Actualizar dependencias problemáticas
+          yarn add conventional-changelog-conventionalcommits@latest --dev
           
-          # OUTPUT=$(yarn lerna version --conventional-commits --yes --tag-version-prefix="" --create-release=github --message "chore(release): publish %s [skip ci]" --loglevel=debug 2>&1)
-          OUTPUT=$(yarn lerna version --conventional-commits --yes --tag-version-prefix="" --loglevel=debug 2>&1) || true
-          EXIT_CODE=$?
+          # Forzar detección completa de cambios
+          git fetch --prune --unshallow  # Solo necesario si el clone fue shallow
+          
+          # Ejecutar Lerna con parámetros modificados
+          OUTPUT=$(yarn lerna version --conventional-commits \
+            --conventional-graduate \
+            --yes \
+            --tag-version-prefix="" \
+            # --create-release=github \
+            # --message "chore(release): publish %s [skip ci]" \
+            --loglevel=silly 2>&1) || true
           
           echo "SALIDA COMPLETA DE LERNA:"
           echo "$OUTPUT"
