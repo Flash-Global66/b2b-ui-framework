@@ -1,0 +1,17 @@
+{
+  "name": "@flash-global66/b2b-ui-link",
+  "author": "Global66",
+  "version": "1.0.0",
+  "license": "MIT",
+  "exports": {
+    "./styles.scss": "./src/link.styles.scss",
+    "./*": "./*",
+    ".": "./index.ts"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
+  }
+}

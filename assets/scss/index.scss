@@ -48,7 +48,7 @@
 
 @use "../../components/Inline/inline.styles.scss" as *;
 
-@use "../../components/Link/link.styles.scss" as *;
+@use "../../components/Link/src/link.styles.scss" as *;
 
 * {
   @apply font-montserrat;
