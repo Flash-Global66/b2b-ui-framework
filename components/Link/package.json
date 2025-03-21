@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-link",
   "author": "Global66",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "license": "MIT",
   "exports": {
     "./styles.scss": "./src/link.styles.scss",
