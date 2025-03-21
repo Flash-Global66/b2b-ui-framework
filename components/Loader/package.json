@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-loader",
   "author": "Global66",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "license": "MIT",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
