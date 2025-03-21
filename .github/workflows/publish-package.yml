@@ -186,15 +186,6 @@ jobs:
           fetch-depth: 0
           fetch-tags: true
           token: ${{ secrets.GBP_PACKAGE_TOKEN }}
-    
-      - name: Fetch all tags and history (adicional)
-        run: |
-          git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-
-      - name: Setup Git config
-        run: |
-          git config --global core.quotepath off
-          git config --global tag.sort version:refname
 
       - name: Setup Node.js 20
         uses: actions/setup-node@v4
@@ -217,13 +208,6 @@ jobs:
             exit 1
           fi
           echo "✅ Variables de entorno configuradas correctamente"
-
-      - name: Setup authentication for publishing
-        run: |
-          echo "//npm.pkg.github.com/:_authToken=${GBP_PACKAGE_TOKEN}" > .npmrc
-          echo "@flash-global66:registry=https://npm.pkg.github.com/" >> .npmrc
-          echo "//npm.fontawesome.com/:_authToken=${FONT_AWESOME_TOKEN}" >> .npmrc
-          echo "@fortawesome:registry=https://npm.fontawesome.com/" >> .npmrc
 
       - name: Install dependencies
         run: yarn install
@@ -251,23 +235,10 @@ jobs:
         run: |
           export GIT_CURL_VERBOSE=1
           export GIT_TRACE=1
-          
-          echo "Estado de Git antes de ejecutar lerna:"
-          git status
-          
-          
-          # # OUTPUT=$(yarn lerna version --conventional-commits --yes --tag-version-prefix="" --create-release=github --message "chore(release): publish %s [skip ci]" --loglevel=debug 2>&1)
-          # OUTPUT=$(yarn lerna version --conventional-commits --yes --tag-version-prefix="" --loglevel=silly 2>&1) || true
-          # EXIT_CODE=$?
 
           # Forzar detección de cambios
           yarn lerna changed -a
 
-          # Actualizar dependencias problemáticas
-          yarn add conventional-changelog-conventionalcommits@latest --dev
-          
-          # Forzar detección completa de cambios
-          git fetch --prune --unshallow  # Solo necesario si el clone fue shallow
           
           # Ejecutar Lerna con parámetros modificados
           OUTPUT=$(yarn lerna version --conventional-commits \
@@ -293,18 +264,17 @@ jobs:
             echo "no_changes=false" >> $GITHUB_OUTPUT
             echo "✅ Versionado completado, hay cambios para publicar"
           fi
+          
+      - name: Setup authentication for publishing
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${GBP_PACKAGE_TOKEN}" > .npmrc
+          echo "@flash-global66:registry=https://npm.pkg.github.com/" >> .npmrc
+          echo "//npm.fontawesome.com/:_authToken=${FONT_AWESOME_TOKEN}" >> .npmrc
+          echo "@fortawesome:registry=https://npm.fontawesome.com/" >> .npmrc
 
       # - name: Publish packages with Lerna
       #   if: steps.version.outputs.no_changes == 'false'
       #   run: npx lerna publish from-package --yes
-
-      # - name: Push version changes and tags to main
-      #   if: steps.version.outputs.no_changes == 'false'
-      #   run: |
-      #     git config --global user.name "GitHub Actions"
-      #     git config --global user.email "actions@github.com"
-      #     git remote set-url origin "https://x-access-token:${{ secrets.GBP_PACKAGE_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
-      #     git push origin main --follow-tags
 
       - name: Cleanup temporary files
         if: always()
