@@ -246,7 +246,7 @@ jobs:
             --tag-version-prefix="" \
             # --create-release=github \
             # --message "chore(release): publish %s [skip ci]" \
-            --loglevel=silly 2>&1) || true
+            --loglevel=debug 2>&1) || true
           
           echo "SALIDA COMPLETA DE LERNA:"
           echo "$OUTPUT"
