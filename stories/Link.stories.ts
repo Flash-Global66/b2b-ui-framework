@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from '@storybook/vue3';
 import { GLink } from '../components/Link';
-import { LinkProps } from '../components/Link/link';
 import { GConfigProvider } from '../components/ConfigProvider';
 
 const meta: Meta<typeof GLink> = {
