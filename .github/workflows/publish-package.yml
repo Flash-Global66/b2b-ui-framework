@@ -212,17 +212,17 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Debug - List latest commits and tags
-        run: |
-          git fetch --tags
-          git log --oneline -n 5
-          git tag -l | tail -5
+      # - name: Debug - List latest commits and tags
+      #   run: |
+      #     git fetch --tags
+      #     git log --oneline -n 5
+      #     git tag -l | tail -5
 
-      - name: Debug - Show changes since last release
-        run: |
-          LATEST_TAG=$(git describe --tags --abbrev=0 || echo "v0.0.0")
-          echo "Cambios desde el último tag ($LATEST_TAG):"
-          git diff --name-only $LATEST_TAG HEAD
+      # - name: Debug - Show changes since last release
+      #   run: |
+      #     LATEST_TAG=$(git describe --tags --abbrev=0 || echo "v0.0.0")
+      #     echo "Cambios desde el último tag ($LATEST_TAG):"
+      #     git diff --name-only $LATEST_TAG HEAD
 
       - name: Version packages with Lerna
         id: version
