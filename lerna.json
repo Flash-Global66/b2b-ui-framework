@@ -10,7 +10,7 @@
     },
     "version": {
       "conventionalCommits": true,
-      "tagVersionPrefix": ""
+      "tagVersionPrefix": "v"
     }
   }
 }

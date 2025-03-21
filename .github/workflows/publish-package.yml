@@ -236,9 +236,6 @@ jobs:
           export GIT_CURL_VERBOSE=1
           export GIT_TRACE=1
           
-          # Configurar Git para manejar mejor caracteres especiales
-          git config --global core.quotePath true
-          
           # Forzar detección de cambios (sin arrojar error si no hay cambios)
           CHANGED_PACKAGES=$(yarn lerna changed -a 2>&1) || true
           
@@ -252,11 +249,11 @@ jobs:
           echo "Paquetes con cambios detectados:"
           echo "$CHANGED_PACKAGES"
 
-          # Ejecutar Lerna con parámetros modificados
+          # Ejecutar Lerna con formato de etiqueta simplificado
           yarn lerna version --conventional-commits \
             --conventional-graduate \
             --yes \
-            --tag-version-prefix="" \
+            --tag-version-prefix="v" \
             --loglevel=debug
           
           # Capturar el código de salida
@@ -278,9 +275,10 @@ jobs:
           echo "//npm.fontawesome.com/:_authToken=${FONT_AWESOME_TOKEN}" >> .npmrc
           echo "@fortawesome:registry=https://npm.fontawesome.com/" >> .npmrc
 
-      # - name: Publish packages with Lerna
-      #   if: steps.version.outputs.no_changes == 'false'
-      #   run: npx lerna publish from-package --yes
+      - name: Publish packages with Lerna
+        if: steps.version.outputs.no_changes == 'false'
+        run: npx lerna publish from-package --yes --tag-version-prefix="v"
+        
 
       - name: Cleanup temporary files
         if: always()
