@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.70](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-input@0.0.69...@flash-global66/b2b-ui-input@0.0.70) (2025-03-22)
+
+
+### Bug Fixes
+
+* Update imports for form and input components ([ea5f185](https://github.com/Flash-Global66/b2b-ui-framework/commit/ea5f185b480cc1fd7a230925eb004964968bc413))
+
+
+
+
+
 ## 0.0.69 (2025-03-21)
 
 
