@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.12](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-button@1.1.11...@flash-global66/b2b-ui-button@1.1.12) (2025-03-22)
+
+
+### Bug Fixes
+
+* Update imports for form hooks ([b98251e](https://github.com/Flash-Global66/b2b-ui-framework/commit/b98251e29930f1edb23229fd68659419272d3f09))
+
+
+
+
+
 ## 1.1.11 (2025-03-21)
 
 

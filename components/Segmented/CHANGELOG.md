@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-segmented@0.6.0...@flash-global66/b2b-ui-segmented@0.6.1) (2025-03-22)
+
+
+### Bug Fixes
+
+* Update imports for form hooks ([b98251e](https://github.com/Flash-Global66/b2b-ui-framework/commit/b98251e29930f1edb23229fd68659419272d3f09))
+
+
+
+
+
 # 0.6.0 (2025-03-21)
 
 
