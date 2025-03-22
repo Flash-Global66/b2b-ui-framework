@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/vue3";
 import { ref, reactive, computed, watch } from "vue";
-import { FormInstance, GForm, GFormItem } from "../components/Form";
-import { GInput } from "../components/Input";
+import { FormInstance, GForm, GFormItem } from "@flash-global66/b2b-ui-form";
+import { GInput } from "@flash-global66/b2b-ui-input";
 import { GConfigProvider } from "../components/ConfigProvider";
-import { GButton } from "../components/Button/src";
-import { GSelect } from "../components/Select";
-import { GRadio } from "../components/Radio";
+import { GButton } from "@flash-global66/b2b-ui-button";
+import { GSelect } from "@flash-global66/b2b-ui-select";
+import { GRadio } from "@flash-global66/b2b-ui-radio";
 import { GCheckbox } from "@flash-global66/b2b-ui-checkbox";
 
 const meta: Meta<FormInstance> = {
