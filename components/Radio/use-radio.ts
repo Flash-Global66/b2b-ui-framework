@@ -1,6 +1,6 @@
 import { computed, inject, ref, watch } from 'vue'
 import { UPDATE_MODEL_EVENT } from 'element-plus'
-import { useFormDisabled } from '@flash-global66/b2b-ui-form/hooks'
+import { useFormDisabled } from '@flash-global66/b2b-ui-form/hooks/use-form-common-props.ts'
 import { isPropAbsent } from 'element-plus/es/utils/index.mjs'
 import { radioGroupKey } from './constants'
 
