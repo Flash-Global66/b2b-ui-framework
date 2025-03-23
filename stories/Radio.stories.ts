@@ -18,6 +18,7 @@ Uso básico
 Componente de selección única entre un grupo de opciones.
 
 Ejemplo básico:
+
 \`\`\`vue
 <g-radio v-model="selected" label="Opción 1" value="1" />
 \`\`\`

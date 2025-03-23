@@ -15,6 +15,7 @@ Grupo de radios que permite selección única con validación. Los radios puedes
 o mediante la propiedad \`options\`.
 
 Ejemplo con slots:
+
 \`\`\`vue
 <g-radio-group 
   v-bind="args"
@@ -26,6 +27,7 @@ Ejemplo con slots:
 \`\`\`
 
 Ejemplo con opciones predefinidas:
+
 \`\`\`vue
 <g-radio-group
   v-bind="args"
@@ -175,10 +177,10 @@ const Template: Story = {
       <div class="text-3 text-primary-txt font-medium mt-5">
         Valor seleccionado: {{ selectedValue }}
       </div>
+    </g-config-provider>
     `
   })
 }
-
 export const Basic: Story = {
   ...Template,
   args: {},
