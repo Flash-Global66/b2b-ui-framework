@@ -3,9 +3,27 @@
   "author": "Global66",
   "version": "1.1.13",
   "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/types/index.d.ts",
+  "buildable": true,
   "exports": {
-    ".": "./src/index.ts",
-    "./button.styles.scss": "./src/button.styles.scss"
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./styles.scss": "./src/button.styles.scss",
+    "./*": "./*"
+  },
+  "files": [
+    "dist",
+    "src",
+    "index.ts"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "build:types": "vue-tsc --project tsconfig.json"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
