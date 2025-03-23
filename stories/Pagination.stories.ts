@@ -3,7 +3,7 @@ import { ref } from 'vue';
 
 // COMPONENTS
 import { GPagination } from '../components/Pagination';
-import { GButton } from '../components/Button/src';
+import { GButton } from '@flash-global66/b2b-ui-button';
 
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider';

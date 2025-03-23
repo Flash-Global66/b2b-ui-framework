@@ -248,7 +248,7 @@ export const PaymentForm: Story = {
         story: `
 - **Número de Tarjeta**: 
   - Usa formatter/parser para formateo automático XXXX XXXX XXXX XXXX
-  - Prefix-icon: credit-card
+  - Prefix-icon: regular landmark
   - Maxlength: 19 caracteres (16 números + 3 espacios)
 
 - **Titular**: 
@@ -262,7 +262,7 @@ export const PaymentForm: Story = {
 
 - **CVV**: 
   - Tipo password con toggle de visibilidad
-  - Prefix-icon: lock
+  - Prefix-icon: regular lock-alt
   - Maxlength: 4 dígitos
   - Incluye showPassword para alternar visibilidad
 
@@ -324,7 +324,7 @@ const parseCardNumber = (value: string) => {
               label="Número de Tarjeta"
               placeholder="1234 5678 9012 3456"
               maxlength="19"
-              prefix-icon="regular credit-card"
+              prefix-icon="regular landmark"
               :formatter="formatCardNumber"
               :parser="parseCardNumber"
             />
@@ -347,7 +347,7 @@ const parseCardNumber = (value: string) => {
               type="password"
               maxlength="4"
               show-password
-              prefix-icon="regular lock"
+              prefix-icon="regular lock-alt"
             />
           </div>
 

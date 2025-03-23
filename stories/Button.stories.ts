@@ -1,7 +1,5 @@
 import { StoryFn, Meta } from '@storybook/vue3'
-import { fn } from '@storybook/test'
-import { GButton } from '../components/Button/src'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { GButton } from '@flash-global66/b2b-ui-button'
 
 // TYPES
 import { generateIconOptions } from './IconFont.stories'
@@ -17,15 +15,16 @@ export default {
       description: {
         component: `
 ### Uso básico
+
 Ejemplo de uso básico:
+
 \`\`\` vue
 <g-button variant="primary" title="Primary Button"/>
 \`\`\`
-        `
-      }
+      `
     }
-  },
-  argTypes: {
+  }
+},  argTypes: {
     // Current Props - Variant & Style
     variant: {
       control: 'select',
@@ -196,16 +195,10 @@ const Template: StoryFn<typeof GButton> = (args) => ({
   setup() {
     return {
       args,
-      onClick: fn(action('click')),
-      onMousedown: fn(action('mousedown'))
     }
   },
   template: `
-    <g-button 
-      v-bind="args" 
-      @click="onClick" 
-      @mousedown="onMousedown"
-    />
+    <g-button v-bind="args" />
   `
 })
 

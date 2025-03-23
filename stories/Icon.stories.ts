@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { Icon } from '../components/Icon';
 import { GInput } from '../components/Input';
-import { GButton } from '../components/Button/src';
+import { GButton } from '@flash-global66/b2b-ui-button';
 import { GConfigProvider } from '../components/ConfigProvider';
 import iconSet from '../components/Icon/selection.json';
 import { computed, ref } from 'vue';

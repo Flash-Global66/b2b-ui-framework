@@ -331,7 +331,7 @@ export const CompleteForm: Story = {
                   :options="availableCities"
                   label="Ciudad"
                   placeholder="Seleccione una ciudad"
-                  prefix-icon="regular building"
+                  prefix-icon="regular store"
                   filterable
                   clearable
                   :disabled="!formData.country"
@@ -437,7 +437,7 @@ export const Primary: Story = {
             <g-input v-model="formData.email" label="Email" />
           </g-form-item>
           <div class="flex gap-4 mt-4">
-            <g-button @click="handleSubmit" type="primary">Enviar</g-button>
+            <g-button @click="handleSubmit">Enviar</g-button>
             <g-button @click="handleReset" variant="secondary">Limpiar</g-button>
           </div>
         </g-form>
@@ -587,7 +587,7 @@ La validación se ejecutará cuando el campo pierda el foco (trigger: "blur") y 
             />
           </g-form-item>
           <div class="flex gap-4 mt-4">
-            <g-button @click="handleSubmit" type="primary">Enviar</g-button>
+            <g-button @click="handleSubmit">Enviar</g-button>
             <g-button @click="handleReset" variant="secondary">Limpiar</g-button>
           </div>
         </g-form>
@@ -698,7 +698,7 @@ En este ejemplo, el email se valida en tiempo real mientras el usuario escribe, 
             />
           </g-form-item>
           <div class="flex gap-4 mt-4">
-            <g-button @click="handleSubmit" type="primary">Enviar</g-button>
+            <g-button @click="handleSubmit">Enviar</g-button>
             <g-button @click="handleReset" variant="secondary">Limpiar</g-button>
           </div>
         </g-form>
@@ -844,7 +844,7 @@ async function handleSubmit() {
             />
           </g-form-item>
           <div class="flex gap-4 mt-4">
-            <g-button type="submit" type="primary">Enviar</g-button>
+            <g-button type="submit">Enviar</g-button>
           </div>
         </g-form>
       </g-config-provider>
@@ -988,7 +988,7 @@ const addDomain = () => {
           </g-form-item>
 
           <div class="flex gap-4 mt-4">
-            <g-button @click="handleSubmit" type="primary">Enviar</g-button>
+            <g-button @click="handleSubmit">Enviar</g-button>
             <g-button @click="addDomain" variant="secondary">Nuevo dominio</g-button>
             <g-button @click="handleReset" variant="secondary">Limpiar</g-button>
           </div>

@@ -3,7 +3,7 @@ import { ref, reactive } from 'vue'
 import { GFormItem, GForm, FormItemInstance } from '../components/Form'
 import { GInput } from '../components/Input'
 import { GSelect } from '../components/Select'
-import { GButton } from '../components/Button/src'
+import { GButton } from '@flash-global66/b2b-ui-button'
 import { GConfigProvider } from '../components/ConfigProvider'
 
 const meta: Meta<FormItemInstance> = {

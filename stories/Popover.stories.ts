@@ -6,7 +6,7 @@ import { fn } from "@storybook/test";
 
 // COMPONENTS
 import { GPopover } from '../components/Popover';
-import { GButton } from '../components/Button/src';
+import { GButton } from '@flash-global66/b2b-ui-button';
 import { GSelect } from '../components/Select';
 import { GSelectOption } from '../components/SelectOption';
 
