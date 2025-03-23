@@ -22,10 +22,8 @@
 
       <div
         v-if="label"
-        :class="[
-          ns.e('label'),
-          { 'dynamic-label': !Boolean(nativeInputValue) || !isFocused },
-        ]"
+        :class="[ns.e('label')]"
+        :style="labelStyle"
       >
         {{ label }}
       </div>
@@ -213,6 +211,13 @@ const { wrapperRef, isFocused, handleFocus, handleBlur } = useFocusController(
   }
 );
 
+const labelStyle = computed(() => {
+  const shouldMoveLabel = Boolean(nativeInputValue.value) || isFocused.value
+  return {
+    left: !shouldMoveLabel ? `calc(${leftPrefix.value} + 16px)` : undefined,
+  }
+});
+
 const passwordIcon = computed(() =>
   passwordVisible.value ? "regular eye" : "regular eye-slash"
 );
@@ -397,10 +402,3 @@ defineExpose({
   clear,
 });
 </script>
-
-<style lang="scss">
-.dynamic-label {
-  left: calc(v-bind(leftPrefix) + 16px);
-  z-index: 10;
-}
-</style>
