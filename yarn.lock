@@ -636,6 +636,12 @@ __metadata:
 "@flash-global66/b2b-ui-checkbox@workspace:components/Checkbox":
   version: 0.0.0-use.local
   resolution: "@flash-global66/b2b-ui-checkbox@workspace:components/Checkbox"
+  peerDependencies:
+    "@flash-global66/b2b-ui-icon-form": ^1.0.0
+    "@vueuse/core": ^12.4.0
+    element-plus: ^2.8.0
+    lodash-unified: ^1.0.3
+    vue: ^3.2.0
   languageName: unknown
   linkType: soft
 

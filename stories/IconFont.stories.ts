@@ -3,7 +3,7 @@ import { computed, ref } from 'vue';
 import { GIconFont } from '../components/IconFont';
 import { GConfigProvider } from '../components/ConfigProvider';
 import { ICON_SETS } from '../components/IconFont/iconSets';
-import { GSegmented } from '../components/Segmented';
+import { GSegmented } from '@flash-global66/b2b-ui-segmented';
 import { GInput } from '../components/Input';
 import { GButton } from '@flash-global66/b2b-ui-button';
 

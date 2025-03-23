@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 
-import { GSegmented } from '../components/Segmented';
+import { GSegmented } from '@flash-global66/b2b-ui-segmented';
 import { GConfigProvider } from '../components/ConfigProvider';
 import { ref } from 'vue';
 
