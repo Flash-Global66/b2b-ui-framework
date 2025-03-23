@@ -880,6 +880,11 @@ __metadata:
 "@flash-global66/b2b-ui-radio@workspace:components/Radio":
   version: 0.0.0-use.local
   resolution: "@flash-global66/b2b-ui-radio@workspace:components/Radio"
+  peerDependencies:
+    "@flash-global66/b2b-ui-icon-form": ^1.0.0
+    "@vueuse/core": ^12.4.0
+    element-plus: ^2.8.0
+    vue: ^3.2.0
   languageName: unknown
   linkType: soft
 

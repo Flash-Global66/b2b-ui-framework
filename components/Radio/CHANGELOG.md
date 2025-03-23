@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-radio@1.2.0...@flash-global66/b2b-ui-radio@1.3.0) (2025-03-23)
+
+
+### Features
+
+* **Radio:** Add peer dependencies ([c51c928](https://github.com/Flash-Global66/b2b-ui-framework/commit/c51c928a17371f21f32a026ec0d3cd13ceb1e5e8))
+
+
+
+
+
 # [1.2.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-radio@1.1.0...@flash-global66/b2b-ui-radio@1.2.0) (2025-03-23)
 
 
