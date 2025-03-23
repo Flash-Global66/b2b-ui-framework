@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { ref, reactive } from 'vue'
-import { GFormItem, GForm, FormItemInstance } from '../components/Form'
-import { GInput } from '../components/Input'
-import { GSelect } from '../components/Select'
+import { GFormItem, GForm, FormItemInstance } from '@flash-global66/b2b-ui-form'
+import { GInput } from '@flash-global66/b2b-ui-input'
+import { GSelect } from '@flash-global66/b2b-ui-select'
 import { GButton } from '@flash-global66/b2b-ui-button'
 import { GConfigProvider } from '../components/ConfigProvider'
 

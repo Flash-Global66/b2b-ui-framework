@@ -176,7 +176,7 @@ export default defineComponent({
         >
           {{
             default: (props: OptionItemProps) =>
-              slots.default?.(props) || <span>{getTitle(item)}</span>
+              slots.default?.(props) || h('span', {}, getTitle(item))
           }}
         </OptionItem>
       )
@@ -230,35 +230,40 @@ export default defineComponent({
 
       const List = unref(isSized) ? FixedSizeList : DynamicSizeList
 
-      return (
-        <div
-          class={[ns.b('dropdown'), ns.is('multiple', multiple)]}
-          style={{
+      return h(
+        'div',
+        {
+          class: [ns.b('dropdown'), ns.is('multiple', multiple)],
+          style: {
             width: `${width}px`
-          }}
-        >
-          {slots.header?.()}
-          {slots.loading?.() || slots.empty?.() || (
-            <List
-              ref={listRef}
-              {...unref(listProps)}
-              className={ns.be('dropdown', 'list')}
-              scrollbarAlwaysOn={scrollbarAlwaysOn}
-              data={data}
-              height={height}
-              width={width}
-              total={data.length}
-              // @ts-ignore - dts problem
-              onKeydown={onKeydown}
-            >
-              {{
-                default: (props: ItemProps<any>) => <Item {...props} />
-              }}
-            </List>
-          )}
-          {slots.footer?.()}
-        </div>
-      )
+          }
+        },
+        [
+          
+          slots.header?.(),
+          
+          slots.loading?.() || slots.empty?.() || h(
+            List,
+            {
+              ref: listRef,
+              ...unref(listProps),
+              className: ns.be('dropdown', 'list'),
+              scrollbarAlwaysOn: scrollbarAlwaysOn,
+              data: data,
+              height: height,
+              width: width,
+              total: data.length,
+              onKeydown: onKeydown
+            },
+            {
+              default: (props: ItemProps<any>) => h(Item, { ...props })
+            }
+          ),
+          
+          // Slots footer
+          slots.footer?.()
+        ].filter(Boolean) 
+      )      
     }
   }
 })

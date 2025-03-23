@@ -34,7 +34,7 @@ export function useProps(props: Pick<ISelectProps, 'props'>) {
   }
 
   const getters = Object.keys(defaultProps).reduce((acc, propName) => {
-    acc[`get${propName.charAt(0).toUpperCase() + propName.slice(1)}`] = createGetter(
+    (acc as any)[`get${propName.charAt(0).toUpperCase() + propName.slice(1)}`] = createGetter(
       propName as keyof Props
     )
     return acc

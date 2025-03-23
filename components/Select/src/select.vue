@@ -66,7 +66,6 @@
                 >
                   <g-tag
                     :closable="!selectDisabled && !getDisabled(item)"
-                    size="default"
                     :type="tagType"
                     :effect="tagEffect"
                     disable-transitions
@@ -94,7 +93,6 @@
                     <div ref="collapseItemRef" :class="nsSelect.e('selected-item')">
                       <g-tag
                         :closable="false"
-                        size="default"
                         :type="tagType"
                         :effect="tagEffect"
                         :style="collapseTagStyle"
@@ -116,7 +114,6 @@
                         <g-tag
                           class="in-tooltip"
                           :closable="!selectDisabled && !getDisabled(selected)"
-                          size="default"
                           :type="tagType"
                           :effect="tagEffect"
                           disable-transitions
