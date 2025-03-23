@@ -28,5 +28,11 @@
   "repository": {
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
   },
+  "peerDependencies": {
+    "@flash-global66/b2b-ui-icon-form": "^1.0.0",
+    "@vueuse/core": "^12.4.0",
+    "element-plus": "^2.8.0",
+    "vue": "^3.2.0"
+  },
   "gitHead": "0e7add76f17ec734db17a4a7a877511d0df89999"
 }
