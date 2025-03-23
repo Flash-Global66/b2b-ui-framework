@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-input@0.1.0...@flash-global66/b2b-ui-input@0.2.0) (2025-03-23)
+
+
+### Features
+
+* **Input:** Improve label positioning and styling ([18b6eee](https://github.com/Flash-Global66/b2b-ui-framework/commit/18b6eeec8e05a1e9722ec1a47d01b2b88789140a))
+
+
+
+
+
 # [0.1.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-input@0.0.71...@flash-global66/b2b-ui-input@0.1.0) (2025-03-23)
 
 
