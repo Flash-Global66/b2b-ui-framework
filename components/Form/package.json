@@ -5,11 +5,13 @@
   "license": "MIT",
   "buildable": true,
   "exports": {
-    ".": "./index.ts",
-    "./*": "./*",
-    "./styles.scss": "./form.styles.scss",
-    "./hooks": "./hooks/index.ts",
-    "./constants": "./constants.ts"
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./styles.scss": "./src/form.styles.scss",
+    "./*": "./*"
   },
   "files": [
     "dist",
