@@ -623,7 +623,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@flash-global66/b2b-ui-button@npm:^1.0.21, @flash-global66/b2b-ui-button@workspace:components/Button":
+"@flash-global66/b2b-ui-button@workspace:components/Button":
   version: 0.0.0-use.local
   resolution: "@flash-global66/b2b-ui-button@workspace:components/Button"
   peerDependencies:
@@ -719,7 +719,6 @@ __metadata:
   dependencies:
     "@babel/core": "npm:^7.18.0"
     "@element-plus/utils": "npm:^0.0.5"
-    "@flash-global66/b2b-ui-button": "npm:^1.0.21"
     "@flash-global66/b2b-ui-config-element": "npm:^0.0.14"
     "@flash-global66/b2b-ui-dialog": "npm:^0.0.6"
     "@flash-global66/b2b-ui-icon-font": "npm:^1.0.15"
