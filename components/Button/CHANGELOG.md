@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-button@1.2.0...@flash-global66/b2b-ui-button@1.3.0) (2025-03-23)
+
+
+### Features
+
+* **Button:** Update dependencies and tsconfig ([384b203](https://github.com/Flash-Global66/b2b-ui-framework/commit/384b203220edc13fa44b08a167c68ed26af9494d))
+
+
+
+
+
 # [1.2.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-button@1.1.13...@flash-global66/b2b-ui-button@1.2.0) (2025-03-23)
 
 

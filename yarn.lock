@@ -628,6 +628,8 @@ __metadata:
   resolution: "@flash-global66/b2b-ui-button@workspace:components/Button"
   peerDependencies:
     "@flash-global66/b2b-ui-icon-font": ^1.0.2
+    element-plus: ^2.8.0
+    vue: ^3.2.0
   languageName: unknown
   linkType: soft
 
