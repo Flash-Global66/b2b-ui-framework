@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-radio-group@0.0.20...@flash-global66/b2b-ui-radio-group@0.1.0) (2025-03-23)
+
+
+### Features
+
+* **Radio:** Refactor Radio component for build process ([86e8d97](https://github.com/Flash-Global66/b2b-ui-framework/commit/86e8d9706ea11ac6c66b32b97b582abd51bd9215))
+
+
+
+
+
 ## 0.0.20 (2025-03-21)
 
 

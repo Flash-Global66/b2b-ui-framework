@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-radio",
   "author": "Global66",
-  "version": "1.0.21",
+  "version": "1.1.0",
   "license": "MIT",
   "buildable": true,
   "exports": {
