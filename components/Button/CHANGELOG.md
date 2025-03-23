@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-button@1.1.13...@flash-global66/b2b-ui-button@1.2.0) (2025-03-23)
+
+
+### Features
+
+* **Button:** Configure build process with Vite ([44a0d73](https://github.com/Flash-Global66/b2b-ui-framework/commit/44a0d73b035de783ef61e6e5f4fb0dc16660d997))
+* **Button:** Configure tsconfig for declaration generation ([9ba3d80](https://github.com/Flash-Global66/b2b-ui-framework/commit/9ba3d8059aa543b467d7242821aaf416e3ccefa9))
+* Use published button package and icon font ([0aeed03](https://github.com/Flash-Global66/b2b-ui-framework/commit/0aeed03af384aa4ab404b9377fab957e4a1aeafb))
+
+
+
+
+
 ## [1.1.13](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-button@1.1.12...@flash-global66/b2b-ui-button@1.1.13) (2025-03-23)
 
 

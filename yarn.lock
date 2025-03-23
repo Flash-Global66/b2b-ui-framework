@@ -643,15 +643,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@flash-global66/b2b-ui-config-element@npm:^0.0.14":
-  version: 0.0.14
-  resolution: "@flash-global66/b2b-ui-config-element@npm:0.0.14::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40Flash-Global66%2Fb2b-ui-config-element%2F0.0.14%2Fcb572f2caefb2b72bdb9142d3f41bedc1c751091"
-  dependencies:
-    element-plus: "npm:^2.2.26"
-  checksum: 10c0/5201b733ab2cdd9ad76467095d32543e860227d1eaa50a1eadf7d763b6312acea3d81e54a4836aeef072a4b7a6aee172d474c19d43406cec119baf3b64055233
-  languageName: node
-  linkType: hard
-
 "@flash-global66/b2b-ui-config-element@workspace:components/ConfigProvider":
   version: 0.0.0-use.local
   resolution: "@flash-global66/b2b-ui-config-element@workspace:components/ConfigProvider"
@@ -669,13 +660,6 @@ __metadata:
   resolution: "@flash-global66/b2b-ui-date-picker@workspace:components/DatePicker"
   languageName: unknown
   linkType: soft
-
-"@flash-global66/b2b-ui-dialog@npm:^0.0.6":
-  version: 0.0.6
-  resolution: "@flash-global66/b2b-ui-dialog@npm:0.0.6::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40flash-global66%2Fb2b-ui-dialog%2F0.0.6%2F2a18492a3c7cf3b3ff6ab27289e1164299352b41"
-  checksum: 10c0/addcfc631d02967e6d61571c6f97ad2e171e1fd7fbd82073dea42737f9e4ad9405252f4c39eff1bdc012a40da8ce2b1aed441a7860223f6c6676b13f9d3ef168
-  languageName: node
-  linkType: hard
 
 "@flash-global66/b2b-ui-dialog@workspace:components/Dialog":
   version: 0.0.0-use.local
@@ -719,9 +703,6 @@ __metadata:
   dependencies:
     "@babel/core": "npm:^7.18.0"
     "@element-plus/utils": "npm:^0.0.5"
-    "@flash-global66/b2b-ui-config-element": "npm:^0.0.14"
-    "@flash-global66/b2b-ui-dialog": "npm:^0.0.6"
-    "@flash-global66/b2b-ui-icon-font": "npm:^1.0.15"
     "@fortawesome/fontawesome-common-types": "npm:^6.2.1"
     "@fortawesome/fontawesome-svg-core": "npm:^6.2.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.2.1"
@@ -773,7 +754,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@flash-global66/b2b-ui-icon-font@npm:^1.0.15, @flash-global66/b2b-ui-icon-font@workspace:components/IconFont":
+"@flash-global66/b2b-ui-icon-font@workspace:components/IconFont":
   version: 0.0.0-use.local
   resolution: "@flash-global66/b2b-ui-icon-font@workspace:components/IconFont"
   dependencies:
@@ -4589,7 +4570,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"element-plus@npm:^2.2.26, element-plus@npm:^2.8.4":
+"element-plus@npm:^2.8.4":
   version: 2.9.6
   resolution: "element-plus@npm:2.9.6"
   dependencies:
