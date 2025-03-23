@@ -722,6 +722,7 @@ __metadata:
     "@fortawesome/pro-regular-svg-icons": "npm:^6.2.1"
     "@fortawesome/pro-solid-svg-icons": "npm:^6.2.1"
     "@fortawesome/vue-fontawesome": "npm:^3.0.2"
+    "@popperjs/core": "npm:^2.11.8"
     "@storybook/addon-actions": "npm:^8.3.6"
     "@storybook/addon-controls": "npm:^8.3.6"
     "@storybook/addon-essentials": "npm:8.4.7"
@@ -1896,6 +1897,13 @@ __metadata:
   version: 2.11.7
   resolution: "@sxzz/popperjs-es@npm:2.11.7"
   checksum: 10c0/5027bd98ff98caad74a20379287cb7e8bf4263eeb58e749c97dffe64e900bdd49f9e78c188c8f3cf10c0a3d4e8054ea7a11b2cc15fb67139a4c40b2a5a61b259
+  languageName: node
+  linkType: hard
+
+"@popperjs/core@npm:^2.11.8":
+  version: 2.11.8
+  resolution: "@popperjs/core@npm:2.11.8"
+  checksum: 10c0/4681e682abc006d25eb380d0cf3efc7557043f53b6aea7a5057d0d1e7df849a00e281cd8ea79c902a35a414d7919621fc2ba293ecec05f413598e0b23d5a1e63
   languageName: node
   linkType: hard
 
