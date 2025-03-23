@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-input@0.0.71...@flash-global66/b2b-ui-input@0.1.0) (2025-03-23)
+
+
+### Features
+
+* **Input:** Configure build process and add peer dependencies ([bc7ef29](https://github.com/Flash-Global66/b2b-ui-framework/commit/bc7ef2908b9a87029befa02299033e36db7f47a1))
+
+
+
+
+
 ## [0.0.71](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-input@0.0.70...@flash-global66/b2b-ui-input@0.0.71) (2025-03-23)
 
 

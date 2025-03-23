@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-button@1.3.0...@flash-global66/b2b-ui-button@1.3.1) (2025-03-23)
+
+**Note:** Version bump only for package @flash-global66/b2b-ui-button
+
+
+
+
+
 # [1.3.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-button@1.2.0...@flash-global66/b2b-ui-button@1.3.0) (2025-03-23)
 
 

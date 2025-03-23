@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-form",
   "author": "Global66",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "license": "MIT",
   "buildable": true,
   "exports": {

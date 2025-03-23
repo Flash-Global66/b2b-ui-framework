@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-form@1.5.0...@flash-global66/b2b-ui-form@1.6.0) (2025-03-23)
+
+
+### Features
+
+* **Form:** Refactor Form component structure and build process ([e20753e](https://github.com/Flash-Global66/b2b-ui-framework/commit/e20753ecb273a464020075b6937e81e3bca8f306))
+* **Form:** Update package.json exports and yarn.lock for build process ([f0eda14](https://github.com/Flash-Global66/b2b-ui-framework/commit/f0eda14b6cd63e370d7c8b748fa3bcc710a24f8b))
+
+
+
+
+
 # 1.5.0 (2025-03-21)
 
 

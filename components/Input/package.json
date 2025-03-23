@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-input",
   "author": "Global66",
-  "version": "0.0.71",
+  "version": "0.1.0",
   "license": "MIT",
   "buildable": true,
   "exports": {
