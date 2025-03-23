@@ -18,7 +18,7 @@ import {
   useNamespace
 } from 'element-plus'
 import { CHANGE_EVENT, EVENT_CODE, UPDATE_MODEL_EVENT } from 'element-plus/es/constants/index.mjs'
-import { useFormItem, useFormItemInputId } from '@flash-global66/b2b-ui-form/hooks';
+import { useFormItem, useFormItemInputId } from '@flash-global66/b2b-ui-form';
 
 import { useAllowCreate } from './useAllowCreate'
 import { useProps } from './useProps'
