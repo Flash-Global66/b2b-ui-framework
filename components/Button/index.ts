@@ -1,11 +1,10 @@
-import GButton from "./Button.vue";
+import GButton from "./src/Button.vue";
 export type {
   ButtonSize,
   ButtonColor,
   ButtonType,
   ButtonNativeType,
   ButtonVariant,
-  ButtonIconName,
-} from "./button.type";
+} from "./src/button.type";
 
 export { GButton };

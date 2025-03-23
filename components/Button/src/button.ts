@@ -6,8 +6,8 @@ import type {
   ButtonType,
   ButtonVariant,
   ButtonNativeType,
-  ButtonIconName,
 } from "./button.type";
+import { IconString } from "@flash-global66/b2b-ui-icon-font";
 
 export const buttonProps = buildProps({
   /**
@@ -100,7 +100,7 @@ export const buttonProps = buildProps({
    * @example 'solid check', 'regular user'
    */
   iconLeft: {
-    type: String as PropType<ButtonIconName>,
+    type: String as PropType<IconString>,
     default: "",
   },
   /**
@@ -114,7 +114,7 @@ export const buttonProps = buildProps({
    * @example 'solid check', 'regular user'
    */
   iconRight: {
-    type: String as PropType<ButtonIconName>,
+    type: String as PropType<IconString>,
     default: "",
   },
   /**

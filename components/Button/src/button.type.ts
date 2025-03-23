@@ -2,8 +2,6 @@ type ButtonVariant = "primary" | "secondary" | "tertiary";
 
 type ButtonState = "default" | "loading" | "disabled";
 
-type ButtonIconName = string;
-
 type Ripple = {
   id: number;
   x: number;
@@ -27,5 +25,5 @@ type ButtonType = "default" | "outlined" | "ghost" | "icon";
  */
 type ButtonColor = "primary" | "secondary" | "danger" | "info" | "warning" | "custom";
 
-export { ButtonSize, ButtonColor, ButtonType, ButtonVariant, ButtonIconName, ButtonState, Ripple, ButtonNativeType };
+export { ButtonSize, ButtonColor, ButtonType, ButtonVariant, ButtonState, Ripple, ButtonNativeType };
 
