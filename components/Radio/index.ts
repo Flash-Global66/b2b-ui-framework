@@ -19,3 +19,4 @@ export const GRadioGroup: SFCWithInstall<typeof RadioGroup> =
 export * from './src/radio'
 export * from './src/radio-group'
 export * from './src/constants'
+export * from './src/radio-group.types'

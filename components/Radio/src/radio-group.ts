@@ -3,7 +3,7 @@ import { useAriaProps } from 'element-plus'
 import { radioEmits } from './radio'
 import type { ExtractPropTypes, PropType } from '@vue/runtime-core'
 import type RadioGroup from './radio-group.vue'
-import { layoutType, Option } from './radio-group.types'
+import { layoutType, RadioOption } from './radio-group.types'
 
 export const radioGroupProps = buildProps({
   /**
@@ -17,7 +17,7 @@ export const radioGroupProps = buildProps({
    * @description options for building checkboxes
    */
   options: {
-    type: Array as PropType<Option[]>,
+    type: Array as PropType<RadioOption[]>,
     default: () => []
   },
   /**
