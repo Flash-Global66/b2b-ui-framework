@@ -3,6 +3,7 @@
   "author": "Global66",
   "version": "1.5.0",
   "license": "MIT",
+  "buildable": true,
   "exports": {
     ".": "./index.ts",
     "./*": "./*",
@@ -10,12 +11,24 @@
     "./hooks": "./hooks/index.ts",
     "./constants": "./constants.ts"
   },
-  "main": "index.ts",
+  "files": [
+    "dist",
+    "src",
+    "index.ts"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "build:types": "vue-tsc --project tsconfig.json"
+  },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
+  },
+  "peerDependencies": {
+    "element-plus": "^2.8.0",
+    "vue": "^3.2.0"
   },
   "gitHead": "0e7add76f17ec734db17a4a7a877511d0df89999"
 }
