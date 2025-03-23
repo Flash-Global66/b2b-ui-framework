@@ -26,7 +26,7 @@ import { UPDATE_MODEL_EVENT, useId, useNamespace } from 'element-plus'
 import { debugWarn } from 'element-plus/es/utils/index.mjs'
 import { radioGroupEmits, radioGroupProps } from './radio-group'
 import { radioGroupKey } from './constants'
-import { GRadio } from '.'
+import { GRadio } from '..'
 
 import type { RadioGroupProps } from './radio-group'
 import { klsByType } from './radio-group.types'

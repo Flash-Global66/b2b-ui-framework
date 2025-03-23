@@ -5,7 +5,7 @@ import { GRadio } from '../components/Radio'
 
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider'
-import { RadioProps } from '../components/Radio/radio'
+import { RadioProps } from '@flash-global66/b2b-ui-radio'
 
 const meta: Meta<typeof GRadio> = {
   title: 'Form/Radio/Single',
