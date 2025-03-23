@@ -2,22 +2,23 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "strict": true,
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
-    // "moduleResolution": "bundler",
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "lib": ["esnext", "dom"],
     "types": ["vite/client"],
     "declaration": true,
     "emitDeclarationOnly": true,
+    "skipLibCheck": true,
     "paths": {
       "@/*": ["./src/*"],
       "assets/*": ["./src/assets/*"]
     }
   },
-  "include": ["common/**/*.ts"],
+  "include": ["components/**/*.ts", "components/**/*.vue", "common/**/*.ts"],
   "exclude": ["node_modules"]
 }
