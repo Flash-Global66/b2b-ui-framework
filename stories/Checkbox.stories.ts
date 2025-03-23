@@ -2,11 +2,10 @@ import { Meta, StoryFn, StoryObj } from '@storybook/vue3'
 import { ref } from 'vue';
 
 // COMPONENTS
-import { GCheckbox } from '../components/Checkbox'
+import { GCheckbox, CheckboxProps } from '@flash-global66/b2b-ui-checkbox'
 
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider'
-import { CheckboxProps } from '../components/Checkbox/checkbox'
 
 const meta: Meta<typeof GCheckbox> = {
   title: 'Form/Checkbox/Single',

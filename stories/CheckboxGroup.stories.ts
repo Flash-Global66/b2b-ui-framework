@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { ref } from 'vue'
-import { GCheckbox, GCheckboxGroup } from '../components/Checkbox'
+import { GCheckbox, GCheckboxGroup, CheckboxGroupProps } from '@flash-global66/b2b-ui-checkbox'
 import { GConfigProvider } from '../components/ConfigProvider'
-import { CheckboxGroupProps } from '../components/Checkbox/checkbox-group'
 
 const meta: Meta<typeof GCheckboxGroup> = {
   title: 'Form/Checkbox/Group',
