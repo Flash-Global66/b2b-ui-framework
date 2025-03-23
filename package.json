@@ -34,7 +34,7 @@
 
     "build": "node scripts/build-components.js",
     "build:types": "npx lerna run build:types --scope \"@flash-global66/b2b-ui-*\"",
-    "publish": "dotenv -- npx lerna publish",
+    "publish": "npx lerna publish",
     "build:publish": "yarn build && yarn publish"
   },
   "dependencies": {
