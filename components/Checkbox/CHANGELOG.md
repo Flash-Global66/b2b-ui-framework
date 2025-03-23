@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-checkbox@1.0.24...@flash-global66/b2b-ui-checkbox@1.1.0) (2025-03-23)
+
+
+### Features
+
+* **Checkbox:** Add Checkbox and CheckboxGroup components ([fc770e1](https://github.com/Flash-Global66/b2b-ui-framework/commit/fc770e13a22b4463048b23f17f8f85b5bae2cdba))
+* **Checkbox:** Integrate Checkbox and CheckboxGroup components ([bb000e9](https://github.com/Flash-Global66/b2b-ui-framework/commit/bb000e9e2bef9fe6a7c7215c32614b37a6415767))
+
+
+
+
+
 ## [1.0.24](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-checkbox@1.0.23...@flash-global66/b2b-ui-checkbox@1.0.24) (2025-03-23)
 
 **Note:** Version bump only for package @flash-global66/b2b-ui-checkbox

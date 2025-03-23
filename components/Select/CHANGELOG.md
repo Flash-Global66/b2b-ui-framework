@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-select@0.4.3...@flash-global66/b2b-ui-select@0.5.0) (2025-03-23)
+
+
+### Features
+
+* **deps:** Update Select component dependency ([8b15143](https://github.com/Flash-Global66/b2b-ui-framework/commit/8b1514378ba77ece1f684ed6a1251a0652afa952))
+* **Select:** Build Select component with Vite ([e0088f7](https://github.com/Flash-Global66/b2b-ui-framework/commit/e0088f77b6ab183142dc104b23374ebb97d50bb5))
+* **Select:** Improve Select label positioning ([b9a1775](https://github.com/Flash-Global66/b2b-ui-framework/commit/b9a17751c2f71c43949a9e50c5ca52fe2ae45745))
+
+
+
+
+
 ## [0.4.3](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-select@0.4.2...@flash-global66/b2b-ui-select@0.4.3) (2025-03-23)
 
 **Note:** Version bump only for package @flash-global66/b2b-ui-select

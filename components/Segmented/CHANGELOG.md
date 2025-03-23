@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-segmented@0.6.3...@flash-global66/b2b-ui-segmented@0.7.0) (2025-03-23)
+
+
+### Features
+
+* **Checkbox:** Integrate Checkbox and CheckboxGroup components ([bb000e9](https://github.com/Flash-Global66/b2b-ui-framework/commit/bb000e9e2bef9fe6a7c7215c32614b37a6415767))
+* **deps:** Update Select component dependency ([8b15143](https://github.com/Flash-Global66/b2b-ui-framework/commit/8b1514378ba77ece1f684ed6a1251a0652afa952))
+* **Segmented:** Build Segmented component with Vite ([e506438](https://github.com/Flash-Global66/b2b-ui-framework/commit/e5064389b7a670af7ac540af370197f1a86830e6))
+* **Segmented:** Refactor Segmented component and update dependencies ([c5a53ae](https://github.com/Flash-Global66/b2b-ui-framework/commit/c5a53aeb0de2d740d429ac57680f5e7b3361c2a3))
+
+
+
+
+
 ## [0.6.3](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-segmented@0.6.2...@flash-global66/b2b-ui-segmented@0.6.3) (2025-03-23)
 
 **Note:** Version bump only for package @flash-global66/b2b-ui-segmented
