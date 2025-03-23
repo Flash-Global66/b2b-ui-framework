@@ -51,6 +51,7 @@ type useSelectReturnType = (
   popperSize: Ref<number>
   prefixIcon: Ref<string>
   leftPrefixSelect: Ref<string | undefined>
+  labelStyle: ComputedRef<{ left: string | undefined }>
   dropdownMenuVisible: WritableComputedRef<boolean>
   hasModelValue: ComputedRef<boolean>
   shouldShowPlaceholder: ComputedRef<boolean>
@@ -810,6 +811,13 @@ const useSelect: useSelectReturnType = (props: propsUseSelect, emit: SelectEmitF
     })
   }
 
+    const labelStyle = computed(() => {
+      const shouldMoveLabel = hasModelValue.value || isFocused.value
+      return {
+        left: !shouldMoveLabel ? `calc(${leftPrefixSelect.value} + 18px)` : undefined,
+      }
+    });
+
   const initStates = (needUpdateSelectedLabel = false) => {
     if (props.multiple) {
       if ((props.modelValue as Array<any>).length > 0) {
@@ -985,6 +993,7 @@ const useSelect: useSelectReturnType = (props: propsUseSelect, emit: SelectEmitF
     nsSelect,
     nsInput,
     leftPrefixSelect,
+    labelStyle,
     selectError,
     descriptionError,
     helpTextKls,

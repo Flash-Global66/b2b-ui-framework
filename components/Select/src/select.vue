@@ -182,10 +182,8 @@
               </div>
               <div
                 v-if="label"
-                :class="[
-                  nsSelect.e('label'),
-                  { 'dynamic-label-select': !hasModelValue || !isFocused }
-                ]"
+                :class="[nsSelect.e('label')]"
+                :style="labelStyle"
               >
                 {{ label }}
               </div>
@@ -356,9 +354,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="scss">
-.dynamic-label-select {
-  left: calc(v-bind(leftPrefixSelect) + 18px);
-}
-</style>
