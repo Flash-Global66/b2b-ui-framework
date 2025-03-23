@@ -107,7 +107,7 @@ import {
 import { useResizeObserver } from "@vueuse/core";
 import { GIconFont } from "@flash-global66/b2b-ui-icon-font";
 import { isNil } from "lodash-unified";
-import { useFormItem, useFormItemInputId } from '@flash-global66/b2b-ui-form/hooks/use-form-item.ts';
+import { useFormItem, useFormItemInputId } from '@flash-global66/b2b-ui-form/hooks';
 import { useFormDisabled } from '@flash-global66/b2b-ui-form/hooks/use-form-common-props.ts';
 
 import {

@@ -1,6 +1,6 @@
 import { computed, ref } from "vue";
 import type { SetupContext } from "vue";
-import { useFormItem } from '@flash-global66/b2b-ui-form/hooks/use-form-item';
+import { useFormItem } from '@flash-global66/b2b-ui-form/hooks';
 import { ButtonEmits, ButtonProps } from "./button";
 import { useRipple } from "./use-ripple";
 
