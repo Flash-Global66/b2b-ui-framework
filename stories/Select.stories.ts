@@ -2,12 +2,11 @@ import { StoryObj } from '@storybook/vue3'
 import { onMounted, reactive, ref } from 'vue'
 
 // COMPONENTS
-import { GSelect, SelectInstance } from '../components/Select'
+import { GSelect, OptionType, SelectInstance } from "@flash-global66/b2b-ui-select";
 
 // CONFIG
 import { GConfigProvider } from '../components/ConfigProvider'
 import { generateIconOptions } from './IconFont.stories'
-import { OptionType } from '../components/Select/types/select.types'
 
 const meta = {
   title: 'Form/Select',

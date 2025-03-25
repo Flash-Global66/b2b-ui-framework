@@ -321,7 +321,6 @@ export const CompleteForm: Story = {
                   prefix-icon="regular globe"
                   filterable
                   clearable
-                  help-text="Seleccione su país de residencia"
                 />
               </g-form-item>
               
