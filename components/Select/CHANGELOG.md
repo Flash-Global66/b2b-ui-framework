@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-select@0.5.0...@flash-global66/b2b-ui-select@0.6.0) (2025-03-25)
+
+
+### Features
+
+* **Input, Select:** Improve help text display ([5978576](https://github.com/Flash-Global66/b2b-ui-framework/commit/59785765977bd2c94a4b7f6b73af52ed57979e6d))
+
+
+
+
+
 # [0.5.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-select@0.4.3...@flash-global66/b2b-ui-select@0.5.0) (2025-03-23)
 
 
