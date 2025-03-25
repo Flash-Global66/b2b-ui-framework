@@ -121,10 +121,14 @@
     @apply cursor-pointer;
   }
 
-  @include e("help") {
+  @include e(help) {
     @apply flex gap-xxs justify-between text-2 font-medium text-disabled-txt px-xs;
-    min-height: 18px;
+    &--height {
+      min-height: 18px;
+    }
   }
+
+
 
   @include e("help-text") {
     @apply line-clamp-2;

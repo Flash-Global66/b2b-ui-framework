@@ -269,7 +269,10 @@
         </template>
       </el-tooltip>
     </div>
-    <div :class="nsSelect.e('help')">
+    <div :class="[
+      nsSelect.e('help'),
+      { [nsSelect.em('help', 'height')]: isHelpMinHeight }
+    ]">
       <p :key="selectError ? 'error' : 'help'" :class="helpTextKls">
         {{ selectError ? descriptionError : helpText }}
       </p>
@@ -281,7 +284,7 @@
 import { computed, defineComponent, provide, reactive, toRefs, useSlots } from 'vue'
 import { isArray } from 'element-plus/es/utils/index.mjs'
 import { ClickOutside } from 'element-plus'
-import ElTooltip from 'element-plus/es/components/tooltip/index'
+import { ElTooltip } from 'element-plus'
 import { GTag } from '@flash-global66/b2b-ui-tag'
 import { GIconFont } from '@flash-global66/b2b-ui-icon-font'
 import { useCalcInputWidth } from 'element-plus'

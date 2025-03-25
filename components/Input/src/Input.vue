@@ -79,7 +79,11 @@
         </span>
       </slot>
     </div>
-    <div :class="ns.e('help')">
+    <div
+      :class="[
+        ns.e('help'),
+        { [ns.em('help', 'height')]: isHelpMinHeight }
+      ]">
       <p :key="isError ? 'error' : 'help'" :class="helpTextKls">
         {{ isError ? error : helpText }}
       </p>
@@ -183,6 +187,10 @@ const helpTextKls = computed(() => [
     [ns.e('help-error')]: isError.value
   }
 ])
+
+const isHelpMinHeight = computed(() => {
+  return error.value || props.helpText || elFormItem?.$el
+})
 
 const { inputId } = useFormItemInputId(props, {
   formItemContext: elFormItem,
