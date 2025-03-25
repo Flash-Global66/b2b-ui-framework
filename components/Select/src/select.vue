@@ -269,10 +269,7 @@
         </template>
       </el-tooltip>
     </div>
-    <div :class="[
-      nsSelect.e('help'),
-      { [nsSelect.em('help', 'height')]: isHelpMinHeight }
-    ]">
+    <div v-if="hasHelpInfo" :class="[nsSelect.e('help')]">
       <p :key="selectError ? 'error' : 'help'" :class="helpTextKls">
         {{ selectError ? descriptionError : helpText }}
       </p>

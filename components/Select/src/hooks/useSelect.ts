@@ -62,7 +62,7 @@ type useSelectReturnType = (
   selectError: ComputedRef<boolean>
   descriptionError: ComputedRef<string>
   isErrorKls: ComputedRef<boolean>
-  isHelpMinHeight: ComputedRef<boolean>
+  hasHelpInfo: ComputedRef<boolean>
   nsSelect: ReturnType<typeof useNamespace>
   nsInput: ReturnType<typeof useNamespace>
   inputRef: Ref<HTMLElement | undefined>
@@ -237,8 +237,8 @@ const useSelect: useSelectReturnType = (props: propsUseSelect, emit: SelectEmitF
 
   const debounce = computed(() => (props.remote ? 300 : 0))
 
-  const isHelpMinHeight = computed(() => {
-    return Boolean(selectError.value || props.helpText || elFormItem?.$el)
+  const hasHelpInfo = computed(() => {
+    return Boolean(elFormItem?.$el || selectError.value || props.helpText)
   })
 
   // filteredOptions includes flatten the data into one dimensional array.
@@ -1003,7 +1003,7 @@ const useSelect: useSelectReturnType = (props: propsUseSelect, emit: SelectEmitF
     descriptionError,
     helpTextKls,
     isErrorKls,
-    isHelpMinHeight,
+    hasHelpInfo,
 
     // refs items exports
     inputRef,

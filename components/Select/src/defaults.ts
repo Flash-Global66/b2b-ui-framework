@@ -175,7 +175,8 @@ export const SelectProps = buildProps({
    */
   options: {
     type: definePropType<OptionType[]>(Array),
-    required: true
+    required: true,
+    default: () => []
   },
   /**
    * @description placeholder, the default is 'Please select'

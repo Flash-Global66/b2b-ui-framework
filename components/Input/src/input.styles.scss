@@ -123,9 +123,7 @@
 
   @include e(help) {
     @apply flex gap-xxs justify-between text-2 font-medium text-disabled-txt px-xs;
-    &--height {
-      min-height: 18px;
-    }
+    min-height: 18px;
   }
 
 

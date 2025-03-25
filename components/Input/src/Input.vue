@@ -79,11 +79,7 @@
         </span>
       </slot>
     </div>
-    <div
-      :class="[
-        ns.e('help'),
-        { [ns.em('help', 'height')]: isHelpMinHeight }
-      ]">
+    <div v-if="hasHelpInfo" :class="[ns.e('help')]">
       <p :key="isError ? 'error' : 'help'" :class="helpTextKls">
         {{ isError ? error : helpText }}
       </p>
@@ -188,7 +184,7 @@ const helpTextKls = computed(() => [
   }
 ])
 
-const isHelpMinHeight = computed(() => {
+const hasHelpInfo = computed(() => {
   return error.value || props.helpText || elFormItem?.$el
 })
 
