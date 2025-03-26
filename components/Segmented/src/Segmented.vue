@@ -41,7 +41,7 @@ import {
 } from "element-plus";
 import { useFormItemInputId, useFormItem, useFormDisabled } from '@flash-global66/b2b-ui-form';
 import { computed, reactive, ref, watch } from "vue";
-import { Option } from "./segmented.type";
+import { OptionSegmented } from "./segmented.type";
 import { useActiveElement, useResizeObserver } from "@vueuse/core";
 import { segmentedEmits, segmentedProps } from "./segmented";
 import { isObject } from "element-plus/es/utils/types.mjs";
@@ -71,27 +71,25 @@ const state = reactive({
   focusVisible: false,
 })
 
-console.log('prueba 2')
-
-const handleChange = (item: Option) => {
+const handleChange = (item: OptionSegmented) => {
   const value = getValue(item)
   emit(UPDATE_MODEL_EVENT, value)
   emit(CHANGE_EVENT, value)
 }
 
-const getValue = (item: Option) => {
+const getValue = (item: OptionSegmented) => {
   return isObject(item) ? item?.value : item
 }
 
-const getLabel = (item: Option) => {
+const getLabel = (item: OptionSegmented) => {
   return isObject(item) ? item?.label : item
 }
 
-const getDisabled = (item: Option | undefined) => {
+const getDisabled = (item: OptionSegmented | undefined) => {
   return !!(_disabled.value || (isObject(item) ? item?.disabled : false))
 }
 
-const getSelected = (item: Option) => {
+const getSelected = (item: OptionSegmented) => {
   return props.modelValue === getValue(item)
 }
 
@@ -99,7 +97,7 @@ const getOption = (value: any) => {
   return props.options.find((item) => getValue(item) === value)
 }
 
-const getItemCls = (item: Option) => {
+const getItemCls = (item: OptionSegmented) => {
   return [
     ns.e('item'),
     ns.is('selected', getSelected(item)),
@@ -135,7 +133,6 @@ const updateSelect = () => {
 }
 
 const segmentedCls = computed(() => {
-  console.log(ns.b(), ns.m(segmentedSize.value), ns.is('block', props.block))
   return[
     ns.b(),
     ns.m(segmentedSize.value),

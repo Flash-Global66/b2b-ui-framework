@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from "vue";
-import type { Option } from "./segmented.type";
+import type { OptionSegmented } from "./segmented.type";
 import type Segmented from "./Segmented.vue";
 import {
   CHANGE_EVENT,
@@ -18,7 +18,7 @@ export const segmentedProps = buildProps({
    * @description options of segmented
    */
   options: {
-    type: definePropType<Option[]>(Array),
+    type: definePropType<OptionSegmented[]>(Array),
     default: () => [],
   },
   /**

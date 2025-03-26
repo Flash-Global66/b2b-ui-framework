@@ -1,4 +1,4 @@
-export type Option =
+export type OptionSegmented =
   | {
       label: string
       value: string | number | boolean
