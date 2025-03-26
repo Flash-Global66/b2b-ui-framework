@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-button@1.3.1...@flash-global66/b2b-ui-button@1.4.0) (2025-03-26)
+
+
+### Features
+
+* Upgrade element-plus to 2.9.7 ([420a935](https://github.com/Flash-Global66/b2b-ui-framework/commit/420a935fb2a253e40edf8b38d4b616ecaf9d7704))
+
+
+
+
+
 ## [1.3.1](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-button@1.3.0...@flash-global66/b2b-ui-button@1.3.1) (2025-03-23)
 
 **Note:** Version bump only for package @flash-global66/b2b-ui-button

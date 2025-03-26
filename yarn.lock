@@ -628,7 +628,7 @@ __metadata:
   resolution: "@flash-global66/b2b-ui-button@workspace:components/Button"
   peerDependencies:
     "@flash-global66/b2b-ui-icon-font": ^1.0.2
-    element-plus: ^2.8.0
+    element-plus: ^2.9.0
     vue: ^3.2.0
   languageName: unknown
   linkType: soft
@@ -639,7 +639,7 @@ __metadata:
   peerDependencies:
     "@flash-global66/b2b-ui-icon-form": ^1.0.0
     "@vueuse/core": ^12.4.0
-    element-plus: ^2.8.0
+    element-plus: ^2.9.0
     lodash-unified: ^1.0.3
     vue: ^3.2.0
   languageName: unknown
@@ -703,7 +703,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@flash-global66/b2b-ui-form@workspace:components/Form"
   peerDependencies:
-    element-plus: ^2.8.0
+    element-plus: ^2.9.0
     vue: ^3.2.0
   languageName: unknown
   linkType: soft
@@ -823,7 +823,7 @@ __metadata:
     "@flash-global66/b2b-ui-icon-font": ^1.0.0
     "@flash-global66/b2b-ui-icon-form": ^1.0.0
     "@vueuse/core": ^12.4.0
-    element-plus: ^2.8.0
+    element-plus: ^2.9.0
     lodash-unified: ^1.0.3
     vue: ^3.2.0
   languageName: unknown
@@ -883,7 +883,7 @@ __metadata:
   peerDependencies:
     "@flash-global66/b2b-ui-icon-form": ^1.0.0
     "@vueuse/core": ^12.4.0
-    element-plus: ^2.8.0
+    element-plus: ^2.9.0
     vue: ^3.2.0
   languageName: unknown
   linkType: soft
