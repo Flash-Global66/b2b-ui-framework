@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-segmented",
   "author": "Global66",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "license": "MIT",
   "buildable": true,
   "exports": {
