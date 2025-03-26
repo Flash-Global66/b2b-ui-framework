@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-checkbox@1.2.0...@flash-global66/b2b-ui-checkbox@1.2.1) (2025-03-26)
+
+
+### Bug Fixes
+
+* Improve UI component styles and layout ([994233b](https://github.com/Flash-Global66/b2b-ui-framework/commit/994233be62416e1dff952f5b804e2f9d28310e3d))
+* Update peer dependency for @flash-global66/b2b-ui-form ([6537e51](https://github.com/Flash-Global66/b2b-ui-framework/commit/6537e51aaf591f50b907898b1a8fc3717d4db695))
+
+
+
+
+
 # [1.2.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-checkbox@1.1.0...@flash-global66/b2b-ui-checkbox@1.2.0) (2025-03-26)
 
 

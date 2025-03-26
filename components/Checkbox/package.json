@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-checkbox",
   "author": "Global66",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "license": "MIT",
   "buildable": true,
   "exports": {

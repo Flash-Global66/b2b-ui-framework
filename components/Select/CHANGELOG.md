@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-select@0.7.0...@flash-global66/b2b-ui-select@0.7.1) (2025-03-26)
+
+
+### Bug Fixes
+
+* Improve UI component styles and layout ([994233b](https://github.com/Flash-Global66/b2b-ui-framework/commit/994233be62416e1dff952f5b804e2f9d28310e3d))
+
+
+
+
+
 # [0.7.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-select@0.6.0...@flash-global66/b2b-ui-select@0.7.0) (2025-03-25)
 
 

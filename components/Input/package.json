@@ -1,7 +1,7 @@
 {
   "name": "@flash-global66/b2b-ui-input",
   "author": "Global66",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "license": "MIT",
   "buildable": true,
   "exports": {
@@ -29,8 +29,8 @@
     "url": "https://github.com/Flash-Global66/b2b-ui-framework.git"
   },
   "peerDependencies": {
-    "@flash-global66/b2b-ui-icon-font": "^1.0.0",
     "@flash-global66/b2b-ui-form": "^1.0.0",
+    "@flash-global66/b2b-ui-icon-font": "^1.0.0",
     "@vueuse/core": "^12.4.0",
     "element-plus": "^2.9.0",
     "lodash-unified": "^1.0.3",
