@@ -184,9 +184,7 @@
                 v-if="label"
                 :class="[nsSelect.e('label')]"
                 :style="labelStyle"
-              >
-                {{ label }}
-              </div>
+              >{{ label }}</div>
               <div
                 v-if="shouldShowPlaceholder"
                 :class="[

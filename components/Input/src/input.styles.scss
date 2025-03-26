@@ -12,7 +12,7 @@
   }
 
   @include e("label") {
-    @apply absolute text-terciary-txt text-4 transition-all duration-200 ease-in font-medium z-10;
+    @apply absolute text-terciary-txt text-4 transition-all duration-200 ease-in font-medium;
     top: 50%;
     transform: translateY(-50%);
   }

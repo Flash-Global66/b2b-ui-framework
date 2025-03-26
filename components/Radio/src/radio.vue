@@ -35,9 +35,7 @@
       </span>
     </span>
     <span :class="ns.e('label')" @keydown.stop>
-      <slot>
-        {{ label }}
-      </slot>
+      <slot>{{ label }}</slot>
     </span>
   </label>
 </template>

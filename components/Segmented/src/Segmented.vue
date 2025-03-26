@@ -9,7 +9,10 @@
     :aria-labelledby="isLabeledByFormItem ? formItem!.labelId : undefined"
   >
     <div :class="[ns.e('group')]">
-      <div :style="selectedStyle" :class="selectedCls" />
+      <div
+        :style="selectedStyle"
+        :class="selectedCls"
+      />
       <label
         v-for="(item, index) in options"
         :key="index"

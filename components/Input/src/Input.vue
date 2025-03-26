@@ -219,6 +219,7 @@ const labelStyle = computed(() => {
   const shouldMoveLabel = Boolean(nativeInputValue.value) || isFocused.value
   return {
     left: !shouldMoveLabel ? `calc(${leftPrefix.value} + 16px)` : undefined,
+    zIndex: !shouldMoveLabel ? 10 : undefined,
   }
 });
 

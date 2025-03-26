@@ -47,7 +47,9 @@
     </span>
     <span v-if="hasOwnLabel" :class="ns.e('label')">
       <slot />
-      <template v-if="!$slots.default">{{ label }}</template>
+      <template v-if="!$slots.default">
+        {{ label }}
+      </template>
     </span>
   </component>
 </template>

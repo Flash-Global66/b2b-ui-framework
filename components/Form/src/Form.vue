@@ -1,7 +1,5 @@
 <template>
-  <form :class="ns.b()">
-    <slot />
-  </form>
+  <form :class="ns.b()"><slot /></form>
 </template>
 
 <script lang="ts" setup>

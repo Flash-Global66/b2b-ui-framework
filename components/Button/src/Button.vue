@@ -1,7 +1,6 @@
 <template>
   <component :is="componentId" ref="_ref" v-bind="allAttrs" :class="classes">
     <div :class="ns.e('content')">
-      <!-- Main content -->
       <div :class="{ invisible: loading }">
         <g-icon-font v-if="shouldShowLeftIcon" :name="iconLeft" :class="ns.e('icon-left')" />
         <span :class="ns.e('title')">
