@@ -10,7 +10,7 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, './'),
     },
-    dedupe: ['vue'],
+    dedupe: ['vue', 'dayjs'],
   },
   build: {
     lib: {
@@ -26,6 +26,8 @@ export default defineConfig({
         '@vueuse/core', 
         '@element-plus/utils',
         'element-plus',
+        'dayjs',
+        'dayjs/plugin/localeData',
         // Componentes propios
         /^@flash-global66\/b2b-ui-/
       ],
@@ -36,6 +38,8 @@ export default defineConfig({
           '@vueuse/core': 'VueUse',
           '@element-plus/utils': 'ElementPlusUtils',
           'element-plus': 'ElementPlus',
+          'dayjs': 'dayjs',
+          'dayjs/plugin/localeData': 'dayjsPluginLocaleData'
         }
       }
     },
@@ -44,5 +48,6 @@ export default defineConfig({
     },
     target: 'esnext',
     minify: 'esbuild',
-    chunkSizeWarningLimit: 2000,
-  }});
+    chunkSizeWarningLimit: 2000,  }
+  }
+);
