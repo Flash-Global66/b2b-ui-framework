@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-segmented@0.8.0...@flash-global66/b2b-ui-segmented@0.9.0) (2025-03-26)
+
+
+### Features
+
+* **Segmented:** Update OptionSegmented type ([adcf03c](https://github.com/Flash-Global66/b2b-ui-framework/commit/adcf03cd57c062b651687e799776ef8192ec13d8))
+
+
+
+
+
 # [0.8.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-segmented@0.7.0...@flash-global66/b2b-ui-segmented@0.8.0) (2025-03-26)
 
 
