@@ -43,7 +43,7 @@
     "async-validator": "^4.2.5",
     "autoprefixer": "^10.4.19",
     "cleave-zen": "^0.0.17",
-    "element-plus": "^2.8.4",
+    "element-plus": "^2.9.7",
     "lodash-unified": "^1.0.3",
     "vue-router": "^4.2.2"
   },

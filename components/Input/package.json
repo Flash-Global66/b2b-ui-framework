@@ -32,7 +32,7 @@
     "@flash-global66/b2b-ui-icon-font": "^1.0.0",
     "@flash-global66/b2b-ui-icon-form": "^1.0.0",
     "@vueuse/core": "^12.4.0",
-    "element-plus": "^2.8.0",
+    "element-plus": "^2.9.0",
     "lodash-unified": "^1.0.3",
     "vue": "^3.2.0"
   },
