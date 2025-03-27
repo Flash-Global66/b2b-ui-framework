@@ -47,6 +47,10 @@ export const segmentedProps = buildProps({
     type: Boolean,
     default: true,
   },
+  messageError: {
+    type: String,
+    default: ""
+  },
   /**
    * @description native input id
    */
