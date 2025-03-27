@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-segmented@0.9.1...@flash-global66/b2b-ui-segmented@0.10.0) (2025-03-27)
+
+
+### Features
+
+* Add Segmented component to Form and improve styles ([f7dce73](https://github.com/Flash-Global66/b2b-ui-framework/commit/f7dce73f4f6c097cfdb43c2be6098a71f296c45f))
+
+
+
+
+
 ## [0.9.1](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-segmented@0.9.0...@flash-global66/b2b-ui-segmented@0.9.1) (2025-03-26)
 
 
