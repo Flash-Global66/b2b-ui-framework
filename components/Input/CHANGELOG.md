@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-input@0.5.1...@flash-global66/b2b-ui-input@0.5.2) (2025-03-28)
+
+
+### Bug Fixes
+
+* Improve input placeholder visibility ([1a9676b](https://github.com/Flash-Global66/b2b-ui-framework/commit/1a9676b0d0d289d2c234d2ef901064a0432eb5b0))
+
+
+
+
+
 ## [0.5.1](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-input@0.5.0...@flash-global66/b2b-ui-input@0.5.1) (2025-03-26)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.1](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-segmented@0.10.0...@flash-global66/b2b-ui-segmented@0.10.1) (2025-03-28)
+
+
+### Bug Fixes
+
+* Allow null modelValue in Segmented component ([d0ce2db](https://github.com/Flash-Global66/b2b-ui-framework/commit/d0ce2db0de190aa7b1d179631fd28080db1b46bc))
+
+
+
+
+
 # [0.10.0](https://github.com/Flash-Global66/b2b-ui-framework/compare/@flash-global66/b2b-ui-segmented@0.9.1...@flash-global66/b2b-ui-segmented@0.10.0) (2025-03-27)
 
 
