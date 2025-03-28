@@ -332,8 +332,7 @@ export const CompleteForm: Story = {
             
             <g-form-item prop="email">
               <g-input 
-                v-model="formData.email" 
-                label="Correo electrónico"
+                v-model="formData.email"
                 placeholder="ejemplo@correo.com"
                 prefix-icon="regular envelope"
                 help-text="Usaremos este email para contactarlo"
