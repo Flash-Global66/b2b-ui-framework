@@ -25,7 +25,7 @@ export const segmentedProps = buildProps({
    * @description binding value
    */
   modelValue: {
-    type: [String, Number, Boolean],
+    type: [String, Number, Boolean, null],
     default: undefined,
   },
   /**
